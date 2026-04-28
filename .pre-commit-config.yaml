@@ -1,0 +1,73 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  # General linting
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '^docs/|\.md$'
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ['--unsafe']
+      - id: check-json
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+      - id: check-case-conflict
+      - id: check-docstring-first
+
+  # Java linting
+  - repo: local
+    hooks:
+      - id: maven-checkstyle
+        name: Maven Checkstyle
+        entry: mvn checkstyle:check -DfailOnViolation=true
+        language: system
+        pass_filenames: false
+        types: [java]
+        stages: [commit]
+
+      - id: maven-pmd
+        name: Maven PMD
+        entry: mvn pmd:check
+        language: system
+        pass_filenames: false
+        types: [java]
+        stages: [commit]
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        exclude: '^CHANGELOG.md$'
+
+  # Secret detection
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--allow-missing-credentials']
+
+  # License headers (optional)
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.4
+    hooks:
+      - id: remove-crlf
+      - id: remove-tabs
+
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from hooks for ${hook_id}
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: [maven-checkstyle, maven-pmd]  # Skip heavy checks in CI
+  submodules: false

@@ -1,0 +1,306 @@
+###############################################################################
+# Multi-Agent System Configuration
+# 
+# This file configures the behavior of all 10+ agents in the validation system
+###############################################################################
+
+# Orchestrator Agent Configuration
+orchestrator:
+  enabled: true
+  max_parallel_agents: 5
+  timeout: 30m
+  retry_on_failure: 3
+  fail_fast: false
+  continue_on_error: true
+
+# Agent Configurations
+agents:
+  
+  # Code Quality Agent
+  code_quality:
+    enabled: true
+    priority: high
+    tools:
+      - sonarqube
+      - checkstyle
+      - pmd
+      - spotbugs
+      - error_prone
+    thresholds:
+      coverage: 80
+      complexity: 10
+      duplications: 3
+      code_smells: 5
+      bugs: 0
+      vulnerabilities: 0
+    fail_on_threshold_breach: true
+    
+  # Testing Agent
+  testing:
+    enabled: true
+    priority: critical
+    parallel: true
+    timeout: 10m
+    test_types:
+      unit_tests:
+        enabled: true
+        required: true
+        min_coverage: 80
+      integration_tests:
+        enabled: true
+        required: true
+        use_testcontainers: true
+      performance_tests:
+        enabled: true
+        required: false
+        duration: 5m
+    fail_on_test_failure: true
+    
+  # Security Agent
+  security:
+    enabled: true
+    priority: critical
+    tools:
+      - owasp_dependency_check
+      - snyk
+      - sonarqube_security
+      - gitguardian
+      - trivy
+    checks:
+      dependency_vulnerabilities:
+        enabled: true
+        fail_on_critical: true
+        fail_on_high: true
+        fail_on_medium: false
+      secret_detection:
+        enabled: true
+        fail_on_found: true
+      owasp_top_10:
+        enabled: true
+        required: true
+    fail_on_vulnerability: true
+    
+  # Performance Agent
+  performance:
+    enabled: true
+    priority: high
+    load_test_duration: 5m
+    metrics:
+      response_time:
+        p50: 50
+        p95: 100
+        p99: 200
+      throughput:
+        min: 1000
+      memory_usage:
+        max: 512
+      cpu_usage:
+        max: 70
+    fail_on_sla_breach: false
+    
+  # Documentation Agent
+  documentation:
+    enabled: true
+    priority: medium
+    requirements:
+      readme:
+        required: true
+        min_sections: 5
+      api_docs:
+        required: true
+        format: openapi
+      code_docs:
+        required: true
+        min_coverage: 80
+      examples:
+        required: true
+        min_count: 3
+    min_completeness: 80
+    fail_on_incomplete: false
+    
+  # Build Agent
+  build:
+    enabled: true
+    priority: critical
+    clean_build: true
+    skip_tests: false
+    parallel: true
+    timeout: 15m
+    checks:
+      compilation:
+        fail_on_error: true
+        fail_on_warning: false
+      dependencies:
+        check_conflicts: true
+        check_vulnerabilities: true
+        check_outdated: false
+      artifacts:
+        validate_jar: true
+        validate_docker: false
+    fail_on_build_failure: true
+    
+  # Integration Agent
+  integration:
+    enabled: true
+    priority: high
+    use_testcontainers: true
+    timeout: 15m
+    services:
+      database:
+        enabled: true
+        type: postgresql
+      message_broker:
+        enabled: true
+        type: kafka
+      cache:
+        enabled: false
+        type: redis
+    fail_on_integration_failure: true
+    
+  # Deployment Agent
+  deployment:
+    enabled: true
+    priority: medium
+    validate_docker: true
+    validate_k8s: true
+    checks:
+      dockerfile:
+        required: false
+        validate_best_practices: true
+      kubernetes:
+        required: false
+        validate_manifests: true
+        check_resources: true
+        check_health_checks: true
+      environment:
+        validate_config: true
+        validate_secrets: true
+    fail_on_deployment_issues: false
+    
+  # Monitoring Agent
+  monitoring:
+    enabled: true
+    priority: medium
+    check_dashboards: true
+    requirements:
+      metrics:
+        required: true
+        library: micrometer
+      logging:
+        required: true
+        framework: slf4j
+      tracing:
+        required: false
+        framework: jaeger
+      alerts:
+        required: false
+    fail_on_missing_monitoring: false
+    
+  # Report Agent
+  report:
+    enabled: true
+    priority: high
+    format: json
+    include_html: true
+    include_markdown: true
+    notify:
+      enabled: false
+      channels:
+        - email
+        - slack
+    retention_days: 30
+
+# Quality Gates
+quality_gates:
+  gate_1_code_quality:
+    enabled: true
+    required:
+      - coverage >= 80
+      - bugs == 0
+      - vulnerabilities == 0
+      - code_smells <= 5
+      - duplications <= 3
+    blocking: true
+    
+  gate_2_testing:
+    enabled: true
+    required:
+      - unit_tests: all_passing
+      - integration_tests: all_passing
+      - test_coverage >= 80
+      - no_flaky_tests
+    blocking: true
+    
+  gate_3_security:
+    enabled: true
+    required:
+      - critical_vulnerabilities == 0
+      - high_vulnerabilities == 0
+      - no_exposed_secrets
+      - owasp_top_10: protected
+    blocking: true
+    
+  gate_4_performance:
+    enabled: true
+    required:
+      - response_time_p95 <= 100
+      - throughput >= 1000
+      - memory_usage <= 512
+      - cpu_usage <= 70
+    blocking: false
+    
+  gate_5_production_ready:
+    enabled: true
+    required:
+      - documentation: complete
+      - build: successful
+      - deployment: validated
+      - monitoring: configured
+    blocking: false
+
+# Success Criteria
+success_criteria:
+  overall_score_min: 90
+  all_critical_agents_pass: true
+  all_quality_gates_pass: true
+  zero_critical_issues: true
+
+# Reporting
+reporting:
+  generate_html: true
+  generate_json: true
+  generate_markdown: true
+  generate_pdf: false
+  include_charts: true
+  include_trends: true
+  
+# Notifications
+notifications:
+  on_success:
+    enabled: false
+  on_failure:
+    enabled: true
+  on_completion:
+    enabled: true
+
+# Continuous Validation
+continuous_validation:
+  enabled: true
+  triggers:
+    on_commit: quick_validation
+    on_pull_request: full_validation
+    on_merge: production_validation
+    scheduled: daily_full_scan
+  schedule:
+    daily: "0 2 * * *"
+    weekly: "0 2 * * 0"
+    monthly: "0 2 1 * *"
+
+# Advanced Settings
+advanced:
+  cache_results: true
+  cache_duration: 24h
+  parallel_execution: true
+  max_parallel_modules: 3
+  verbose_logging: false
+  debug_mode: false
