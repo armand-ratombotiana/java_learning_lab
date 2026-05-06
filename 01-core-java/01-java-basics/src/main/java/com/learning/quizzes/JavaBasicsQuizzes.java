@@ -121,15 +121,15 @@ public class JavaBasicsQuizzes {
         System.out.println("Outer scope: x = " + x);
         
         {
-            int x = 2;  // Shadows outer x
-            System.out.println("Middle scope: x = " + x);
+            int xInner = 2;  // Shadows outer x (renamed to avoid redeclaration in same scope)
+            System.out.println("Middle scope: x = " + xInner);
             
             {
-                int x = 3;  // Shadows both
-                System.out.println("Inner scope: x = " + x);
+                int xInnermost = 3;  // Shadows both
+                System.out.println("Inner scope: x = " + xInnermost);
             }
             
-            System.out.println("Back to middle scope: x = " + x);
+            System.out.println("Back to middle scope: x = " + xInner);
         }
         
         System.out.println("Back to outer scope: x = " + x);
@@ -302,7 +302,7 @@ public class JavaBasicsQuizzes {
         System.out.println("int[] arr = {10, 20, 30};");
         System.out.println("int i = 0;");
         System.out.println("int sum = arr[i++] + arr[i++];");
-        sum = arr[i++] + arr[i++];
+        int sum = arr[i++] + arr[i++];
         System.out.println();
         System.out.println("Evaluation: arr[0] + arr[1] = " + arr[0] + " + " + arr[1] + " = " + sum);
         System.out.println("Then i becomes " + i);

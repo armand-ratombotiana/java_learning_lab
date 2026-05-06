@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learning</groupId>
+  <artifactId>java-learning-aggregator</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>Java Learning Aggregator</name>
+  <description>Aggregate all Java Learning labs for single reactor builds</description>
+
+    <modules>
+    <!-- Core Java Labs -->
+    <module>01-core-java/01-java-basics</module>
+    <module>01-core-java/02-oop-concepts</module>
+    <module>01-core-java/03-collections-framework</module>
+    <module>01-core-java/04-streams-api</module>
+    <module>01-core-java/05-concurrency</module>
+    <module>01-core-java/05-concurrency-multithreading</module>
+    <module>01-core-java/06-exception-handling</module>
+    <module>01-core-java/07-file-io</module>
+    <module>01-core-java/08-generics</module>
+    <module>01-core-java/11-design-patterns</module>
+    <module>01-core-java/12-java-21-features</module>
+
+    <!-- Other labs can be added here as separate modules in the future -->
+  </modules>
+</project>

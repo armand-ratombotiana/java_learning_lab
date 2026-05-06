@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learning</groupId>
+  <artifactId>spring-boot-modules</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>02 Spring Boot Learning Modules</name>
+  <description>Spring Boot ecosystem learning modules</description>
+  <modules>
+    <module>01-spring-boot-basics</module>
+    <module>02-spring-data-jpa</module>
+    <module>03-spring-security</module>
+    <module>04-spring-rest-api</module>
+    <module>05-spring-webflux</module>
+  </modules>
+</project>

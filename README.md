@@ -89,6 +89,18 @@ mvn clean verify
 
 ---
 
+## 🧭 Build All Labs (Aggregator)
+
+Note: This repository includes a lightweight aggregator (pom-aggregator.xml) to build all Core Java labs in a single Maven reactor.
+
+- Build all Core Java labs (no tests):
+  mvn -f pom-aggregator.xml clean install -DskipTests=true
+- Build with tests enabled: 
+  mvn -f pom-aggregator.xml clean test -DskipTests=false
+- You can still build individual modules as before by going into their respective directories and running Maven there.
+
+---
+
 ## 🗺️ Learning Path
 
 ```mermaid

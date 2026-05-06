@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learning</groupId>
+  <artifactId>microservices-learning</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>06 Microservices Learning Modules</name>
+  <description>Microservices architecture learning modules</description>
+  <modules>
+    <module>01-architecture-patterns</module>
+    <module>02-service-discovery</module>
+    <module>03-api-gateway</module>
+  </modules>
+</project>

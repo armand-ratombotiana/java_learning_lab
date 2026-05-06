@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.learning</groupId>
+  <artifactId>databases-learning</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>07 Databases Learning Modules</name>
+  <description>Database technologies learning modules</description>
+  <modules><module>01-postgresql</module><module>02-mongodb</module><module>03-redis</module></modules>
+</project>

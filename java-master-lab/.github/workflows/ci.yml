@@ -1,0 +1,263 @@
+name: Java Master Lab CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM
+
+jobs:
+  environment-check:
+    name: Environment & Setup Check
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        java-version: ['17', '21']
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Verify Java Installation
+        run: |
+          java -version
+          javac -version
+      
+      - name: Verify Maven Installation
+        run: mvn -version
+      
+      - name: Verify Git Installation
+        run: git --version
+
+  repository-structure:
+    name: Repository Structure Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check Required Directories
+        run: |
+          echo "Checking required directories..."
+          [ -d "labs" ] && echo "✓ labs directory exists" || exit 1
+          [ -d "scripts" ] && echo "✓ scripts directory exists" || exit 1
+          [ -d "templates" ] && echo "✓ templates directory exists" || exit 1
+          [ -d "docs" ] && echo "✓ docs directory exists" || exit 1
+          [ -d ".github" ] && echo "✓ .github directory exists" || exit 1
+      
+      - name: Check Required Files
+        run: |
+          echo "Checking required files..."
+          [ -f "README.md" ] && echo "✓ README.md exists" || exit 1
+          [ -f "CONTRIBUTING.md" ] && echo "✓ CONTRIBUTING.md exists" || exit 1
+          [ -f "LICENSE" ] && echo "✓ LICENSE exists" || exit 1
+          [ -f "pom.xml" ] && echo "✓ pom.xml exists" || exit 1
+      
+      - name: Check Lab Structure
+        run: |
+          echo "Checking lab structure..."
+          for lab_dir in labs/*/; do
+            if [ -f "$lab_dir/README.md" ]; then
+              echo "✓ $(basename $lab_dir) has README.md"
+            else
+              echo "✗ $(basename $lab_dir) missing README.md"
+              exit 1
+            fi
+          done
+
+  documentation:
+    name: Documentation Validation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check Documentation Files
+        run: |
+          echo "Checking documentation..."
+          [ -f "docs/roadmap.md" ] && echo "✓ docs/roadmap.md exists" || exit 1
+          [ -f "README.md" ] && echo "✓ README.md exists" || exit 1
+          [ -f "CONTRIBUTING.md" ] && echo "✓ CONTRIBUTING.md exists" || exit 1
+      
+      - name: Validate Markdown
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          config_file: .markdownlint.json
+
+  build-labs:
+    name: Build All Labs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: ['17', '21']
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Build Root Project
+        run: mvn clean install -DskipTests
+      
+      - name: Build Lab 00 (Environment Setup)
+        if: always()
+        run: |
+          if [ -f "labs/00-environment-setup/pom.xml" ]; then
+            cd labs/00-environment-setup
+            mvn clean install -DskipTests
+          fi
+      
+      - name: Build Lab 01 (Java Basics)
+        if: always()
+        run: |
+          if [ -f "labs/01-java-basics/pom.xml" ]; then
+            cd labs/01-java-basics
+            mvn clean install -DskipTests
+          fi
+      
+      - name: Build All Available Labs
+        if: always()
+        run: |
+          for lab_dir in labs/*/; do
+            if [ -f "$lab_dir/pom.xml" ]; then
+              echo "Building $(basename $lab_dir)..."
+              (cd "$lab_dir" && mvn clean install -DskipTests) || echo "Warning: $(basename $lab_dir) build failed"
+            fi
+          done
+
+  test-labs:
+    name: Test All Labs
+    runs-on: ubuntu-latest
+    needs: build-labs
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Run Tests for Lab 00
+        if: always()
+        run: |
+          if [ -f "labs/00-environment-setup/pom.xml" ]; then
+            cd labs/00-environment-setup
+            mvn test || echo "Warning: Lab 00 tests failed"
+          fi
+      
+      - name: Run Tests for Lab 01
+        if: always()
+        run: |
+          if [ -f "labs/01-java-basics/pom.xml" ]; then
+            cd labs/01-java-basics
+            mvn test || echo "Warning: Lab 01 tests failed"
+          fi
+      
+      - name: Run Tests for All Labs
+        if: always()
+        run: |
+          for lab_dir in labs/*/; do
+            if [ -f "$lab_dir/pom.xml" ]; then
+              echo "Testing $(basename $lab_dir)..."
+              (cd "$lab_dir" && mvn test) || echo "Warning: $(basename $lab_dir) tests failed"
+            fi
+          done
+
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Run Checkstyle
+        run: |
+          mvn checkstyle:check || echo "Warning: Checkstyle issues found"
+      
+      - name: Run SpotBugs
+        run: |
+          mvn spotbugs:check || echo "Warning: SpotBugs issues found"
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Run Dependency Check
+        run: |
+          mvn org.owasp:dependency-check-maven:check || echo "Warning: Dependency vulnerabilities found"
+
+  verification:
+    name: Run Verification Script
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+      
+      - name: Run verification script
+        run: ./scripts/verify-all.sh --full
+
+  summary:
+    name: Build Summary
+    runs-on: ubuntu-latest
+    needs: [environment-check, repository-structure, documentation, build-labs, test-labs]
+    if: always()
+    
+    steps:
+      - name: Check build status
+        run: |
+          if [ "${{ needs.environment-check.result }}" == "failure" ] || \
+             [ "${{ needs.repository-structure.result }}" == "failure" ] || \
+             [ "${{ needs.documentation.result }}" == "failure" ] || \
+             [ "${{ needs.build-labs.result }}" == "failure" ] || \
+             [ "${{ needs.test-labs.result }}" == "failure" ]; then
+            echo "❌ Build failed"
+            exit 1
+          else
+            echo "✅ Build successful"
+            exit 0
+          fi

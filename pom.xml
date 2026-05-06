@@ -73,6 +73,84 @@
         <jacoco.coverage.minimum>0.70</jacoco.coverage.minimum>
     </properties>
 
+    <modules>
+        <module>01-core-java/01-java-basics</module>
+        <module>01-core-java/02-oop-concepts</module>
+        <module>01-core-java/03-collections-framework</module>
+        <module>01-core-java/04-streams-api</module>
+        <module>01-core-java/05-concurrency</module>
+        <module>01-core-java/05-concurrency-multithreading</module>
+        <module>01-core-java/06-exception-handling</module>
+        <module>01-core-java/07-file-io</module>
+        <module>01-core-java/08-generics</module>
+        <module>01-core-java/11-design-patterns</module>
+        <module>01-core-java/12-java-21-features</module>
+        <module>01-core-java/13-advanced-inheritance</module>
+<module>01-core-java/14-reflection-introspection</module>
+        
+        <!-- Additional Learning Labs -->
+        <module>java-master-lab</module>
+        <module>quarkus-learning/quarkus-getting-started</module>
+        
+        <!-- New Modules -->
+        <module>01-core-java/15-jvm-internals</module>
+        <module>01-core-java/16-networking-http</module>
+        <module>01-core-java/17-testing-strategies</module>
+        <module>01-core-java/18-security-cryptography</module>
+        <module>01-core-java/19-database-jdbc</module>
+        <module>01-core-java/20-build-tools</module>
+        <module>01-core-java/21-logging-monitoring</module>
+        <module>01-core-java/22-microservices</module>
+        <module>01-core-java/23-data-structures-algorithms</module>
+        <module>01-core-java/24-functional-programming</module>
+        <module>01-core-java/25-spring-boot-basics</module>
+        <module>01-core-java/26-spring-data-jpa</module>
+        <module>01-core-java/27-spring-rest-api</module>
+        <module>01-core-java/28-spring-security</module>
+        <module>01-core-java/29-spring-boot-advanced</module>
+        <module>01-core-java/30-reactive-programming</module>
+        <module>01-core-java/31-graphql</module>
+        <module>01-core-java/32-cloud-devops</module>
+        <module>01-core-java/33-code-organization</module>
+        <module>01-core-java/34-code-quality</module>
+        <module>01-core-java/35-system-design</module>
+        <module>01-core-java/36-design-patterns-advanced</module>
+        <module>01-core-java/37-clean-architecture</module>
+        <module>01-core-java/38-event-sourcing</module>
+        <module>01-core-java/39-message-queues</module>
+        <module>01-core-java/40-grpc-protobuf</module>
+        <module>01-core-java/41-caching-strategies</module>
+        <module>01-core-java/42-api-gateway</module>
+        <module>01-core-java/43-service-mesh</module>
+        <module>01-core-java/44-database-advanced</module>
+        <module>01-core-java/45-testing-advanced</module>
+        <module>01-core-java/46-performance-optimization</module>
+        <module>01-core-java/47-memory-profiling</module>
+        <module>01-core-java/48-reactive-streams</module>
+        <module>01-core-java/49-kotlin-java</module>
+        <module>01-core-java/50-virtual-threads</module>
+        <module>01-core-java/51-web-sockets</module>
+        <module>01-core-java/52-serverless</module>
+        <module>01-core-java/53-containers</module>
+        <module>01-core-java/54-observability</module>
+        <module>01-core-java/55-spring-native</module>
+        <module>01-core-java/56-jakarta-ee</module>
+        <module>01-core-java/57-microservices-advanced</module>
+        <module>01-core-java/58-data-engineering</module>
+        <module>01-core-java/59-spark-flink</module>
+        <module>01-core-java/60-ml-java</module>
+        <module>01-core-java/61-blockchain</module>
+        <module>01-core-java/62-edge-computing</module>
+        <module>01-core-java/63-webassembly</module>
+        <module>01-core-java/64-chaos-engineering</module>
+        <module>01-core-java/65-incident-response</module>
+        <module>01-core-java/66-git-ops</module>
+        <module>01-core-java/67-multi-cloud</module>
+        <module>01-core-java/68-istio-linkerd</module>
+        <module>01-core-java/69-data-governance</module>
+        <module>01-core-java/70-capstone-project</module>
+    </modules>
+
     <!-- ========== DEPENDENCYMANAGEMENT ========== -->
     <dependencyManagement>
         <dependencies>
