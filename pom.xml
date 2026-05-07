@@ -26,6 +26,7 @@
 
         <!-- Framework Versions -->
         <spring-boot.version>3.3.0</spring-boot.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
         <quarkus.version>3.10.0</quarkus.version>
         <vertx.version>4.5.3</vertx.version>
         <micronaut.version>4.5.0</micronaut.version>
@@ -91,7 +92,25 @@
         <!-- Additional Learning Labs -->
         <module>java-master-lab</module>
         <module>quarkus-learning/quarkus-getting-started</module>
-        
+
+        <!-- Spring Ecosystem -->
+        <module>02-spring-ecosystem</module>
+
+        <!-- Observability -->
+        <module>23-observability</module>
+
+        <!-- GraalVM Native -->
+        <module>24-graalvm-native</module>
+
+        <!-- Apache Camel -->
+        <module>16-apache-camel/camel-learning</module>
+
+        <!-- Kotlin Coroutines -->
+        <module>25-kotlin-coroutines</module>
+
+        <!-- Architecture Patterns -->
+        <module>26-architecture</module>
+
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>
         <module>01-core-java/16-networking-http</module>
@@ -159,6 +178,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud BOM -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
