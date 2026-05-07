@@ -176,6 +176,16 @@
         <module>68-springmodulith</module>
         <module>69-r2dbc</module>
         <module>70-ai</module>
+        <module>71-deep-learning</module>
+        <module>72-langchain4j</module>
+        <module>73-spring-ai</module>
+        <module>74-opennlp</module>
+        <module>75-weka</module>
+        <module>76-tribuo</module>
+        <module>77-vector-database</module>
+        <module>78-nlp-pipeline</module>
+        <module>79-llm-integration</module>
+        <module>80-computer-vision</module>
 
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>

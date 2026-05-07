@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent><groupId>com.learning</groupId><artifactId>java-learning-parent</artifactId><version>1.0.0</version></parent>
+    <artifactId>71-deep-learning</artifactId>
+    <name>71 - Deep Learning with DJL</name>
+    <dependencies>
+        <dependency><groupId>ai.djl</groupId><artifactId>api</artifactId><version>0.30.0</version></dependency>
+        <dependency><groupId>ai.djl</groupId><artifactId>basicdataset</artifactId><version>0.30.0</version></dependency>
+        <dependency><groupId>ai.djl.pytorch</groupId><artifactId>pytorch-engine</artifactId><version>0.30.0</version></dependency>
+    </dependencies>
+</project>
