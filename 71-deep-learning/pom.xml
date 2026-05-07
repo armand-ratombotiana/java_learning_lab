@@ -5,7 +5,7 @@
     <artifactId>71-deep-learning</artifactId>
     <name>71 - Deep Learning with DJL</name>
     <dependencies>
-        <dependency><groupId>ai.djl</groupId><artifactId>api</artifactId><version>0.30.0</version></dependency>
+        <dependency><groupId>ai.djl</groupId><artifactId>api</artifactId><version>0.31.1</version></dependency>
         <dependency><groupId>ai.djl</groupId><artifactId>basicdataset</artifactId><version>0.30.0</version></dependency>
         <dependency><groupId>ai.djl.pytorch</groupId><artifactId>pytorch-engine</artifactId><version>0.30.0</version></dependency>
     </dependencies>
