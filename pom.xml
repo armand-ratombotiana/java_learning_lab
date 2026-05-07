@@ -155,6 +155,28 @@
         <module>46-flyway</module>
         <module>47-liquibase</module>
 
+        <!-- Advanced Frameworks -->
+        <module>51-quarkus</module>
+        <module>52-micronaut</module>
+        <module>53-helidon</module>
+        <module>54-vertx</module>
+        <module>55-kafka</module>
+        <module>56-k8s</module>
+        <module>57-service-mesh</module>
+        <module>58-serverless</module>
+        <module>59-webassembly</module>
+        <module>60-blockchain</module>
+        <module>61-ml</module>
+        <module>62-data-pipeline</module>
+        <module>63-streaming</module>
+        <module>64-cdc</module>
+        <module>65-ddd</module>
+        <module>66-cqrs</module>
+        <module>67-saga</module>
+        <module>68-springmodulith</module>
+        <module>69-r2dbc</module>
+        <module>70-ai</module>
+
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>
         <module>01-core-java/16-networking-http</module>
