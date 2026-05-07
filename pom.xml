@@ -111,6 +111,18 @@
         <!-- Architecture Patterns -->
         <module>26-architecture</module>
 
+        <!-- Kafka Streams -->
+        <module>27-kafka-streams</module>
+
+        <!-- GraphQL -->
+        <module>28-graphql</module>
+
+        <!-- gRPC -->
+        <module>29-grpc</module>
+
+        <!-- Event Sourcing -->
+        <module>30-event-sourcing</module>
+
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>
         <module>01-core-java/16-networking-http</module>
