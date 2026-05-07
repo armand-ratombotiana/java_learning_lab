@@ -123,6 +123,38 @@
         <!-- Event Sourcing -->
         <module>30-event-sourcing</module>
 
+        <!-- Database & Cache -->
+        <module>31-mongodb</module>
+        <module>32-redis</module>
+        <module>33-postgresql</module>
+        <module>34-rabbitmq</module>
+        <module>35-consul</module>
+        <module>36-elasticsearch</module>
+
+        <!-- Security & Auth -->
+        <module>37-keycloak</module>
+
+        <!-- Monitoring -->
+        <module>38-prometheus</module>
+        <module>39-grafana</module>
+        <module>40-jaeger</module>
+
+        <!-- Spring Boot -->
+        <module>41-actuator</module>
+
+        <!-- Testing -->
+        <module>42-testcontainers</module>
+        <module>43-wiremock</module>
+        <module>44-jmeter</module>
+        <module>45-gatling</module>
+        <module>48-cucumber</module>
+        <module>49-selenide</module>
+        <module>50-junit5</module>
+
+        <!-- Database Migrations -->
+        <module>46-flyway</module>
+        <module>47-liquibase</module>
+
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>
         <module>01-core-java/16-networking-http</module>
