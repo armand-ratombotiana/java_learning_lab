@@ -1,43 +1,36 @@
-# Apache OpenNLP Exercises
+# OpenNLP Exercises
 
-## Exercise 1: Sentence Detection
-Detect sentences in text:
-- Load sentence detector model
-- Split text into sentences
-- Handle edge cases (abbreviations)
+## Exercise 1: Sentence Detection (Easy)
+Load model, detect sentences in paragraph, handle various punctuation.
 
-## Exercise 2: Tokenization
-Tokenize text into words:
-- Load tokenizer model
-- Handle special cases
-- Preserve punctuation tokens
+## Exercise 2: Tokenization (Easy)
+Tokenize text using both SimpleTokenizer and TokenizerME.
 
-## Exercise 3: POS Tagging
-Tag parts of speech:
-- Load POS model
-- Tag tokens
-- Understand tag meanings (NNP, VBZ, etc.)
+## Exercise 3: POS Tagging (Medium)
+Build complete pipeline: sentences -> tokens -> POS tags.
 
-## Exercise 4: Named Entity Recognition
-Extract named entities:
-- Load NER model
-- Detect person, organization, location
-- Handle multi-token entities
+## Exercise 4: Named Entity Recognition (Medium)
+Extract PERSON, ORG, LOCATION entities from text.
 
-## Exercise 5: Language Detection
-Identify text language:
-- Load language detector
-- Detect language from short text
-- Handle confidence scores
+## Exercise 5: Document Classification (Medium)
+Train and use classifier for spam detection.
 
-## Exercise 6: Document Classification
-Categorize documents:
-- Train document categorizer
-- Classify text into categories
-- Evaluate accuracy
+## Exercise 6: Custom NER Model Training (Hard)
+Train custom model for domain-specific entities.
 
-## Exercise 7: Build NLP Pipeline
-Create complete pipeline:
-- Chain sentence detection -> tokenization -> POS -> NER
-- Handle exceptions gracefully
-- Measure performance
+## Exercise 7: Complete NLP Pipeline (Hard)
+Build end-to-end pipeline with all components.
+
+## Exercise 8: Performance Optimization (Hard)
+Implement caching and batch processing.
+
+## Exercise 9: Error Handling (Medium)
+Handle edge cases and invalid inputs gracefully.
+
+## Exercise 10: Integration with Spring (Hard)
+Create Spring Boot service with OpenNLP.
+
+---
+
+Complete all exercises for comprehensive OpenNLP mastery.
+See DEEP_DIVE.md for concepts and QUIZZES.md for assessment.

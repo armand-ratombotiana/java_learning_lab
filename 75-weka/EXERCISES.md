@@ -1,44 +1,18 @@
 # Weka Exercises
 
-## Exercise 1: Data Loading
-Load and explore datasets:
-- Load ARFF file
-- Inspect attributes and instances
-- Set class attribute
+## Exercises
 
-## Exercise 2: Classification
-Build classifier models:
-- Train J48 decision tree
-- Train Random Forest
-- Train SVM (SMO)
-- Compare accuracies
+1. **Data Loading**: Load ARFF and CSV files, explore data
+2. **Preprocessing**: Apply normalize, discretize filters
+3. **Decision Tree**: Build and evaluate J48 classifier
+4. **Random Forest**: Compare with single tree
+5. **SVM Classification**: Train and evaluate SVM
+6. **K-Means Clustering**: Cluster data without labels
+7. **Model Evaluation**: Use cross-validation properly
+8. **Feature Selection**: Apply attribute selection
+9. **Ensemble Methods**: Implement AdaBoost
+10. **Model Persistence**: Save and load models
 
-## Exercise 3: Cross-Validation
-Evaluate models properly:
-- 10-fold cross-validation
-- Measure accuracy, precision, recall
-- Generate confusion matrix
+---
 
-## Exercise 4: Preprocessing
-Apply data transformations:
-- Normalize numerical attributes
-- Discretize continuous features
-- Remove irrelevant attributes
-
-## Exercise 5: Clustering
-Segment data with clustering:
-- K-Means clustering
-- Determine optimal K
-- Analyze cluster assignments
-
-## Exercise 6: Association Mining
-Find frequent patterns:
-- Run Apriori algorithm
-- Set minimum support
-- Interpret rules
-
-## Exercise 7: Feature Selection
-Select relevant features:
-- Use CfsSubsetEval
-- Apply GreedyStepwise search
-- Evaluate selected features
+Complete for Weka mastery. See DEEP_DIVE.md and QUIZZES.md.

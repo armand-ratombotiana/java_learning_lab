@@ -1,44 +1,18 @@
 # NLP Pipeline Exercises
 
-## Exercise 1: Text Preprocessing
-Clean and prepare text:
-- Lowercase conversion
-- Remove punctuation
-- Tokenize text
-- Remove stop words
+## Exercises
 
-## Exercise 2: Feature Extraction
-Create text features:
-- Implement Bag of Words
-- Build TF-IDF vectors
-- Use word embeddings
+1. **Tokenization**: Implement tokenization pipeline
+2. **Preprocessing**: Clean and normalize text
+3. **Feature Extraction**: Create Bag of Words features
+4. **TF-IDF**: Compute TF-IDF vectors
+5. **POS Tagging**: Tag parts of speech
+6. **NER**: Extract named entities
+7. **Sentiment**: Analyze sentiment of text
+8. **Summarization**: Implement text summarization
+9. **Stanford Integration**: Use Stanford CoreNLP
+10. **Complete Pipeline**: Build end-to-end pipeline
 
-## Exercise 3: Stanford CoreNLP Pipeline
-Build complete pipeline:
-- Configure annotators (tokenize, POS, lemma, NER)
-- Process documents
-- Extract entities
+---
 
-## Exercise 4: Sentiment Analysis
-Analyze sentiment:
-- Use CoreNLP sentiment
-- Implement VADER
-- Compare approaches
-
-## Exercise 5: Text Summarization
-Summarize documents:
-- Implement extractive summarization
-- Score sentences by importance
-- Generate summary
-
-## Exercise 6: Topic Modeling
-Discover topics:
-- Implement LDA
-- Extract topic-word distributions
-- Analyze document-topic assignments
-
-## Exercise 7: Complete Pipeline
-Build end-to-end system:
-- Preprocess -> Extract features -> Model -> Evaluate
-- Handle errors gracefully
-- Measure performance
+Complete for NLP pipeline mastery.

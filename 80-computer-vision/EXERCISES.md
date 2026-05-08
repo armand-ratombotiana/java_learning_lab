@@ -1,44 +1,18 @@
 # Computer Vision Exercises
 
-## Exercise 1: Image Loading
-Load and display images:
-- Read image with imread()
-- Convert color spaces
-- Display with imshow()
+## Exercises
 
-## Exercise 2: Image Processing
-Apply transformations:
-- Grayscale conversion
-- Gaussian blur
-- Edge detection (Canny)
-- Thresholding
+1. **Image Loading**: Load and display images with JavaCV
+2. **Color Conversion**: Convert between color spaces
+3. **Image Processing**: Apply filters and transformations
+4. **Face Detection**: Detect faces with Haar cascades
+5. **Object Detection**: Use YOLO for object detection
+6. **Image Classification**: Classify images with DJL
+7. **OCR**: Extract text from images with Tesseract
+8. **Video Capture**: Process webcam feed
+9. **Real-time Detection**: Face detection on video
+10. **Custom Model**: Train custom classification model
 
-## Exercise 3: Face Detection
-Detect faces with Haar Cascades:
-- Load cascade classifier
-- Detect multi-scale faces
-- Draw bounding boxes
+---
 
-## Exercise 4: YOLO Object Detection
-Detect multiple objects:
-- Load YOLO model
-- Preprocess image blob
-- Parse detection results
-
-## Exercise 5: Image Classification
-Classify with pre-trained models:
-- Load ResNet via DJL
-- Prepare input image
-- Get classification results
-
-## Exercise 6: OCR Implementation
-Extract text from images:
-- Setup Tesseract
-- Preprocess image
-- Extract text
-
-## Exercise 7: Video Processing
-Process video streams:
-- Capture from webcam
-- Process frames in real-time
-- Apply object detection
+Complete for computer vision mastery.

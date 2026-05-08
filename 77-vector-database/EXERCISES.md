@@ -1,43 +1,18 @@
 # Vector Database Exercises
 
-## Exercise 1: Generate Embeddings
-Create vector representations:
-- Use sentence transformer model
-- Generate embeddings for sentences
-- Understand embedding dimensions
+## Exercises
 
-## Exercise 2: Pinecone Integration
-Connect to Pinecone:
-- Create index with proper dimensions
-- Upsert vectors with metadata
-- Query similar vectors
+1. **Embedding Creation**: Generate embeddings from text
+2. **In-Memory Store**: Use InMemoryEmbeddingStore
+3. **Similarity Search**: Implement cosine similarity search
+4. **Document Chunking**: Split documents appropriately
+5. **Pinecone Integration**: Connect to Pinecone cloud
+6. **RAG Pipeline**: Build complete RAG system
+7. **Hybrid Search**: Combine keyword and vector search
+8. **Performance Optimization**: Implement caching
+9. **Error Handling**: Handle rate limits and failures
+10. **Production Deployment**: Configure for production
 
-## Exercise 3: ChromaDB Setup
-Setup local vector store:
-- Initialize Chroma client
-- Create collection
-- Add documents and query
+---
 
-## Exercise 4: Weaviate Usage
-Implement Weaviate operations:
-- Define schema
-- Add objects with vectors
-- Execute GraphQL queries
-
-## Exercise 5: Qdrant Implementation
-Use Qdrant for vector search:
-- Create collection
-- Add points with payload
-- Perform similarity search
-
-## Exercise 6: Similarity Metrics
-Compare different metrics:
-- Implement cosine similarity
-- Calculate Euclidean distance
-- Measure dot product
-
-## Exercise 7: RAG Application
-Build complete RAG system:
-- Store document embeddings
-- Retrieve relevant context
-- Use with LLM for Q&A
+Complete all exercises for vector database mastery.

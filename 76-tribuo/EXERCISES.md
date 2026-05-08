@@ -1,44 +1,18 @@
 # Tribuo Exercises
 
-## Exercise 1: Classification
-Build classification model:
-- Load CSV dataset
-- Create LabelFactory
-- Train LinearSGD classifier
-- Evaluate with confusion matrix
+## Exercises
 
-## Exercise 2: Regression
-Predict continuous values:
-- Create regression dataset
-- Train LinearSGD regressor
-- Measure RMSE, MAE
+1. **Basic Classification**: Train linear classifier on Iris
+2. **Regression**: Build regression model for housing prices
+3. **Clustering**: Implement K-Means clustering
+4. **Feature Processing**: Apply normalization and scaling
+5. **Model Evaluation**: Use LabelEvaluator properly
+6. **Multiple Algorithms**: Compare tree vs linear models
+7. **Ensemble**: Implement voting classifier
+8. **Model Persistence**: Save and load trained models
+9. **Pipeline**: Build complete ML pipeline
+10. **Custom Features**: Implement custom feature types
 
-## Exercise 3: Clustering
-Cluster data points:
-- Use KMeansTrainer
-- Determine optimal clusters
-- Analyze assignments
+---
 
-## Exercise 4: Feature Processing
-Transform features:
-- Apply StandardScaler
-- Perform PCA dimensionality reduction
-- Compare before/after metrics
-
-## Exercise 5: Ensemble Methods
-Build ensemble models:
-- Create RandomForest trainer
-- Configure tree count and depth
-- Compare with single model
-
-## Exercise 6: Data Loading
-Load various data formats:
-- Load CSV with header
-- Handle missing values
-- Configure feature names
-
-## Exercise 7: Model Evaluation
-Comprehensive evaluation:
-- Calculate accuracy, F1
-- Generate classification report
-- Compare models
+Complete all exercises for Tribuo mastery.
