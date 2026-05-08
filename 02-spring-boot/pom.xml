@@ -13,5 +13,10 @@
     <module>03-spring-security</module>
     <module>04-spring-rest-api</module>
     <module>05-spring-webflux</module>
+    <module>06-spring-boot-actuator</module>
+    <module>07-spring-boot-docker</module>
+    <module>08-spring-boot-microservices</module>
+    <module>09-spring-boot-reactive</module>
+    <module>10-spring-boot-cloud</module>
   </modules>
 </project>
