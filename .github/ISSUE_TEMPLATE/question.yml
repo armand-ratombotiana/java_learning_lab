@@ -1,0 +1,57 @@
+name: Question
+
+description: Ask a question about the Java Learning Lab
+title: "[Question] "
+labels: [question]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Question
+
+        Have a question about the Java Learning Lab? We're here to help!
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: |
+        Please describe your question in detail...
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Related Module
+      description: Which module is your question about?
+      options:
+        - 01-core-java (basics, OOP, collections, streams)
+        - 02-spring-ecosystem (Spring, Spring Boot)
+        - 03-concurrency (multi-threading, async)
+        - 04-streams-api (reactive, event-driven)
+        - 05-testing (unit, integration, TDD)
+        - 07-databases (JDBC, JPA, MongoDB)
+        - 10-cloud-native (Docker, Kubernetes)
+        - 13-design-patterns
+        - General / Multiple Modules
+    validations:
+      required: false
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Version
+      description: Which Java version are you using?
+      placeholder: "21"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Any additional context that might help answer the question
+      placeholder: |
+        - I've been trying to understand virtual threads
+        - This is for a project at work
+        - Preparing for a technical interview

@@ -1,0 +1,105 @@
+version: 2
+
+updates:
+  - package-ecosystem: 'maven'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: 'deps'
+      include: 'scope'
+    reviewers:
+      - single-reviewer
+    labels:
+      - 'dependencies'
+      - 'build tooling'
+    allow:
+      - dependency-name: 'org.junit.jupiter:*'
+      - dependency-name: 'org.mockito:*'
+      - dependency-name: 'org.assertj:*'
+    ignore:
+      - dependency-name: 'org.slf4j:slf4j-api'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'ch.qos.logback:logback-classic'
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'friday'
+      time: '14:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    labels:
+      - 'ci/cd'
+      - 'dependencies'
+    update-tier: 'moderate'
+    ignore:
+      - dependency-name: 'actions/checkout'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'actions/setup-java'
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: 'maven'
+    directory: '/java-master-lab'
+    schedule:
+      interval: 'weekly'
+      day: 'wednesday'
+      time: '10:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'deps:lab'
+    labels:
+      - 'dependencies'
+      - 'java-master-lab'
+
+  - package-ecosystem: 'maven'
+    directory: '/quarkus-learning'
+    schedule:
+      interval: 'weekly'
+      day: 'wednesday'
+      time: '11:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'deps:quarkus'
+    labels:
+      - 'dependencies'
+      - 'quarkus'
+
+  - package-ecosystem: 'maven'
+    directory: '/02-spring-ecosystem'
+    schedule:
+      interval: 'weekly'
+      day: 'thursday'
+      time: '10:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: 'deps:spring'
+    labels:
+      - 'dependencies'
+      - 'spring'
+
+  - package-ecosystem: 'maven'
+    directory: '/42-testcontainers'
+    schedule:
+      interval: 'bi-weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: 'deps:testcontainers'
+    labels:
+      - 'dependencies'
+      - 'testing'

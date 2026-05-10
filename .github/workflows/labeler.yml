@@ -1,0 +1,230 @@
+name: Auto Label PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  issues:
+    types: [opened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label-pr:
+    name: Auto Label PRs
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Get PR info
+      id: pr-info
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+
+          const labels = [];
+          const title = pr.title.toLowerCase();
+          const body = (pr.body || '').toLowerCase();
+          const files = pr.title;
+
+          if (title.includes('fix') || title.includes('bug') || title.includes('hotfix')) {
+            labels.push('bug');
+          }
+
+          if (title.includes('feat') || title.includes('feature') || title.includes('add')) {
+            labels.push('enhancement');
+          }
+
+          if (title.includes('docs') || title.includes('documentation')) {
+            labels.push('documentation');
+          }
+
+          if (title.includes('test')) {
+            labels.push('testing');
+          }
+
+          if (title.includes('refactor')) {
+            labels.push('refactoring');
+          }
+
+          if (title.includes('security') || title.includes('vuln')) {
+            labels.push('security');
+          }
+
+          if (title.includes('ci') || title.includes('cd') || title.includes('pipeline')) {
+            labels.push('ci/cd');
+          }
+
+          if (title.includes('deps') || title.includes('dependency') || title.includes('update')) {
+            labels.push('dependencies');
+          }
+
+          if (title.includes('breaking')) {
+            labels.push('breaking-change');
+          }
+
+          if (title.includes('performance')) {
+            labels.push('performance');
+          }
+
+          core.setOutput('labels', JSON.stringify(labels));
+
+    - name: Apply labels
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const labels = JSON.parse('${{ steps.pr-info.outputs.labels }}' || '[]');
+          const currentLabels = context.payload.pull_request.labels.map(l => l.name);
+          const newLabels = labels.filter(l => !currentLabels.includes(l));
+
+          if (newLabels.length > 0) {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: newLabels
+            });
+            console.log(`Added labels: ${newLabels.join(', ')}`);
+          } else {
+            console.log('No new labels to add');
+          }
+
+  size-label:
+    name: Size Label
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+    - name: Calculate PR size
+      id: size
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: files } = await github.rest.pulls.listFiles({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+
+          let additions = 0;
+          let deletions = 0;
+
+          for (const file of files) {
+            additions += file.additions;
+            deletions += file.deletions;
+          }
+
+          const totalChanges = additions + deletions;
+          let sizeLabel = '';
+          let sizeEmoji = '';
+
+          if (totalChanges < 50) {
+            sizeLabel = 'size/xs';
+            sizeEmoji = 'extra small';
+          } else if (totalChanges < 200) {
+            sizeLabel = 'size/s';
+            sizeEmoji = 'small';
+          } else if (totalChanges < 1000) {
+            sizeLabel = 'size/m';
+            sizeEmoji = 'medium';
+          } else if (totalChanges < 5000) {
+            sizeLabel = 'size/l';
+            sizeEmoji = 'large';
+          } else {
+            sizeLabel = 'size/xl';
+            sizeEmoji = 'extra large';
+          }
+
+          core.setOutput('size_label', sizeLabel);
+          core.setOutput('size_description', `${sizeEmoji}: ${additions} additions, ${deletions} deletions`);
+
+    - name: Apply size label
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const sizeLabel = '${{ steps.size.outputs.size_label }}';
+          const sizeDescription = '${{ steps.size.outputs.size_description }}';
+          const currentLabels = context.payload.pull_request.labels.map(l => l.name);
+
+          const sizeLabels = ['size/xs', 'size/s', 'size/m', 'size/l', 'size/xl'];
+          const toRemove = currentLabels.filter(l => sizeLabels.includes(l));
+          const toAdd = sizeLabel;
+
+          for (const label of toRemove) {
+            if (label !== toAdd) {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: label
+              });
+            }
+          }
+
+          if (!currentLabels.includes(toAdd)) {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [toAdd]
+            });
+          }
+
+          console.log(`Applied label: ${sizeLabel} (${sizeDescription})`);
+
+  complexity-label:
+    name: Complexity Label
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+    - name: Analyze PR complexity
+      id: complexity
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number
+          });
+
+          let complexity = 'low';
+
+          const changedFiles = pr.changed_files;
+          const additions = pr.additions;
+          const deletions = pr.deletions;
+          const reviewers = pr.requested_reviewers.length;
+
+          if (changedFiles > 15 || additions > 500) {
+            complexity = 'high';
+          } else if (changedFiles > 5 || additions > 150) {
+            complexity = 'medium';
+          }
+
+          core.setOutput('complexity', complexity);
+
+    - name: Apply complexity label
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const complexity = '${{ steps.complexity.outputs.complexity }}';
+          const complexityLabel = `complexity/${complexity}`;
+
+          await github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            labels: [complexityLabel]
+          });
+
+          console.log(`Applied label: ${complexityLabel}`);

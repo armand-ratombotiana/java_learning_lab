@@ -1,0 +1,126 @@
+name: Bug Report
+
+description: Report something that is not working as expected
+title: "[Bug] "
+labels: [bug]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+
+        Thanks for taking the time to report this bug!
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Current Behavior
+        _Please describe the current behavior and how it differs from expected behavior._
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Expected Behavior
+        _What should happen instead?_
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Steps to Reproduce
+        _Please provide a minimal code sample or steps to reproduce the issue._
+
+        ```java
+        // Your code here
+        ```
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Affected Module
+      description: Which learning module is affected?
+      options:
+        - 01-core-java (basics, OOP, collections, streams)
+        - 02-spring-ecosystem (Spring, Spring Boot)
+        - 03-concurrency (multi-threading, async)
+        - 04-streams-api (reactive, event-driven)
+        - 05-testing (unit, integration, TDD)
+        - 07-databases (JDBC, JPA, MongoDB)
+        - 10-cloud-native (Docker, Kubernetes)
+        - 13-design-patterns
+        - 16-rest-apis
+        - 17-jpa-hibernate
+        - 23-observability (metrics, tracing)
+        - 28-ci-cd
+        - 42-testcontainers
+        - 50-junit5
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Version
+      description: Which Java version are you using?
+      placeholder: "21"
+    validations:
+      required: true
+
+  - type: input
+    id: maven-version
+    attributes:
+      label: Maven Version
+      description: Which Maven version are you using?
+      placeholder: "3.9.x"
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: OS, IDE, and other relevant environment information
+      placeholder: |
+        - OS: Windows 11
+        - IDE: IntelliJ IDEA 2024.1
+        - Maven: 3.9.6
+        - Java: 21.0.2
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs
+      description: Error messages, stack traces, or relevant log output
+      placeholder: |
+        ```stacktrace
+        Exception in thread "main" java.lang.NullPointerException
+            at com.example.MyClass.method(MyClass.java:42)
+        ```
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Context
+      description: Screenshots, related issues, or any other relevant information
+
+  - type: checkbox
+    id: assistance
+    attributes:
+      label: I'm willing to fix this bug
+      description: If you have a fix or know the cause, let us know in the description
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Tips for Writing a Good Bug Report
+
+        1. **Be specific** - Include the exact version numbers
+        2. **Provide code samples** - Minimal reproducible examples work best
+        3. **Describe expected vs actual behavior** - Clear comparison helps debugging
+        4. **Include relevant logs** - Stack traces help identify the issue
+        5. **Check existing issues** - Search to avoid duplicates
+
+        Thank you for helping improve the Java Learning Lab!

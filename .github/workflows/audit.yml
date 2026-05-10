@@ -1,0 +1,189 @@
+name: Daily Structure Audit
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      max_depth:
+        description: 'Maximum directory depth allowed'
+        required: false
+        default: '4'
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  MAX_DEPTH: ${{ github.event.inputs.max_depth || '4' }}
+  MIN_MANDATORY_FILES: 1
+
+jobs:
+  directory-structure-check:
+    name: Directory Structure Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check directory depth
+      id: depth-check
+      run: |
+        $maxDepth = [int]$env:MAX_DEPTH
+        $deepest = 0
+        $deepDirs = @()
+
+        Get-ChildItem -Directory -Recurse -Depth 100 | ForEach-Object {
+          $relPath = $_.FullName.Replace($PWD.Path, "").TrimStart("\")
+          $depth = ($relPath -split "\\").Count
+          if ($depth -gt $maxDepth) {
+            $deepest = [Math]::Max($deepest, $depth)
+            $deepDirs += $relPath
+          }
+        }
+
+        if ($deepDirs.Count -gt 0) {
+          Write-Host "## Directory Depth Violations Found"
+          Write-Host "Maximum allowed depth: $maxDepth"
+          Write-Host "Deepest directory found: $deepest"
+          Write-Host ""
+          Write-Host "Directories exceeding depth limit:"
+          $deepDirs | ForEach-Object { Write-Host "- $_" }
+          Write-Host "::error::Found $($deepDirs.Count) directories exceeding maximum depth of $maxDepth"
+        } else {
+          Write-Host "All directories are within the maximum depth of $maxDepth"
+        }
+
+    - name: Report audit results
+      run: |
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host "::warning::Directory depth check found violations"
+        } else {
+          Write-Host "Directory structure validation passed"
+        }
+
+  mandatory-files-check:
+    name: Mandatory Files Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Verify mandatory files exist
+      id: files-check
+      run: |
+        $mandatoryFiles = @(
+          "pom.xml",
+          "README.md",
+          "LICENSE"
+        )
+
+        $missing = @()
+        $found = @()
+
+        foreach ($file in $mandatoryFiles) {
+          if (Test-Path $file) {
+            $found += $file
+          } else {
+            $missing += $file
+          }
+        }
+
+        Write-Host "## Mandatory Files Check"
+        Write-Host ""
+        Write-Host "Found files:"
+        $found | ForEach-Object { Write-Host "- [OK] $_" }
+        Write-Host ""
+        Write-Host "Missing files:"
+        $missing | ForEach-Object { Write-Host "- [MISSING] $_" }
+
+        if ($missing.Count -gt 0) {
+          Write-Host "::error::Missing $($missing.Count) mandatory files"
+        } else {
+          Write-Host "All mandatory files are present"
+        }
+
+  link-validation:
+    name: Broken Links Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check for broken internal links
+      id: links-check
+      run: |
+        $brokenLinks = @()
+        $mdFiles = Get-ChildItem -Path . -Filter "*.md" -Recurse
+
+        foreach ($file in $mdFiles) {
+          $content = Get-Content $file.FullName -Raw
+          $lines = $content -split "`n"
+
+          $lineNum = 0
+          foreach ($line in $lines) {
+            $lineNum++
+            if ($line -match '\[([^\]]+)\]\(([^)]+)\)') {
+              $url = $Matches[2]
+
+              if ($url -match '^#') {
+                Write-Host "Internal anchor reference in $($file.Name):$lineNum"
+                continue
+              }
+
+              if ($url -match '^https?://') {
+                Write-Host "External link in $($file.Name):$lineNum -> $url"
+              } elseif ($url -match '^[./]') {
+                $resolvedPath = Join-Path (Split-Path $file.FullName) $url
+                $cleanPath = $resolvedPath -replace '/', '\'
+                $cleanPath = $cleanPath -replace '//', '\'
+
+                if (-not (Test-Path $cleanPath)) {
+                  $brokenLinks += "$($file.Name):$lineNum -> $url (resolved: $cleanPath)"
+                }
+              }
+            }
+          }
+        }
+
+        Write-Host "## Link Validation Report"
+        if ($brokenLinks.Count -gt 0) {
+          Write-Host ""
+          Write-Host "Found $($brokenLinks.Count) potential broken links:"
+          $brokenLinks | ForEach-Object { Write-Host "- $_" }
+          Write-Host "::warning::Found $($brokenLinks.Count) potential broken link references"
+        } else {
+          Write-Host "No obvious broken links detected"
+        }
+
+  audit-summary:
+    name: Audit Summary
+    runs-on: ubuntu-latest
+    needs: [directory-structure-check, mandatory-files-check, link-validation]
+    if: always()
+    
+    steps:
+    - name: Generate audit report
+      run: |
+        Write-Host "## Daily Audit Summary"
+        Write-Host ""
+        Write-Host "| Check | Status |"
+        Write-Host "|-------|--------|"
+        Write-Host "| Directory Depth | ${{ needs.directory-structure-check.result }} |"
+        Write-Host "| Mandatory Files | ${{ needs.mandatory-files-check.result }} |"
+        Write-Host "| Link Validation | ${{ needs.link-validation.result }} |"
+
+        if (${{ needs.directory-structure-check.result }} == 'success' -and
+            ${{ needs.mandatory-files-check.result }} == 'success' -and
+            ${{ needs.link-validation.result }} == 'success') {
+          Write-Host ""
+          Write-Host "All checks passed!"
+        } else {
+          Write-Host "::error::Some checks failed - review above for details"
+        }

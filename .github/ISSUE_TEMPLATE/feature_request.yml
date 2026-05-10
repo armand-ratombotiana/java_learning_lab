@@ -1,0 +1,132 @@
+name: Feature Request
+
+description: Suggest a new feature or enhancement
+title: "[Feature] "
+labels: [enhancement]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+
+        Thanks for your interest in improving the Java Learning Lab!
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Problem or Motivation
+        _Please describe the problem or the motivation behind this feature request._
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Proposed Solution
+        _Please describe the feature or change you would like implemented._
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Use Cases
+        _Please describe the use cases or scenarios where this feature would be valuable._
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - New Learning Module
+        - Enhancement to Existing Module
+        - Tooling / Build Improvements
+        - Documentation Update
+        - CI/CD Pipeline
+        - Testing Infrastructure
+        - Code Quality Tools
+        - Development Experience
+        - Performance Optimization
+        - Security Enhancement
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Target Module
+      description: Which learning module would this apply to?
+      options:
+        - 01-core-java (basics, OOP, collections, streams)
+        - 02-spring-ecosystem (Spring, Spring Boot)
+        - 03-concurrency (multi-threading, async)
+        - 04-streams-api (reactive, event-driven)
+        - 05-testing (unit, integration, TDD)
+        - 07-databases (JDBC, JPA, MongoDB)
+        - 10-cloud-native (Docker, Kubernetes)
+        - 13-design-patterns
+        - 16-rest-apis
+        - 17-jpa-hibernate
+        - 23-observability (metrics, tracing)
+        - 28-ci-cd
+        - 42-testcontainers
+        - 50-junit5
+        - Cross-module (applies to multiple modules)
+        - New module (requires new module)
+        - General / Infrastructure
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation Ideas
+      description: Any thoughts on how this could be implemented?
+      placeholder: |
+        - Could add a new learning module under 05-concurrency
+        - Use virtual threads (Java 21 feature)
+        - Include practical exercises with ThreadExecutor
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches have you considered?
+      placeholder: |
+        - Instead of X, we could use Y
+        - This would be similar to how Z is implemented
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Minimum Java Version Required
+      description: Does this feature require a specific Java version?
+      placeholder: "21 (virtual threads)"
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References / Related Links
+      description: Any documentation, tutorials, or related issues
+      placeholder: |
+        - https://docs.oracle.com/en/java/javase/21/
+        - Related issue: #123
+
+  - type: checkbox
+    id: willing-to-implement
+    attributes:
+      label: I would be willing to implement this feature
+      description: If you want to contribute the implementation yourself
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Tips for Writing a Good Feature Request
+
+        1. **Describe the problem** - Not just the solution
+        2. **Explain the use case** - Why would this feature be useful?
+        3. **Consider scope** - Is this a learning exercise or production need?
+        4. **Be open to alternatives** - There might be better approaches
+        5. **Check existing requests** - Avoid duplicate feature requests
+
+        Your feature request helps make the Java Learning Lab better for everyone!

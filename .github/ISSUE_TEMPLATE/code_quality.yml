@@ -1,0 +1,74 @@
+name: Code Quality Issue
+
+description: Report code quality concerns like style violations, bugs, or improvements
+title: "[Code Quality] "
+labels: [code-quality, review]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Code Quality Issue
+
+        Please describe the code quality concern.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue Type
+      options:
+        - Code Smell
+        - Style Violation
+        - Potential Bug
+        - Performance Issue
+        - Security Concern
+        - Documentation Issue
+        - Test Coverage
+        - Design Improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Detailed description of the issue
+      placeholder: |
+        Please describe the code quality issue in detail...
+
+  - type: textarea
+    id: location
+    attributes:
+      label: File / Location
+      description: Path to the file or module where the issue is found
+      placeholder: |
+        Module: 01-core-java/01-java-basics
+        File: src/main/java/com/example/Example.java
+        Line: ~42
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How would you improve this?
+      placeholder: |
+        - Consider using a more descriptive variable name
+        - Could extract this logic into a helper method
+        - This try-catch could be replaced with Optional
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why This Matters
+      description: What impact does this issue have?
+      placeholder: |
+        - Makes code harder to maintain
+        - Could lead to bugs in production
+        - Reduces readability for learners
+
+  - type: checkbox
+    id: will-fix
+    attributes:
+      label: I will fix this issue
+      description: I am willing to submit a PR to address this
