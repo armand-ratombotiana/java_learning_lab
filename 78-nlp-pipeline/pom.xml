@@ -18,7 +18,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <stanford.version>3.9.3</stanford.version>
+        <stanford.version>4.4.0</stanford.version>
         <lucene.version>9.11.1</lucene.version>
     </properties>
 

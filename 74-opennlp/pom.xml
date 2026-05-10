@@ -18,7 +18,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <opennlp.version>2.5.0</opennlp.version>
+        <opennlp.version>2.5.9</opennlp.version>
     </properties>
 
     <dependencies>
