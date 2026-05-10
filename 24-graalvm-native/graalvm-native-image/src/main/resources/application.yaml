@@ -1,0 +1,682 @@
+# GraalVM Native Image Projects
+
+This directory contains hands-on projects using GraalVM Native Image for creating native executables from Java applications. Native image provides near-instant startup and minimal memory footprint.
+
+## Project Overview
+
+GraalVM Native Image compiles Java bytecode ahead-of-time to create a native executable. This module covers two projects demonstrating different Native Image use cases.
+
+---
+
+# Mini-Project: Simple Native HTTP Service (2-4 Hours)
+
+## Project Description
+
+Build a simple HTTP service compiled to native image. This project demonstrates Native Image configuration, reflection handling, and build optimization.
+
+## Technologies Used
+
+- GraalVM 23.x
+- Native Image
+- Java 21
+- Maven
+- Simple HTTP server
+
+## Implementation Steps
+
+### Step 1: Create Project Structure
+
+```bash
+mkdir graalvm-http-service
+cd graalvm-http-service
+mkdir -p src/main/java/com/learning/http/{config,handler}
+mkdir -p src/main/resources/META-INF/native-image
+mkdir -p src/main/resources
+```
+
+### Step 2: Create pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.learning</groupId>
+    <artifactId>graalvm-http-service</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    
+    <name>GraalVM HTTP Service</name>
+    <description>Simple HTTP service compiled to native image</description>
+    
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <graalvm.version>23.0.0</graalvm.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.net.httpserver</groupId>
+            <artifactId>httpserver</artifactId>
+            <version>${java.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <version>0.9.28</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### Step 3: Create HTTP Handler
+
+```java
+package com.learning.http.handler;
+
+import com.sun.net.httpserver.*;
+import java.io.*;
+import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HttpServer {
+    
+    private final com.sun.net.httpserver.HttpServer server;
+    private final Map<String, Handler> routes;
+    
+    public HttpServer(int port) throws IOException {
+        this.server = com.sun.net.httpserver.HttpServer.create(
+            new InetSocketAddress(port), 0);
+        this.routes = new HashMap<>();
+        
+        setupRoutes();
+    }
+    
+    private void setupRoutes() {
+        server.createContext("/api/status", exchange -> {
+            String response = "{\"status\":\"UP\",\"timestamp\":" + 
+                System.currentTimeMillis() + "}";
+            
+            exchange.getResponseHeaders().set(
+                "Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, response.getBytes().length);
+            
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(response.getBytes());
+            }
+        });
+        
+        server.createContext("/api/echo", exchange -> {
+            String path = exchange.getRequestURI().getPath();
+            Map<String, Object> response = new HashMap<>();
+            response.put("path", path);
+            response.put("method", exchange.getRequestMethod());
+            response.put("headers", exchange.getRequestHeaders());
+            
+            String json = toJson(response);
+            byte[] bytes = json.getBytes();
+            
+            exchange.getResponseHeaders().set(
+                "Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, bytes.length);
+            
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
+        
+        server.createContext("/", exchange -> {
+            String response = "GraalVM HTTP Service";
+            byte[] bytes = response.getBytes();
+            
+            exchange.sendResponseHeaders(200, bytes.length);
+            
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(bytes);
+            }
+        });
+    }
+    
+    public void start() {
+        server.setExecutor(null);
+        server.start();
+        System.out.println("HTTP Server started on port " + 
+            server.getAddress().getPort());
+    }
+    
+    public void stop() {
+        server.stop(0);
+    }
+    
+    private String toJson(Map<String, Object> map) {
+        StringBuilder sb = new StringBuilder("{");
+        int i = 0;
+        
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            if (i > 0) sb.append(",");
+            sb.append("\"")
+              .append(entry.getKey())
+              .append("\":\"")
+              .append(entry.getValue())
+              .append("\"");
+            i++;
+        }
+        
+        sb.append("}");
+        return sb.toString();
+    }
+    
+    public int getPort() {
+        return server.getAddress().getPort();
+    }
+}
+```
+
+### Step 4: Create Main Application
+
+```java
+package com.learning.http;
+
+import com.learning.http.handler.HttpServer;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        int port = Integer.parseInt(
+            System.getProperty("server.port", "8080"));
+        
+        try {
+            HttpServer server = new HttpServer(port);
+            server.start();
+            
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("Shutting down...");
+                server.stop();
+            }));
+            
+        } catch (Exception e) {
+            System.err.println("Failed to start server: " + 
+                e.getMessage());
+            System.exit(1);
+        }
+    }
+}
+```
+
+### Step 5: Create Native Image Configuration
+
+Create `src/main/resources/META-INF/native-image/http-service.properties`:
+
+```properties
+# GraalVM native image configuration
+# Classpath resources
++classpath=
+
+# Reflection configuration
+# Enable reflection for Sun HTTP server classes
++reflect=com.sun.net.httpserver.*
+```
+
+Create `src/main/resources/META-INF/native-image/reflection.json`:
+
+```json
+[
+    {
+        "name": "com.sun.net.httpserver.SimpleFileServer$Files",
+        "allPublicConstructors": true,
+        "allPublicMethods": true
+    },
+    {
+        "name": "com.sun.net.httpserver.HttpServer",
+        "allPublicConstructors": true,
+        "allPublicMethods": true
+    },
+    {
+        "name": "com.sun.net.httpserver.Headers",
+        "allPublicConstructors": true
+    }
+]
+```
+
+Create `src/main/resources/META-INF/native-image/proxy-config.json`:
+
+```json
+[
+    {
+        "kind": "Proxy",
+        "interfaces": [
+            "com.sun.net.httpserver.Handler",
+            "com.sun.net.httpserver.Filter"
+        ]
+    }
+]
+```
+
+### Step 6: Build and Run
+
+```bash
+# Build native image
+cd graalvm-http-service
+
+# Build with GraalVM native image
+./mvnw -Pnative native:build
+
+# Or using GraalVM directly
+native-image -cp target/graalvm-http-service-1.0.0.jar \
+    --report-unsupported-elements-at-runtime \
+    -H:Name=http-service \
+    -H:+ReportExceptionStackTraces \
+    --no-fallback \
+    -cp target/classes
+
+# Run native executable
+./http-service
+
+# Test
+curl http://localhost:8080/api/status
+curl http://localhost:8080/api/echo
+```
+
+### Step 7: Compare Performance
+
+```bash
+# Measure startup time
+time java -jar target/graalvm-http-service-1.0.0.jar &
+time ./http-service
+
+# Compare memory usage
+ps -o pid,rss,vsz,comm -p <PID>
+```
+
+## Expected Output
+
+- Native executable under 30MB
+- Sub-second startup
+- Minimal memory footprint
+
+---
+
+# Real-World Project: Spring Boot Native Application (8+ Hours)
+
+## Project Description
+
+Build a complete Spring Boot application compiled to native image. This project demonstrates Spring Boot Native Image support, data access, and Reactive Web with native compilation.
+
+## Architecture
+
+```
+┌─────────────────────────────────────┐
+│   Spring Boot Native Application     │
+├─────────────────────────────────────┤
+│  - WebFlux (Reactive)               │
+│  - R2DBC (Reactive DB)             │
+│  - Security                       │
+│  - Actuator                        │
+└─────────────────────────────────────┘
+```
+
+## Implementation Steps
+
+### Step 1: Create Spring Boot Project
+
+```bash
+mkdir graalvm-spring-boot
+cd graalvm-spring-boot
+mkdir -p src/main/java/com/learning/app/{config,controller,service,repository}
+mkdir -p src/main/resources
+```
+
+### Step 2: Create pom.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.learning</groupId>
+    <artifactId>graalvm-spring-boot</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    
+    <name>Spring Boot Native</name>
+    <description>Spring Boot application compiled to native image</description>
+    
+    <properties>
+        <java.version>21</java.version>
+        <spring-boot.version>3.2.0</spring-boot.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org.graalvm.**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>spring-aot-maven-plugin</artifactId>
+                <version>0.9.28</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### Step 3: Create Application Configuration
+
+```java
+package com.learning.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+### Step 4: Create Model and Repository
+
+```java
+package com.learning.app;
+
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import java.time.LocalDateTime;
+
+@Table("users")
+public class User {
+    
+    @Id
+    private Long id;
+    
+    @NotBlank
+    private String username;
+    
+    @NotBlank
+    private String email;
+    
+    private String password;
+    
+    private boolean enabled;
+    
+    private LocalDateTime createdAt;
+    
+    private LocalDateTime updatedAt;
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    
+    public boolean isEnabled() { return enabled; }
+    public void setEnabled(boolean enabled) { this.enabled = enabled; }
+    
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+}
+```
+
+```java
+package com.learning.app;
+
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+public interface UserRepository extends ReactiveCrudRepository<User, Long> {
+    
+    Mono<User> findByUsername(String username);
+    
+    Mono<User> findByEmail(String email);
+    
+    Flux<User> findByEnabled(boolean enabled);
+}
+```
+
+### Step 5: Create Service
+
+```java
+package com.learning.app.service;
+
+import com.learning.app.User;
+import com.learning.app.UserRepository;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Service
+public class UserService {
+    
+    private final UserRepository userRepository;
+    
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    
+    public Mono<User> createUser(User user) {
+        user.setId(null);
+        user.setPassword(UUID.randomUUID().toString());
+        user.setEnabled(true);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+        
+        return userRepository.save(user);
+    }
+    
+    public Mono<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+    
+    public Mono<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+    
+    public Flux<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+    
+    public Mono<User> updateUser(Long id, User userUpdate) {
+        return userRepository.findById(id)
+            .flatMap(user -> {
+                user.setUsername(userUpdate.getUsername());
+                user.setEmail(userUpdate.getEmail());
+                user.setEnabled(userUpdate.isEnabled());
+                user.setUpdatedAt(LocalDateTime.now());
+                
+                return userRepository.save(user);
+            });
+    }
+    
+    public Mono<Void> deleteUser(Long id) {
+        return userRepository.deleteById(id);
+    }
+}
+```
+
+### Step 6: Create Controller
+
+```java
+package com.learning.app.controller;
+
+import com.learning.app.User;
+import com.learning.app.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    
+    private final UserService userService;
+    
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+    
+    @PostMapping
+    public Mono<ResponseEntity<User>> createUser(@RequestBody User user) {
+        return userService.createUser(user)
+            .map(created -> ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(created));
+    }
+    
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<User>> getUser(@PathVariable Long id) {
+        return userService.getUserById(id)
+            .map(ResponseEntity::ok)
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
+    @GetMapping
+    public Flux<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+    
+    @PutMapping("/{id}")
+    public Mono<ResponseEntity<User>> updateUser(
+            @PathVariable Long id,
+            @RequestBody User user) {
+        
+        return userService.updateUser(id, user)
+            .map(ResponseEntity::ok)
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
+    @DeleteMapping("/{id}")
+    public Mono<ResponseEntity<Void>> deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id)
+            .thenReturn(ResponseEntity.noContent().build())
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+    
+    @GetMapping("/count")
+    public Mono<Map<String, Long>> countUsers() {
+        return userService.getAllUsers()
+            .count()
+            .map(c -> Map.of("count", c));
+    }
+}
+```
+
+### Step 7: Configure Application
+
+Create `src/main/resources/application.yaml`:
+
+```yaml
+server:
+  port: 8080
+
+spring:
+  application:
+    name: graalvm-spring-boot
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  level:
+    root: INFO
+```
+
+### Step 8: Configure Native Build
+
+Create build configuration:
+<minimax:tool_call>
+<invoke name="write">
+<parameter name="content">server:
+  port: 8080
+
+spring:
+  application:
+    name: graalvm-spring-boot
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  level:
+    root: INFO
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: graalvm-spring-boot
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+logging:
+  level:
+    root: INFO
+
+spring.native.resources.include: classpath:app.properties

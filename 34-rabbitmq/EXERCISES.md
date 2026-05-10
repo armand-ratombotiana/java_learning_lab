@@ -40,5 +40,36 @@ Handle complex message patterns:
 3. Implement consumer-side ordering guarantees
 4. Test message deduplication scenarios
 
+## Exercise 6: Advanced Messaging Patterns
+Implement sophisticated messaging patterns:
+
+1. Build request-reply pattern with reply-to queue
+2. Implement scatter-gather for multi-cast responses
+3. Create message aggregator with batch timeout
+4. Build saga orchestrator with compensating transactions
+5. Implement claim check pattern for large messages
+
+## Exercise 7: Message Transformation
+Handle message format conversions:
+
+1. Create content enricher for message augmentation
+2. Implement message translator for format conversion
+3. Build message router with content-based routing
+4. Create splitter-aggregator pattern
+5. Implement claim check to reduce payload size
+
 ## Bonus Challenge
-Build an event-driven order processing system where: order events are published, inventory service consumes to reserve stock, payment service consumes to process payment, shipping service consumes to initiate delivery.
+Build a distributed transaction system using:
+- Outbox pattern for reliable messaging
+- SAGA orchestration for multi-service updates
+- Compensation handlers for rollback
+- Message deduplication with idempotency keys
+
+## Exercise 8: High Availability Setup
+Configure RabbitMQ for production:
+
+1. Set up a 3-node cluster with mirrored queues
+2. Configure quorum queues for durability
+3. Implement federated queues across datacenters
+4. Set up shovel plugin for queue replication
+5. Configure load balancer for HAProxy

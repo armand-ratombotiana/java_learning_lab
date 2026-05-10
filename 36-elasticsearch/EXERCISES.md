@@ -42,3 +42,30 @@ Optimize search performance:
 
 ## Bonus Challenge
 Build an autocomplete/search-as-you-type feature using completion suggester. Support prefix matching and return suggestions in under 50ms.
+
+## Exercise 6: Geo-Search
+Implement location-based search:
+
+1. Create index with geo_point mapping
+2. Index documents with coordinates
+3. Execute geo_distance queries for radius search
+4. Implement geo_bounding_box queries for area filtering
+5. Use geo_polygon for complex boundary areas
+
+## Exercise 7: Index Management
+Handle index lifecycle:
+
+1. Create index with custom settings and mappings
+2. Implement bulk indexing with parallel requests
+3. Use ILM (Index Lifecycle Management) for retention
+4. Configure rollover for time-based indices
+5. Implement snapshot/restore for backup
+
+## Exercise 8: Real-time Analytics
+Build streaming analytics:
+
+1. Use aggregations over time with date_histogram
+2. Implement pipeline aggregations for ranking
+3. Create top_hits for document sampling
+4. Use significant_terms for anomaly detection
+5. Build drill-down analytics with nested aggregations

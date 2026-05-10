@@ -40,5 +40,36 @@ Handle large data volumes efficiently:
 3. Use `INSERT ... ON CONFLICT` for upserts
 4. Benchmark batch sizes vs. transaction size
 
+## Exercise 6: Advanced SQL Patterns
+Master complex SQL operations:
+
+1. Implement UPSERT with `INSERT ... ON CONFLICT DO UPDATE`
+2. Use row-level security for multi-tenant isolation
+3. Implement soft delete with `deleted_at` timestamp
+4. Use advisory locks for concurrent operations
+5. Implement optimistic locking with version column
+
+## Exercise 7: Performance Tuning
+Optimize query performance:
+
+1. Analyze `EXPLAIN ANALYZE` output for slow queries
+2. Create partial indexes for common filters
+3. Use expression indexes for computed columns
+4. Implement connection pooling with HikariCP
+5. Configure autovacuum for high-write tables
+
 ## Bonus Challenge
-Implement a multi-tenant SaaS pattern using row-level security (RLS). Each tenant should only see their own data without application-level filtering.
+Design a time-series database pattern using PostgreSQL:
+- Use date-based partitioning for historical data
+- Implement compression with pg_partman
+- Create materialized views for rollup aggregations
+- Add retention policies for data cleanup
+
+## Exercise 8: Transaction Isolation
+Handle concurrent operations safely:
+
+1. Demonstrate READ COMMITTED vs REPEATABLE READ
+2. Implement serializable transactions with advisory locks
+3. Use `SELECT ... FOR UPDATE` for row-level locking
+4. Handle deadlock detection and retry logic
+5. Implement savepoints for partial rollback

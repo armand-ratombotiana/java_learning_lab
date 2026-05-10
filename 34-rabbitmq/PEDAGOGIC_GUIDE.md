@@ -55,6 +55,17 @@
 - `x-max-priority` - priority queue support
 - `x-message-ttl` - per-queue expiration
 
+## Message Properties
+
+| Property | Use Case |
+|----------|----------|
+| `correlationId` | Request/response matching |
+| `replyTo` | RPC callback queue |
+| `deliveryMode` | Persistent vs transient |
+| `expiration` | Per-message TTL |
+| `priority` | Queue prioritization |
+| `messageId` | Deduplication key |
+
 ## Next Steps
 - Explore Shovel plugin for queue mirroring
 - Learn Federation for cross-datacenter replication

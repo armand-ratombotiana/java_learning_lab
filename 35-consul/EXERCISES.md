@@ -1,5 +1,58 @@
 # Exercises - Consul
 
+## Exercise 1: Basic Service Discovery
+Implement core service discovery:
+
+1. Register a service with health check endpoint
+2. Query service catalog via REST API
+3. Use DNS SRV records for service discovery
+4. Implement client-side load balancing
+5. Configure health check intervals and timeouts
+
+## Exercise 2: Advanced Health Checks
+Configure comprehensive health monitoring:
+
+1. Set up HTTP health check with expected response
+2. Implement TCP health check for port availability
+3. Create script-based health check for custom logic
+4. Configure TTL-based health checks
+5. Implement distributed health awareness
+
+## Exercise 3: Key-Value Operations
+Manage configuration with KV store:
+
+1. Store and retrieve simple key-value pairs
+2. Create hierarchical configuration structure
+3. Implement configuration change notifications
+4. Use transactions for atomic multi-key updates
+5. Configure prefix-based queries with blocking
+
+## Exercise 4: Service Mesh (Consul Connect)
+Implement service-to-service security:
+
+1. Configure Consul Connect for service communication
+2. Set up intentions for allowed service communication
+3. Implement mTLS between services
+4. Create service identity with certificates
+5. Monitor service mesh traffic
+
+## Exercise 5: Distributed Coordination
+Handle coordination patterns:
+
+1. Implement leader election with Sessions
+2. Use distributed locks for resource management
+3. Create semaphore pattern for rate limiting
+4. Implement configuration refresh with watches
+5. Handle network partition recovery
+
+## Bonus Challenge
+Build a self-healing microservice system that:
+- Automatically registers/deregisters with Consul
+- Implements circuit breaker using health status
+- Uses KV store for dynamic configuration
+- Performs leader election for master tasks
+- Monitors all services with health dashboards
+
 ## Exercise 1: Service Registration
 Implement automatic service registration:
 

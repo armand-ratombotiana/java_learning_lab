@@ -49,6 +49,11 @@
 | `ts_rank` | Text search relevance |
 | `row_to_json` | Convert row to JSON |
 | `generate_series` | Create sequences |
+| `jsonb_pretty` | Format JSON output |
+| `unnest` | Expand array to rows |
+| `coalesce` | Handle null values |
+| `jsonb_set` | Update JSON fields |
+| `jsonb_path_query` | JSON path queries |
 
 ## Next Steps
 - Explore PostGIS for geospatial data

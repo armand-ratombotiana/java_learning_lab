@@ -56,3 +56,12 @@
 - Explore Consul Connect for mTLS between services
 - Learn Intentions for service-to-service authorization
 - Study prepared queries for advanced discovery
+
+## Advanced Patterns
+
+| Pattern | Use Case |
+|---------|----------|
+| Health-aware routing | Skip unhealthy instances |
+| Prepared queries | Geo-routing and failover |
+| WAN federation | Multi-datacenter deployment |
+| ACL tokens | Fine-grained security |

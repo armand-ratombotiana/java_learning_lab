@@ -54,5 +54,14 @@
 
 ## Next Steps
 - Explore Elasticsearch SQL for SQL-like queries
-- Learn Elasticsearch安全 for security features
+- Learn Elasticsearch security for security features
 - Study cross-cluster search for federated data
+
+## Index Lifecycle
+
+| Phase | Actions |
+|-------|---------|
+| Hot | Active indexing and search |
+| Warm | Read-only, reduced replicas |
+| Cold | Infrequent queries, freeze API |
+| Delete | Remove old indices |
