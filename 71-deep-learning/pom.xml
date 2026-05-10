@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent><groupId>com.learning</groupId><artifactId>java-learning-parent</artifactId><version>1.0.0</version></parent>
+    <parent>
+        <groupId>com.learning</groupId>
+        <artifactId>java-learning-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
     <artifactId>71-deep-learning</artifactId>
-    <name>71 - Deep Learning with DJL</name>
+    <packaging>jar</packaging>
+    <name>71 - Deep Learning</name>
+    <description>Deep Learning with DeepLearning4j and ND4J</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <dl4j.version>1.0.0-beta3</dl4j.version>
+        <nd4j.version>1.0.0-beta3</nd4j.version>
+    </properties>
+
     <dependencies>
-        <dependency><groupId>ai.djl</groupId><artifactId>api</artifactId><version>0.30.0</version></dependency>
-        <dependency><groupId>ai.djl</groupId><artifactId>basicdataset</artifactId><version>0.30.0</version></dependency>
-        <dependency><groupId>ai.djl.pytorch</groupId><artifactId>pytorch-engine</artifactId><version>0.30.0</version></dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-modelimport</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>${nd4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-cuda-platform</artifactId>
+            <version>${nd4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-zoo</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
     </dependencies>
 </project>
