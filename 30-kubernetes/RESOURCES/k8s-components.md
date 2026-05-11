@@ -1,0 +1,53 @@
+# K8s Components Diagram
+
+## Cluster Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Kubernetes Cluster                       │
+│                                                              │
+│  ┌──────────────────┐          ┌──────────────────────┐   │
+│  │  Control Plane   │          │    Worker Nodes      │   │
+│  │                  │          │                      │   │
+│  │  ┌────────────┐  │          │  ┌─────┐ ┌─────┐    │   │
+│  │  │ API Server │──┼──────────┼──│ Pod │ │ Pod │    │   │
+│  │  └────────────┘  │          │  └─────┘ └─────┘    │   │
+│  │  ┌────────────┐  │          │                      │   │
+│  │  │ Scheduler  │  │          │  ┌─────┐ ┌─────┐    │   │
+│  │  └────────────┘  │          │  │ Pod │ │ Pod │    │   │
+│  │  ┌────────────┐  │          │  └─────┘ └─────┘    │   │
+│  │  │ Controller │  │          └──────────────────────┘   │
+│  │  └────────────┘  │                                       │
+│  │  ┌────────────┐  │                                       │
+│  │  │ etcd      │  │                                       │
+│  │  └────────────┘  │                                       │
+│  └──────────────────┘                                       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Core Resources
+
+### Pod
+Smallest deployable unit. Contains one or more containers.
+
+### Deployment
+Manages ReplicaSets for declarative updates.
+
+### Service
+Network abstraction exposing pods to network.
+
+### ConfigMap / Secret
+Configuration data storage.
+
+### Ingress
+HTTP/HTTPS routing.
+
+## kubectl Essentials
+
+```bash
+kubectl get pods          # List pods
+kubectl apply -f file.yaml  # Apply config
+kubectl logs <pod>       # View logs
+kubectl describe pod <name>  # Pod details
+kubectl delete pod <name>  # Delete pod
+```
