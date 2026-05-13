@@ -2,6 +2,216 @@
 
 This module covers advanced PostgreSQL features including JSONB data types, full-text search capabilities, and table partitioning strategies for building scalable data-driven Java applications.
 
+---
+
+# Mini-Project 1: JSONB Data Types (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Beginner  
+**Concepts Used**: JSONB Storage, JSON Operators, Nested Documents
+
+Learn to store and query flexible JSON data in PostgreSQL.
+
+---
+
+## Project Structure
+
+```
+33-postgresql/
+├── pom.xml
+├── src/main/java/com/learning/postgres/
+│   ├── JsonbApplication.java
+│   ├── entity/
+│   │   └── Product.java
+│   └── service/
+│       └── JsonbService.java
+└── schema.sql
+```
+
+---
+
+## Implementation
+
+```java
+// entity/Product.java
+package com.learning.postgres.entity;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.Map;
+
+@Entity
+@Table(name = "products")
+public class Product {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String name;
+    
+    @Column(columnDefinition = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
+    private Map<String, Object> attributes;
+    
+    // getters and setters
+}
+```
+
+```java
+// service/JsonbService.java
+package com.learning.postgres.service;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
+@Service
+public class JsonbService {
+    
+    @PersistenceContext
+    private EntityManager em;
+    
+    public void saveProduct(String name, Map<String, Object> attributes) {
+        // Native JSONB query
+        String sql = "INSERT INTO products (name, attributes) VALUES (?, ?::jsonb)";
+        em.createNativeQuery(sql).setParameter(1, name).setParameter(2, new Gson().toJson(attributes)).executeUpdate();
+    }
+    
+    public List<Object[]> findByJsonAttribute(String key, Object value) {
+        String sql = "SELECT * FROM products WHERE attributes->>? = ?";
+        return em.createNativeQuery(sql).setParameter(1, key).setParameter(2, value.toString()).getResultList();
+    }
+}
+```
+
+---
+
+## Build Instructions
+
+```bash
+cd 33-postgresql
+mvn spring-boot:run
+# Connect to PostgreSQL and run schema.sql
+```
+
+---
+
+# Mini-Project 2: Full-Text Search (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: tsvector, tsquery, Ranking, Relevance
+
+Implement powerful search with PostgreSQL's full-text search capabilities.
+
+---
+
+## Implementation
+
+```java
+// Full-text search service
+@Service
+public class SearchService {
+    
+    public List<Product> search(String query) {
+        String sql = """
+            SELECT * FROM products 
+            WHERE search_vector @@ to_tsquery('english', ?)
+            ORDER BY ts_rank(search_vector, to_tsquery('english', ?)) DESC
+            """;
+        return em.createNativeQuery(sql, Product.class)
+            .setParameter(1, query)
+            .setParameter(2, query)
+            .getResultList();
+    }
+}
+```
+
+---
+
+# Mini-Project 3: Table Partitioning (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: Range Partitioning, List Partitioning, Partition Management
+
+Learn to partition large tables for better performance.
+
+---
+
+## Implementation
+
+```sql
+-- Partitioned orders table
+CREATE TABLE orders (
+    id BIGSERIAL,
+    order_date DATE NOT NULL,
+    customer_id BIGINT NOT NULL,
+    total_amount DECIMAL(12,2) NOT NULL,
+    PRIMARY KEY (id, order_date)
+) PARTITION BY RANGE (order_date);
+
+CREATE TABLE orders_2024_01 PARTITION OF orders
+    FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
+```
+
+---
+
+# Mini-Project 4: Advanced Analytics (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Advanced  
+**Concepts Used**: Window Functions, Materialized Views, Rollups
+
+Implement analytics with advanced SQL features.
+
+---
+
+## Implementation
+
+```sql
+-- Materialized view for analytics
+CREATE MATERIALIZED VIEW daily_sales AS
+SELECT 
+    order_date,
+    COUNT(*) as order_count,
+    SUM(total_amount) as revenue
+FROM orders
+GROUP BY order_date
+ORDER BY order_date;
+
+-- Refresh with CONCURRENTLY
+REFRESH MATERIALIZED VIEW CONCURRENTLY daily_sales;
+```
+
+---
+
+# Real-World Project: E-Commerce Analytics Platform (8+ Hours)
+
+## Project Overview
+
+**Duration**: 8+ hours  
+**Difficulty**: Advanced  
+**Concepts Used**: JSONB, FTS, Partitioning, Materialized Views, Advanced SQL
+
+Build a comprehensive analytics platform.
+
+---
+
+## Previous Mini-Project Content
+
 ## Mini-Project: Document Management System with JSONB (2-4 Hours)
 
 ### Overview

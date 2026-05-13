@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Quarkus framework: a mini-project for learning Quarkus basics and a real-world project implementing production-grade microservices.
 
+## Mini-Projects by Concept
+
+### 1. Reactive Endpoints (2 hours)
+Create REST endpoints with Quarkus routing. Use Reactive Routes and vert.x web. Implement request/response handling.
+
+### 2. Database Access (2 hours)
+Implement Panache ORM for database operations. Use reactive and blocking database clients.
+
+### 3. Dependency Injection (2 hours)
+Use Quarkus CDI for dependency injection. Configure beans, scopes, and qualifiers.
+
+### 4. Native Image (2 hours)
+Build GraalVM native executables. Configure native image settings and reflection.
+
+### Real-world: Quarkus Microservices Platform
+Build production-grade microservices with Quarkus, reactive programming, and native compilation.
+
+---
+
 ## Project 1: Quarkus Basics Mini-Project
 
 ### Overview

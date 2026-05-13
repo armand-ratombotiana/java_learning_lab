@@ -2,6 +2,227 @@
 
 This module covers Consul service discovery, key-value store, health checks, and distributed coordination patterns for building resilient microservices architectures in Java.
 
+---
+
+# Mini-Project 1: Service Registration (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Beginner  
+**Concepts Used**: Service Registration, Deregistration, Health Checks
+
+Learn to register services with Consul.
+
+---
+
+## Project Structure
+
+```
+35-consul/
+├── pom.xml
+├── src/main/java/com/learning/consul/
+│   ├── ConsulApplication.java
+│   ├── config/
+│   │   └── ConsulConfig.java
+│   ├── service/
+│   │   └── ServiceRegistry.java
+│   └── controller/
+│       └── HealthController.java
+└── application.yml
+```
+
+---
+
+## Implementation
+
+```java
+// application.yml - Enable Consul
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+        register: true
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: ${spring.application.name}:${random.value}
+```
+
+```java
+// ServiceRegistrationController.java
+@RestController
+public class ServiceRegistrationController {
+    
+    @Autowired
+    private ConsulClient consulClient;
+    
+    @PostMapping("/register")
+    public ResponseEntity<String> registerService(
+            @RequestParam String serviceId,
+            @RequestParam String serviceName,
+            @RequestParam int port) {
+        
+        Registration registration = Registration.builder()
+            .id(serviceId)
+            .name(serviceName)
+            .port(port)
+            .check(Check.http("http://localhost:" + port + "/health", 10, 5))
+            .build();
+        
+        consulClient.agentServiceRegister(registration);
+        return ResponseEntity.ok("Service registered: " + serviceId);
+    }
+}
+```
+
+---
+
+## Build Instructions
+
+```bash
+cd 35-consul
+
+# Start Consul
+docker run -d --name consul -p 8500:8500 consul:1.15 agent -dev -ui
+
+mvn spring-boot:run
+
+# Register service
+curl -X POST "http://localhost:8080/register?serviceId=app-1&serviceName=myapp&port=8080"
+```
+
+---
+
+# Mini-Project 2: Service Discovery (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: Service Discovery, Load Balancing, DNS Resolution
+
+Discover services using Consul.
+
+---
+
+## Implementation
+
+```java
+// ServiceDiscoveryClient.java
+@Service
+public class ServiceDiscoveryClient {
+    
+    @Autowired
+    private ConsulClient consulClient;
+    
+    public List<ServiceInstance> discoverService(String serviceName) {
+        return consulClient.getHealthServices(serviceName, QueryParams.DEFAULT)
+            .stream()
+            .map(service -> new ServiceInstance(
+                service.getService().getService(),
+                service.getService().getPort(),
+                service.getService().getAddress()
+            ))
+            .collect(Collectors.toList());
+    }
+    
+    public ServiceInstance getHealthyInstance(String serviceName) {
+        List<ServiceInstance> instances = discoverService(serviceName);
+        return instances.isEmpty() ? null : instances.get(new Random().nextInt(instances.size()));
+    }
+}
+```
+
+---
+
+# Mini-Project 3: Key-Value Store (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: KV Store, Configuration Management, Watch
+
+Use Consul's key-value store for configuration.
+
+---
+
+## Implementation
+
+```java
+// ConfigurationService.java
+@Service
+public class ConfigurationService {
+    
+    @Autowired
+    private ConsulClient consulClient;
+    
+    public String getValue(String key) {
+        return consulClient.getKVValue(key).getValue().getDecodedValue();
+    }
+    
+    public void setValue(String key, String value) {
+        consulClient.setKVValue(key, value);
+    }
+    
+    public Map<String, String> getValuesByPrefix(String prefix) {
+        return consulClient.getKVValues(prefix, QueryParams.DEFAULT)
+            .stream()
+            .collect(Collectors.toMap(
+                KVEntry::getKey,
+                e -> e.getValue().getDecodedValue()
+            ));
+    }
+}
+```
+
+---
+
+# Mini-Project 4: Health Monitoring (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: Health Checks, Monitoring, Failover
+
+Implement health monitoring with Consul.
+
+---
+
+## Implementation
+
+```yaml
+# Health check configuration
+spring:
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        deregister: true
+        failure-threshold: 3
+```
+
+---
+
+# Real-World Project: Distributed Configuration System (8+ Hours)
+
+## Project Overview
+
+**Duration**: 8+ hours  
+**Difficulty**: Advanced  
+**Concepts Used**: KV Store, Feature Flags, Leader Election, Watches
+
+Build comprehensive distributed configuration management.
+
+---
+
+## Previous Mini-Project Content
+
 ## Mini-Project: Service Discovery with Health Monitoring (2-4 Hours)
 
 ### Overview

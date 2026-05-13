@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Selenide browser automation: a mini-project for learning UI automation basics and a real-world project implementing production-grade browser tests.
 
+## Mini-Projects by Concept
+
+### 1. Element Selection (2 hours)
+Select elements using CSS, XPath, and Selenide-specific selectors. Handle dynamic elements and frame switching.
+
+### 2. Actions & Interactions (2 hours)
+Perform clicks, typing, drag-and-drop, and keyboard actions. Handle alerts and file uploads.
+
+### 3. Waits & Timeouts (2 hours)
+Configure implicit and explicit waits. Handle AJAX loading and dynamic content.
+
+### 4. Page Objects (2 hours)
+Implement Page Object pattern with Selenide. Create reusable page components and assertions.
+
+### Real-world: Browser Automation Suite
+Build comprehensive browser automation suite with Page Objects, screenshot capture, and reporting.
+
+---
+
 ## Project 1: Selenide Basics Mini-Project
 
 ### Overview

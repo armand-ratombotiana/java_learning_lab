@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Liquibase: a mini-project for learning database refactoring and a real-world project implementing production-grade schema management.
 
+## Mini-Projects by Concept
+
+### 1. Changeset Management (2 hours)
+Create Liquibase changesets with XML, YAML, or JSON formats. Define addColumn, createTable, and other change types.
+
+### 2. Rollback Operations (2 hours)
+Configure automatic and manual rollbacks. Use rollback tags and generate rollback SQL.
+
+### 3. Contexts & Labels (2 hours)
+Execute changes conditionally using contexts and labels. Manage environment-specific migrations.
+
+### 4. Changelog Management (2 hours)
+Organize changelogs with include tags, preconditions, and fail-on-error settings. Use database-specific syntax.
+
+### Real-world: Schema Management Platform
+Build comprehensive schema management with Liquibase for multi-environment deployments.
+
+---
+
 ## Project 1: Liquibase Basics Mini-Project
 
 ### Overview

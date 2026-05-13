@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Cucumber BDD testing: a mini-project for learning feature file writing and step definitions, and a real-world project implementing production-grade BDD tests.
 
+## Mini-Projects by Concept
+
+### 1. Feature Files (2 hours)
+Write Gherkin feature files with scenarios, backgrounds, and scenario outlines. Use proper Given-When-Then structure.
+
+### 2. Step Definitions (2 hours)
+Create Java step definitions with regular expressions. Implement parameter handling and data tables.
+
+### 3. Hooks & Tags (2 hours)
+Configure before/after hooks for setup/teardown. Use tags for test organization and filtering.
+
+### 4. Parameterized Tests (2 hours)
+Implement scenario outlines with examples. Use data tables and scenario context for complex flows.
+
+### Real-world: BDD Testing Framework
+Build comprehensive BDD testing framework with reusable steps, custom formatters, and reporting.
+
+---
+
 ## Project 1: Cucumber Basics Mini-Project
 
 ### Overview

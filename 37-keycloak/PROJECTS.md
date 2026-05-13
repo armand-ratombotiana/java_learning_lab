@@ -2,6 +2,25 @@
 
 This module covers OAuth2/OpenID provider configuration, SSO integration, role-based access control, and identity management for building secure Java applications with Keycloak.
 
+## Mini-Projects by Concept
+
+### 1. Realm Setup (2 hours)
+Configure Keycloak realms with authentication flows, themes, and session settings. Learn about realm-specific configurations and multi-realm architecture.
+
+### 2. OAuth2 Config (2 hours)
+Implement OAuth2 authorization flows including authorization code, implicit, client credentials, and refresh token flows with proper security configurations.
+
+### 3. User Management (2 hours)
+Manage users with Keycloak Admin API. Create, update, disable users, set credentials, and handle user federation with external directories.
+
+### 4. Role-Based Access (2 hours)
+Configure roles, groups, and composite roles for fine-grained access control. Implement permission-based access with resource servers.
+
+### Real-world: SSO System
+Build an enterprise Single Sign-On system supporting multiple applications with centralized authentication and authorization management.
+
+---
+
 ## Mini-Project: OAuth2/OpenID Authentication (2-4 Hours)
 
 ### Overview

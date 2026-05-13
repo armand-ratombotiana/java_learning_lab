@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Micronaut framework: a mini-project for learning AOT compilation and a real-world project implementing production-grade microservices.
 
+## Mini-Projects by Concept
+
+### 1. AOT Compilation (2 hours)
+Understand Micronaut's ahead-of-time compilation. Analyze compiled bean definitions and optimization.
+
+### 2. Dependency Injection (2 hours)
+Use Micronaut's compile-time DI. Configure bean scopes, qualifiers, and factory methods.
+
+### 3. HTTP Server (2 hours)
+Create Micronaut HTTP server with routing. Handle request/response with filters and interceptors.
+
+### 4. Data Access (2 hours)
+Implement data access with Micronaut Data. Use JDBC, JPA, and reactive database clients.
+
+### Real-world: Micronaut Microservices
+Build production-grade microservices with Micronaut, AOT compilation, and GraalVM native images.
+
+---
+
 ## Project 1: Micronaut Basics Mini-Project
 
 ### Overview

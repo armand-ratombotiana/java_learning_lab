@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Flyway: a mini-project for learning database migrations and a real-world project implementing production-grade schema version control.
 
+## Mini-Projects by Concept
+
+### 1. Migration Scripts (2 hours)
+Create versioned SQL migration files with up/down logic. Organize migration structure and naming conventions.
+
+### 2. Configuration & Targets (2 hours)
+Configure Flyway with Spring Boot, Maven plugin. Set up multiple databases, baseline, and clean operations.
+
+### 3. Repeatable Migrations (2 hours)
+Use repeatable migrations for views, stored procedures. Manage checksum-based execution.
+
+### 4. Migration Strategies (2 hours)
+Handle migrations in CI/CD, blue-green deployments, and zero-downtime migrations. Manage failed migrations.
+
+### Real-world: Database Versioning System
+Build production-grade database versioning with automated migrations and rollback capabilities.
+
+---
+
 ## Project 1: Flyway Basics Mini-Project
 
 ### Overview

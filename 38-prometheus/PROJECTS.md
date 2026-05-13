@@ -2,6 +2,25 @@
 
 This module covers Prometheus metrics collection, monitoring fundamentals, alerting rules, and service discovery for building observable Java applications with comprehensive metrics infrastructure.
 
+## Mini-Projects by Concept
+
+### 1. Metrics Collection (2 hours)
+Implement metrics collection using Counter, Gauge, Histogram, and Summary types with Micrometer. Expose application metrics via /actuator/prometheus endpoint.
+
+### 2. Query Language (2 hours)
+Master PromQL for querying and aggregating metrics. Learn rate, sum, avg, histogram_quantile functions and label-based filtering.
+
+### 3. Alerting (2 hours)
+Configure alerting rules with Alertmanager integration. Define alert conditions, severity levels, notification routing, and alert state management.
+
+### 4. Dashboards (2 hours)
+Build Grafana dashboards with Prometheus data sources. Create graphs, panels, alerts, and templated dashboards for operational monitoring.
+
+### Real-world: Monitoring System
+Build a comprehensive monitoring system with metrics collection, alerting, and visualization for production applications.
+
+---
+
 ## Mini-Project: Application Metrics Dashboard (2-4 Hours)
 
 ### Overview

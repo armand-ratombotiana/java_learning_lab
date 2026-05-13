@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Spring Boot Actuator: a mini-project for learning core concepts and a real-world project implementing production-grade observability.
 
+## Mini-Projects by Concept
+
+### 1. Endpoint Configuration (2 hours)
+Configure actuator endpoints including health, info, metrics, env, beans, and custom endpoints. Learn endpoint exposure and security.
+
+### 2. Health Indicators (2 hours)
+Implement custom health indicators for database, cache, external services. Configure health groups and aggregate health views.
+
+### 3. Metrics Exposure (2 hours)
+Expose application metrics via actuator. Configure metric exporters, use micrometer for custom metrics, and access metrics endpoint.
+
+### 4. Info & Build Details (2 hours)
+Configure info endpoint with build information, git details, and custom info contributors. Expose environment details.
+
+### Real-world: Observability Platform
+Build production-grade observability with custom health checks, metrics collection, and endpoint monitoring.
+
+---
+
 ## Project 1: Actuator Basics Mini-Project
 
 ### Overview

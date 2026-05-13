@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Vert.x event-driven framework: a mini-project for learning Verticles and event bus, and a real-world project implementing production-grade reactive services.
 
+## Mini-Projects by Concept
+
+### 1. Verticles (2 hours)
+Create Vert.x Verticles as deployment units. Implement verticle types: standard, worker, and event loop.
+
+### 2. Event Bus (2 hours)
+Use Vert.x event bus for inter-verticle communication. Configure point-to-point and publish-subscribe messaging.
+
+### 3. HTTP Server (2 hours)
+Build Vert.x HTTP servers and clients. Handle routing, request/response, and WebSocket.
+
+### 4. Reactive Streams (2 hours)
+Implement reactive streams with Vert.x. Use ReadStream, WriteStream, and pipe operations.
+
+### Real-world: Vert.x Reactive Platform
+Build production-grade reactive platform with Vert.x, clustering, and distributed event bus.
+
+---
+
 ## Project 1: Vert.x Basics Mini-Project
 
 ### Overview

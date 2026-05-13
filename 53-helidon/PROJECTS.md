@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Helidon framework: a mini-project for learning Helidon MP/NP and a real-world project implementing production-grade reactive services.
 
+## Mini-Projects by Concept
+
+### 1. MP (MicroProfile) (2 hours)
+Build Helidon MP applications with MicroProfile specs. Use JAX-RS, CDI, and Config.
+
+### 2. NP (Netty) Programming (2 hours)
+Use Helidon NP with Netty-based reactive programming. Create handlers and routing.
+
+### 3. Health Checks (2 hours)
+Configure Helidon health endpoints with health checks for readiness and liveness.
+
+### 4. Tracing & Metrics (2 hours)
+Integrate Helidon with tracing and metrics using MicroProfile specifications.
+
+### Real-world: Helidon Reactive Services
+Build production-grade reactive services with Helidon MP and NP programming models.
+
+---
+
 ## Project 1: Helidon Basics Mini-Project
 
 ### Overview

@@ -2,6 +2,25 @@
 
 This module covers Elasticsearch client integration, full-text search capabilities, aggregations, and advanced querying for building scalable search and analytics applications in Java.
 
+## Mini-Projects by Concept
+
+### 1. Index Management (2 hours)
+Create and manage Elasticsearch indices with custom mappings, settings, and aliases. Learn about index lifecycle, shard configuration, and replica strategies.
+
+### 2. Query DSL (2 hours)
+Master Elasticsearch's Query DSL for building complex queries including bool queries, filters, nested queries, and function score queries.
+
+### 3. Aggregations (2 hours)
+Implement bucket, metric, and pipeline aggregations for analytics. Learn terms, range, histogram, stats, and percentiles aggregations.
+
+### 4. Full-Text Search (2 hours)
+Build powerful full-text search with analyzers, tokenizers, and search techniques including fuzzy matching, phrase matching, and relevance tuning.
+
+### Real-world: Search Engine
+Build a comprehensive product search engine with faceted navigation, autocomplete, and relevance scoring for e-commerce applications.
+
+---
+
 ## Mini-Project: Product Search Engine (2-4 Hours)
 
 ### Overview

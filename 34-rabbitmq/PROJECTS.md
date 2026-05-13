@@ -2,6 +2,221 @@
 
 This module covers RabbitMQ messaging patterns including publishers, consumers, exchanges, queues, and advanced features like dead letter queues, publisher confirms, and clustering for building robust message-driven Java applications.
 
+---
+
+# Mini-Project 1: Basic Messaging (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Beginner  
+**Concepts Used**: Queues, Exchanges, Bindings, Producers, Consumers
+
+Learn fundamental RabbitMQ messaging patterns.
+
+---
+
+## Project Structure
+
+```
+34-rabbitmq/
+├── pom.xml
+├── src/main/java/com/learning/rabbitmq/
+│   ├── MessagingApplication.java
+│   ├── config/
+│   │   └── RabbitConfig.java
+│   ├── producer/
+│   │   └── MessageProducer.java
+│   └── consumer/
+│       └── MessageConsumer.java
+└── application.yml
+```
+
+---
+
+## Implementation
+
+```java
+// RabbitConfig.java
+@Configuration
+public class RabbitConfig {
+    
+    @Bean
+    public Queue helloQueue() {
+        return QueueBuilder.durable("hello-queue").build();
+    }
+    
+    @Bean
+    public DirectExchange helloExchange() {
+        return new DirectExchange("hello-exchange");
+    }
+    
+    @Bean
+    public Binding helloBinding(Queue helloQueue, DirectExchange helloExchange) {
+        return BindingBuilder.bind(helloQueue).to(helloExchange).with("hello-routing-key");
+    }
+}
+```
+
+```java
+// MessageProducer.java
+@Component
+public class MessageProducer {
+    
+    private final RabbitTemplate rabbitTemplate;
+    
+    public MessageProducer(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
+    
+    public void sendMessage(String message) {
+        rabbitTemplate.convertAndSend("hello-exchange", "hello-routing-key", message);
+    }
+}
+```
+
+```java
+// MessageConsumer.java
+@Component
+public class MessageConsumer {
+    
+    @RabbitListener(queues = "hello-queue")
+    public void receiveMessage(String message) {
+        System.out.println("Received: " + message);
+    }
+}
+```
+
+---
+
+## Build Instructions
+
+```bash
+cd 34-rabbitmq
+# Start RabbitMQ
+docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+mvn spring-boot:run
+```
+
+---
+
+# Mini-Project 2: Exchange Types (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: Direct, Topic, Fanout, Headers Exchanges
+
+Implement different exchange types for message routing.
+
+---
+
+## Implementation
+
+```java
+// Multiple exchange types configuration
+@Bean
+public TopicExchange topicExchange() {
+    return new TopicExchange("topic-exchange");
+}
+
+@Bean
+public FanoutExchange fanoutExchange() {
+    return new FanoutExchange("fanout-exchange");
+}
+
+@Bean
+public HeadersExchange headersExchange() {
+    return new HeadersExchange("headers-exchange");
+}
+```
+
+---
+
+# Mini-Project 3: Dead Letter Queues (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: DLX, DLQ, Message Failure Handling
+
+Handle failed messages with dead letter queues.
+
+---
+
+## Implementation
+
+```java
+// DLQ configuration
+@Bean
+public Queue orderQueue() {
+    return QueueBuilder.durable("order-queue")
+        .withArgument("x-dead-letter-exchange", "dlx-exchange")
+        .withArgument("x-dead-letter-routing-key", "dlq")
+        .build();
+}
+
+@Bean
+public Queue deadLetterQueue() {
+    return QueueBuilder.durable("order-dlq").build();
+}
+```
+
+---
+
+# Mini-Project 4: Publisher Confirms (2 hours)
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Advanced  
+**Concepts Used**: Publisher Confirms, Correlation IDs, Guaranteed Delivery
+
+Ensure message delivery with publisher confirms.
+
+---
+
+## Implementation
+
+```java
+// Publisher confirms
+@Configuration
+public class RabbitConfig {
+    
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setConfirmCallback((correlationData, ack, cause) -> {
+            if (ack) {
+                System.out.println("Message confirmed: " + correlationData);
+            } else {
+                System.out.println("Message failed: " + cause);
+            }
+        });
+        return template;
+    }
+}
+```
+
+---
+
+# Real-World Project: Event-Driven Microservices (8+ Hours)
+
+## Project Overview
+
+**Duration**: 8+ hours  
+**Difficulty**: Advanced  
+**Concepts Used**: Multiple exchanges, DLQ, Publisher confirms, Priority queues, RPC
+
+Build event-driven microservices communication system.
+
+---
+
+## Previous Mini-Project Content
+
 ## Mini-Project: Order Processing System (2-4 Hours)
 
 ### Overview

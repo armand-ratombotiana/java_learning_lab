@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Apache JMeter: a mini-project for learning load testing basics and a real-world project implementing production-grade performance testing for microservices.
 
+## Mini-Projects by Concept
+
+### 1. Test Plan Creation (2 hours)
+Create JMeter test plans with thread groups, samplers, and controllers. Configure ramp-up periods and iteration strategies.
+
+### 2. Request Configuration (2 hours)
+Configure HTTP requests with parameters, headers, and body. Handle authentication and session management.
+
+### 3. Assertions & Validation (2 hours)
+Add response assertions for status codes, response time, and content validation. Use JSON and XPath extractors.
+
+### 4. Results Analysis (2 hours)
+Analyze test results with listeners, aggregate reports, and response time graphs. Identify bottlenecks and performance issues.
+
+### Real-world: Performance Testing Suite
+Build comprehensive performance testing suite with realistic scenarios, assertions, and detailed reporting.
+
+---
+
 ## Project 1: JMeter Basics Mini-Project
 
 ### Overview

@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating WireMock: a mini-project for learning HTTP mocking basics and a real-world project implementing comprehensive API simulation for microservices testing.
 
+## Mini-Projects by Concept
+
+### 1. Stub Configuration (2 hours)
+Create HTTP stubs with request matching, response templates, and status codes. Use regex, JSON path, and XPath matchers.
+
+### 2. Response Templating (2 hours)
+Generate dynamic responses with Handlebars templates. Use variables, transformations, and random data generation.
+
+### 3. Request Verification (2 hours)
+Verify received requests, check headers, body, and query parameters. Track request history and verify call counts.
+
+### 4. Fault Injection (2 hours)
+Simulate network faults, delays, and error responses. Test resilience patterns with chaos engineering.
+
+### Real-world: API Mocking Service
+Build comprehensive API mocking service for integration testing and development environment simulation.
+
+---
+
 ## Project 1: WireMock Basics Mini-Project
 
 ### Overview

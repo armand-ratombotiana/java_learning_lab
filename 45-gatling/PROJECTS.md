@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Gatling: a mini-project for learning Scala-based load testing and a real-world project implementing production-scale scenario simulations.
 
+## Mini-Projects by Concept
+
+### 1. Scenario Definition (2 hours)
+Define Scala-based test scenarios with feeders, session management, and conditional logic. Use built-in protocols.
+
+### 2. Injection Profiles (2 hours)
+Configure load injection with ramps, constant, and peak users. Define duration and termination strategies.
+
+### 3. Checks & Assertions (2 hours)
+Implement response validation with checks for status, body, and headers. Set response time assertions.
+
+### 4. Reports & Analysis (2 hours)
+Generate Gatling reports with request statistics, response time distribution, and active user graphs.
+
+### Real-world: Load Testing Platform
+Build production-scale load testing platform with complex scenarios, data feeders, and detailed analytics.
+
+---
+
 ## Project 1: Gatling Basics Mini-Project
 
 ### Overview

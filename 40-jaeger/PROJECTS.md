@@ -2,6 +2,25 @@
 
 This module covers Jaeger distributed tracing integration, trace analysis, span correlation, and comprehensive observability for building traceable Java applications with complete request flow visibility across microservices.
 
+## Mini-Projects by Concept
+
+### 1. Trace Instrumentation (2 hours)
+Implement tracing with OpenTelemetry/Jaeger. Create spans, add tags, log events, and propagate trace context across service calls.
+
+### 2. Span Management (2 hours)
+Configure span sampling strategies, span processors, and exporters. Handle baggage propagation and context isolation.
+
+### 3. Distributed Context (2 hours)
+Propagate trace context across process boundaries using W3C format. Implement custom context injectors for messaging and RPC.
+
+### 4. Trace Analysis (2 hours)
+Analyze traces in Jaeger UI. Identify performance bottlenecks, error patterns, and service dependencies using trace visualization.
+
+### Real-world: Distributed Tracing System
+Build comprehensive distributed tracing for microservices architecture with context propagation and performance analysis.
+
+---
+
 ## Mini-Project: Request Tracing System (2-4 Hours)
 
 ### Overview

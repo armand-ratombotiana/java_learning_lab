@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating TestContainers: a mini-project for learning container-based testing and a real-world project implementing comprehensive integration testing with databases and message queues.
 
+## Mini-Projects by Concept
+
+### 1. Container Basics (2 hours)
+Start and manage containers for testing. Configure container lifecycle, network isolation, and wait strategies.
+
+### 2. Database Containers (2 hours)
+Use PostgreSQL, MySQL, MongoDB containers for integration tests. Configure connection pooling and data initialization.
+
+### 3. Messaging Containers (2 hours)
+Test with Kafka, RabbitMQ, and Redis containers. Verify message publishing and consuming in tests.
+
+### 4. Module Containers (2 hours)
+Use specialized modules for Elasticsearch, Jaeger, Keycloak. Configure initialization scripts and dependencies.
+
+### Real-world: Integration Testing Suite
+Build comprehensive integration testing suite with database, messaging, and external service containers.
+
+---
+
 ## Project 1: TestContainers Basics Mini-Project
 
 ### Overview

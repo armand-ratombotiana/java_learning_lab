@@ -2,6 +2,25 @@
 
 This module covers Grafana dashboard visualization, data source integration, alerting configuration, and dashboard provisioning for building comprehensive monitoring visualizations in Java applications.
 
+## Mini-Projects by Concept
+
+### 1. Dashboard Creation (2 hours)
+Create Grafana dashboards with various panel types including graphs, stats, gauges, and tables. Configure panel options, thresholds, and visualizations.
+
+### 2. Data Source Integration (2 hours)
+Connect Grafana to Prometheus, Loki, Elasticsearch, and other data sources. Configure queries, transformations, and data source health checks.
+
+### 3. Variables & Templating (2 hours)
+Implement dynamic dashboards with template variables. Create queries for environment, service, and region-based filtering.
+
+### 4. Alert Configuration (2 hours)
+Set up Grafana alerts with notifications to Slack, Email, PagerDuty. Configure alert rules, evaluation intervals, and message templates.
+
+### Real-world: Operations Dashboard
+Build enterprise operations dashboards with multi-source data, complex visualizations, and integrated alerting.
+
+---
+
 ## Mini-Project: Real-Time Monitoring Dashboard (2-4 Hours)
 
 ### Overview

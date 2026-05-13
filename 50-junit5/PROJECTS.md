@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating JUnit 5: a mini-project for learning advanced testing features and a real-world project implementing production-grade unit tests.
 
+## Mini-Projects by Concept
+
+### 1. Test Lifecycle (2 hours)
+Configure JUnit 5 lifecycle with @BeforeEach, @AfterEach, @BeforeAll, @AfterAll. Use test instance lifecycle.
+
+### 2. Parametrized Tests (2 hours)
+Create parametrized tests with @ParameterizedTest. Use @CsvSource, @EnumSource, and custom sources.
+
+### 3. Test Interfaces (2 hours)
+Implement test interfaces with default methods. Use nested classes for test organization.
+
+### 4. Extensions & Customizers (2 hours)
+Build custom JUnit 5 extensions for setup/teardown. Implement ParameterResolver and TestWatcher.
+
+### Real-world: Unit Testing Framework
+Build production-grade unit testing framework with parametrized tests, extensions, and reporting.
+
+---
+
 ## Project 1: JUnit 5 Basics Mini-Project
 
 ### Overview

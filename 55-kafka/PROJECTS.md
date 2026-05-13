@@ -2,6 +2,25 @@
 
 This document contains two complete projects demonstrating Apache Kafka: a mini-project for learning producers/consumers and a real-world project implementing production-grade streaming.
 
+## Mini-Projects by Concept
+
+### 1. Producer API (2 hours)
+Create Kafka producers with key/value serialization. Configure batch settings, acks, and partitioning.
+
+### 2. Consumer API (2 hours)
+Implement Kafka consumers with group management. Handle offset management and rebalancing.
+
+### 3. Streams API (2 hours)
+Build Kafka Streams applications for stream processing. Use KStream, KTable, and windowing operations.
+
+### 4. Connect API (2 hours)
+Use Kafka Connect for data integration. Configure source and sink connectors.
+
+### Real-world: Event Streaming Platform
+Build production-grade event streaming platform with Kafka, stream processing, and data pipelines.
+
+---
+
 ## Project 1: Kafka Basics Mini-Project
 
 ### Overview
