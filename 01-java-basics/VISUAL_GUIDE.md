@@ -1,0 +1,69 @@
+# Visual Guide to Java Basics
+
+## Data Types Hierarchy
+
+```
+┌─────────────────────────────────────┐
+│            PRIMITIVES               │
+├──────┬──────┬──────┬───────┬────────┤
+│ byte │ short│ int  │ long  │        │
+│  8   │  16  │  32  │  64   │        │
+│ -128 │-32k  │-2B   │ -9Q   │        │
+├──────┴──────┴──────┴───────┴────────┤
+│        float (32) │  double (64)    │
+├─────────────┬───────┴────────────────┤
+│ char (16)   │ boolean (1) [virtual]  │
+└─────────────┴────────────────────────┘
+
+┌─────────────────────────────────────┐
+│           REFERENCE TYPES            │
+│   Classes, Arrays, Interfaces        │
+│   Default: null                      │
+└─────────────────────────────────────┘
+```
+
+## Operators Precedence
+
+```
+1. () [] .                           (postfix)
+2. ++ -- ! ~ unary                   (unary)
+3. * / %                             (multiplicative)
+4. + -                               (additive)
+5. << >> >>>                         (shift)
+6. < > <= >= instanceof             (relational)
+7. == !=                             (equality)
+8. &                                 (bitwise AND)
+9. ^                                 (bitwise XOR)
+10. |                                 (bitwise OR)
+11. &&                                (logical AND)
+12. ||                                (logical OR)
+13. ? :                               (ternary)
+14. = += -= *= /= %=                 (assignment)
+```
+
+## Loop Flow Diagrams
+
+### For Loop
+```
+    ┌─────────┐
+    │  init   │────┐
+    └────┬────┘    │
+         ▼         │
+    ┌─────────┐    │
+    │ condition├──┐│
+    └────┬────┘ │ │
+       │ Yes    │ │
+       ▼        │ │
+    ┌───────┐   │ │
+    │ body  │───┘ │
+    └────┬────┘   │
+         ▼        │
+    ┌─────────┐   │
+    │ increment│──┘
+    └────┬────┘
+         │ No
+         ▼
+    ┌─────────┐
+    │  exit   │
+    └─────────┘
+```
