@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: rag-platform
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/rag
+  data.redis:
+    host: localhost
+    port: 6379
+
+server:
+  port: 8080

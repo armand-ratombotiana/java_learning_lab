@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+
+  ai-assistant:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+      - redis
+      - ollama
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/aiassistant
+      SPRING_DATA_REDIS_HOST: redis
+      LANGCHAIN4J_OLLAMA_BASE_URL: http://ollama:11434

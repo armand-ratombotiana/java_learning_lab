@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: search-engine
+server:
+  port: 8080

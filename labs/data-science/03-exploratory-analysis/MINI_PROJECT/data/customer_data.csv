@@ -1,0 +1,21 @@
+customer_id,age,income,region,purchase_amount,category,payment_method,frequency,tenure
+C001,28,45000,North,150,Electronics,Credit Card,3,12
+C002,35,55000,South,200,Clothing,Debit Card,5,24
+C003,42,65000,East,300,Home,Credit Card,2,36
+C004,31,75000,West,250,Electronics,PayPal,4,18
+C005,45,85000,Central,400,Sports,Credit Card,6,48
+C006,29,48000,North,180,Clothing,Debit Card,3,14
+C007,38,58000,South,220,Home,Credit Card,4,30
+C008,44,68000,East,320,Electronics,PayPal,5,42
+C009,33,78000,West,280,Sports,Credit Card,3,22
+C010,50,88000,Central,450,Electronics,Debit Card,7,60
+C011,27,52000,North,190,Home,Credit Card,2,10
+C012,36,62000,South,250,Clothing,PayPal,4,28
+C013,41,46000,East,170,Electronics,Debit Card,2,20
+C014,32,56000,West,230,Sports,Credit Card,3,16
+C015,46,72000,Central,350,Home,PayPal,5,44
+C016,30,54000,North,160,Electronics,Credit Card,2,12
+C017,39,64000,South,280,Clothing,Debit Card,4,32
+C018,48,76000,East,360,Home,Credit Card,6,52
+C019,34,58000,West,200,Electronics,PayPal,3,20
+C020,43,82000,Central,420,Sports,Credit Card,5,46

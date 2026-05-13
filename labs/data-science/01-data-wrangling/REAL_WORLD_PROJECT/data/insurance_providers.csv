@@ -1,0 +1,6 @@
+insurance_id,provider_name,plan_type,coverage_level
+I001,BlueCross BlueShield,PPO,80%
+I002,Aetna,HMO,90%
+I003,United Healthcare,POS,75%
+I004,Cigna,EPO,85%
+I005,Kaiser Permanente,HMO,95%

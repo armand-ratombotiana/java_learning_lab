@@ -1,0 +1,81 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  JAVA_VERSION: '21'
+  MAVEN_OPTS: -Xmx1024m
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: banking
+          POSTGRES_USER: bank
+          POSTGRES_PASSWORD: bank123
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      kafka:
+        image: confluentinc/cp-kafka:7.6.0
+        env:
+          KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+        ports:
+          - 9092:9092
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build
+      run: mvn -f capstones/01-banking-platform/pom.xml clean compile
+
+    - name: Test
+      run: mvn -f capstones/01-banking-platform/pom.xml test -Dspring.profiles.active=ci
+
+    - name: Package
+      run: mvn -f capstones/01-banking-platform/pom.xml package -DskipTests
+
+    - name: Build Docker images
+      run: |
+        docker build -t bank/account-service:1.0.0 capstones/01-banking-platform/account-service
+        docker build -t bank/payment-service:1.0.0 capstones/01-banking-platform/payment-service
+
+    - name: Security Scan
+      run: mvn -f capstones/01-banking-platform/pom.xml dependency:tree -DoutputFile=dependency-tree.txt
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: banking-platform
+        path: capstones/01-banking-platform/**/target/*.jar
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f capstones/01-banking-platform/k8s/deployment.yaml

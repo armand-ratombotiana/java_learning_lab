@@ -1,0 +1,6 @@
+band_name,min_salary,max_salary,grade
+Entry,40000,60000,1
+Junior,55000,75000,2
+Mid,70000,90000,3
+Senior,85000,110000,4
+Executive,100000,200000,5

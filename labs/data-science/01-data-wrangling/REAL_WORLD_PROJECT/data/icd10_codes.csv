@@ -1,0 +1,42 @@
+code,description,category
+J45.21,Asthma,Respiratory
+J45.20,Chronic obstructive asthma,Respiratory
+J45.30,Other asthma,Respiratory
+J44.1,Chronic obstructive pulmonary disease,Respiratory
+J44.0,Chronic obstructive asthma with acute exacerbation,Respiratory
+J06.9,Acute upper respiratory infection,Respiratory
+J18.9,Pneumonia,Respiratory
+E11.9,Type 2 diabetes,Endocrine
+E11.65,Type 2 diabetes with hyperglycemia,Endocrine
+I10,Essential hypertension,Cardiovascular
+I25.10,Atherosclerotic heart disease,Cardiovascular
+I21.4,Non-ST elevation myocardial infarction,Cardiovascular
+I21.01,ST elevation myocardial infarction,Cardiovascular
+I63.9,Cerebral infarction,Cardiovascular
+I63.30,Cerebral infarction,Cardiovascular
+I69.9,Sequela of cerebrovascular disease,Cardiovascular
+I87.1,Chronic venous insufficiency,Vascular
+I84.2,Varicose veins of lower extremities,Vascular
+K29.70,Gastritis,GI
+K21.0,Gastroesophageal reflux disease,GI
+K35.80,Acute appendicitis,GI
+K80.00,Cholelithiasis,GI
+N39.0,Urinary tract infection,Genitourinary
+N18.6,Chronic kidney disease,Genitourinary
+N40.0,Benign prostatic hyperplasia,Genitourinary
+M54.5,Low back pain,Musculoskeletal
+M54.2,Cervicalgia,Musculoskeletal
+M75.00,Rotator cuff tear,Musculoskeletal
+M79.3,Panniculitis,Musculoskeletal
+M47.812,Spondylosis without myelopathy,Musculoskeletal
+M17.11,Primary osteoarthritis,Musculoskeletal
+G43.909,Migraine,Neurological
+G40.909,Epilepsy,Neurological
+G47.20,Insomnia,Neurological
+F32.1,Major depressive disorder,Mental Health
+F10.20,Alcohol dependence,Mental Health
+R05.9,Cough,Symptoms
+R10.9,Abdominal pain,Symptoms
+R73.03,Prediabetes,Symptoms
+R94.6,Abnormal neurological examination,Diagnostic
+A79.0,Chlamydia infection,Infectious

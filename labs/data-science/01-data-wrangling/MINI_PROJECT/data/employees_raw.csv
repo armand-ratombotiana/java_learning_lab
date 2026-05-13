@@ -1,0 +1,52 @@
+employee_id,name,hire_date,salary,department,gender,phone,email
+E001,John Smith,2020-03-15,85000,Engineering,Male,(123) 456-7890,john.smith@company.com
+E002,Maria Garcia,2019-07-22,92000,Engineering,Female,555-123-4567,maria.garcia@company.com
+E003,James Johnson,2021-01-10,75000,Sales,Male,(789) 555-1234,james.j@company.com
+E004,Emily Davis,2018-11-05,68000,Marketing,Female,5559876543,emily.davis@company.com
+E005,Michael Brown,2020-05-18,88000,Engineering,Male,(456) 789-0123,michael.b@company.com
+E006,Sarah Wilson,2019-03-30,72000,Marketing,Female,555-111-2222,sarah.w@company.com
+E007,David Martinez,2021-08-14,95000,Engineering,Male,5551234567,david.martinez@company.com
+E008,Jennifer Lee,2020-12-01,62000,HR,Female,(321) 654-9870,jennifer.lee@company.com
+E009,Robert Taylor,2018-06-25,78000,Sales,Male,5553334444,robert.t@company.com
+E010,Lisa Anderson,2019-09-12,91000,Engineering,Female,(654) 321-0987,lisa.anderson@company.com
+E011,William Thomas,2022-02-28,58000,Marketing,Male,555-777-8888,will.t@company.com
+E012,Mary Jackson,2017-04-15,105000,Engineering,Female,(111) 222-3333,mary.jackson@company.com
+E013,Christopher White,2020-08-19,76000,Sales,Male,5558889999,chris.white@company.com
+E014,Amanda Harris,2021-06-03,84000,Engineering,Female,(222) 333-4444,amanda.h@company.com
+E015,Daniel Martin,2019-12-11,71000,HR,Male,555-444-5555,dan.martin@company.com
+E016,Michelle Thompson,2020-03-25,69000,Marketing,Female,(333) 444-5556,michelle.t@company.com
+E017,Joshua Garcia,2018-10-30,83000,Engineering,Male,5556667777,joshua.g@company.com
+E018,Ashley Martinez,2021-04-08,55000,Sales,Female,(444) 555-6667,ashley.m@company.com
+E019,Matthew Brown,2019-07-19,97000,Engineering,Male,555-888-9999,matt.brown@company.com
+E020,Stephanie Davis,2020-01-14,65000,HR,Female,(555) 666-7778,stephanie.d@company.com
+E001,John Smith,2020-03-15,85000,Engineering,Male,(123) 456-7890,john.smith@company.com
+E021,Andrew Wilson,2018-05-22,82000,Sales,Male,555-222-3333,andrew.w@company.com
+E022,Elizabeth Moore,2021-09-17,53000,Marketing,Female,(666) 777-8888,elizabeth.m@company.com
+E023,Kevin Taylor,2020-11-30,79000,Engineering,Male,5559990000,kevin.t@company.com
+E024,Rachel Anderson,2019-04-05,74000,HR,Female,(777) 888-9999,rachel.a@company.com
+E025,Brian Thomas,2022-01-20,89000,Engineering,Male,555-111-2223,brian.t@company.com
+E026,Nicole Jackson,2018-08-12,67000,Marketing,Female,(888) 999-0000,nicole.j@company.com
+E027,Ryan White,2021-07-25,95000,Engineering,Male,5551231234,ryan.white@company.com
+E028,Lauren Martin,2019-11-08,61000,HR,Female,555-444-5556,lauren.m@company.com
+E029,Justin Harris,2020-06-15,,Sales,Male,(999) 000-1111,justin.h@company.com
+E030,Samantha Clark,2021-03-22,81000,Engineering,Female,5552223334,samantha.c@company.com
+E031,Brandon Lewis,2018-12-03,77000,Sales,Male,(000) 111-2222,brandon.l@company.com
+E032,Megan Robinson,2019-06-28,86000,Engineering,Female,5553334445,megan.r@company.com
+E033,Austin Walker,2020-09-10,64000,,Male,(111) 222-3334,austin.w@company.com
+E034,Brittany Hall,2021-02-14,73000,HR,Female,5554445556,brittany.h@company.com
+E035,Sean Allen,2018-07-07,88000,Engineering,Male,(222) 333-4445,sean.a@company.com
+E036,Katherine Young,2019-10-21,59000,Marketing,Female,5555556667,katherine.y@company.com
+E037,Tyler King,2020-04-16,92000,Engineering,Male,(333) 444-5557,tyler.k@company.com
+E038,Diana Wright,2021-05-29,70000,HR,Female,5556667778,diana.w@company.com
+E039,Adam Scott,2018-02-11,84000,Sales,Male,(444) 555-6668,adam.s@company.com
+E040,Kimberly Lopez,2022-03-05,52000,Marketing,Female,5557778889,kimberly.l@company.com
+E041,Patrick Hill,2019-08-17,91000,Engineering,Male,(555) 888-9990,patrick.h@company.com
+E042,Christina Green,2020-12-24,63000,HR,Female,5550001112,christina.g@company.com
+E043,Eric Adams,2018-01-29,76000,Sales,Male,(666) 111-2223,eric.a@company.com
+E044,Rebecca Baker,2021-06-11,85000,Engineering,Female,5551112224,rebecca.b@company.com
+E045,Nathan Nelson,2019-05-03,69000,Marketing,Male,(777) 222-3335,nathan.n@company.com
+E046,Melissa Carter,2020-02-18,94000,Engineering,Female,5552223336,melissa.c@company.com
+E047,Jeremy Mitchell,2018-09-26,72000,HR,Male,(888) 333-4446,jeremy.m@company.com
+E048,Sarah Perez,2021-11-07,56000,Sales,Female,5553334447,sarah.p@company.com
+E049,Benjamin Roberts,2019-12-31,98000,Engineering,Male,(999) 444-5557,ben.roberts@company.com
+E050,Laura Turner,2020-07-08,66000,HR,Female,5554445558,laura.t@company.com
