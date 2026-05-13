@@ -2,6 +2,18 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| Bean Definition | 2 hours | @Bean, @Component, Java config |
+| Dependency Injection | 2 hours | Constructor, setter, field injection |
+| Bean Scopes | 2 hours | Singleton, prototype, custom scopes |
+| AOP Basics | 2 hours | Aspects, pointcuts, advice, proxies |
+| Real-world: Custom Spring Framework | 8+ hours | Advanced DI with post-processors, events |
+
+---
+
 # Mini-Project: Spring DI Container Demo
 
 ## Project Overview

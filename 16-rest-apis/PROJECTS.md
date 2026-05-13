@@ -2,6 +2,18 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| REST Controller | 2 hours | @RestController, @RequestMapping |
+| Request/Response | 2 hours | @RequestBody, @ResponseBody, DTOs |
+| Validation | 2 hours | @Valid, BindingResult, custom validators |
+| HATEOAS | 2 hours | RepresentationModel, Link builders |
+| Real-world: API Gateway | 8+ hours | Versioning, rate limiting, caching |
+
+---
+
 # Mini-Project: REST Client Implementation
 
 ## Project Overview
@@ -1096,6 +1108,220 @@ public class Main {
         System.out.println("Requests by client: " + counts);
     }
 }
+```
+
+---
+
+# Mini-Project: HATEOAS REST API
+
+## Project Overview
+
+**Duration**: 2 hours  
+**Difficulty**: Intermediate  
+**Concepts Used**: HATEOAS Links, Resource Representation, HAL Format, Link Builders
+
+This mini-project implements HATEOAS (Hypermedia as the Engine of Application State) for a RESTful API with hypermedia links.
+
+---
+
+## Step 1: POM.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.learning</groupId>
+    <artifactId>hateoas-api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+    </parent>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+```
+
+---
+
+## Step 2: Model with HATEOAS
+
+```java
+// model/Product.java
+package com.learning.model;
+
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.Link;
+import java.math.BigDecimal;
+
+public class Product extends RepresentationModel<Product> {
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    
+    public Product() {}
+    
+    public Product(Long id, String name, String description, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+    
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
+}
+```
+
+---
+
+## Step 3: HATEOAS Controller
+
+```java
+// controller/ProductHateoasController.java
+package com.learning.controller;
+
+import com.learning.model.Product;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.math.BigDecimal;
+import java.util.*;
+
+@RestController
+@RequestMapping("/api/hateoas/products")
+public class ProductHateoasController {
+    
+    private final Map<Long, Product> products = new ConcurrentHashMap<>();
+    
+    public ProductHateoasController() {
+        Product p1 = new Product(1L, "Laptop", "High-perf laptop", new BigDecimal("1299.99"));
+        Product p2 = new Product(2L, "Phone", "Smartphone", new BigDecimal("899.99"));
+        
+        addLinks(p1);
+        addLinks(p2);
+        
+        products.put(1L, p1);
+        products.put(2L, p2);
+    }
+    
+    private void addLinks(Product product) {
+        product.add(Link.of("/api/hateoas/products/" + product.getId(), "self"));
+        product.add(Link.of("/api/hateoas/products", "products"));
+        product.add(WebMvcLinkBuilder.linkTo(
+            ProductHateoasController.class
+        ).slash(product.getId()).withSelfRel());
+    }
+    
+    @GetMapping
+    public ResponseEntity<CollectionModel<Product>> getAllProducts() {
+        CollectionModel<Product> resources = CollectionModel.of(products.values());
+        resources.add(Link.of("/api/hateoas/products", "self"));
+        return ResponseEntity.ok(resources);
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<EntityModel<Product>> getProduct(@PathVariable Long id) {
+        Product product = products.get(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        EntityModel<Product> resource = EntityModel.of(product);
+        resource.add(WebMvcLinkBuilder.linkTo(
+            methodOn(ProductHateoasController.class).getAllProducts()
+        ).withRel("all-products"));
+        
+        return ResponseEntity.ok(resource);
+    }
+    
+    @PostMapping
+    public ResponseEntity<EntityModel<Product>> createProduct(@RequestBody Product product) {
+        Long id = products.size() + 1L;
+        product.setId(id);
+        addLinks(product);
+        products.put(id, product);
+        
+        EntityModel<Product> resource = EntityModel.of(product);
+        resource.add(Link.of("/api/hateoas/products/" + id, "self"));
+        
+        return ResponseEntity.status(HttpStatus.CREATED).body(resource);
+    }
+}
+```
+
+---
+
+## Step 4: Application
+
+```java
+// Application.java
+package com.learning;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+---
+
+## Test HATEOAS Response
+
+```bash
+curl http://localhost:8080/api/hateoas/products/1
+
+# Response includes:
+# {
+#   "id": 1,
+#   "name": "Laptop",
+#   "price": 1299.99,
+#   "_links": {
+#     "self": { "href": "http://localhost:8080/api/hateoas/products/1" },
+#     "products": { "href": "http://localhost:8080/api/hateoas/products" }
+#   }
+# }
+```
+
+---
+
+## Build Instructions
+
+```bash
+cd 16-rest-apis
+mvn spring-boot:run
+curl http://localhost:8080/api/hateoas/products
 ```
 
 ---

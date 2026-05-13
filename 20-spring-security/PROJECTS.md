@@ -2,6 +2,19 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| JWT Authentication | 2 hours | Token generation, validation, filter |
+| User Details Service | 2 hours | Custom user details, BCrypt encoding |
+| Role-based Access Control | 2 hours | Method security, route authorization |
+| OAuth2 Integration | 2 hours | Resource server, JWT decoder |
+| Custom Filters | 2 hours | Request filtering, authentication entry point |
+| Real-world: E-Commerce Security | 15+ hours | Complete security with audit, MFA support |
+
+---
+
 # Mini-Project: JWT Authentication System
 
 ## Project Overview

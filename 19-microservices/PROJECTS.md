@@ -2,6 +2,18 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| Service Discovery | 2 hours | Eureka server, service registration |
+| Feign Client | 2 hours | Declarative REST client, load balancing |
+| API Gateway | 2 hours | Spring Cloud Gateway, route configuration |
+| Circuit Breaker | 2 hours | Resilience4j, fallback, bulkhead |
+| Real-world: E-Commerce Platform | 20+ hours | Complete microservices with Kubernetes |
+
+---
+
 # Mini-Project: Spring Cloud Service Discovery
 
 ## Project Overview

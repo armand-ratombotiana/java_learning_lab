@@ -2,6 +2,19 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| Entity Mapping | 2 hours | JPA entities, annotations, table mapping |
+| CRUD Operations | 2 hours | EntityManager, persist, merge, remove |
+| JPQL Queries | 2 hours | Named queries, criteria API, projections |
+| Entity Relationships | 2 hours | One-to-Many, Many-to-One, Many-to-Many |
+| Transactions | 2 hours | Propagation, isolation levels, rollback |
+| Real-world: E-Commerce System | 12+ hours | Complete order management with relationships |
+
+---
+
 # Mini-Project: Employee Management System with JPA
 
 ## Project Overview

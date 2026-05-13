@@ -2,6 +2,18 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| Auto-configuration | 2 hours | @Conditional, @EnableAutoConfiguration |
+| Starters | 2 hours | Custom starters, dependency management |
+| Properties | 2 hours | application.yml, @ConfigurationProperties |
+| Actuator | 2 hours | Health, metrics, endpoints, custom |
+| Real-world: E-commerce Service | 8+ hours | Complete Boot app with security, caching |
+
+---
+
 # Mini-Project: REST API with Spring Boot
 
 ## Project Overview

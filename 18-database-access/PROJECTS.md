@@ -2,6 +2,18 @@
 
 ---
 
+# Mini-Projects Overview
+
+| Concept | Duration | Description |
+|---------|----------|-------------|
+| JDBC Basics | 2 hours | Connection, Statement, PreparedStatement |
+| Connection Pooling | 2 hours | HikariCP, pool configuration, data sources |
+| Transaction Management | 2 hours | Commit, rollback, savepoints, isolation |
+| ORM Integration | 2 hours | Spring JDBC Template, RowMapper, ResultSetExtractor |
+| Real-world: E-Commerce System | 12+ hours | Complete order processing with JDBC |
+
+---
+
 # Mini-Project: JDBC Employee Management System
 
 ## Project Overview
