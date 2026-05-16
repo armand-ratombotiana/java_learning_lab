@@ -357,6 +357,27 @@ JavaLearning/
 
 ---
 
+## 🏆 Portfolio Capstone Projects
+
+Real-world, production-grade projects demonstrating advanced skills:
+
+| # | Project | Domain | Tech Stack |
+|---|---------|--------|------------|
+| 01 | [Banking Platform](./capstones/01-banking-platform/) | Financial Services | Spring Boot, Kafka, PostgreSQL |
+| 02 | [Fraud Detection](./capstones/02-fraud-detection/) | Security/ML | ML, Kafka, Isolation Forest |
+| 03 | [Recommendation Engine](./capstones/03-recommendation-engine/) | ML/Personalization | Matrix Factorization, Redis |
+| 04 | [Vector Database](./capstones/04-vector-database/) | Search/AI | HNSW indexing, similarity search |
+| 05 | [RAG Platform](./capstones/05-rag-platform/) | GenAI/LLM | LangChain4j, vector stores |
+| 06 | [Distributed Cache](./capstones/06-distributed-cache/) | Infrastructure | Consistent hashing, Redis |
+| 07 | [Event Streaming](./capstones/07-event-streaming/) | Messaging | Partitions, consumer groups |
+| 08 | [Search Engine](./capstones/08-search-engine/) | Search | TF-IDF, inverted index |
+| 09 | [ML Platform](./capstones/09-ml-platform/) | MLOps | Training, serving, monitoring |
+| 10 | [AI Assistant](./capstones/10-ai-assistant/) | GenAI | RAG, memory, tool calling |
+
+Each capstone includes: Dockerfile, docker-compose.yml, Kubernetes manifests, CI/CD pipeline, and comprehensive tests.
+
+---
+
 ## 🛠️ Technologies Covered
 
 ### 1. **Core Java** ☕
