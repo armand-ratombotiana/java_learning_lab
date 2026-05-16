@@ -120,6 +120,134 @@ graph TD
 
 ---
 
+## 🎓 Engineering Academies
+
+Comprehensive deep-dive academies for specialized engineering disciplines. Each academy contains atomic micro-labs with THEORY, CODE_DEEP_DIVE, MATH_FOUNDATION, EXERCISES (20+), QUIZ (30 questions), FLASHCARDS, MINI_PROJECT, and REAL_WORLD_PROJECT.
+
+```mermaid
+graph TD
+    A[Start: Java Basics] --> B[AI Academy]
+    A --> C[Cloud Academy]
+    A --> D[Math Academy]
+    A --> E[System Design Academy]
+    A --> F[Data Science Academy]
+    
+    B --> G[ML Fundamentals]
+    B --> H[Deep Learning]
+    B --> I[LLM & GenAI]
+    
+    C --> J[AWS Cloud]
+    C --> K[Kubernetes]
+    C --> L[Terraform IaC]
+    
+    D --> M[Linear Algebra]
+    D --> N[Statistics]
+    D --> O[Optimization]
+    
+    E --> P[Architecture Patterns]
+    E --> Q[Scalability]
+    
+    F --> R[Data Pipelines]
+    F --> S[Feature Engineering]
+```
+
+### 🚀 AI Academy (`labs/ai/`)
+
+| Lab | Topic | Focus |
+|-----|-------|-------|
+| 01 | Linear Algebra for ML | Vectors, matrices, eigenvalues, SVD |
+| 02 | Probability for ML | Bayes theorem, distributions, entropy |
+| 03 | Calculus for ML | Derivatives, gradients, chain rule |
+| 04 | Optimization | GD, SGD, Adam, loss functions |
+| 05 | Statistics | Hypothesis testing, regression |
+| 06 | ML Fundamentals | Supervised/unsupervised learning |
+| 07 | Regression | Linear, polynomial, regularization |
+| 08 | Classification | SVM, decision trees, ensemble |
+| 09 | Clustering | K-means, DBSCAN, hierarchical |
+| 10 | Dimensionality Reduction | PCA, t-SNE, autoencoders |
+| 11 | Neural Networks | Perceptron, backpropagation |
+| 12 | CNN | Image recognition, convolutions |
+| 13 | RNN | Sequence modeling, LSTM/GRU |
+| 14 | Transformers | Attention mechanism, BERT, GPT |
+| 15 | RAG Systems | Retrieval-augmented generation |
+| 16 | LLM Agents | Tool use, reasoning, planning |
+| 17 | Fine-tuning | LoRA, PEFT, transfer learning |
+| 18 | Vector Databases | Embeddings, similarity search |
+| 19 | Prompt Engineering | Few-shot, chain-of-thought |
+| 20 | MLOps | Model deployment, monitoring |
+
+### ☁️ Cloud Engineering Academy (`labs/cloud/`)
+
+| Lab | Topic | Focus |
+|-----|-------|-------|
+| 01 | AWS Fundamentals | EC2, S3, IAM, VPC |
+| 02 | AWS Compute | Lambda, ECS, Fargate |
+| 03 | AWS Storage | EFS, EBS, Glacier |
+| 04 | AWS Database | RDS, DynamoDB, ElastiCache |
+| 05 | AWS Networking | Route 53, CloudFront, API Gateway |
+| 06 | Docker & Containers | Images, compose, networking |
+| 07 | Kubernetes | Pods, services, Helm |
+| 08 | Terraform IaC | Modules, state, providers |
+
+### 🧮 Math Academy (`labs/math/`)
+
+| Lab | Topic | Focus |
+|-----|-------|-------|
+| 01 | Linear Algebra | Vector spaces, transformations |
+| 02 | Calculus | Limits, derivatives, integrals |
+| 03 | Probability | Distributions, Bayes |
+| 04 | Statistics | Estimation, hypothesis testing |
+| 05 | Optimization | Convex, gradient descent |
+| 06 | Information Theory | Entropy, mutual information |
+| 07 | Graph Theory | Networks, shortest path |
+| 08 | Number Theory | Primes, modular arithmetic |
+| 09 | Combinatorics | Counting, permutations |
+| 10 | Signal Processing | FFT, filters, wavelets |
+
+### 🏗️ System Design Academy (`labs/system-design/`)
+
+| Lab | Topic | Focus |
+|-----|-------|-------|
+| 01 | Architecture Patterns | Layered, microservices, CQRS |
+| 02 | Scalability | Horizontal vs vertical, sharding |
+| 03 | Availability | SLO/SLI, failover, redundancy |
+| 04 | Consistency Models | CAP, ACID, eventual consistency |
+| 05 | Caching | Redis, CDN, invalidation |
+| 06 | Messaging | Kafka, RabbitMQ, event-driven |
+| 07 | API Design | REST, GraphQL, gRPC |
+| 08 | Observability | Logs, metrics, tracing |
+
+### 📊 Data Science Academy (`labs/data-science/`)
+
+| Lab | Topic | Focus |
+|-----|-------|-------|
+| 01 | Data Wrangling | Cleaning, transformation |
+| 02 | EDA | Visualization, patterns |
+| 03 | Feature Engineering | Scaling, encoding, selection |
+| 04 | Model Training | Cross-validation, tuning |
+| 05 | Model Evaluation | Metrics, benchmarking |
+| 06 | Pipelines | Airflow, Prefect, scheduling |
+| 07 | Production ML | Serving, monitoring, drift |
+
+### 🏆 Portfolio Capstone Projects (`capstones/`)
+
+Real-world portfolio-grade projects with Docker, Kubernetes, CI/CD:
+
+| # | Project | Domain |
+|---|---------|--------|
+| 01 | Banking Analytics Platform | Financial services |
+| 02 | Real-time Fraud Detection | Security/ML |
+| 03 | RAG Knowledge System | GenAI/LLM |
+| 04 | E-commerce Recommendation Engine | ML/Personalization |
+| 05 | IoT Data Pipeline | Streaming/Analytics |
+| 06 | Healthcare Patient Portal | Microservices |
+| 07 | Supply Chain Optimizer | Optimization |
+| 08 | Social Media Analytics | Big data |
+| 09 | Smart City Dashboard | Real-time/Visualization |
+| 10 | SaaS Multi-tenant Platform | Cloud-native |
+
+---
+
 ## 🏗️ Repository Structure
 
 ```
