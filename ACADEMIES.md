@@ -41,22 +41,22 @@ Linear Algebra → Probability → Calculus → Optimization
 | 02 | [Probability for ML](./ai/02-probability-for-ml/) | 8 | ⭐⭐ |
 | 03 | [Calculus for ML](./ai/03-calculus-for-ml/) | 8 | ⭐⭐⭐ |
 | 04 | [Optimization](./ai/04-optimization/) | 8 | ⭐⭐⭐ |
-| 05 | [Statistics](./ai/05-statistics/) | 6 | ⭐⭐ |
-| 06 | [ML Fundamentals](./ai/06-ml-fundamentals/) | 8 | ⭐⭐ |
-| 07 | [Regression](./ai/07-regression/) | 10 | ⭐⭐⭐ |
-| 08 | [Classification](./ai/08-classification/) | 10 | ⭐⭐⭐ |
-| 09 | [Clustering](./ai/09-clustering/) | 8 | ⭐⭐ |
-| 10 | [Dimensionality Reduction](./ai/10-dimensionality-reduction/) | 8 | ⭐⭐⭐ |
-| 11 | [Neural Networks](./ai/11-neural-networks/) | 12 | ⭐⭐⭐⭐ |
-| 12 | [CNN](./ai/12-convolutional-neural-networks/) | 12 | ⭐⭐⭐⭐ |
-| 13 | [RNN](./ai/13-recurrent-neural-networks/) | 12 | ⭐⭐⭐⭐ |
-| 14 | [Transformers](./ai/14-transformers/) | 15 | ⭐⭐⭐⭐ |
-| 15 | [RAG Systems](./ai/15-rag-systems/) | 10 | ⭐⭐⭐ |
-| 16 | [LLM Agents](./ai/16-llm-agents/) | 12 | ⭐⭐⭐⭐ |
-| 17 | [Fine-tuning](./ai/17-fine-tuning/) | 15 | ⭐⭐⭐⭐ |
-| 18 | [Vector Databases](./ai/18-vector-databases/) | 8 | ⭐⭐⭐ |
-| 19 | [Prompt Engineering](./ai/19-prompt-engineering/) | 6 | ⭐⭐ |
-| 20 | [MLOps](./ai/20-mlops/) | 10 | ⭐⭐⭐ |
+| 05 | [Regression](./ai/05-regression/) | 10 | ⭐⭐⭐ |
+| 06 | [Classification](./ai/06-classification/) | 10 | ⭐⭐⭐ |
+| 07 | [Clustering](./ai/07-clustering/) | 8 | ⭐⭐ |
+| 08 | [Dimensionality Reduction](./ai/08-dimensionality-reduction/) | 8 | ⭐⭐⭐ |
+| 09 | [Anomaly Detection](./ai/09-anomaly-detection/) | 8 | ⭐⭐⭐ |
+| 10 | [Recommendation Systems](./ai/10-recommendation-systems/) | 10 | ⭐⭐⭐ |
+| 11 | [Neural Networks Basics](./ai/11-neural-networks-basics/) | 12 | ⭐⭐⭐⭐ |
+| 12 | [Backpropagation](./ai/12-backpropagation/) | 12 | ⭐⭐⭐⭐ |
+| 13 | [CNN](./ai/13-cnn/) | 12 | ⭐⭐⭐⭐ |
+| 14 | [RNN/LSTM](./ai/14-rnn-lstm/) | 12 | ⭐⭐⭐⭐ |
+| 15 | [Transformers](./ai/15-transformers/) | 15 | ⭐⭐⭐⭐ |
+| 16 | [Embeddings](./ai/16-embeddings/) | 10 | ⭐⭐⭐ |
+| 17 | [RAG Systems](./ai/17-rag/) | 10 | ⭐⭐⭐ |
+| 18 | [Prompt Engineering](./ai/18-prompt-engineering/) | 6 | ⭐⭐ |
+| 19 | [LLM Agents](./ai/19-llm-agents/) | 12 | ⭐⭐⭐⭐ |
+| 20 | [Fine-tuning](./ai/20-fine-tuning/) | 15 | ⭐⭐⭐⭐ |
 
 **Total: 200+ hours of hands-on learning**
 
