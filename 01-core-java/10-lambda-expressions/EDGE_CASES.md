@@ -1,4 +1,4 @@
-# Module 15: Lambda Expressions - Edge Cases & Pitfalls
+# Module 10: Lambda Expressions - Edge Cases & Pitfalls
 
 **Critical Pitfalls**: 16  
 **Prevention Strategies**: 16  
@@ -409,5 +409,5 @@ List<Integer> result2 = numbers.parallelStream()
 
 ---
 
-**Module 15 - Lambda Expressions Edge Cases**  
+**Module 10 - Lambda Expressions Edge Cases**  
 *Master the pitfalls and prevention strategies*

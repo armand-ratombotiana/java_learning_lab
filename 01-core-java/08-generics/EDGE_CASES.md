@@ -1,4 +1,4 @@
-# Module 13: Generics - Edge Cases & Pitfalls
+# Module 08: Generics - Edge Cases & Pitfalls
 
 **Critical Pitfalls**: 16  
 **Prevention Strategies**: 16  
@@ -443,5 +443,5 @@ public <T extends Comparable<? super T>> T max(T[] array) {
 
 ---
 
-**Module 13 - Generics Edge Cases**  
+**Module 08 - Generics Edge Cases**  
 *Master the pitfalls and prevention strategies*

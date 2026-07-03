@@ -1,4 +1,4 @@
-# Module 13: Generics - Quizzes
+# Module 08: Generics - Quizzes
 
 **Total Questions**: 24  
 **Difficulty Levels**: Beginner (6), Intermediate (8), Advanced (6), Expert (4)  
@@ -347,5 +347,5 @@ D) Because lists are mutable
 
 ---
 
-**Module 13 - Generics Quizzes**  
+**Module 08 - Generics Quizzes**  
 *Test your understanding of type-safe programming*

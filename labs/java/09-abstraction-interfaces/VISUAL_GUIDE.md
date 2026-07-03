@@ -1,0 +1,99 @@
+# Abstraction & Interfaces — Visual Guide
+
+## Abstract Class vs Interface
+
+```
+ABSTRACT CLASS                     INTERFACE
+┌─────────────────────┐          ┌─────────────────────┐
+│ abstract Shape      │          │ interface Drawable  │
+├─────────────────────┤          ├─────────────────────┤
+│ Fields:             │          │ (no instance fields)│
+│   String color      │          │                     │
+├─────────────────────┤          ├─────────────────────┤
+│ Constructor:        │          │ (no constructor)    │
+│   Shape(color)      │          │                     │
+├─────────────────────┤          ├─────────────────────┤
+│ Methods:            │          │ Methods:            │
+│   abstract area()   │          │   abstract draw()   │
+│   getColor()        │          │   default prepare() │
+│   (concrete)        │          │   static info()     │
+└─────────────────────┘          └─────────────────────┘
+```
+
+## Implementation Contract
+
+```
+Interface: PaymentGateway
+┌───────────────────────────────────────┐
+│ processPayment(amount)                │
+│ processRefund(amount)   (default)     │
+└───────────────────────────────────────┘
+           ▲              ▲
+           │              │
+  ┌────────┴───┐    ┌────┴────────┐
+  │ StripeGW   │    │ PayPalGW   │
+  │ ───────────│    │ ───────────│
+  │ processPay │    │ processPay │
+  │ processRef │    │ processRef │
+  │ (optional) │    │ (custom)   │
+  └────────────┘    └────────────┘
+```
+
+## Multiple Interface Implementation
+
+```
+        ┌───────────────────┐
+        │  LandVehicle      │  interface
+        │  drive()          │
+        └────────┬──────────┘
+                 │ implements
+        ┌────────▼──────────┐        ┌──────────────────┐
+        │  AmphibiousCar    │        │  WaterVehicle    │  interface
+        │  ──────────────── │        │  sail()          │
+        │  drive()  ────────┤────────┘                  │
+        │  sail()   ────────┤───────────────────────────┘
+        └───────────────────┘
+```
+
+## Default Method Diamond
+
+```
+     interface A               interface B
+    default void hello()       default void hello()
+              │                       │
+              └──────────┬────────────┘
+                         │
+                    ┌────▼────┐
+                    │ class C │
+                    │ must    │
+                    │ override│
+                    │ hello() │
+                    └─────────┘
+                       │
+              ┌────────┴────────┐
+              │A.super.hello()  │
+              │or               │
+              │B.super.hello()  │
+              │or               │
+              │new             │
+              └─────────────────┘
+```
+
+## Functional Interface
+
+```
+@FunctionalInterface
+interface Comparator<T> {
+    int compare(T o1, T o2);  // Single abstract method
+    
+    // Many default methods:
+    default Comparator<T> reversed() { ... }
+    default Comparator<T> thenComparing(...) { ... }
+    
+    // Static methods:
+    static <T> Comparator<T> naturalOrder() { ... }
+}
+
+// Used with lambda:
+Comparator<Person> byAge = (p1, p2) -> p1.age() - p2.age();
+```

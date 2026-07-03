@@ -1,4 +1,4 @@
-# Deep Dive: Advanced Inheritance Patterns
+# Module 13: Advanced Inheritance Patterns - Deep Dive
 
 ---
 

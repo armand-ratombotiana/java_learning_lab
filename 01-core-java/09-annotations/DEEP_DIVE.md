@@ -1,4 +1,4 @@
-# Module 14: Annotations - Deep Dive
+# Module 09: Annotations - Deep Dive
 
 **Difficulty Level**: Advanced  
 **Prerequisites**: Modules 01-13 (Core Java, OOP, Generics)  
@@ -908,5 +908,5 @@ public @interface RequiresAuthentication {
 
 ---
 
-**Module 14 - Annotations**  
+**Module 09 - Annotations**  
 *Master metadata programming with annotations*

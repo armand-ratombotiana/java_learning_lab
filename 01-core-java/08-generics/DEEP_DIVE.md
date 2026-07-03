@@ -1,4 +1,4 @@
-# Module 13: Generics - Deep Dive
+# Module 08: Generics - Deep Dive
 
 **Difficulty Level**: Advanced  
 **Prerequisites**: Modules 01-12 (Core Java, OOP, Collections)  
@@ -760,5 +760,5 @@ String str = list.get(0);
 
 ---
 
-**Module 13 - Generics**  
+**Module 08 - Generics**  
 *Master type-safe programming with generics*

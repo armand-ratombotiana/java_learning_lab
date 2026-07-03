@@ -1,0 +1,102 @@
+# Control Flow — Visual Guide
+
+## if-else Flowchart
+
+```
+        ┌────────┐
+        │ Start  │
+        └───┬────┘
+            │
+       ┌────▼────┐  false  ┌─────────┐
+       │if (cond)├─────────┤ else    │
+       └────┬────┘         └────┬────┘
+            │ true              │
+       ┌────▼────┐         ┌────▼────┐
+       │ if-body │         │else-body│
+       └────┬────┘         └────┬────┘
+            │                   │
+            └────────┬──────────┘
+                     │
+                ┌────▼────┐
+                │ End    │
+                └─────────┘
+```
+
+## for Loop Flow
+
+```
+     ┌──────────────┐
+     │ init (i=0)   │  ← runs once
+     └──────┬───────┘
+            │
+      ┌─────▼──────┐  false  ┌─────────┐
+      │ condition   ├────────►│ exit   │
+      │ (i < n)?    │         └─────────┘
+      └─────┬──────┘
+            │ true
+      ┌─────▼──────┐
+      │ loop body  │
+      └─────┬──────┘
+            │
+      ┌─────▼──────┐
+      │ update     │
+      │ (i++)      │
+      └─────┬──────┘
+            │
+            └─────────→ (back to condition)
+```
+
+## while vs do-while
+
+```
+while:                    do-while:
+┌────────┐               ┌────────┐
+│ Start  │               │ Start  │
+└───┬────┘               └───┬────┘
+    │                        │
+┌───▼────┐  false ┌─────┐   │
+│check   ├───────►│ exit│   │
+│cond?   │        └─────┘   │
+└───┬────┘                  │
+    │ true                  │
+┌───▼────┐             ┌────▼────┐
+│ body   │             │ body    │
+└───┬────┘             └────┬────┘
+    │                       │
+    └───────┘         ┌─────▼────┐  false ┌─────┐
+                      │ check    ├───────►│ exit│
+                      │ cond?    │        └─────┘
+                      └────┬─────┘
+                           │ true
+                           └───────┘
+```
+
+## Switch Expression (Java 14+)
+
+```
+    ┌─ day ──────────────────────────┐
+    │                                │
+    ├─ MONDAY ──── "Work day" ──────►│
+    ├─ TUESDAY ─── "Work day" ──────►│
+    ├─ WEDNESDAY ─ "Work day" ──────►│
+    ├─ THURSDAY ── "Work day" ──────►│
+    ├─ FRIDAY ──── "Work day" ──────►│
+    ├─ SATURDAY ── "Weekend" ───────►│
+    └─ SUNDAY ──── "Weekend" ───────►│
+                                      │
+                result = "Work day" ◄─┘
+```
+
+## break and continue
+
+```
+for (i = 0; i < 10; i++) {
+    │
+    ├── if (i == 3) continue; ───→ skip to i++ (next iteration)
+    │
+    ├── if (i == 7) break; ──────→ exit loop entirely
+    │
+    └── System.out.println(i);
+}
+// Output: 0, 1, 2, 4, 5, 6
+```

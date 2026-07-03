@@ -1,4 +1,4 @@
-# Module 15: Lambda Expressions - Deep Dive
+# Module 10: Lambda Expressions - Deep Dive
 
 **Difficulty Level**: Advanced  
 **Prerequisites**: Modules 01-14 (Core Java, OOP, Generics, Annotations)  
@@ -675,5 +675,5 @@ public interface StringProcessor<T> {
 
 ---
 
-**Module 15 - Lambda Expressions**  
+**Module 10 - Lambda Expressions**  
 *Master functional programming with lambda expressions*

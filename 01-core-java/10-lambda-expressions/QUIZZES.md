@@ -1,4 +1,4 @@
-# Module 15: Lambda Expressions - Quizzes
+# Module 10: Lambda Expressions - Quizzes
 
 **Total Questions**: 24  
 **Difficulty Levels**: Beginner (6), Intermediate (8), Advanced (6), Expert (4)  
@@ -347,5 +347,5 @@ D) No, lambdas cannot be assigned to interfaces
 
 ---
 
-**Module 15 - Lambda Expressions Quizzes**  
+**Module 10 - Lambda Expressions Quizzes**  
 *Test your understanding of functional programming*

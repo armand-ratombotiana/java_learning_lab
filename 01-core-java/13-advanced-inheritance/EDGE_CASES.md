@@ -1,4 +1,4 @@
-# Edge Cases & Pitfalls: Advanced Inheritance
+# Module 13: Advanced Inheritance Patterns - Edge Cases & Pitfalls
 
 ---
 

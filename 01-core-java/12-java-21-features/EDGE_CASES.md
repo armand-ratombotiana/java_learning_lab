@@ -1,4 +1,4 @@
-# Edge Cases & Pitfalls: Java 21 Features
+# Module 12: Java 21 Features - Edge Cases & Pitfalls
 
 Common mistakes and how to avoid them when using Java 21 features.
 

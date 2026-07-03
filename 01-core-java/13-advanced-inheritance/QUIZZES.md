@@ -1,4 +1,4 @@
-# Quizzes: Advanced Inheritance Patterns
+# Module 13: Advanced Inheritance Patterns - Quizzes
 
 ---
 

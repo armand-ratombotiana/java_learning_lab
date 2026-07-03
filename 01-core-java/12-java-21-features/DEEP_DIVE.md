@@ -1,4 +1,4 @@
-# Deep Dive: Java 21 Features
+# Module 12: Java 21 Features - Deep Dive
 
 Java 21 (LTS) introduces significant features that modernize Java development. This document covers each feature in depth.
 

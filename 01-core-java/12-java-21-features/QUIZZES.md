@@ -1,4 +1,4 @@
-# Quizzes: Java 21 Features
+# Module 12: Java 21 Features - Quizzes
 
 Test your understanding of Java 21 features.
 

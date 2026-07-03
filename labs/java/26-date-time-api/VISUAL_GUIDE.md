@@ -1,0 +1,87 @@
+# Visual Guide to Date-Time API
+
+## Class Relationships
+
+```
+                    ┌───────────┐
+                    │ Temporal  │
+                    │ (interface)│
+                    └─────┬─────┘
+                          │
+              ┌───────────┼───────────┐
+              │           │           │
+     ┌────────▼───┐ ┌────▼────┐ ┌───▼────────┐
+     │ TemporalAccessor│ │Temporal │ │ TemporalAdjuster│
+     └────────────┘ └─────────┘ └────────────┘
+              │           │
+    ┌─────────┼─────────┐ │
+    │         │         │ │
+┌───▼───┐┌───▼───┐┌───▼──┐│
+│Local  ││Local  ││Instant││
+│Date   ││Time   ││      ││
+└───────┘└───────┘└──────┘│
+    │         │           │
+    └─────────┼───────────┘
+              │
+     ┌───────▼───────┐
+     │ LocalDateTime │
+     └───────┬───────┘
+             │
+     ┌───────▼───────┐
+     │ ZonedDateTime │
+     └───────────────┘
+```
+
+## Date vs DateTime vs ZonedDateTime
+
+```
+LocalDate:     2024-03-15
+LocalTime:               14:30:00.000
+LocalDateTime: 2024-03-15T14:30:00.000
+ZonedDateTime: 2024-03-15T14:30:00.000-04:00[America/New_York]
+Instant:       2024-03-15T18:30:00.000Z
+```
+
+## Duration vs Period
+
+```
+Duration: ════════════════════╗
+          ║ 24 hours (exact)  ║
+          ╚════════════════════╝
+          [Seconds/nanos — machine time]
+
+Period:   ╔═══════════════════╗
+          ║ 1 month (variable)║
+          ╚════════════════════╝
+          [Years/months/days — human time]
+```
+
+## Format Pattern Anatomy
+
+```
+"yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+  ││││ ││  │  ││  ││  │││ │
+  ││││ ││  │  ││  ││  │││ └─ Timezone offset
+  ││││ ││  │  ││  ││  │└└─── Milliseconds
+  ││││ ││  │  ││  │└─────── Seconds
+  ││││ ││  │  ││  └───────── Minutes
+  ││││ ││  │  │└──────────── Hour (24h)
+  ││││ ││  │  └───────────── 'T' separator
+  ││││ ││  └──────────────── Day
+  ││││ │└─────────────────── Month (numeric)
+  ││││ └──────────────────── Month separator
+  │└└└────────────────────── Year (4 digits)
+```
+
+## Timezone Conversion Example
+
+```
+Instant: 2024-03-15T18:30:00Z (UTC)
+                    │
+    ┌───────────────┼───────────────┐
+    │               │               │
+    ▼               ▼               ▼
+New York         London          Tokyo
+-04:00 (EDT)    +00:00 (GMT)    +09:00 (JST)
+2:30 PM          6:30 PM        3:30 AM (next day)
+```

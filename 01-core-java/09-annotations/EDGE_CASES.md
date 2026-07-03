@@ -1,4 +1,4 @@
-# Module 14: Annotations - Edge Cases & Pitfalls
+# Module 09: Annotations - Edge Cases & Pitfalls
 
 **Critical Pitfalls**: 16  
 **Prevention Strategies**: 16  
@@ -511,5 +511,5 @@ public class AnnotationProcessor {
 
 ---
 
-**Module 14 - Annotations Edge Cases**  
+**Module 09 - Annotations Edge Cases**  
 *Master the pitfalls and prevention strategies*

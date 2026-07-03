@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: spring-boot-basics
+
+app:
+  greeting:
+    message: "Welcome to Spring Boot Training!"
+  feature-flags:
+    advanced-mode: true
