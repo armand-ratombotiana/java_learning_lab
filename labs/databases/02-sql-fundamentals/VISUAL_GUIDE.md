@@ -1,0 +1,82 @@
+# Visual Guide: SQL Queries
+
+## SQL Execution Order Diagram
+
+```
+    FROM/JOIN        WHERE         GROUP BY         HAVING
+  ┌────────────┐  ┌──────────┐  ┌──────────────┐  ┌──────────┐
+  │employees e │  │e.dept_id │  │  GROUP BY    │  │AVG(salary│
+  │departments │→│= d.id   │→│  d.dept_name  │→│> 80000   │
+  │d ON ...    │  │AND d.active│  │              │  │          │
+  └────────────┘  └──────────┘  └──────────────┘  └──────────┘
+                                   │
+                                   ▼
+                              ┌──────────┐
+                              │  SELECT  │
+                              │d.dept_name│
+                              │COUNT(e.id)│
+                              └──────────┘
+                                   │
+                                   ▼
+                              ┌──────────┐
+                              │ ORDER BY │
+                              │COUNT DESC│
+                              └──────────┘
+                                   │
+                                   ▼
+                              ┌──────────┐
+                              │  LIMIT 10│
+                              └──────────┘
+```
+
+## JOIN Visualization
+
+```
+TABLE A                     TABLE B
+┌────┬──────┐              ┌────┬──────────┐
+│ id │ name │              │ id │ a_id     │
+├────┼──────┤              ├────┼──────────┤
+│ 1  │ Al   │──INNER───────│ 1  │ 1        │
+│ 2  │ Bob  │  JOIN        │ 2  │ 3        │
+│ 3  │ Cat  │  ON A.id     │ 3  │ 1        │
+└────┴──────┘   = B.a_id   └────┴──────────┘
+                │
+                ▼
+          ┌────┬──────┬──────────┐
+          │ id │ name │ B.value  │
+          ├────┼──────┼──────────┤
+          │ 1  │ Al   │ 1        │
+          │ 1  │ Al   │ 3        │
+          │ 3  │ Cat  │ 2        │
+          └────┴──────┴──────────┘
+```
+
+## Window Function Partitioning
+
+```
+PARTITION BY dept_id        ORDER BY salary DESC
+
+┌─────────┬──────┬──────────┬────────────┐
+│ name    │ dept │ salary   │ ROW_NUMBER │
+├─────────┼──────┼──────────┼────────────┤
+│ Alice   │ Eng  │ 150000   │ 1          │  ← partial boundary
+│ Bob     │ Eng  │ 120000   │ 2          │
+│ Charlie │ Eng  │ 120000   │ 3          │
+├─────────┼──────┼──────────┼────────────┤  ← partition boundary
+│ Diana   │ HR   │ 95000    │ 1          │
+│ Eve     │ HR   │ 85000    │ 2          │
+└─────────┴──────┴──────────┴────────────┘
+```
+
+## JDBC ResultSet Navigation
+
+```
+ResultSet (cursor, initially before first row)
+
+    ↓ next() → row1 → next() → row2 → ... → next() → false
+    ↑                                     ↑
+BEFORE FIRST                        AFTER LAST
+    ↓ previous() (scrollable only)
+    
+getString("name"), getInt("id"), getTimestamp("created_at")
+```

@@ -1,0 +1,101 @@
+# Visual Guide to Stacks & Queues
+
+## Stack (Array-Based)
+
+```
+Initial: empty, top=0
+  ┌────┬────┬────┬────┐
+  │    │    │    │    │
+  └────┴────┴────┴────┘
+
+push(A):
+  ┌────┬────┬────┬────┐
+  │ A  │    │    │    │
+  └────┴────┴────┴────┘
+  top=1
+
+push(B), push(C):
+  ┌────┬────┬────┬────┐
+  │ A  │ B  │ C  │    │
+  └────┴────┴────┴────┘
+  top=3
+
+pop():
+  → returns C
+  ┌────┬────┬────┬────┐
+  │ A  │ B  │    │    │
+  └────┴────┴────┴────┘
+  top=2
+
+peek():
+  → returns B (top-1)
+```
+
+## Circular Queue
+
+```
+capacity=5, initial:
+  head=0, tail=0, size=0
+  ┌────┬────┬────┬────┬────┐
+  │    │    │    │    │    │
+  └────┴────┴────┴────┴────┘
+
+enqueue(A), enqueue(B), enqueue(C):
+  head=0, tail=3, size=3
+  ┌────┬────┬────┬────┬────┐
+  │ A  │ B  │ C  │    │    │
+  └────┴────┴────┴────┴────┘
+
+dequeue() → A:
+  head=1, tail=3, size=2
+  ┌────┬────┬────┬────┬────┐
+  │    │ B  │ C  │    │    │
+  └────┴────┴────┴────┴────┘
+
+enqueue(D), enqueue(E), enqueue(F):
+  head=1, tail=4→0, size=5 (full)
+  ┌────┬────┬────┬────┬────┐
+  │ F  │ B  │ C  │ D  │ E  │
+  └────┴────┴────┴────┴────┘
+   tail^       ^head
+```
+
+## Queue Using Two Stacks
+
+```
+enqueue(1), enqueue(2), enqueue(3):
+  in: [1, 2, 3]  (top = 3)
+  out: []
+
+dequeue():
+  transfer: in → out
+  in: []
+  out: [3, 2, 1]  (top = 1)
+  pop from out → returns 1
+
+enqueue(4):
+  in: [4]
+  out: [3, 2]
+
+dequeue():
+  out not empty → pop → returns 2
+  in: [4]
+  out: [3]
+```
+
+## Monotonic Stack (Sliding Window Maximum)
+
+```
+nums = [1, 3, -1, -3, 5, 3, 6, 7], k = 3
+
+Deque stores indices (decreasing values):
+
+i=0: [1]
+i=1: remove 1 → [3]
+i=2: [-1] (3, -1) → window max = 3
+i=3: [-3] (3, -1, -3) → window max = 3
+i=4: clear all → [5] → window max = 5
+i=5: [3] (5, 3) → window max = 5
+i=6: clear all → [6] → window max = 6
+i=7: clear all → [7] → window max = 7
+```

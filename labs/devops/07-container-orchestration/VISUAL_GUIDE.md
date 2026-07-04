@@ -1,0 +1,61 @@
+# Visual Guide to Advanced Orchestration
+
+## HPA Flow
+```
+┌──────────┐    ┌──────────┐    ┌──────────┐
+│ Metrics  │───▶│   HPA    │───▶│Deployment│
+│ Server   │    │Controller│    │ Replicas │
+│ (CPU/    │    │          │    │   ↑/↓    │
+│  Memory) │    └──────────┘    └──────────┘
+└──────────┘
+```
+
+## Rolling Update
+```
+Deployment v1 (4 replicas)
+  │
+  │ Set image to v2
+  ▼
+┌─────────────────────────────────────────┐
+│ v1: ██░░   v2: ░░██  (1 surge, 1 down) │
+│ v1: ░░░█   v2: ██░██                    │
+│ v1: ░░░░   v2: ██████   ✓ Complete     │
+└─────────────────────────────────────────┘
+```
+
+## Canary Deployment
+```
+┌──────────┐     ┌──────────────┐
+│ Ingress  │────▶│ Service      │
+└──────────┘     └──────┬───────┘
+                        │
+                ┌───────┴───────┐
+                │               │
+          ┌─────▼─────┐  ┌─────▼─────┐
+          │ v1 (3 pods)│  │ v2 (1 pod)│
+          │ 75% traffic│  │ 25% traffic│
+          └───────────┘  └───────────┘
+```
+
+## Probe Lifecycle
+```
+Container Start
+    │
+    ▼
+╔════════════════════╗
+║  startupProbe      ║ ← Only runs during startup
+║  (success → next)  ║   (protects slow-start containers)
+╚════════════════════╝
+    │
+    ▼
+╔════════════════════╗
+║  livenessProbe     ║ ← Periodic: Is container alive?
+║  (failure → reboot)║
+╚════════════════════╝
+    │
+    ▼
+╔════════════════════╗
+║  readinessProbe    ║ ← Periodic: Is pod ready to serve?
+║  (failure → remove)║
+╚════════════════════╝
+```

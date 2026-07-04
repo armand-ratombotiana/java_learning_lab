@@ -1,0 +1,85 @@
+# Visual Guide: Redis
+
+## Data Structure Visualization
+
+```
+String:       key ──► "value"
+Hash:         user:1 ──► { name: "Alice", email: "alice@example.com" }
+List:         queue ──► ["job1", "job2", "job3"]
+Set:          tags ──► {"java", "spring", "redis"}
+Sorted Set:   scores ──► { alice: 100, bob: 85, charlie: 70 }
+Stream:       events ──► [1-0: {type:"login"}, 1-1: {type:"logout"}]
+```
+
+## Pub/Sub Architecture
+```
+Publisher(s)                     Channel                       Subscriber(s)
+┌──────────┐     ┌──────────────────────────┐     ┌──────────┐
+│ Service A │────►│    order:created         ├────►│ Service B │
+└──────────┘     └──────────────────────────┘     └──────────┘
+                                                    ┌──────────┐
+                                                    │ Service C │
+                                                    └──────────┘
+```
+
+## Replication Topology
+```
+┌──────────┐                   ┌──────────┐
+│  Master   │──────────────────►│ Replica 1 │
+│  (Read/   │                   │  (Read)   │
+│   Write)  │──────────────┬───►│────────────│
+└──────────┘               │    │ Replica 2 │
+                           │    │  (Read)   │
+                           │    └──────────┘
+                    ┌──────┴───┐
+                    │  Sentinel │
+                    │  (monitor│
+                    │,failover)│
+                    └──────────┘
+```
+
+## Redis Cluster
+```
+┌──────────┐    ┌──────────┐    ┌──────────┐
+│ Node 1   │    │ Node 2   │    │ Node 3   │
+│ Slots:   │    │ Slots:   │    │ Slots:   │
+│ 0-5460   │◄──►│ 5461-    │◄──►│ 10923-   │
+│          │    │ 10922    │    │ 16383    │
+└────┬─────┘    └────┬─────┘    └────┬─────┘
+     │               │               │
+┌────┴─────┐    ┌────┴─────┐    ┌────┴─────┐
+│ Replica  │    │ Replica  │    │ Replica  │
+│ for N1   │    │ for N2   │    │ for N3   │
+└──────────┘    └──────────┘    └──────────┘
+```
+
+## Memory Eviction
+```
+Memory Usage: ████████████████░░░░░ 80%
+                                  │
+                     Threshold exceeded
+                                  │
+                                  ▼
+              ┌───────────────────────────┐
+              │ Evict keys (based on       │
+              │  policy: LRU/LFU/TTL/RAND) │
+              └───────────────────────────┘
+                                  │
+                                  ▼
+Memory Usage: ██████████████░░░░░░░ 70%
+```
+
+## Command Pipeline vs Round Trip
+```
+Without Pipeline:              With Pipeline:
+Client     Server              Client     Server
+  │── SET a 1 ──►│               │── SET a 1 ──►│
+  │◄─── OK ──────│               │── GET a ─────┤
+  │── GET a ────►│               │── INCR b ────┤
+  │◄─── "1" ─────│               │── GET c ─────┤
+  │── INCR b ───►│               │◄─── OK ──────│
+  │◄─── 2 ───────│               │◄─── "1" ─────│
+  │── GET c ────►│               │◄─── 3 ───────│
+  │◄─── "val" ───│               │◄─── "val" ───│
+  (8 network trips)             (1 network trip)
+```
