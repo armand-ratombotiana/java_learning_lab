@@ -1,0 +1,94 @@
+# Scalability - VISUAL GUIDE
+
+## Vertical vs Horizontal Scaling
+
+```
+Vertical Scaling              Horizontal Scaling
+┌────────────────┐           ┌────────────────┐
+│  1 Big Server  │           │  ┌──┐ ┌──┐ ┌──┐│
+│  ┌──────┐     │           │  │S1│ │S2│ │S3││
+│  │ 64GB │     │           │  └──┘ └──┘ └──┘│
+│  │ 32CPUs│    │           │  └──┬──┬──┬──┬──┘
+│  └──────┘     │           │     │  │  │  │
+│  $$$$$$$      │           │     ▼  ▼  ▼  ▼
+└────────────────┘           └────────────────┘
+                                Load Balancer
+                                       │
+                                       ▼
+                                  ┌──────────┐
+                                  │  Clients  │
+                                  └──────────┘
+```
+
+## Load Balancer Architecture
+
+```
+         ┌─────────────────────────┐
+         │     DNS Round Robin     │
+         └───────────┬─────────────┘
+                     │
+         ┌───────────┼───────────┐
+         ▼           ▼           ▼
+   ┌──────────┐ ┌──────────┐ ┌──────────┐
+   │  L4 LB   │ │  L7 LB   │ │  DNS LB  │
+   │ (TCP)    │ │ (HTTP)   │ │  (Geo)   │
+   └────┬─────┘ └────┬─────┘ └────┬─────┘
+        │            │            │
+        ▼            ▼            ▼
+   ┌─────────────────────────────────────┐
+   │       Application Servers           │
+   │  ┌───┐ ┌───┐ ┌───┐ ...... ┌───┐  │
+   │  │ A │ │ B │ │ C │        │ N │  │
+   │  └───┘ └───┘ └───┘        └───┘  │
+   └─────────────────────────────────────┘
+```
+
+## Database Scaling Strategies
+
+```
+1. Read Replicas              2. Database Sharding
+┌──────────┐                   ┌────────────────────┐
+│  Master  │                   │  Shard 1           │
+│  (Write) │                   │  customers A-D     │
+└────┬─────┘                   ├────────────────────┤
+     │                          │  Shard 2           │
+     ├────────────┐            │  customers E-H     │
+     ▼            ▼            ├────────────────────┤
+┌──────────┐ ┌──────────┐     │  Shard 3           │
+│ Replica1 │ │ Replica2 │     │  customers I-L     │
+│ (Read)   │ │ (Read)   │     └────────────────────┘
+└──────────┘ └──────────┘
+
+3. Caching Layer
+┌────────────┐
+│   Client   │
+└─────┬──────┘
+      │
+┌─────▼──────┐     ┌────────────┐
+│  CDN       │────►│  App       │
+│  (Edge)    │     │  Server    │
+└────────────┘     └─────┬──────┘
+                         │
+                  ┌──────▼──────┐
+                  │  Redis      │
+                  │  Cache      │
+                  └──────┬──────┘
+                         │
+                  ┌──────▼──────┐
+                  │  Database   │
+                  └─────────────┘
+```
+
+## Auto-Scaling Flow
+
+```
+Monitor Metrics ──► Threshold Breached ──► Launch Instance
+      ▲                                        │
+      │                                        ▼
+      │                                 Warm Cache / Config
+      │                                        │
+      │                                        ▼
+      │                                 Register with LB
+      │                                        │
+      └────────── Metrics Normal ◄────── Start Serving
+```

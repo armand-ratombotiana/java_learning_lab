@@ -1,0 +1,105 @@
+# Visual Guide to Docker
+
+## 1. Docker Lifecycle
+
+```
+        docker build
+Source code ──────────► Image (read-only template)
+                             │
+                        docker run
+                             │
+                    ┌────────▼────────┐
+                    │  Container       │
+                    │  (running     │──── docker stop → Stopped
+                    │   process)   │──── docker kill → Killed
+                    └────────┬────────┘
+                        │
+                    docker commit
+                        │
+                    ┌────────▼────────┐
+                    │  New Image       │
+                    │  (container as   │
+                    │   base)          │
+                    └─────────────────┘
+```
+
+## 2. Docker Networking Modes
+
+```
+Bridge (default):        Host mode:
+┌─────┐ ┌─────┐          ┌─────┐ ┌─────┐
+│C1   │ │C2   │          │C1   │ │C2   │
+│eth0 │ │eth0 │          │(no  │ │(no  │
+└─┬───┘ └─┬───┘          │ eth0)│ │ eth0)│
+  │       │              └──┬───┘ └──┬───┘
+┌─▼───────▼──┐              │        │
+│ docker0     │           Host network stack
+│ (bridge)    │          (port conflicts possible)
+└─┬───────────┘
+  │ iptables NAT
+  Host eth0
+
+Overlay:                  None:
+┌─host1──┐ ┌─host2──┐    ┌─────┐
+│C1      │ │C2      │    │C1   │
+│10.0.0.2│ │10.0.0.3│    │lo   │
+└───┬────┘ └───┬────┘    │(only│
+    │ VXLAN    │         │loop)│
+    └──────────┘         └─────┘
+    (hosts connected)    (isolated)
+```
+
+## 3. Docker Compose Multi-Service App
+
+```
+        ┌─────────────────────────────────────────────┐
+        │  docker-compose.yml                         │
+        │   version: "3.8"                            │
+        ├─────────────────────────────────────────────┤
+        │  services:                                   │
+        │    frontend:         (React on Nginx)        │
+        │      ports: 80:80                            │
+        │      depends_on: [api]                       │
+        │                                              │
+        │    api:               (Spring Boot)          │
+        │      ports: 8080:8080                        │
+        │      depends_on: [db, redis]                 │
+        │      environment:                            │
+        │        DB_URL: jdbc:postgresql://db:5432/app │
+        │                                              │
+        │    db:               (PostgreSQL)            │
+        │      image: postgres:16                      │
+        │      volumes: postgres_data:/var/lib/...     │
+        │                                              │
+        │    redis:             (Redis Cache)          │
+        │      image: redis:7-alpine                   │
+        │                                              │
+        │  volumes:                                    │
+        │    postgres_data:                            │
+        └─────────────────────────────────────────────┘
+
+docker compose up -d  →  starts all 4 containers (1 network, 1 volume)
+```
+
+## 4. Multi-Stage Build Flow
+
+```
+┌────────────────────────────────────────────┐
+│  Dockerfile                                │
+├────────────────────────────────────────────┤
+│  STAGE 1: BUILD                            │
+│  FROM eclipse-temurin:17-jdk AS builder    │
+│  COPY pom.xml .                            │
+│  RUN mvn dependency:go-offline             │
+│  COPY src .                                │
+│  RUN mvn package -DskipTests               │
+├────────────────────────────────────────────┤
+│  STAGE 2: RUN                              │
+│  FROM eclipse-temurin:17-jre-alpine        │
+│  COPY --from=builder app.jar app.jar       │
+│  EXPOSE 8080                               │
+│  ENTRYPOINT ["java", "-jar", "app.jar"]    │
+└────────────────────────────────────────────┘
+
+Build output: one image (180MB vs 540MB single-stage)
+```

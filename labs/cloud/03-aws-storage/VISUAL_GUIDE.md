@@ -1,0 +1,91 @@
+# Visual Guide to AWS Storage
+
+## 1. S3 Storage Class Decision Tree
+
+```
+New object uploaded to S3
+│
+├── Accessed frequently (>1/month)?
+│   └── YES → S3 Standard
+│
+├── Accessed infrequently (<1/month)?
+│   └── YES → S3 Standard-IA
+│
+├── Can recreate if lost?
+│   └── YES → S3 One Zone-IA (cheapest hot tier)
+│
+├── Accessed <1/year, need ms retrieval?
+│   └── YES → S3 Glacier Instant Retrieval
+│
+├── Accessed <1/year, minutes retrieval OK?
+│   └── YES → S3 Glacier Flexible Retrieval
+│
+└── Accessed <1/5 years, 12h retrieval OK?
+    └── YES → S3 Glacier Deep Archive (cheapest)
+```
+
+## 2. Three-Tier Storage Architecture
+
+```
+                        ┌──────────────┐
+                        │   Users      │
+                        └──────┬───────┘
+                               │
+                ┌──────────────┴──────────────┐
+                │                             │
+         ┌──────▼──────┐              ┌──────▼──────┐
+         │  ALB / CDN   │              │  API Gateway │
+         └──────┬──────┘              └──────┬──────┘
+                │                             │
+         ┌──────▼──────┐              ┌──────▼──────┐
+         │  EC2 App    │              │  Lambda      │
+         └──────┬──────┘              └──────┬──────┘
+                │                             │
+    ┌───────────┼───────────┐     ┌───────────┼───────────┐
+    │           │           │     │           │           │
+┌───▼──┐   ┌───▼──┐   ┌───▼──┐ ┌─▼───┐  ┌───▼───┐  ┌───▼───┐
+│EBS   │   │EFS   │   │S3    │ │S3   │  │ EBS   │  │ S3    │
+│(DB)  │   │(logs)│   │(assets)│ │(events) │(temp) │  │(archive)│
+│gp3   │   │burst │   │Std   │ │Std  │  │gp3   │  │Glacier│
+└──────┘   └──────┘   └──────┘ └─────┘  └──────┘  └──────┘
+```
+
+## 3. EBS Volume Types by Performance
+
+```
+Volume │ Max IOPS │ Max Throughput │ Use Case
+───────┼──────────┼────────────────┼────────────────
+gp3    │  16,000  │  1,000 MB/s   │ General purpose, boot volumes
+io2    │ 256,000  │  4,000 MB/s   │ Databases (Oracle, SQL Server, MySQL)
+st1    │    500   │  500 MB/s     │ Throughput-optimized (big data, logs)
+sc1    │    250   │  250 MB/s     │ Cold storage (infrequent access)
+
+Cost:
+gp3  : $0.08/GB/mo (3K IOPS + 125 MB/s included)
+io2  : $0.125/GB/mo
+st1  : $0.045/GB/mo
+sc1  : $0.015/GB/mo
+```
+
+## 4. S3 Presigned URL Flow
+
+```
+┌──────┐                    ┌────────┐                  ┌──────┐
+│Client│                    │  App   │                  │  S3  │
+└──┬───┘                    └───┬────┘                  └──┬───┘
+   │                            │                          │
+   │ 1. Request upload URL      │                          │
+   │──────────────────────────►│                          │
+   │                            │ 2. Generate presigned    │
+   │                            │    PUT URL (5 min TTL)   │
+   │                            │─────────────────────────►│
+   │ 3. Presigned URL           │                          │
+   │◄───────────────────────────│                          │
+   │                            │                          │
+   │ 4. PUT file directly       │                          │
+   │─────────────────────────────────────────────────────►│
+   │                            │                          │
+   │ 5. 200 OK                  │                          │
+   │◄──────────────────────────────────────────────────────│
+   │                            │                          │
+```

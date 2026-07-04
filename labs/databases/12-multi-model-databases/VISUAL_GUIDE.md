@@ -1,0 +1,39 @@
+# Visual Guide: Polyglot Persistence Architecture
+
+```
+                     ┌─────────────────────────────┐
+                     │     E-Commerce Application   │
+                     └──────────┬──────────────────┘
+                                │
+         ┌──────────────────────┼──────────────────────┐
+         │                      │                      │
+         ▼                      ▼                      ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  PostgreSQL      │  │  MongoDB         │  │  Redis           │
+│  (Relational)    │  │  (Document)      │  │  (Key-Value)     │
+│                  │  │                  │  │                  │
+│  Orders          │  │  Product Catalog │  │  Session Store   │
+│  Payments        │  │  Reviews         │  │  Cart Cache      │
+│  Customers       │  │  CMS Pages       │  │  Rate Limiter    │
+│  ACID required   │  │  Flexible schema │  │  Sub-ms latency  │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+
+         ▼                      ▼
+┌─────────────────┐  ┌─────────────────┐
+│  Neo4j (Graph)   │  │  Elasticsearch  │
+│                  │  │  (Search)       │
+│  Recommendations │  │  Full-text      │
+│  Fraud Detection │  │  Log analytics  │
+│  Social Graph    │  │  Product search │
+└─────────────────┘  └─────────────────┘
+
+Multi-Model DB (Alternative):
+┌─────────────────────────────────────────────┐
+│            ArangoDB / Cosmos DB              │
+│  ┌──────────┐ ┌──────────┐ ┌─────────────┐  │
+│  │ Document │ │  Graph   │ │  Key-Value  │  │
+│  └──────────┘ └──────────┘ └─────────────┘  │
+│  Single query language, single operational  │
+│  surface, cross-model consistency            │
+└─────────────────────────────────────────────┘
+```

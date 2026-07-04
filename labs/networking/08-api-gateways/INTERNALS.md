@@ -1,0 +1,20 @@
+# API Gateways - Internals
+
+## Overview
+
+This document covers internals concepts for API Gateways with Java implementation examples.
+
+## Content
+
+Detailed exploration of internals in the context of API Gateways.
+
+## Java Example
+
+```java
+// Example code for Internals
+public class APIGatewaysInternals {
+    public static void main(String[] args) {
+        System.out.println("API Gateways - Internals");
+    }
+}
+```

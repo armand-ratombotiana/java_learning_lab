@@ -1,0 +1,106 @@
+# Visual Guide to AWS Fundamentals
+
+## 1. AWS Global Infrastructure Map
+
+```
+                 ┌─── us-east-1 ───┐
+                 │  AZ-a  AZ-b  AZ-c │
+                 │   us-east-2       │
+                 │   us-west-1       │
+                 └──────────────────┘
+      ┌───────────────────────────────────────┐
+      │              AWS Cloud                │
+      │  ┌─────────────────────────────────┐  │
+      │  │         Region (us-east-1)       │  │
+      │  │  ┌──────┐ ┌──────┐ ┌──────┐   │  │
+      │  │  │ AZ-a │ │ AZ-b │ │ AZ-c │   │  │
+      │  │  │      │ │      │ │      │   │  │
+      │  │  │  DC  │ │  DC  │ │  DC  │   │  │
+      │  │  └──────┘ └──────┘ └──────┘   │  │
+      │  └─────────────────────────────────┘  │
+      │          Edge Locations (400+)         │
+      └───────────────────────────────────────┘
+```
+
+## 2. EC2 Instance Types Visual
+
+```
+Instance Family │ Ratios         │ Use Case
+────────────────┼────────────────┼─────────────────
+t3 (burstable)  │ CPU:RAM = 1:4  │ Web servers, dev/test
+                │   ├ t3.nano    │  0.5GB RAM
+                │   ├ t3.micro   │  1GB RAM
+                │   └ t3.small   │  2GB RAM
+                │
+c5 (compute)    │ CPU:RAM = 1:2  │ Batch, encoding
+                │   ├ c5.large   │  4GB RAM
+                │   ├ c5.xlarge  │  8GB RAM
+                │   └ c5.2xlarge │ 16GB RAM
+                │
+m5 (general)    │ CPU:RAM = 1:4  │ Apps, databases
+                │   ├ m5.large   │  8GB RAM
+                │   └ m5.xlarge  │ 16GB RAM
+                │
+r5 (memory)     │ CPU:RAM = 1:8  │ Caching, analytics
+                │   ├ r5.large   │ 16GB RAM
+                │   └ r5.xlarge  │ 32GB RAM
+```
+
+## 3. S3 Request Flow Diagram
+
+```
+Client ──PUT /bucket/key──► S3 Endpoint
+                              │
+                              ▼
+                         Auth Layer
+                         (IAM + Bucket Policy)
+                              │
+                         success ▼ fail
+                              │
+                         ┌────▼────┐
+                         │ Front-  │
+                         │ End     │
+                         └────┬────┘
+                              │
+                         ┌────▼────┐
+                         │ Parti-  │
+                         │ tion    │
+                         └────┬────┘
+                              │
+                    ┌─────────┼─────────┐
+                    ▼         ▼         ▼
+                 ┌──────┐ ┌──────┐ ┌──────┐
+                 │Disk_1│ │Disk_2│ │Disk_3│
+                 └──────┘ └──────┘ └──────┘
+                    (3+ AZs for Standard)
+                              │
+                         All ACK'd ──► 201 Created
+```
+
+## 4. VPC Architecture Reference
+
+```
+                      ┌─────────────────────────────┐
+                      │      Internet Gateway        │
+                      └──────────┬──────────────────┘
+                                 │
+                    ┌────────────┴────────────┐
+                    │      Route Table         │
+                    │  0.0.0.0/0 → IGW        │
+                    └────────────┬────────────┘
+                                 │
+            ┌────────────────────┼────────────────────┐
+            ▼                    ▼                    ▼
+┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│ Public Subnet    │  │ Private Subnet   │  │ Private Subnet   │
+│ 10.0.1.0/24      │  │ 10.0.2.0/24      │  │ 10.0.3.0/24      │
+│                  │  │                  │  │                  │
+│  ┌────┐          │  │  ┌────┐          │  │  ┌────┐          │
+│  │EC2 │◄─SG(80) │  │  │EC2 │◄─SG(8080)│  │  │RDS │◄─SG(3306)│
+│  └────┘          │  │  └────┘          │  │  └────┘          │
+│                  │  │                  │  │                  │
+│  ┌──────┐        │  │  ┌──────┐       │  │                  │
+│  │NAT GW│        │  │  │ ALB  │       │  │                  │
+│  └──────┘        │  │  └──────┘       │  │                  │
+└──────────────────┘  └──────────────────┘  └──────────────────┘
+```
