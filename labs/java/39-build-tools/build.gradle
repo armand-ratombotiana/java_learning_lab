@@ -1,0 +1,28 @@
+﻿plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.javaacademy'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'com.javaacademy.lab39.buildtools.MavenPluginExample'
+}

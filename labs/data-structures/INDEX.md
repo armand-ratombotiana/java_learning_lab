@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-10-blue?style=for-the-badge)
-![Level](https://img.shields.io/badge/Level-Beginner_to_Advanced-brightgreen?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-20-blue?style=for-the-badge)
+![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-brightgreen?style=for-the-badge)
 
-**Master data structures from arrays to bloom filters — all examples in Java**
+**Master 20 essential data structures — from arrays to persistent data structures — all examples in Java**
 
 </div>
 
@@ -43,19 +43,33 @@ The Data Structures Academy provides a comprehensive, hands-on curriculum coveri
 | 09 | [Advanced Trees](./09-advanced-trees/) | BST, AVL trees, Red-Black trees, B-trees, self-balancing | 5-6 hrs | Advanced |
 | 10 | [Bloom Filters](./10-bloom-filters/) | Probabilistic data structure, false positives, hash functions | 2-3 hrs | Advanced |
 
-**Total estimated time: 33-43 hours**
+### Level 4: Expert Data Structures
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 11 | [Union-Find](./11-union-find/) | Disjoint Set Union, path compression, union by rank | 2-3 hrs | Advanced |
+| 12 | [Segment Trees](./12-segment-trees/) | Range queries, point updates, lazy propagation, iterative segment tree | 4-5 hrs | Advanced |
+| 13 | [Fenwick Tree](./13-fenwick-tree/) | Binary Indexed Tree, prefix sums, range updates, 2D BIT | 3-4 hrs | Advanced |
+| 14 | [Skip Lists](./14-skip-lists/) | Randomized data structure, probabilistic balancing, search/insert/delete | 3-4 hrs | Advanced |
+| 15 | [LRU Cache](./15-lru-cache/) | Eviction policies, HashMap + DLL, LinkedHashMap, concurrent LRU | 2-3 hrs | Advanced |
+| 16 | [Concurrent Data Structures](./16-concurrent-data-structures/) | Lock-free, CAS, ConcurrentHashMap, non-blocking queues | 4-5 hrs | Expert |
+| 17 | [Spatial Data Structures](./17-spatial-data-structures/) | Quadtrees, R-trees, k-d trees, spatial indexing, nearest neighbor | 4-5 hrs | Expert |
+| 18 | [Circular Buffers](./18-circular-buffers/) | Ring buffers, producer-consumer, overwrite/blocking policies | 2-3 hrs | Intermediate |
+| 19 | [Sparse Table & RMQ](./19-sparse-table-rmq/) | Range minimum/maximum queries, precomputation, O(1) queries | 2-3 hrs | Advanced |
+| 20 | [Immutable & Persistent](./20-immutable-persistent/) | Immutability, structural sharing, persistent tree/list, functional | 3-4 hrs | Expert |
+
+**Total estimated time: 65-85 hours**
 
 ---
 
 ## Learning Path
 
 ```
-01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10
-Arrays  LList   Stacks   Trees   Graphs   Hash     Heap   Trie  Adv     Bloom
-                Queues                            Table                 Filters
+01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10 ──→ 11 ──→ 12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
+Arrays  LList  Stacks  Trees   Graphs   Hash   Heap  Trie  Adv   Bloom  Union  Seg    Fen   Skip   LRU   Concur Spat  Circ  Spar  Immut
+               Queues                          Table       Trees Filters Find  Trees  Wick  Lists  Cache  rent  ial   Buf   Table  able
 ```
 
-Labs 01–03 build foundational linear structures. Labs 04–05 introduce non-linear structures. Labs 06–08 cover dictionary and prefix structures. Labs 09–10 explore advanced and probabilistic data structures.
+Labs 01–03 build foundational linear structures. Labs 04–05 introduce non-linear structures. Labs 06–08 cover dictionary and prefix structures. Labs 09–10 explore advanced and probabilistic data structures. Labs 11–15 cover specialized and utility structures. Labs 16–20 cover concurrent, spatial, and functional data structures for expert-level mastery.
 
 ---
 
@@ -77,19 +91,44 @@ Start at Lab 01 and work through sequentially. Complete all exercises before mov
 Start at Lab 04 (Trees) or Lab 06 (Hash Tables). Use earlier labs as refresher material.
 
 ### For Interview Preparation
-Focus on Labs 01–07 as these cover the most commonly tested data structures in technical interviews.
+Focus on Labs 01–07 (core structures) and Labs 11–15 (specialized structures often asked in interviews).
 
 ### Lab Structure
-Each lab contains:
-- `README.md` — Overview, learning objectives, prerequisites
-- `THEORY.md` — Comprehensive theoretical foundation
-- `HOW_IT_WORKS.md` — Step-by-step mechanical explanation
-- `CODE_DEEP_DIVE.md` — Detailed Java implementation walkthroughs
-- `EXERCISES.md` — Practice problems with solutions
-- `MINI_PROJECT/` — Small hands-on project
-- `QUIZ.md` — Self-assessment questions
-- `FLASHCARDS.md` — Spaced-repetition learning cards
-- `PERFORMANCE.md` — Time/space complexity analysis
+Each lab contains 24 markdown files and 7 subdirectories:
+
+| File | Purpose |
+|------|---------|
+| `README.md` | Overview, learning objectives, prerequisites |
+| `THEORY.md` | Comprehensive theoretical foundation |
+| `WHY_IT_EXISTS.md` | Historical context and motivation |
+| `WHY_IT_MATTERS.md` | Practical importance in real-world development |
+| `HISTORY.md` | Evolution of the data structure |
+| `MENTAL_MODELS.md` | Analogies and mental frameworks |
+| `HOW_IT_WORKS.md` | Step-by-step mechanical explanation |
+| `INTERNALS.md` | Under-the-hood implementation details |
+| `MATH_FOUNDATION.md` | Complexity analysis and mathematical prequisites |
+| `VISUAL_GUIDE.md` | Diagrams and visual explanations |
+| `CODE_DEEP_DIVE.md` | Detailed Java implementation walkthroughs |
+| `STEP_BY_STEP.md` | Tutorial-style guided implementation |
+| `COMMON_MISTAKES.md` | Pitfalls and anti-patterns |
+| `DEBUGGING.md` | Debugging strategies and tools |
+| `REFACTORING.md` | Improving existing code |
+| `PERFORMANCE.md` | Time/space complexity analysis |
+| `SECURITY.md` | Security implications and best practices |
+| `ARCHITECTURE.md` | Architectural considerations |
+| `EXERCISES.md` | Practice problems with solutions |
+| `QUIZ.md` | Self-assessment questions |
+| `FLASHCARDS.md` | Spaced-repetition learning cards |
+| `INTERVIEW.md` | Common interview questions |
+| `REFLECTION.md` | Guided self-reflection prompts |
+| `REFERENCES.md` | Further reading and resources |
+| `MINI_PROJECT/` | Small hands-on project |
+| `REAL_WORLD_PROJECT/` | Production-scale project |
+| `CHALLENGE/` | Advanced challenge problems |
+| `TESTS/` | Unit and integration tests |
+| `BENCHMARK/` | Performance benchmarks |
+| `DIAGRAMS/` | Visual aids and architecture diagrams |
+| `SOLUTION/` | Solutions to exercises and projects |
 
 ---
 

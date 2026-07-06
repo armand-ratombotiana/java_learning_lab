@@ -4,7 +4,7 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-30-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-40-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-green?style=for-the-badge)
 
 **Master Java from fundamentals to production-ready mastery**
@@ -62,6 +62,20 @@ The Java Academy provides a comprehensive, deep-dive curriculum covering the ent
 | 28 | [Enums](./28-enums/) | 1-2 hrs | Intermediate |
 | 29 | [Modular System](./29-modules/) | 3-4 hrs | Advanced |
 | 30 | [JVM Internals](./30-jvm-internals/) | 6-8 hrs | Expert |
+
+### Level 4: Professional
+| Lab | Topic | Duration | Difficulty |
+|-----|-------|----------|------------|
+| 31 | [Testing](./31-testing/) | 3-4 hrs | Advanced |
+| 32 | [Networking](./32-networking/) | 3-4 hrs | Advanced |
+| 33 | [Security](./33-security/) | 4-6 hrs | Expert |
+| 34 | [Logging](./34-logging/) | 2-3 hrs | Intermediate |
+| 35 | [Serialization](./35-serialization/) | 3-4 hrs | Advanced |
+| 36 | [Reactive Programming](./36-reactive-programming/) | 4-6 hrs | Expert |
+| 37 | [Performance Profiling](./37-performance-profiling/) | 3-4 hrs | Expert |
+| 38 | [Memory Model](./38-memory-model/) | 4-6 hrs | Expert |
+| 39 | [Build Tools](./39-build-tools/) | 3-4 hrs | Advanced |
+| 40 | [Best Practices](./40-best-practices/) | 4-6 hrs | Advanced |
 
 ---
 
@@ -125,15 +139,15 @@ Start at Lab 21 (Java 21 Features) or jump to specific topics. Use earlier labs 
 
 ## Related Academies
 
-- [Algorithms Academy](../algorithms/) — Coming soon
-- [Data Structures Academy](../data-structures/) — Coming soon
-- [Backend Academy](../backend/) — Coming soon
-- [System Design Academy](../system-design/)
-- [Cloud Engineering Academy](../cloud/)
-- [AI Academy](../ai/)
-- [Math Academy](../math/)
-- [Data Science Academy](../data-science/)
-- [Capstone Projects](../capstones/)
+- [Algorithms Academy](../algorithms/) — 25 labs, Active
+- [Data Structures Academy](../data-structures/) — 20 labs, Active
+- [Backend Academy](../backend/) — Active
+- [System Design Academy](../system-design/) — Active
+- [Cloud Engineering Academy](../cloud/) — Active
+- [AI Academy](../ai/) — Active
+- [Math Academy](../math/) — Active
+- [Data Science Academy](../data-science/) — Active
+- [Capstone Projects](../capstones/) — Active
 
 ---
 

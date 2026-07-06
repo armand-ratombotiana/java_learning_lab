@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-15-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-25-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-orange?style=for-the-badge)
 
-**Master Algorithms from fundamentals to advanced topics — all examples in Java**
+**Master 25 algorithm paradigms — from sorting to metaheuristic optimization — all examples in Java**
 
 </div>
 
@@ -47,6 +47,20 @@ The Algorithms Academy provides a comprehensive, deep-dive curriculum covering f
 | 13 | [Parallel Algorithms](./13-parallel-algorithms/) — Fork/join, parallel sorting | 5-6 hrs | Advanced |
 | 14 | [Approximation Algorithms](./14-approximation-algorithms/) — NP-hard, ratios | 4-5 hrs | Expert |
 | 15 | [Cryptographic Algorithms](./15-cryptographic-algorithms/) — Hashing, encryption, signatures | 5-6 hrs | Advanced |
+
+### Level 4: Expert & Specialized Algorithms
+| Lab | Topic | Duration | Difficulty |
+|-----|-------|----------|------------|
+| 16 | [String Matching](./16-string-matching/) — KMP, Boyer-Moore, Rabin-Karp, Z-algorithm, Aho-Corasick | 5-6 hrs | Advanced |
+| 17 | [Network Flow](./17-network-flow/) — Max flow, min cut, Dinic, Ford-Fulkerson, bipartite matching | 5-6 hrs | Expert |
+| 18 | [Computational Geometry](./18-computational-geometry/) — Convex hull, closest pair, line intersection | 4-5 hrs | Advanced |
+| 19 | [Number Theory](./19-number-theory/) — GCD, prime testing, modular arithmetic, CRT | 3-4 hrs | Advanced |
+| 20 | [Randomized Algorithms](./20-randomized-algorithms/) — Las Vegas, Monte Carlo, reservoir sampling, Karger's min cut | 4-5 hrs | Expert |
+| 21 | [Caching Algorithms](./21-caching-algorithms/) — LRU, LFU, ARC, 2Q, Clock, LIRS | 3-4 hrs | Advanced |
+| 22 | [Game Theory](./22-game-theory/) — Minimax, alpha-beta pruning, Nash equilibrium, Nim | 4-5 hrs | Advanced |
+| 23 | [Load Balancing](./23-load-balancing/) — Round robin, consistent hashing, least connections | 3-4 hrs | Intermediate |
+| 24 | [Scheduling](./24-scheduling-algorithms/) — FCFS, SJF, Round Robin, EDF, priority scheduling | 3-4 hrs | Intermediate |
+| 25 | [Optimization](./25-optimization-algorithms/) — Genetic algorithms, simulated annealing, particle swarm | 5-6 hrs | Expert |
 
 ---
 
@@ -99,7 +113,7 @@ Start at Lab 01 and work through sequentially. Complete all exercises before mov
 Start at Lab 05 (Dynamic Programming) or Lab 09 (Divide and Conquer). Review earlier labs for refreshers.
 
 ### For Advanced Developers
-Start at Lab 12 (Complexity Analysis) or jump to specific topics. Use earlier labs for reference.
+Start at Lab 12 (Complexity Analysis) or Lab 16 (String Matching) for specialized domains. Use earlier labs for reference.
 
 ### Recommended Pace
 - **Part-time**: 1 lab per week
@@ -110,13 +124,25 @@ Start at Lab 12 (Complexity Analysis) or jump to specific topics. Use earlier la
 
 ## Related Academies
 
-- [Java Academy](../java/) — Core Java fundamentals
-- [Data Structures Academy](../data-structures/) — Coming soon
-- [Backend Academy](../backend/) — Coming soon
-- [System Design Academy](../system-design/)
-- [Cloud Engineering Academy](../cloud/)
-- [AI Academy](../ai/)
-- [Math Academy](../math/)
+- [Java Academy](../java/) — 40 labs, Active
+- [Data Structures Academy](../data-structures/) — 20 labs, Active
+- [Backend Academy](../backend/) — Active
+- [System Design Academy](../system-design/) — Active
+- [Cloud Engineering Academy](../cloud/) — Active
+- [AI Academy](../ai/) — Active
+- [Math Academy](../math/) — Active
+
+---
+
+## Learning Path
+
+```
+01─→02─→03─→04─→05─→06─→07─→08─→09─→10─→11─→12─→13─→14─→15─→16─→17─→18─→19─→20─→21─→22─→23─→24─→25
+Sort Srch Recr  DP   Gred Graph Str  D&C  Back B&B  Cpx  Par  Appr Cryp Str  Flow Geom Num  Rand Cach Game Load Sched Opti
+                                                                                 Mtch      Thy    Algo
+```
+
+Labs 01–04 build algorithmic foundations. Labs 05–11 cover core algorithm design paradigms. Labs 12–15 explore advanced theoretical topics. Labs 16–25 cover specialized and real-world algorithm domains from string matching to metaheuristic optimization.
 
 ---
 
