@@ -1,0 +1,39 @@
+# References: JVM Tuning
+
+## Official Documentation
+- [Java HotSpot VM Options](https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html)
+- [JVM Tuning Guide](https://docs.oracle.com/en/java/javase/21/gc/tuning.html)
+- [JVM Command-Line Options](https://docs.oracle.com/en/java/javase/21/docs/specs/java/vm-options.html)
+
+## JEPs
+- JEP 122: Remove the Permanent Generation
+- JEP 158: Unified JVM Logging
+- JEP 310: Application Class-Data Sharing
+- JEP 350: Dynamic CDS Archives
+- JEP 439: Generational ZGC
+
+## Books
+- *Java Performance: The Definitive Guide* by Scott Oaks
+- *Optimizing Java* by Ben Evans and Chris Newland
+- *Java Performance Companion* by Charlie Hunt
+- *The Well-Grounded Java Developer* by Evans and Verburg
+
+## Tools
+- `jstat` — JVM statistics monitoring
+- `jcmd` — diagnostic commands for JVM
+- `jmap` — memory map and heap dump
+- `JMC (Java Mission Control)` — JFR-based monitoring
+- `JITWatch` — JIT compilation analysis
+- `GCeasy` — GC log analysis
+- `async-profiler` — CPU and allocation profiling
+
+## Articles
+- [JVM Tuning for High Performance](https://www.baeldung.com/jvm-tuning)
+- [Understanding Java Code Cache](https://www.baeldung.com/jvm-code-cache)
+- [Java Metaspace Guide](https://www.baeldung.com/java-metaspace)
+
+## Source Code
+- `src/hotspot/share/runtime/arguments.cpp` (flag parsing)
+- `src/hotspot/share/memory/metaspace/` (Metaspace)
+- `src/hotspot/share/code/codeCache.cpp` (Code Cache)
+- `src/hotspot/share/gc/shared/stringDedup/` (String Dedup)

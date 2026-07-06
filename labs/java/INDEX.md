@@ -4,7 +4,7 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-40-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-52-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-green?style=for-the-badge)
 
 **Master Java from fundamentals to production-ready mastery**
@@ -77,6 +77,24 @@ The Java Academy provides a comprehensive, deep-dive curriculum covering the ent
 | 39 | [Build Tools](./39-build-tools/) | 3-4 hrs | Advanced |
 | 40 | [Best Practices](./40-best-practices/) | 4-6 hrs | Advanced |
 
+### Level 5: Expert Deep Dive — JVM, Memory, Concurrency, Performance
+| Lab | Topic | Duration | Difficulty |
+|-----|-------|----------|------------|
+| 41 | [Threading Deep Dive](./41-threading-deep-dive/) | 6-8 hrs | Expert |
+| 42 | [Locking & Synchronization Internals](./42-locking-synchronization/) | 5-7 hrs | Expert |
+| 43 | [JVM Class Loading & Bytecode](./43-class-loading-bytecode/) | 6-8 hrs | Expert |
+| 44 | [JIT Compilation Deep Dive](./44-jit-compilation/) | 5-7 hrs | Expert |
+| 45 | [Garbage Collection Deep Dive](./45-gc-deep-dive/) | 6-8 hrs | Expert |
+| 46 | [JVM Tuning & Optimization](./46-jvm-tuning/) | 5-7 hrs | Expert |
+| 47 | [Profiling & Observability](./47-profiling-observability/) | 6-8 hrs | Expert |
+| 48 | [Structured Concurrency & Scoped Values](./48-structured-concurrency/) | 4-6 hrs | Expert |
+| 49 | [Off-Heap Memory & Direct Buffers](./49-off-heap-memory/) | 4-6 hrs | Expert |
+| 50 | [Object Layout & Memory Internals](./50-object-layout-memory/) | 5-7 hrs | Expert |
+| 51 | [Advanced Concurrency Patterns](./51-advanced-concurrency/) | 6-8 hrs | Expert |
+| 52 | [Performance Antipatterns & Debugging](./52-performance-antipatterns/) | 4-6 hrs | Expert |
+
+**Total estimated time: 200-280 hours across all 52 labs**
+
 ---
 
 ## Lab Structure
@@ -128,7 +146,7 @@ Start at Lab 01 and work through sequentially. Complete all exercises before mov
 Start at Lab 11 (Generics). Review earlier labs if you need refreshers.
 
 ### For Advanced Developers
-Start at Lab 21 (Java 21 Features) or jump to specific topics. Use earlier labs for reference.
+Start at Lab 21 (Java 21 Features) or jump to specific topics. For deep JVM/concurrency expertise, study Level 5 (Labs 41-52).
 
 ### Recommended Pace
 - **Part-time**: 1 lab per week
