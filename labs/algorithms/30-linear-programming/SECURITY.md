@@ -1,0 +1,3 @@
+# Linear Programming — Security Considerations
+
+Linear programming is used in adversarial settings: attack graph analysis, network flow optimization for defense, and resource allocation in security systems. The simplex method is vulnerable to input manipulation: crafted LPs can trigger exponential worst-case behavior (Klee-Minty cubes). In security-critical optimization, use polynomial-time methods (interior point) or verify optimality with dual certificates. Sensitivity analysis can reveal system vulnerabilities: shadow prices expose which constraints are binding, potentially leaking sensitive information about resource limits.

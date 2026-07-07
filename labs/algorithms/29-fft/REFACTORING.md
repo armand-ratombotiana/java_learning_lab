@@ -1,0 +1,3 @@
+# FFT — Refactoring Guide
+
+The iterative FFT can be extracted as a generic method parameterized by the numeric type (Complex or long for NTT). Create an FFTStrategy interface with transform and inverse methods, with ComplexFFT and NTT implementations. The Complex class should be immutable for thread safety. Precompute roots of unity (twiddle factors) for each level to avoid repeated trigonometric computations, trading memory for speed.

@@ -1,0 +1,3 @@
+# Reflection — Bit Manipulation
+
+Bit manipulation teaches us that algorithmic efficiency often comes from understanding the fundamental representation of data. The same problem can be solved in O(n) with bit operations that exploit the parallel nature of hardware. Key insight: many seemingly different problems (subset enumeration, DP over subsets, XOR basis) are unified by the bitmask representation. This lab connects low-level hardware to high-level algorithm design.

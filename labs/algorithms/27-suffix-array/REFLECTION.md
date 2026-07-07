@@ -1,0 +1,3 @@
+# Reflection — Suffix Array
+
+Suffix arrays demonstrate how preprocessing enables fast queries. The key insight is that sorting suffixes lexicographically organizes substring information in a way that supports many different queries. The LCP array further enriches this structure. The connection from suffix arrays to Burrows-Wheeler transform to FM-index shows how a data structure evolves across generations of research.

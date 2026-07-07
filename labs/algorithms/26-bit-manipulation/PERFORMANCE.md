@@ -1,0 +1,3 @@
+# Bit Manipulation — Performance Analysis
+
+Bit operations are single-cycle instructions on modern processors. Kernighan's count runs in O(number of set bits) vs the O(log n) divide-and-conquer method. TSP DP with 2^n states uses O(n * 2^n) memory, which for n=20 is ~80 MB. The XorBasis insertion runs in O(32) worst case per element. Java's Integer.bitCount uses the POPCNT instruction on supporting CPUs (SSE4.2) and is faster than manual loops. In practice, manual bit manipulation is rarely needed in Java except in competitive programming and low-level libraries.

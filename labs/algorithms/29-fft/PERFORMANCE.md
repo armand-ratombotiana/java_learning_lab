@@ -1,0 +1,3 @@
+# FFT — Performance Analysis
+
+FFT is O(N log N) with approximately 5N log N floating-point operations. For N=2^20 (~1 million), this is about 100 million operations, taking ~0.1 seconds on a modern CPU. Naive DFT would take 10^12 operations (~1000 seconds). The iterative in-place FFT is faster than recursive due to reduced overhead. Precomputing roots of unity improves speed by 2-3x. NTT with modular arithmetic is about 2-5x slower than floating-point FFT due to modulo operations. For polynomial multiplication, the FFT-based approach is faster than naive for n >= 64.

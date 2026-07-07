@@ -1,0 +1,3 @@
+# Quantum Simulation — Security Considerations
+
+Quantum algorithm simulation is essential for evaluating the security of cryptography against quantum attacks. Shor's algorithm simulation (even for small numbers) demonstrates the threat to RSA, DSA, and ECDSA. Grover's algorithm shows that symmetric key lengths must double (AES-128 provides only 64-bit security against Grover). Post-quantum cryptography standardization (NIST) relies on classical simulators to verify quantum-resistant algorithms. Simulating quantum attacks on cryptographic parameters helps determine safe key sizes for the post-quantum era.

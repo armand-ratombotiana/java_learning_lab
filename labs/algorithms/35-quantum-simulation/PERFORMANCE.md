@@ -1,0 +1,3 @@
+# Quantum Simulation — Performance Analysis
+
+Classical simulation of quantum circuits requires O(2^n) memory and O(2^n) time per gate. With n=30, the state vector has ~1 billion entries, requiring ~16 GB of memory (complex doubles). This is the upper limit for classical simulation. Our educational simulations handle up to 6-8 qubits (64-256 state entries). Grover simulation for N=256 requires O(sqrt(N)) = 16 iterations. QFT requires O(n^2) gates per call. The exponential memory requirement is why quantum computers are needed for large n.

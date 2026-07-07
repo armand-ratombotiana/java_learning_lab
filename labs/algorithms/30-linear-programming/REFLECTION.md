@@ -1,0 +1,3 @@
+# Reflection — Linear Programming
+
+Linear programming reveals the deep connection between geometry and optimization. The fact that optimal solutions occur at vertices of convex polytopes is geometrically intuitive yet mathematically profound. Duality is one of the most powerful concepts in optimization, providing both theoretical insight and practical sensitivity analysis. The exponential worst-case yet practical efficiency of simplex is a humbling reminder that theory does not always predict practice.

@@ -1,0 +1,3 @@
+# Reflection — Push-Relabel
+
+The push-relabel algorithm teaches that allowing temporary violations (preflow) with local operations can be more efficient than maintaining global invariants (augmenting paths). This is a recurring theme in algorithm design: sometimes relaxing constraints during computation reduces overall complexity. The gap heuristic is a beautiful example of using structural information to accelerate convergence.

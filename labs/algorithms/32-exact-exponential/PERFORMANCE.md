@@ -1,0 +1,3 @@
+# Exact Exponential Algorithms — Performance Analysis
+
+Meet-in-the-middle runs in O(2^{n/2}) time and space. For n=40, this is 2^20 ≈ 1 million per half, which is feasible in Java. Fast subset convolution is O(n^2 * 2^n), suitable for n up to 20 (~400 million operations). Inclusion-exclusion is O(2^k) where k is the number of constraints. Branching algorithms have running times measured in terms of the branching factor; a 1.618^n algorithm solves n=50 in about 10^10 operations, near the practical limit. All exact exponential algorithms are limited by the exponential growth and are used primarily for small to moderate instance sizes.

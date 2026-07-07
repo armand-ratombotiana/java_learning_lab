@@ -1,0 +1,3 @@
+# Matrix Algorithms — Architecture
+
+The lab33 package contains StrassenMultiply, GaussianElimination, MatrixDecomposition, and a test class. All classes operate on double[][] arrays. StrassenMultiply handles recursive block multiplication. GaussianElimination provides solve(A, b) with partial pivoting. MatrixDecomposition provides LU, determinant, and inverse operations. The architecture is functional: methods take matrices as parameters and return results. No shared mutable state exists between operations. The SVD method is included as a stub for future implementation.

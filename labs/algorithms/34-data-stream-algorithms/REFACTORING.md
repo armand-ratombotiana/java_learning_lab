@@ -1,0 +1,3 @@
+# Data Stream Algorithms — Refactoring Guide
+
+Create a Sketch interface with methods update(item) and estimate(item) for frequency estimation algorithms. Implement CountMinSketch, MisraGries, and SpaceSaving as implementations. Create a StreamSampler interface for reservoir sampling. Use the Visitor pattern for stream processing: a StreamProcessor accepts elements and delegates to registered algorithms. The sliding window can be a separate concern, wrapping any distinct counter with time-based expiry.

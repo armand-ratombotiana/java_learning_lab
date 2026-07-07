@@ -1,0 +1,3 @@
+# Linear Programming — Architecture
+
+The lab30 package contains Simplex (tableau solver), TwoPhaseSimplex (extends Simplex), LPSolver (interface), and a test class. Simplex provides core pivot operations. TwoPhaseSimplex adds Phase I artificial variable handling. LPSolver interface defines solve(c, A, b, sense) for high-level usage. The architecture separates the numerical linear algebra (tableau operations) from the problem formulation. This separation allows extending with different pivot rules or interior point methods by implementing the same interface.

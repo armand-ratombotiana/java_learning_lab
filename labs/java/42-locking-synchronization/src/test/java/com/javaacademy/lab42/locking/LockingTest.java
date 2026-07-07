@@ -54,7 +54,11 @@ class LockingTest {
     @Test
     void testLockSupport() {
         Thread t = new Thread(() -> {
-            LockSupportDemo.main(new String[]{});
+            try {
+                LockSupportDemo.main(new String[]{});
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
         t.start();
         try { t.join(3000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }

@@ -1,0 +1,3 @@
+# Matrix Algorithms — Performance Analysis
+
+Strassen's O(n^{2.807}) is slower than naive O(n^3) for n < 1000 due to overhead and the 18 additions per 7 multiplications. Java's standard matrix multiplication optimizes for cache locality using loop tiling. Gaussian elimination is O(n^3) with partial pivoting adding O(n^2) comparisons. Power iteration converges linearly with ratio |lambda_2/lambda_1|; well-separated eigenvalues converge in O(10-100) iterations. For large-scale linear algebra, use optimized libraries (BLAS, LAPACK, EJML). Our implementations are for educational understanding, not production performance.

@@ -1,0 +1,3 @@
+# Reflection — Matrix Algorithms
+
+Matrix algorithms form the computational foundation of scientific computing and machine learning. Strassen's breakthrough shows that even the most fundamental operations can be improved. Numerical stability concerns (pivoting, condition numbers) teach an important lesson: correctness on paper does not guarantee correctness on a computer with finite precision arithmetic. SVD is a unifying concept that connects linear algebra to data science.

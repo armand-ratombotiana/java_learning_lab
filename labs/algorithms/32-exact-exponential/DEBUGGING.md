@@ -1,0 +1,3 @@
+# Exact Exponential Algorithms — Debugging Guide
+
+For meet-in-the-middle, verify that the sum of the two subset masks equals the target for each match. Print the enumerated lists for small n and verify manually. For inclusion-exclusion, test on small sets where brute force enumeration is feasible. For fast subset convolution, compare results with naive O(3^n) convolution for n <= 12. Verify that the zeta transform, when followed by Moebius, returns the original function.

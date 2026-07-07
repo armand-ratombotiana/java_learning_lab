@@ -1,0 +1,3 @@
+# Suffix Array — Refactoring Guide
+
+Extract the comparison logic into a separate method or Comparator. The prefix-doubling can be optimized using counting sort (radix sort on pairs) for O(n log n) instead of O(n log^2 n). Consider using an integer encoding of pairs (rank[i] * (n+1) + rank[i+k]) for faster comparison. The suffix array and LCP array can be wrapped in a SuffixArrayLCP class with methods for pattern matching and substring queries.

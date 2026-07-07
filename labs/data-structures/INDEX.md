@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-20-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-30-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-brightgreen?style=for-the-badge)
 
-**Master 20 essential data structures — from arrays to persistent data structures — all examples in Java**
+**Master 30 essential data structures — from arrays to cache-oblivious data structures — all examples in Java**
 
 </div>
 
@@ -57,19 +57,32 @@ The Data Structures Academy provides a comprehensive, hands-on curriculum coveri
 | 19 | [Sparse Table & RMQ](./19-sparse-table-rmq/) | Range minimum/maximum queries, precomputation, O(1) queries | 2-3 hrs | Advanced |
 | 20 | [Immutable & Persistent](./20-immutable-persistent/) | Immutability, structural sharing, persistent tree/list, functional | 3-4 hrs | Expert |
 
-**Total estimated time: 65-85 hours**
+### Level 5: Frontier & Probabilistic Data Structures
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 21 | [Cuckoo & Robin Hood Hashing](./21-cuckoo-robin-hood/) | Cuckoo hashing, cycle detection, Robin Hood, backward shift deletion | 3-4 hrs | Expert |
+| 22 | [Merkle Tree](./22-merkle-tree/) | Hash tree, proof of inclusion, verification, blockchain applications | 2-3 hrs | Advanced |
+| 23 | [DSU with Rollbacks](./23-dsu-rollbacks/) | Persistent DSU, union by size with history, offline dynamic connectivity | 3-4 hrs | Expert |
+| 24 | [XOR & Unrolled Linked Lists](./24-xor-unrolled-lists/) | Memory-efficient XOR list, block-based unrolled list, cache-friendly | 2-3 hrs | Advanced |
+| 25 | [Space-Filling Curves](./25-space-filling-curves/) | Z-order, Hilbert curves, Morton codes, N-dim to 1D mapping | 3-4 hrs | Expert |
+| 26 | [HyperLogLog](./26-hyperloglog/) | Cardinality estimation, register array, harmonic mean, HLL merging | 3-4 hrs | Expert |
+| 27 | [Count-Min Sketch](./27-count-min-sketch/) | Frequency estimation, heavy hitters, conservative update | 2-3 hrs | Expert |
+| 28 | [MinHash & SimHash](./28-minhash-simhash/) | Jaccard similarity, LSH, near-duplicate detection, banding | 3-4 hrs | Expert |
+| 29 | [van Emde Boas Tree](./29-van-emde-boas/) | O(log log U) operations, predecessor/successor, recursive decomposition | 4-5 hrs | Expert |
+| 30 | [Cache-Oblivious Structures](./30-cache-oblivious/) | Ideal cache model, CO B-tree, van Emde Boas layout, recursive matrix multiply | 4-5 hrs | Expert |
+
+**Total estimated time: 100-130 hours**
 
 ---
 
 ## Learning Path
 
 ```
-01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10 ──→ 11 ──→ 12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
-Arrays  LList  Stacks  Trees   Graphs   Hash   Heap  Trie  Adv   Bloom  Union  Seg    Fen   Skip   LRU   Concur Spat  Circ  Spar  Immut
-               Queues                          Table       Trees Filters Find  Trees  Wick  Lists  Cache  rent  ial   Buf   Table  able
+01─→02─→03─→04─→05─→06─→07─→08─→09─→10─→11─→12─→13─→14─→15─→16─→17─→18─→19─→20─→21─→22─→23─→24─→25─→26─→27─→28─→29─→30
+Arr  LL  StQ  Tree Graph Hash Heap Trie AdvT Bloom UF   SegT FenW Skip LRU  Conc Spat Circ Spar Imm  Cuck Merk DSU  XOR  SFC  HLL  CMS  MinH vEB  CO
 ```
 
-Labs 01–03 build foundational linear structures. Labs 04–05 introduce non-linear structures. Labs 06–08 cover dictionary and prefix structures. Labs 09–10 explore advanced and probabilistic data structures. Labs 11–15 cover specialized and utility structures. Labs 16–20 cover concurrent, spatial, and functional data structures for expert-level mastery.
+Labs 01–03: linear structures. Labs 04–05: trees & graphs. Labs 06–08: hash/prefix. Labs 09–10: advanced & probabilistic. Labs 11–15: specialized utilities. Labs 16–20: concurrent/spatial/functional. Labs 21–25: frontier hashing/lists/indexing. Labs 26–30: probabilistic sketches & advanced trees.
 
 ---
 

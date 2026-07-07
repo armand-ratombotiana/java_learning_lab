@@ -1,0 +1,3 @@
+# Quantum Simulation — Architecture
+
+The lab35 package contains Qubit (single qubit state), QuantumGate (gate matrix factory), GroverSearch (Grover's algorithm), QuantumFourierTransform (QFT), and a test class. Qubit handles single-qubit state evolution with measurement. Multi-qubit simulation is implemented directly in GroverSearch and QFT using arrays of size 2^n. QuantumGate provides static factory methods returning unitary matrices. The architecture separates the linear algebra (ComplexNumber) from the quantum algorithms. GroverSearch and QFT use the same multi-qubit state representation pattern.

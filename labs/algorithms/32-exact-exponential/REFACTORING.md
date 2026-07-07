@@ -1,0 +1,3 @@
+# Exact Exponential Algorithms — Refactoring Guide
+
+The subset sum enumeration can be generalized: create a SubsetEnumerator class that generates sums and masks for any array. The meet-in-the-middle logic can be parameterized by the merge function (equality for subset sum, or threshold for knapsack). Fast subset convolution can be split into ZetaTransform, MoebiusTransform, and SubsetConvolution classes. Use generics for numeric types where possible.

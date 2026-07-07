@@ -1,0 +1,3 @@
+# Online Algorithms — Refactoring Guide
+
+Create a PagingAlgorithm interface with methods access(page) and getFaultCount(). Implement LRU, FIFO, and Marker as separate classes. Create a CacheSimulator that accepts any PagingAlgorithm and generates statistics. The bandit algorithms can share a base class with methods selectArm() and updateReward(arm, reward). Extract the competitive ratio computation into a separate Analyzer class that simulates adversary sequences.

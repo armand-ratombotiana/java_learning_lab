@@ -1,0 +1,3 @@
+# Data Stream Algorithms — Security Considerations
+
+Data stream algorithms are used in network security for real-time threat detection: Count-Min Sketch is used to detect DDoS attacks by tracking IP addresses with high traffic volume. Frequent items algorithms (Misra-Gries, Space-Saving) identify heavy hitters in network traffic for intrusion detection. Sliding window algorithms track recent connection patterns for anomaly detection. An adversary can try to evade detection by spreading attack traffic across many source IPs (each below the heavy hitter threshold). Combining multiple streaming algorithms provides defense in depth.

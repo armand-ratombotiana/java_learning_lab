@@ -1,0 +1,3 @@
+# Push-Relabel — Architecture
+
+The lab28 package has PushRelabel, MinCostMaxFlow, CapacityScaling, and a test class. All share a common graph representation using Edge objects (to, rev, cap, cost) in adjacency lists. PushRelabel implements push-relabel with FIFO and gap heuristic. MinCostMaxFlow extends the same graph with cost and potentials. CapacityScaling wraps a max flow solver with capacity scaling logic. The architecture uses composition: capacity scaling contains an inner max flow solver. The graph representation is mutable for efficiency.

@@ -1,0 +1,3 @@
+# Push-Relabel — Debugging Guide
+
+Verify the height invariant after each step: for each residual edge (u,v), height[u] <= height[v] + 1. Track excess balance: total excess should be zero at termination (except source and sink). Use small networks and print state after each push/relabel. Compare max flow value against Ford-Fulkerson on the same network. For min-cost flow, verify no negative cycles in the residual graph at termination.

@@ -1,0 +1,3 @@
+# Reflection — Online Algorithms
+
+Online algorithms teach humility: without knowing the future, we cannot make perfect decisions. Competitive analysis provides a rigorous framework for comparing algorithms under uncertainty. The beauty is that simple strategies (LRU, rent-for-B-1-then-buy, reject-first-37%) have provable guarantees. This lab connects classical algorithm design to modern machine learning through multi-armed bandits.

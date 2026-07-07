@@ -1,0 +1,3 @@
+# Online Algorithms — Security Considerations
+
+Online algorithms are directly relevant to security. Adversarial paging: an attacker can craft access patterns to maximize cache misses (denial of service). LRU can be attacked by cycling through k+1 pages. Randomized algorithms (Marker) are more resistant because the adversary cannot predict eviction. Multi-armed bandits in security: intrusion detection systems must balance monitoring known attack patterns (exploitation) and detecting novel attacks (exploration). The epsilon-greedy algorithm can be exploited by an adversary who learns the exploration schedule.

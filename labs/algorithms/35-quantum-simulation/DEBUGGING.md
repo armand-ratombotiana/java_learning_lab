@@ -1,0 +1,3 @@
+# Quantum Simulation — Debugging Guide
+
+Verify that applying a unitary gate preserves the norm of the state vector (within floating-point tolerance). Test gate operations on known states: H|0> = (|0>+|1>)/sqrt(2), X|1> = |0>. Verify that applying the same gate twice returns the original state for involutory gates (X, Y, Z, H). For Grover, print amplitudes after each iteration to verify the target amplitude is increasing. For QFT, test that QFT|0000> produces equal amplitudes for all 16 basis states.

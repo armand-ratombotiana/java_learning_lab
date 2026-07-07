@@ -1,0 +1,3 @@
+# Exact Exponential Algorithms — Architecture
+
+The lab32 package contains MeetInTheMiddle (subset sum), InclusionExclusion (counting), FastSubsetConvolution (zeta/moebius), and a test class. MeetInTheMiddle splits, enumerates, and merges. InclusionExclusion enumerates subsets of constraints. FastSubsetConvolution implements ranked zeta transform and convolution. The classes are independent. FastSubsetConvolution provides lower-level zeta and moebius transform methods that can be reused. Memory management is explicit: users must be aware of the 2^n memory requirement.

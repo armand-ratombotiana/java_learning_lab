@@ -1,0 +1,3 @@
+# Linear Programming — Debugging Guide
+
+Print the tableau at each iteration to track pivot choices. Verify the reduced costs and RHS values. Check that the ratio test selects a valid leaving variable. Test on small 2D LPs where the feasible region can be visualized. Verify complementary slackness at the claimed optimal solution. For two-phase, print Phase I tableau and ensure artificial variables leave the basis.

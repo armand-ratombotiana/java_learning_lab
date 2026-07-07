@@ -1,0 +1,3 @@
+# Push-Relabel — Refactoring Guide
+
+The edge representation can be optimized by using arrays of ints (to[], rev[], cap[], cost[]) instead of Edge objects for better cache locality. The push-relabel and min-cost flow classes share graph structure; extract a common FlowGraph base class. The gap heuristic and FIFO selection can be separate strategies implementing a common interface. Consider using a separate thread for the overflow queue in parallel implementations.

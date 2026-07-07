@@ -1,0 +1,3 @@
+# Suffix Array — Debugging Guide
+
+Verify suffix array construction with simple strings where the correct answer is known. Print intermediate rank arrays during prefix-doubling to verify ranking. Check that the LCP array values never exceed n. For pattern matching, test with patterns that appear 0, 1, and multiple times. Use assertions to verify invariant: SA is a permutation of 0..n-1 and suffixes are sorted. The sum of distinct substrings formula provides a cross-check.

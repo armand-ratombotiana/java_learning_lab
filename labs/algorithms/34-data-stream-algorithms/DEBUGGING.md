@@ -1,0 +1,3 @@
+# Data Stream Algorithms — Debugging Guide
+
+For reservoir sampling, run 100000 trials and verify each element appears with approximately equal frequency. For AMS, compare F2 estimate against the true F2 computed by brute force. For Count-Min Sketch, verify that the estimate > actual count always (overestimate property). For Misra-Gries, verify that elements with frequency > n/k are present in counters. For streaming statistics, compare against a two-pass variance computation to verify numerical stability.

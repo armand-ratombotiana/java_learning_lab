@@ -1,0 +1,3 @@
+# FFT — Security Considerations
+
+FFT is fundamental to cryptographic protocols: lattice-based cryptography (post-quantum) uses NTT extensively as the core computational primitive. CRYSTALS-Kyber and Dilithium (NIST post-quantum standards) use NTT for polynomial multiplication. Side-channel attacks on NTT implementations are an active research area. Constant-time NTT implementations are required for secure cryptographic implementations. Avoid branching on secret data in NTT butterfly operations. The Cooley-Tukey FFT structure is public and not itself security-sensitive.

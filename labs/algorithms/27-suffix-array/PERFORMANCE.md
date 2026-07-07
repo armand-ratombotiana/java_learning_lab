@@ -1,0 +1,3 @@
+# Suffix Array — Performance Analysis
+
+Prefix-doubling with Java Arrays.sort runs in O(n log^2 n) due to O(log n) iterations of O(n log n) sorting. On a 10^5 character string, this takes ~0.5 seconds. SA-IS achieves O(n) but is more complex to implement. Kasai's LCP is O(n) with very low constant factor. Pattern matching via binary search is O(m log n). For large genomes (3 billion base pairs), suffix arrays require ~12 GB (4 bytes per index), making FM-index (compressed suffix array) preferable.

@@ -1,0 +1,3 @@
+# Reflection — Quantum Simulation
+
+Quantum simulation bridges classical and quantum computing. The linear algebraic framework (complex vectors, unitary matrices, tensor products) is accessible to any computer scientist who has studied linear algebra. This lab demystifies quantum algorithms by implementing them classically. While classical simulation cannot provide quantum speedup, it builds the conceptual foundation needed to understand the quantum advantage when real quantum hardware becomes available.

@@ -1,0 +1,3 @@
+# FFT — Architecture
+
+The lab29 package contains FFT (Complex-based), PolynomialMultiply (uses FFT), NTT (modular), and FFTTest. FFT uses a Complex inner class for complex arithmetic. PolynomialMultiply pads inputs, calls FFT, multiplies pointwise, and inverse FFTs. NTT is a separate class using long[] and modular arithmetic with a prime modulus. The architecture separates concerns: complex arithmetic, iterative FFT structure, and polynomial application. The Complex class can be replaced with a Doubles abstraction for performance.

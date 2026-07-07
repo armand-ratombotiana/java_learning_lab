@@ -1,0 +1,3 @@
+# Online Algorithms — Performance Analysis
+
+LRU and FIFO paging are O(1) per page access with appropriate data structures. Marker requires O(k) time per page fault in the worst case (searching for unmarked page). Ski rental decision is O(1). Secretary problem simulation for n candidates is O(n). Epsilon-greedy is O(k) per round for finding the best arm (O(k) if scanning all arms). All online algorithms are designed to be fast, as they are used in time-critical contexts like caching and real-time bidding.

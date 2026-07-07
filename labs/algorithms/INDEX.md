@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-25-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-35-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-orange?style=for-the-badge)
 
-**Master 25 algorithm paradigms — from sorting to metaheuristic optimization — all examples in Java**
+**Master 35 algorithm paradigms — from sorting to quantum algorithm simulation — all examples in Java**
 
 </div>
 
@@ -61,6 +61,20 @@ The Algorithms Academy provides a comprehensive, deep-dive curriculum covering f
 | 23 | [Load Balancing](./23-load-balancing/) — Round robin, consistent hashing, least connections | 3-4 hrs | Intermediate |
 | 24 | [Scheduling](./24-scheduling-algorithms/) — FCFS, SJF, Round Robin, EDF, priority scheduling | 3-4 hrs | Intermediate |
 | 25 | [Optimization](./25-optimization-algorithms/) — Genetic algorithms, simulated annealing, particle swarm | 5-6 hrs | Expert |
+
+### Level 5: Advanced Paradigms & Frontier Topics
+| Lab | Topic | Duration | Difficulty |
+|-----|-------|----------|------------|
+| 26 | [Bit Manipulation](./26-bit-manipulation/) — Bit tricks, Gray code, XOR basis, bit DP, subset enumeration | 3-4 hrs | Advanced |
+| 27 | [Suffix Array & LCP](./27-suffix-array/) — SA construction, Kasai's LCP, pattern matching, longest repeated substring | 4-5 hrs | Advanced |
+| 28 | [Push-Relabel & Min-Cost Flow](./28-push-relabel-flow/) — Push-relabel max flow, relabel-to-front, min-cost max flow, capacity scaling | 5-6 hrs | Expert |
+| 29 | [Fast Fourier Transform](./29-fft/) — Cooley-Tukey FFT, polynomial multiplication, NTT, convolution | 5-6 hrs | Expert |
+| 30 | [Linear Programming](./30-linear-programming/) — Simplex method, two-phase, duality, sensitivity analysis | 4-5 hrs | Expert |
+| 31 | [Online Algorithms](./31-online-algorithms/) — Competitive analysis, paging, ski rental, secretary problem, bandits | 4-5 hrs | Expert |
+| 32 | [Exact Exponential Algorithms](./32-exact-exponential/) — Meet-in-the-middle, inclusion-exclusion, fast subset convolution | 4-5 hrs | Expert |
+| 33 | [Matrix Algorithms](./33-matrix-algorithms/) — Strassen multiplication, Gaussian elimination, LU, SVD | 5-6 hrs | Expert |
+| 34 | [Data Stream Algorithms](./34-data-stream-algorithms/) — AMS estimation, frequent items, sliding window, streaming statistics | 4-5 hrs | Expert |
+| 35 | [Quantum Algorithm Simulation](./35-quantum-simulation/) — Qubits, quantum gates, Grover's search, QFT | 5-6 hrs | Expert |
 
 ---
 
@@ -137,12 +151,12 @@ Start at Lab 12 (Complexity Analysis) or Lab 16 (String Matching) for specialize
 ## Learning Path
 
 ```
-01─→02─→03─→04─→05─→06─→07─→08─→09─→10─→11─→12─→13─→14─→15─→16─→17─→18─→19─→20─→21─→22─→23─→24─→25
-Sort Srch Recr  DP   Gred Graph Str  D&C  Back B&B  Cpx  Par  Appr Cryp Str  Flow Geom Num  Rand Cach Game Load Sched Opti
-                                                                                 Mtch      Thy    Algo
+01─→02─→03─→04─→05─→06─→07─→08─→09─→10─→11─→12─→13─→14─→15─→16─→17─→18─→19─→20─→21─→22─→23─→24─→25─→26─→27─→28─→29─→30─→31─→32─→33─→34─→35
+Srt Srch Rec DP  Grd Grph Str D&C Bck BB  Cpx Par Apr Cry Str Flw Geo Num Rnd Cch Gam Ld  Sch Opt Bit Sfx PR  FFT LP  Onl Exp Mat Str Qnt
+                                                                              Mtch      Thy            Alg
 ```
 
-Labs 01–04 build algorithmic foundations. Labs 05–11 cover core algorithm design paradigms. Labs 12–15 explore advanced theoretical topics. Labs 16–25 cover specialized and real-world algorithm domains from string matching to metaheuristic optimization.
+Labs 01–04: foundations. Labs 05–11: core paradigms. Labs 12–15: advanced theory. Labs 16–25: specialized domains. Labs 26–35: frontier and advanced paradigms.
 
 ---
 

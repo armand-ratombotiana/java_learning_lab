@@ -1,0 +1,3 @@
+# Exact Exponential Algorithms — Security Considerations
+
+Exact exponential algorithms are directly relevant to cryptography. Subset sum meet-in-the-middle attacks break knapsack-based cryptosystems (Merkle-Hellman). Inclusion-exclusion can count solutions to constraint satisfaction problems underlying hash function preimage attacks. Fast subset convolution relates to the security of lattice-based cryptography. Understanding the exact complexity of NP-hard problems is crucial for determining cryptographic key sizes. The existence of algorithms with O(1.618^n) vs O(2^n) changes the security parameter choices.

@@ -1,0 +1,3 @@
+# Matrix Algorithms — Debugging Guide
+
+Verify Strassen against naive multiplication on random small matrices (4x4, 8x8). For Gaussian elimination, test on diagonal, triangular, and singular matrices. For LU, verify that P*A == L*U within tolerance. For determinant, compare against known results (identity matrix det=1, swap rows flips sign). For inverse, verify A * A^{-1} == I. For power iteration, verify the Rayleigh quotient converges to the dominant eigenvalue by comparing with eigendecomposition for small matrices.

@@ -1,0 +1,3 @@
+# Linear Programming — Performance Analysis
+
+The simplex method runs in O((m+n) * m) per pivot, with O(m) pivots in practice (though exponential worst-case). Interior point methods (O(n^3 * log(1/epsilon)) are faster for large problems. For sparse LPs (common in practice), specialized sparse simplex methods handle millions of variables. Our dense tableau implementation is suitable for educational use with up to ~1000 variables. For larger problems, use commercial solvers (CPLEX, Gurobi) or open-source (GLPK, COIN-OR).

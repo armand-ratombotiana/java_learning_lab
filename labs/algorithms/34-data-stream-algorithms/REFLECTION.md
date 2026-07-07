@@ -1,0 +1,3 @@
+# Reflection — Data Stream Algorithms
+
+Data stream algorithms represent a fundamental shift in how we think about computation: from store-then-process to process-as-you-see. The tradeoff between memory and accuracy is the central theme. The clever use of randomization and hashing to approximate exact answers with provable guarantees is a testament to algorithmic creativity. This lab is increasingly relevant in the age of big data and real-time analytics.

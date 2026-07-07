@@ -1,0 +1,3 @@
+# Data Stream Algorithms — Architecture
+
+The lab34 package contains four algorithm classes and a test class. AMSMomentEstimation and FrequentItems maintain mutable state (counters, estimators). SlidingWindowCount manages bucket-based expiry. StreamStatistics uses Welford's algorithm for incremental mean/variance. The architecture follows each algorithm as a standalone stateful processor. A common StreamProcessor interface would allow composability but is omitted for simplicity. All classes process elements one at a time through update methods.

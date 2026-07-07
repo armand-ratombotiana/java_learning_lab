@@ -1,0 +1,3 @@
+# Suffix Array — Architecture
+
+The lab27 package contains SuffixArray, LCPArray, SuffixArrayExample, and SuffixArrayTest. SuffixArray builds the sorted suffix index array. LCPArray computes LCP from the suffix array. SuffixArrayExample demonstrates pattern matching, longest repeated substring, and distinct substring counting. The classes are designed with no dependencies between the main algorithm classes; SuffixArrayExample composes them. The architecture allows replacing the construction algorithm without affecting downstream consumers.

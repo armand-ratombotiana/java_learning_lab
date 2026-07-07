@@ -1,0 +1,3 @@
+# Reflection — FFT
+
+FFT is one of the most beautiful algorithms in computer science. It shows how exploiting mathematical structure (roots of unity) transforms a seemingly O(n^2) problem into O(n log n). The divide-and-conquer approach is elegant and the butterfly pattern is memorable. The fact that convolution becomes pointwise multiplication in frequency space is a deep insight with broad applications.

@@ -1,0 +1,3 @@
+# Suffix Array — Security Considerations
+
+Suffix arrays themselves do not typically raise security concerns. However, pattern matching algorithms can be used for intrusion detection (pattern matching in network traffic), plagiarism detection, and malware analysis. The Burrows-Wheeler transform (related to suffix arrays) is used in some encryption schemes. When used in security-sensitive contexts, ensure the algorithm handles malicious inputs efficiently (e.g., adversarial strings designed to cause worst-case behavior in construction).

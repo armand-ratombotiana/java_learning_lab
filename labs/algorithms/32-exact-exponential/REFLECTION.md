@@ -1,0 +1,3 @@
+# Reflection — Exact Exponential Algorithms
+
+Exact exponential algorithms show that NP-hardness is not the end of the story. Clever techniques can dramatically reduce the base of exponential growth, making many problems solvable for practically relevant sizes. The mathematical depth (inclusion-exclusion, zeta transforms, branching recurrences) and practical applicability make this area fascinating. The ETH provides a framework for understanding when exponential algorithms are optimal.

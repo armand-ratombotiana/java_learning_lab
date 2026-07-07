@@ -1,0 +1,3 @@
+# Push-Relabel — Security Considerations
+
+Flow algorithms are used in network security for analyzing attack graphs, network resilience, and intrusion detection. Push-relabel's preflow nature means temporary overflow states could correspond to real network congestion patterns. In security-sensitive applications (e.g., critical infrastructure), ensure the algorithm terminates in bounded time. Min-cost flow is used in secure multi-party computation for optimizing oblivious transfer protocols. Always validate input graphs to avoid integer overflow attacks on capacity values.

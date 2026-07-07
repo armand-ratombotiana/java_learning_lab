@@ -1,0 +1,3 @@
+# Quantum Simulation — Refactoring Guide
+
+Create a QuantumState interface with methods applyGate, measure, and getAmplitudes. Implement SingleQubitState and MultiQubitState classes. Extract gate application to a GateApplicator that handles tensor product structure. The gate matrices can be precomputed as static final constants. The Grover search and QFT can be implemented as Algorithm classes that take a QuantumState and return a measurement result.

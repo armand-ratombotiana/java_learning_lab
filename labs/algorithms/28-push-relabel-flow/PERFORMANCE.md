@@ -1,0 +1,3 @@
+# Push-Relabel — Performance Analysis
+
+The generic push-relabel runs in O(V^3) worst case, but with the gap heuristic, FIFO, or highest-label selection, it achieves O(V^2 * sqrt(E)) in practice, often beating Dinic on dense graphs. Min-cost max flow with potentials runs Dijkstra each augmentation: O(F * (E log V)) where F is flow value. Capacity scaling reduces augmentations to O(log U) phases with O(E) each. For very large graphs, push-relabel is preferred over Dinic when V is moderate but E is large (e.g., grid graphs from computer vision).

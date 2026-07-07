@@ -1,0 +1,3 @@
+# Bit Manipulation — Refactoring Guide
+
+Extract common bit patterns as named constants (e.g., MASKS for each swapping step). Consider using Java's built-in methods (Integer.bitCount, Integer.reverse, Integer.numberOfLeadingZeros) in production code but maintain custom implementations for learning. The XorBasis can be generalized to long[] for 64-bit support. TSP DP can be refactored to use a 1D array [1<<n] instead of 2D [1<<n][n] by storing the last city index implicitly in the upper bits.

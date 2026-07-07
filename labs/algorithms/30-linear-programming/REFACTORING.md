@@ -1,0 +1,3 @@
+# Linear Programming — Refactoring Guide
+
+Separate the pivot selection rule into a strategy pattern (Dantzig rule, Bland's rule, steepest edge). The tableau representation can be refactored as a Matrix class with row/column operations. Consider using sparse matrix representations for large LPs. Extract the problem conversion logic (standard form) into a separate Preprocessor class. The two-phase method can be implemented as a decorator around the basic simplex solver.

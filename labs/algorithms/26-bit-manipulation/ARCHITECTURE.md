@@ -1,0 +1,3 @@
+# Bit Manipulation — Architecture
+
+The lab26 package contains four main classes and one test class. BitTricks is a utility class with static methods for basic operations. GrayCode provides conversion methods. XorBasis maintains a basis array and provides insert and queryMax methods. BitDpTsp solves TSP with a 2D DP table. SubsetEnumeration offers static methods for submask iteration. The architecture follows a utility-class pattern with no shared state between classes. All methods are stateless and thread-safe.

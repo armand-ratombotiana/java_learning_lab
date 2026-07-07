@@ -1,0 +1,3 @@
+# Online Algorithms — Debugging Guide
+
+For paging algorithms, print cache state after each request to verify LRU ordering. Compare page fault counts against the optimal offline algorithm (Belady's algorithm). For ski rental, compute the competitive ratio for each possible total days to verify the worst-case bound. For secretary problem, run 10000+ simulations to verify success probability approaches 1/e. For bandits, plot cumulative regret over time.

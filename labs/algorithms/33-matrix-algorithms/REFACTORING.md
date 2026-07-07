@@ -1,0 +1,3 @@
+# Matrix Algorithms — Refactoring Guide
+
+Create a Matrix interface with methods multiply, add, transpose, etc. Implement DenseMatrix and SubMatrix (for Strassen views) classes. Gaussian elimination and LU decomposition can be operations on Matrix objects. The MatrixDecomposition class can return result objects (LUResult, SVDResult) instead of modifying input matrices. Consider using a tolerance parameter object for numerical algorithms.

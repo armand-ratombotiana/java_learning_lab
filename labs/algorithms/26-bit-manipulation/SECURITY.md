@@ -1,0 +1,3 @@
+# Bit Manipulation — Security Considerations
+
+Bit manipulation is used in cryptography for efficient implementations of S-boxes, permutation layers, and key scheduling. Side-channel attacks can leak information through timing variations in bit operations (e.g., population count with variable-time loops). Use constant-time bit operations when processing cryptographic secrets: avoid data-dependent branching or variable-time instructions. Java's Integer.bitCount is constant-time on most platforms but should not be relied upon for security without verification.

@@ -1,0 +1,3 @@
+# Data Stream Algorithms — Performance Analysis
+
+All streaming algorithms use sublinear memory. Reservoir sampling uses O(k) memory. Count-Min Sketch with width=1000 and depth=5 uses 5000 counters (~40 KB). AMS estimation uses O(m) memory where m is the number of estimators (~100). Misra-Gries uses O(k) memory (k counters). Streaming statistics uses O(1) memory (3 doubles). All algorithms process each element in O(1) or O(depth) time. The tradeoff is memory vs accuracy: doubling memory typically halves the error.

@@ -1,0 +1,3 @@
+# Bit Manipulation — Debugging Guide
+
+Common debugging strategies for bit manipulation: print binary representation of values using Integer.toBinaryString(x). Check edge cases like Integer.MIN_VALUE, -1, 0, and the maximum value. Use assertion-based testing with known patterns: for each bit trick, test on all powers of two, all-ones, and alternating patterns. For TSP DP, verify with a complete graph where all distances equal: any permutation is optimal, and all DP states should have equal values.

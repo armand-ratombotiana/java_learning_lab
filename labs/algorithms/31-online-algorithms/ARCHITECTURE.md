@@ -1,0 +1,3 @@
+# Online Algorithms — Architecture
+
+The lab31 package contains four main algorithm classes and one test class. OnlinePaging (with inner LRU, FIFO, Marker classes), SkiRental, SecretaryProblem, and MultiArmedBandit are independent. Each class is self-contained with its own state. The architecture follows the strategy pattern mental model but uses static methods where appropriate. The MultiArmedBandit class provides epsilon-greedy simulation. A common Cache interface could unify the paging algorithms but is not implemented for simplicity.

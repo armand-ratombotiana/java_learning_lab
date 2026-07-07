@@ -1,0 +1,3 @@
+# Matrix Algorithms — Security Considerations
+
+Matrix algorithms are used in cryptographic contexts: lattice-based cryptography relies heavily on matrix operations over structured lattices. Gaussian elimination over finite fields is used in Shamir secret sharing and error-correcting codes. SVD is used in watermarking and steganography (detecting hidden information via low-rank approximations). Numerical stability issues can be exploited: an attacker can craft matrices that cause Gaussian elimination with partial pivoting to fail (large element growth). Use stable algorithms with appropriate tolerances.
