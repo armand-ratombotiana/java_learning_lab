@@ -40,6 +40,6 @@ class ClassLoadingBytecodeTest {
 
     @Test
     void testInvokeDynamic() throws Exception {
-        InvokeDynamicExample.main(new String[]{});
+        assertDoesNotThrow(() -> InvokeDynamicExample.main(new String[]{}));
     }
 }

@@ -7,7 +7,7 @@ package com.javaacademy.lab52.performanceantipatterns;
  */
 public class StringConcatAntiPattern {
 
-    private static final int ITERATIONS = 50_000;
+    static final int ITERATIONS = 50_000;
 
     public static void main(String[] args) {
         System.out.println("=== String Concatenation Anti-Pattern ===");

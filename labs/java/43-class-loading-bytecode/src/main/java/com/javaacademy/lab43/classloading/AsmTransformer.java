@@ -39,6 +39,5 @@ public class AsmTransformer {
 
         ClassReader cr = new ClassReader(transformed);
         System.out.println("Class: " + cr.getClassName());
-        System.out.println("Annotations: " + cr.getAnnotationCount());
     }
 }

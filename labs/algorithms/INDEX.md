@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-35-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-40-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-orange?style=for-the-badge)
 
-**Master 35 algorithm paradigms — from sorting to quantum algorithm simulation — all examples in Java**
+**Master 40 algorithm paradigms — from sorting to advanced string algorithms — all examples in Java**
 
 </div>
 
@@ -75,6 +75,15 @@ The Algorithms Academy provides a comprehensive, deep-dive curriculum covering f
 | 33 | [Matrix Algorithms](./33-matrix-algorithms/) — Strassen multiplication, Gaussian elimination, LU, SVD | 5-6 hrs | Expert |
 | 34 | [Data Stream Algorithms](./34-data-stream-algorithms/) — AMS estimation, frequent items, sliding window, streaming statistics | 4-5 hrs | Expert |
 | 35 | [Quantum Algorithm Simulation](./35-quantum-simulation/) — Qubits, quantum gates, Grover's search, QFT | 5-6 hrs | Expert |
+
+### Level 6: Advanced & Specialized Topics
+| Lab | Topic | Duration | Difficulty |
+|-----|-------|----------|------------|
+| 36 | [Bloom Filter Variants](./36-bloom-filter-variants/) — Counting, Scalable, Cuckoo filter, XOR filter, comparison | 3-4 hrs | Advanced |
+| 37 | [Graph Coloring & Clique](./37-graph-coloring-clique/) — Welsh-Powell, DSatur, Bron-Kerbosch, max clique | 4-5 hrs | Expert |
+| 38 | [MST Variants](./38-mst-variants/) — Borůvka, Steiner tree, minimum bottleneck, Euclidean MST, dynamic MST | 4-5 hrs | Expert |
+| 39 | [Number Theory Advanced](./39-number-theory-advanced/) — Pollard's Rho, elliptic curves, continued fractions, Pell | 4-5 hrs | Expert |
+| 40 | [String Algorithms Advanced](./40-string-algorithms-advanced/) — Suffix automaton, Manacher, BWT, Huffman coding | 5-6 hrs | Expert |
 
 ---
 

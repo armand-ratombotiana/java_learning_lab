@@ -19,7 +19,7 @@ public class InvokeDynamicExample {
 
         // Manual invokedynamic via MethodHandles.Lookup
         MethodHandles.Lookup lookup = MethodHandles.lookup();
-        MethodType mt = MethodType.methodType(String.class, String.class);
+        MethodType mt = MethodType.methodType(String.class);
         MethodHandle toUpper = lookup.findVirtual(String.class, "toUpperCase", mt);
 
         CallSite site = LambdaMetafactory.metafactory(

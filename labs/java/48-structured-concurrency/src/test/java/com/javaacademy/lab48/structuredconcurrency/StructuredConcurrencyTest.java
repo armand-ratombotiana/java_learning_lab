@@ -7,13 +7,13 @@ class StructuredConcurrencyTest {
 
     @Test
     void testStructuredTaskScopeOnSuccess() throws Exception {
-        String result = StructuredTaskScopeExample.tryShutdownOnSuccess();
+        String result = StructuredTaskScopeExample.tryAnySuccessfulResultOrThrow();
         assertEquals("fast-result", result);
     }
 
     @Test
     void testStructuredTaskScopeOnFailure() throws Exception {
-        String result = StructuredTaskScopeExample.tryShutdownOnFailure();
+        String result = StructuredTaskScopeExample.tryAwaitAllSuccessfulOrThrow();
         assertTrue(result.contains("part-a") && result.contains("part-b"));
     }
 
@@ -24,7 +24,7 @@ class StructuredConcurrencyTest {
 
     @Test
     void testVirtualThreadStructured() throws Exception {
-        long result = VirtualThreadStructuredExample.processMany(50);
+        long result = VirtualThreadStructuredExample.processMany(200);
         assertTrue(result > 0);
     }
 }

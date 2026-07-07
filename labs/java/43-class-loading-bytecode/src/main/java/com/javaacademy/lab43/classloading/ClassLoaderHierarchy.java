@@ -18,8 +18,6 @@ public class ClassLoaderHierarchy {
         }
         System.out.println("Bootstrap ClassLoader (null - native, C++ implementation)");
 
-        System.out.println("\nPlatform ClassLoader modules:");
-        ClassLoader platform = ClassLoader.getPlatformClassLoader();
-        platform.definedPackages().forEach(p -> System.out.println("  " + p.getName()));
+        System.out.println("\nPlatform ClassLoader: " + ClassLoader.getPlatformClassLoader().getName());
     }
 }

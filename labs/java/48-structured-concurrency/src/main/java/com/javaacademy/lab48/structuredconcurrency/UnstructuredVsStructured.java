@@ -5,12 +5,6 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Compares unstructured vs structured concurrency error propagation.
- * Unstructured: errors in subtasks may be silently swallowed,
- * threads leak, cancellations are ad-hoc.
- * Structured: errors propagate cleanly, scope ensures cleanup.
- */
 public class UnstructuredVsStructured {
 
     public static void main(String[] args) throws Exception {
@@ -33,7 +27,6 @@ public class UnstructuredVsStructured {
                 return taskId;
             }));
         }
-        // Error from task 2 is hidden — we have to check each future
         for (var f : futures) {
             try { f.get(); } catch (Exception e) { System.out.println("Caught: " + e.getCause().getMessage()); }
         }
@@ -42,7 +35,7 @@ public class UnstructuredVsStructured {
     }
 
     static void structuredError() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.awaitAllSuccessfulOrThrow())) {
             for (int i = 0; i < 5; i++) {
                 int taskId = i;
                 scope.fork(() -> {
@@ -51,10 +44,8 @@ public class UnstructuredVsStructured {
                     return taskId;
                 });
             }
-            scope.join();
-            // scope.throwIfFailed will propagate the first failure
             try {
-                scope.throwIfFailed();
+                scope.join();
             } catch (Exception e) {
                 System.out.println("Structured scope propagated: " + e.getMessage());
             }

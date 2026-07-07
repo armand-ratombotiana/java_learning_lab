@@ -2,11 +2,6 @@ package com.javaacademy.lab48.structuredconcurrency;
 
 import java.util.concurrent.StructuredTaskScope;
 
-/**
- * Demonstrates ScopedValue usage within structured concurrency.
- * ScopedValue provides bounded dynamic scoping that works correctly
- * with virtual threads and structured task scopes, unlike ThreadLocal.
- */
 public class ScopedValueExample {
 
     private static final ScopedValue<String> REQUEST_ID = ScopedValue.newInstance();
@@ -28,7 +23,7 @@ public class ScopedValueExample {
         System.out.println("Request: " + REQUEST_ID.get());
         System.out.println("User: " + USER_CONTEXT.get());
 
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.awaitAllSuccessfulOrThrow())) {
             scope.fork(() -> {
                 System.out.println("  Subtask sees request: " + REQUEST_ID.get());
                 return "ok";

@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-30-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-35-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-brightgreen?style=for-the-badge)
 
-**Master 30 essential data structures — from arrays to cache-oblivious data structures — all examples in Java**
+**Master 35 essential data structures — from arrays to link-cut trees — all examples in Java**
 
 </div>
 
@@ -71,7 +71,16 @@ The Data Structures Academy provides a comprehensive, hands-on curriculum coveri
 | 29 | [van Emde Boas Tree](./29-van-emde-boas/) | O(log log U) operations, predecessor/successor, recursive decomposition | 4-5 hrs | Expert |
 | 30 | [Cache-Oblivious Structures](./30-cache-oblivious/) | Ideal cache model, CO B-tree, van Emde Boas layout, recursive matrix multiply | 4-5 hrs | Expert |
 
-**Total estimated time: 100-130 hours**
+### Level 6: Advanced Trees & Dynamic Structures
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 31 | [Rope](./31-rope/) | Balanced binary tree for strings, concat/split/substring, text editor | 2-3 hrs | Advanced |
+| 32 | [Dancing Links (DLX)](./32-dancing-links/) | Exact cover, circular doubly linked matrix, Algorithm X, Sudoku | 3-4 hrs | Expert |
+| 33 | [Treap](./33-treap/) | Randomized BST, split/merge, implicit treap, order statistics, range ops | 3-4 hrs | Expert |
+| 34 | [Persistent Segment Tree](./34-persistent-segment-tree/) | Versioned range queries, path copying, K-th smallest in range | 4-5 hrs | Expert |
+| 35 | [Link-Cut Tree](./35-link-cut-tree/) | Dynamic trees, splay-based, expose operation, path aggregates, connectivity | 4-5 hrs | Expert |
+
+**Total estimated time: 115-150 hours**
 
 ---
 

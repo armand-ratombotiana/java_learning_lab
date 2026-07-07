@@ -46,7 +46,7 @@ public class BytecodeAnalyzer {
 
         int ifCount = dis.readUnsignedShort();
         System.out.println("Interface Count: " + ifCount);
-        dis.skipBytes(ifCount * 2L);
+        dis.skipBytes((int) (ifCount * 2L));
 
         int fieldCount = dis.readUnsignedShort();
         System.out.println("Field Count: " + fieldCount);

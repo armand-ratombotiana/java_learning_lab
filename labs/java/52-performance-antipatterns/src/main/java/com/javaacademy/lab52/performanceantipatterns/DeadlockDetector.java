@@ -61,7 +61,7 @@ public class DeadlockDetector {
             System.out.println("No deadlock detected (unexpected)");
         }
 
-        System.exit(0);
+        System.out.println("Deadlock detection demo complete.");
     }
 
     static void sleep(long ms) {

@@ -1,11 +1,7 @@
 package com.javaacademy.lab48.structuredconcurrency;
 
-import java.util.concurrent.*;
+import java.util.concurrent.StructuredTaskScope;
 
-/**
- * Combines virtual threads with structured concurrency to demonstrate
- * massive parallelism with clean lifecycle management.
- */
 public class VirtualThreadStructuredExample {
 
     public static void main(String[] args) throws Exception {
@@ -20,19 +16,19 @@ public class VirtualThreadStructuredExample {
         long total = 0;
         int batchSize = 100;
         for (int batch = 0; batch < count / batchSize; batch++) {
-            try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-                var futures = new java.util.ArrayList<Future<TaskResult>>();
+            try (StructuredTaskScope<TaskResult, Void> scope = StructuredTaskScope.open(
+                    StructuredTaskScope.Joiner.awaitAllSuccessfulOrThrow())) {
+                var subtasks = new java.util.ArrayList<StructuredTaskScope.Subtask<TaskResult>>();
                 for (int i = 0; i < batchSize; i++) {
                     int finalI = batch * batchSize + i;
-                    futures.add(scope.fork(() -> {
-                        // Simulate IO-bound work
+                    subtasks.add(scope.fork(() -> {
                         Thread.sleep(1);
                         return new TaskResult(finalI, (long) finalI * finalI);
                     }));
                 }
                 scope.join();
-                for (var f : futures) {
-                    total += f.resultNow().value();
+                for (var s : subtasks) {
+                    total += s.get().value();
                 }
             }
         }

@@ -1,53 +1,48 @@
 package com.javaacademy.lab48.structuredconcurrency;
 
-import java.util.concurrent.*;
+import java.util.concurrent.StructuredTaskScope;
 
-/**
- * Demonstrates StructuredTaskScope with ShutdownOnSuccess and ShutdownOnFailure policies.
- * Shows how structured concurrency manages task lifetimes and propagates errors
- * within a bounded scope.
- */
 public class StructuredTaskScopeExample {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("=== ShutdownOnSuccess Example ===");
-        String result = tryShutdownOnSuccess();
+        System.out.println("=== anySuccessfulResultOrThrow Example ===");
+        String result = tryAnySuccessfulResultOrThrow();
         System.out.println("Result: " + result);
 
-        System.out.println("\n=== ShutdownOnFailure Example ===");
-        String combined = tryShutdownOnFailure();
+        System.out.println("\n=== awaitAllSuccessfulOrThrow Example ===");
+        String combined = tryAwaitAllSuccessfulOrThrow();
         System.out.println("Combined: " + combined);
     }
 
-    static String tryShutdownOnSuccess() throws Exception {
-        try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
-            Future<String> task1 = scope.fork(() -> {
+    static String tryAnySuccessfulResultOrThrow() throws Exception {
+        try (StructuredTaskScope<String, String> scope = StructuredTaskScope.open(
+                StructuredTaskScope.Joiner.anySuccessfulResultOrThrow())) {
+            scope.fork(() -> {
                 Thread.sleep(200);
                 return "fast-result";
             });
-            Future<String> task2 = scope.fork(() -> {
+            scope.fork(() -> {
                 Thread.sleep(500);
                 return "slow-result";
             });
-            scope.join();
-            return scope.result();
+            return scope.join();
         }
     }
 
-    static String tryShutdownOnFailure() throws Exception {
+    static String tryAwaitAllSuccessfulOrThrow() throws Exception {
         record Pair(String a, String b) {}
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> task1 = scope.fork(() -> {
+        try (StructuredTaskScope<String, Void> scope = StructuredTaskScope.open(
+                StructuredTaskScope.Joiner.awaitAllSuccessfulOrThrow())) {
+            StructuredTaskScope.Subtask<String> task1 = scope.fork(() -> {
                 Thread.sleep(100);
                 return "part-a";
             });
-            Future<String> task2 = scope.fork(() -> {
+            StructuredTaskScope.Subtask<String> task2 = scope.fork(() -> {
                 Thread.sleep(150);
                 return "part-b";
             });
             scope.join();
-            scope.throwIfFailed();
-            return new Pair(task1.resultNow(), task2.resultNow()).toString();
+            return new Pair(task1.get(), task2.get()).toString();
         }
     }
 }
