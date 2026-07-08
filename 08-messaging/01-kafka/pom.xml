@@ -6,5 +6,5 @@
   <name>01 Apache Kafka</name>
   <description>Apache Kafka distributed streaming platform</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
-  <dependencies><dependency><groupId>org.apache.kafka</groupId><artifactId>kafka-clients</artifactId><version>3.7.0</version></dependency></dependencies>
+  <dependencies><dependency><groupId>org.apache.kafka</groupId><artifactId>kafka-clients</artifactId><version>3.9.2</version></dependency></dependencies>
 </project>
