@@ -5,7 +5,7 @@
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-16-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-25-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Intermediate_to_Expert-purple?style=for-the-badge)
 
 **Build production-grade backend services in Java — from REST APIs to reactive microservices**
@@ -23,38 +23,51 @@ The Backend Academy covers the full backend engineering landscape in the Java ec
 ## Curriculum Map
 
 ### Level 1: Spring Ecosystem
-| # | Lab | Topic | Duration | Difficulty | Module Reference |
-|---|-----|-------|----------|------------|-----------------|
-| 01 | [Spring Core & DI](./01-spring-core/) | IoC container, beans, configuration, profiles | 4-5 hrs | Intermediate | [14-spring-core](../../14-spring-core/) |
-| 02 | [Spring Boot Fundamentals](./02-spring-boot/) | Auto-configuration, starters, actuators, CLI | 4-5 hrs | Intermediate | [15-spring-boot](../../15-spring-boot/), [02-spring-boot](../../02-spring-boot/) |
-| 03 | [REST API Development](./03-rest-apis/) | Controllers, request handling, validation, error handling | 4-5 hrs | Intermediate | [16-rest-apis](../../16-rest-apis/) |
-| 04 | [JPA & Hibernate](./04-jpa-hibernate/) | ORM, entities, relationships, JPQL, caching | 5-6 hrs | Intermediate | [17-jpa-hibernate](../../17-jpa-hibernate/) |
-| 05 | [Database Access (JDBC, R2DBC, Spring Data)](./05-database-access/) | DataSources, transactions, reactive DB access | 4-5 hrs | Advanced | [18-database-access](../../18-database-access/), [69-r2dbc](../../69-r2dbc/) |
-| 06 | [Spring Security & OAuth2](./06-spring-security/) | Authentication, authorization, JWT, OAuth2, method security | 5-6 hrs | Advanced | [20-spring-security](../../20-spring-security/) |
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 01 | [Spring Boot Basics](./01-spring-boot-basics/) | Auto-configuration, starters, actuators, embedded servers | 4-5 hrs | Intermediate |
+| 02 | [REST APIs](./02-rest-apis/) | Controllers, request handling, validation, error handling | 4-5 hrs | Intermediate |
+| 03 | [Spring MVC](./03-spring-mvc/) | Model-View-Controller, Thymeleaf, form handling, validation | 4-5 hrs | Intermediate |
+| 04 | [Spring Data JPA](./04-spring-data-jpa/) | ORM, entities, relationships, JPQL, repositories | 5-6 hrs | Intermediate |
+| 05 | [Transaction Management](./05-transaction-management/) | Declarative transactions, isolation levels, propagation | 4-5 hrs | Advanced |
+| 06 | [Security Basics](./06-security-basics/) | Authentication, authorization, method security, login flows | 5-6 hrs | Advanced |
 
 ### Level 2: Alternative Frameworks
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 07 | [Messaging](./07-messaging/) | JMS, RabbitMQ, Kafka integration, async messaging | 4-5 hrs | Advanced |
+| 08 | [Micronaut](./08-micronaut/) | Compile-time DI, GraalVM, reactive, AOT | 4-5 hrs | Advanced |
+| 09 | [Helidon](./09-helidon/) | SE/MP, reactive streams, microprofile | 3-4 hrs | Advanced |
+| 10 | [Quarkus](./10-quarkus/) | Live reload, native compilation, reactive | 4-5 hrs | Advanced |
+| 11 | [Testing Strategies](./11-testing-strategies/) | Unit testing, integration testing, Testcontainers, Mockito | 4-5 hrs | Intermediate |
+
+### Level 3: Integration & API Design
+| # | Lab | Topic | Duration | Difficulty |
+|---|-----|-------|----------|------------|
+| 12 | [API Documentation](./12-api-documentation/) | OpenAPI, Swagger, API design, contract-first | 3-4 hrs | Intermediate |
+| 13 | [Caching](./13-caching/) | Cache abstraction, Redis, Caffeine, cache strategies | 3-4 hrs | Intermediate |
+| 14 | [Scheduling](./14-scheduling/) | @Scheduled, cron expressions, task execution, async | 3-4 hrs | Intermediate |
+
+### Level 4: Advanced Backend Topics (Original)
 | # | Lab | Topic | Duration | Difficulty | Module Reference |
 |---|-----|-------|----------|------------|-----------------|
-| 07 | [Micronaut](./07-micronaut/) | Compile-time DI, GraalVM, reactive, AOT | 4-5 hrs | Advanced | [52-micronaut](../../52-micronaut/) |
-| 08 | [Quarkus](./08-quarkus/) | Live reload, native compilation, reactive | 4-5 hrs | Advanced | [51-quarkus](../../51-quarkus/) |
-| 09 | [Helidon](./09-helidon/) | SE/MP, reactive streams, microprofile | 3-4 hrs | Advanced | [53-helidon](../../53-helidon/) |
-| 10 | [Javalin](./10-javalin/) | Lightweight, Kotlin-friendly, embedded server | 2-3 hrs | Intermediate | [19-javalin](../../19-javalin/) |
-| 11 | [Vert.x](./11-vertx/) | Event loop, reactive, polyglot, Netty | 4-5 hrs | Advanced | [54-vertx](../../54-vertx/) |
+| 15 | [Reactive Programming](./15-webflux-reactive/) | Project Reactor, WebFlux, RSocket | 5-6 hrs | Expert | [14-reactive-programming](../../14-reactive-programming/) |
 
-### Level 3: Messaging & Integration
+### Level 5: Advanced Backend Topics (Expanded)
 | # | Lab | Topic | Duration | Difficulty | Module Reference |
 |---|-----|-------|----------|------------|-----------------|
-| 12 | [Messaging with Kafka](./12-messaging-kafka/) | Producers, consumers, streams, exactly-once | 5-6 hrs | Advanced | [08-messaging](../../08-messaging/), [55-kafka](../../55-kafka/) |
-| 13 | [Messaging with RabbitMQ](./13-messaging-rabbitmq/) | Exchanges, queues, bindings, RPC | 3-4 hrs | Intermediate | [08-messaging](../../08-messaging/), [34-rabbitmq](../../34-rabbitmq/) |
-| 14 | [Apache Camel Integration](./14-apache-camel/) | Routes, EIP, transformations, connectors | 4-5 hrs | Advanced | [16-apache-camel](../../16-apache-camel/) |
+| 16 | [Spring Cloud Infrastructure](./16-spring-cloud/) | Eureka, Config Server, Load Balancer, Circuit Breakers (Resilience4J) | 5-6 hrs | Expert | |
+| 17 | [API Versioning & Documentation](./17-api-versioning-documentation/) | OpenAPI 3.0, SpringDoc, versioning strategies, API contracts | 4-5 hrs | Advanced | |
+| 18 | [File Processing with Spring Batch](./18-file-processing-batch/) | Spring Batch, chunk processing, readers/writers, schedulers | 5-6 hrs | Advanced | |
+| 19 | [Server-Sent Events](./19-server-sent-events/) | SSE protocol, event streams, reactive SSE, WebFlux SSE | 3-4 hrs | Intermediate | |
+| 20 | [Backend Security Deep Dive](./20-backend-security-deep/) | CSRF, CORS, rate limiting, input validation, SQL injection prevention | 5-6 hrs | Advanced | |
+| 21 | [Multi-Tenancy Patterns](./21-multi-tenancy/) | Schema-per-tenant, database-per-tenant, discriminator column, SaaS | 4-5 hrs | Advanced | |
+| 22 | [GraphQL with Netflix DGS](./22-graphql-dgs/) | DGS framework, schema-first, data loaders, federated GraphQL | 5-6 hrs | Advanced | |
+| 23 | [CQRS with Axon Framework](./23-cqrs-axon/) | Axon Framework, command/query buses, event sourcing, sagas | 6-7 hrs | Expert | |
+| 24 | [Backend Performance Optimization](./24-backend-performance/) | Profiling, JMH benchmarks, connection pooling, async I/O, caching | 5-6 hrs | Advanced | |
+| 25 | [GraalVM Native Images](./25-graalvm-native/) | Native images, reflection config, resource bundles, AOT compilation | 4-5 hrs | Advanced | [24-graalvm-native](../../24-graalvm-native/) |
 
-### Level 4: Advanced Backend Topics
-| # | Lab | Topic | Duration | Difficulty | Module Reference |
-|---|-----|-------|----------|------------|-----------------|
-| 15 | [Reactive Programming](./15-reactive-programming/) | Project Reactor, WebFlux, RSocket | 5-6 hrs | Expert | [14-reactive-programming](../../14-reactive-programming/) |
-| 16 | [GraalVM Native Images](./16-graalvm-native/) | AOT compilation, native executables, reflection config | 3-4 hrs | Advanced | [24-graalvm-native](../../24-graalvm-native/) |
-
-**Total estimated time: 63-78 hours**
+**Total estimated time: 100-130 hours**
 
 ---
 
@@ -64,11 +77,15 @@ The Backend Academy covers the full backend engineering landscape in the Java ec
  01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06         07 ──→ 08 ──→ 09 ──→ 10 ──→ 11
 Core   Boot    REST    JPA     DB      Security  Micro   Quarkus Helid  Javalin Vert.x
                                                         Naut
-         12 ──→ 13 ──→ 14 ──→ 15 ──→ 16
-        Kafka   RMQ     Camel   Reactv  GraalVM
+         12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
+        Kafka   RMQ     Camel   Reactv  Spring  API     Batch   SSE     Security
+                                       Cloud   Docs
+         21 ──→ 22 ──→ 23 ──→ 24 ──→ 25
+        Multi   GraphQL CQRS   Perf    GraalVM
+        Tenancy
 ```
 
-Start with the Spring path (01–06), then explore alternative frameworks (07–11) and messaging (12–14). Labs 15–16 are advanced standalone topics.
+Start with the Spring path (01–06), then explore alternative frameworks (07–11) and messaging (12–14). Labs 15–25 are advanced standalone topics covering cloud infrastructure, security, performance, and modern patterns.
 
 ---
 

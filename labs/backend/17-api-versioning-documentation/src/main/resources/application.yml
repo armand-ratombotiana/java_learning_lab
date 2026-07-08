@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: api-versioning-demo
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+  packages-to-scan: com.learning.backend17
+  paths-to-match: /v1/**,/v2/**,/api/**
+
+logging:
+  level:
+    com.learning.backend17: DEBUG
+    org.springdoc: INFO

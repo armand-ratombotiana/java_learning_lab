@@ -28,6 +28,18 @@
 - [19-llm-agents](19-llm-agents/) - Tool use, planning, memory, ReAct
 - [20-fine-tuning](20-fine-tuning/) - LoRA, QLoRA, RLHF concepts, PEFT
 
+## Level 5: Advanced AI Topics
+- [21-reinforcement-learning](21-reinforcement-learning/) - Q-Learning, SARSA, DQN, policy gradients, experience replay
+- [22-gans](22-gans/) - GAN, DCGAN, WGAN, conditional GAN, training stability
+- [23-variational-autoencoders](23-variational-autoencoders/) - VAE, CVAE, beta-VAE, reparameterization trick
+- [24-graph-neural-networks](24-graph-neural-networks/) - GCN, GAT, GraphSAGE, message passing
+- [25-self-supervised-learning](25-self-supervised-learning/) - Contrastive learning, SimCLR, BYOL, MAE
+- [26-multi-task-learning](26-multi-task-learning/) - Shared representations, task weighting, PCGrad
+- [27-meta-learning](27-meta-learning/) - MAML, Reptile, few-shot learning, prototypical networks
+- [28-explainable-ai](28-explainable-ai/) - SHAP, LIME, integrated gradients, attention visualization
+- [29-federated-learning](29-federated-learning/) - FedAvg, secure aggregation, differential privacy
+- [30-ai-safety-alignment](30-ai-safety-alignment/) - Reward modeling, RLHF, constitutional AI, red teaming
+
 ## Each Lab Contains:
 - THEORY/ - Complete theoretical content with derivations
 - MATH_FOUNDATION/ - Mathematical proofs and formulas

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: sse-lab
+server:
+  port: 8080
+
+logging:
+  level:
+    com.learning.backend19: DEBUG
+    reactor.netty: INFO

@@ -4,10 +4,10 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-10-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-20-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Intermediate_to_Expert-purple?style=for-the-badge)
 
-**Master software architecture patterns — from layered to hexagonal, monoliths to microservices**
+**Master software architecture patterns — from layered to hexagonal, monoliths to microservices, service mesh to platform engineering**
 
 </div>
 
@@ -43,19 +43,33 @@ The Architecture Academy provides a comprehensive curriculum covering the full s
 | 09 | [Saga Pattern](./09-saga-pattern/) | Choreography & orchestration, compensating transactions | 4-5 hrs | Expert | [67-saga](../../67-saga/) |
 | 10 | [Modulith & Modular Monoliths](./10-modulith/) | Spring Modulith, package structure, module boundaries | 3-4 hrs | Advanced | [68-springmodulith](../../68-springmodulith/) |
 
-**Total estimated time: 39-48 hours**
+### Level 4: Advanced Architecture Patterns
+| # | Lab | Topic | Duration | Difficulty | Module Reference |
+|---|-----|-------|----------|------------|-----------------|
+| 11 | [Strangler Fig Pattern](./11-strangle-fig-pattern/) | Incremental migration, feature toggles, branch by abstraction | 4-5 hrs | Expert | — |
+| 12 | [Backend for Frontend](./12-bff-pattern/) | BFF per client type, GraphQL BFF, aggregation | 3-4 hrs | Advanced | — |
+| 13 | [Sidecar & Ambassador](./13-sidecar-ambassador/) | Sidecar pattern, ambassador, Envoy proxy | 4-5 hrs | Expert | — |
+| 14 | [Circuit Breaker](./14-circuit-breaker-pattern/) | CB states, bulkhead, Resilience4J | 4-5 hrs | Expert | — |
+| 15 | [Saga Orchestration](./15-saga-orchestration/) | Choreography vs orchestration, compensation, Axon, Camunda | 4-5 hrs | Expert | — |
+| 16 | [API Composition](./16-api-composition/) | Gateway composition, GraphQL federation, aggregate services | 3-4 hrs | Advanced | — |
+| 17 | [Advanced Strangler Fig](./17-strangler-fig-advanced/) | Decomposition, DB splitting, async migration | 4-5 hrs | Expert | — |
+| 18 | [Event-Driven Deep Dive](./18-event-driven-architecture/) | Event sourcing, event store patterns, projections | 4-5 hrs | Advanced | — |
+| 19 | [Service Mesh](./19-service-mesh-architecture/) | Istio, Linkerd, control plane, data plane, mTLS | 4-5 hrs | Expert | — |
+| 20 | [Platform Engineering](./20-platform-engineering/) | IDPs, Backstage, golden paths, self-service | 4-5 hrs | Expert | — |
+
+**Total estimated time: 79-98 hours**
 
 ---
 
 ## Learning Path
 
 ```
-01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10
-Layer   Clean   Hexag    DDD     Event    CQRS    Event    Micro   Saga   Modulith
-                                        Driven          Source  svcs
+01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10 ──→ 11 ──→ 12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
+Layer   Clean   Hexag    DDD    Event    CQRS   Event   Micro   Saga  Modulith Strangler BFF  Sidecar  CB   Saga   API   Adv    EDA  Mesh  Plat
+                                Driven          Source  svcs                    Fig                      Orch  Comp  Strang       Eng
 ```
 
-Labs 01–03 build foundational architectural thinking. Labs 04–08 introduce DDD and distributed patterns. Labs 09–10 cover advanced coordination and modularity.
+Labs 01–03 build foundational architectural thinking. Labs 04–08 introduce DDD and distributed patterns. Labs 09–10 cover advanced coordination and modularity. Labs 11–20 cover advanced architecture patterns including migration, resilience, and platform engineering.
 
 ---
 
@@ -78,7 +92,7 @@ Work through Labs 01–04 sequentially to build foundational architecture skills
 Start at Lab 04 (DDD) or Lab 05 (Event-Driven) and use earlier labs as reference.
 
 ### For Architects
-Focus on Labs 03–10 for modern distributed architecture patterns.
+Focus on Labs 03–20 for comprehensive modern distributed architecture pattern coverage.
 
 ### Lab Structure
 Each lab contains:

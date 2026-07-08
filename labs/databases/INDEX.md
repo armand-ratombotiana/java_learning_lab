@@ -7,7 +7,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-12-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-20-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Intermediate_to_Expert-purple?style=for-the-badge)
 
 **Master relational and NoSQL databases — from JDBC to reactive data access**
@@ -48,19 +48,31 @@ The Databases Academy provides a comprehensive curriculum covering SQL and NoSQL
 | 11 | [Elasticsearch](./11-elasticsearch/) | Full-text search, indexing, aggregations, Spring Data ES | 4-5 hrs | Advanced | [36-elasticsearch](../../36-elasticsearch/) |
 | 12 | [Vector Databases](./12-vector-databases/) | Embedding storage, similarity search, pgvector | 4-5 hrs | Advanced | [77-vector-database](../../77-vector-database/) |
 
-**Total estimated time: 42-54 hours**
+### Level 4: Advanced Database Topics
+| # | Lab | Topic | Duration | Difficulty | Module Reference |
+|---|-----|-------|----------|------------|-----------------|
+| 13 | [Database Sharding](./13-database-sharding/) | Horizontal sharding, consistent hashing, range vs hash, rebalancing | 5-6 hrs | Expert | [78-sharding](../../78-sharding/) |
+| 14 | [Database Replication](./14-database-replication/) | Leader-follower, multi-leader, sync/async, conflict resolution | 4-5 hrs | Expert | [79-replication](../../79-replication/) |
+| 15 | [Query Optimization](./15-query-optimization/) | Query plans, EXPLAIN ANALYZE, index tuning, materialized views | 4-5 hrs | Expert | [80-query-optimization](../../80-query-optimization/) |
+| 16 | [Database Testing](./16-database-testing/) | Testcontainers, integration tests, data fixtures, migration testing | 3-4 hrs | Advanced | [81-database-testing](../../81-database-testing/) |
+| 17 | [Cassandra NoSQL](./17-cassandra-nosql/) | Wide-column stores, CQL, data modeling, partitioning, tunable consistency | 4-5 hrs | Expert | [82-cassandra](../../82-cassandra/) |
+| 18 | [CockroachDB](./18-cockroachdb/) | Distributed SQL, geo-partitioning, online schema changes, survivability | 4-5 hrs | Expert | [83-cockroachdb](../../83-cockroachdb/) |
+| 19 | [Database Migration Strategies](./19-database-migration-strategies/) | Zero-downtime, expand-migrate-contract, blue-green DB | 4-5 hrs | Expert | [84-migration-strategies](../../84-migration-strategies/) |
+| 20 | [Database Security](./20-database-security/) | Encryption at rest/transit, RBAC, row-level security, audit logging | 4-5 hrs | Expert | [85-database-security](../../85-database-security/) |
+
+**Total estimated time: 70-89 hours**
 
 ---
 
 ## Learning Path
 
 ```
-01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10 ──→ 11 ──→ 12
-PG    JDBC    JPA/H   Flyway  Liqui   Mongo   Redis   Redis   R2DBC  Data    ES    Vector
-                                    DB              Adv            JPA                  DB
+01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08 ──→ 09 ──→ 10 ──→ 11 ──→ 12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
+PG    JDBC    JPA/H   Flyway  Liqui   Mongo   Redis   Redis   R2DBC  Data    ES    Vector  Shard   Repl    Query   Test    Cass    CRDB    Mig     Sec
+                                    DB              Adv            JPA                  DB      ing     ication  Opt             andra           Strat   urity
 ```
 
-Labs 01–05 cover relational databases and migration. Labs 06–08 cover NoSQL. Labs 09–12 cover advanced access patterns.
+Labs 01–05 cover relational databases and migration. Labs 06–08 cover NoSQL. Labs 09–12 cover advanced access patterns. Labs 13–20 cover advanced database topics at the expert level.
 
 ---
 
@@ -76,13 +88,16 @@ Labs 01–05 cover relational databases and migration. Labs 06–08 cover NoSQL.
 ## How to Use This Academy
 
 ### For Backend Developers
-Work Labs 01–05 for core relational database skills, then Labs 06–08 for NoSQL.
+Work Labs 01–05 for core relational database skills, then Labs 06–08 for NoSQL. Continue to Labs 13–20 for expert-level distributed database topics.
 
 ### For Data Engineers
-Pay special attention to Labs 01, 04, 05, 09, and 12 for data pipeline integration.
+Pay special attention to Labs 01, 04, 05, 09, 12 for data pipeline integration, and Labs 15–19 for optimization, testing, and migration at scale.
 
 ### For Full-Stack Developers
-Labs 03 and 06–08 cover the most common Java database scenarios.
+Labs 03 and 06–08 cover the most common Java database scenarios. Labs 16 and 20 cover testing and security.
+
+### For Database Reliability Engineers
+Labs 13–20 are essential: sharding, replication, query optimization, testing, Cassandra, CockroachDB, migration strategies, and security form the core of production database operations.
 
 ---
 
@@ -101,14 +116,20 @@ Labs 03 and 06–08 cover the most common Java database scenarios.
 - [PostgreSQL Docs](https://www.postgresql.org/docs/)
 - [MongoDB Docs](https://www.mongodb.com/docs/)
 - [Redis Docs](https://redis.io/docs/)
+- [Cassandra Docs](https://cassandra.apache.org/doc/)
+- [CockroachDB Docs](https://www.cockroachlabs.com/docs/)
 - [Hibernate ORM](https://hibernate.org/orm/documentation/)
 - [Flyway Docs](https://documentation.red-gate.com/flyway/)
 - [Liquibase Docs](https://docs.liquibase.com/)
+- [Testcontainers Docs](https://testcontainers.com/)
 
 ### Books
+- *Designing Data-Intensive Applications* — Martin Kleppmann
 - *High Performance MySQL* — Baron Schwartz
 - *MongoDB: The Definitive Guide* — Shannon Bradshaw
 - *Redis in Action* — Josiah L. Carlson
+- *Cassandra: The Definitive Guide* — Jeff Carpenter, Eben Hewitt
+- *Database Internals* — Alex Petrov
 - *Java Persistence with Hibernate* — Christian Bauer
 
 ---

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: cqrs-axon-lab
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  datasource:
+    url: jdbc:h2:mem:axon
+    driver-class-name: org.h2.Driver
+
+axon:
+  axonserver:
+    enabled: false
+  eventhandling:
+    processors:
+      default:
+        mode: SUBSCRIBING
+
+logging:
+  level:
+    com.learning.backend23: DEBUG
+    org.axonframework: INFO

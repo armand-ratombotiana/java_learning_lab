@@ -1,13 +1,13 @@
-# 🔢 Mathematics Academy
+# Mathematics Academy
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
-![Labs](https://img.shields.io/badge/labs-10-blue)
+![Labs](https://img.shields.io/badge/labs-15-blue)
 ![Difficulty](https://img.shields.io/badge/difficulty-foundation--to--advanced-red)
 ![Topics](https://img.shields.io/badge/topics-math--cs--stats-green)
 
 ## Overview
 
-The Mathematics Academy builds a comprehensive foundation in mathematical thinking, progressing from basic arithmetic through calculus. Each lab connects theory to practical Java implementation — you will implement algorithms, build simulations, and solve computational problems. Topics cover pure mathematics (number theory, algebra, geometry) and applied mathematics (probability, statistics, graph theory) essential for software engineering, data science, and systems design.
+The Mathematics Academy builds a comprehensive foundation in mathematical thinking, progressing from basic arithmetic through advanced topics. Each lab connects theory to practical Java implementation — you will implement algorithms, build simulations, and solve computational problems. Topics cover pure mathematics (number theory, algebra, geometry), applied mathematics (probability, statistics, graph theory), and advanced computational mathematics (optimization, information theory, numerical methods) essential for software engineering, data science, machine learning, and systems design.
 
 ## Curriculum
 
@@ -22,9 +22,14 @@ The Mathematics Academy builds a comprehensive foundation in mathematical thinki
 | 07 | [graph-theory](./07-graph-theory) | Graphs, trees, traversal, shortest path, coloring, network flow | 4h | ★★★ |
 | 08 | [probability](./08-probability) | Random variables, distributions, expectation, Bayes' theorem | 4h | ★★★ |
 | 09 | [statistics](./09-statistics) | Descriptive/inferential stats, hypothesis testing, regression, ANOVA | 4h | ★★★ |
-| 10 | [calculus](./11-calculus) | Limits, derivatives, integrals, series, multivariable calculus | 5h | ★★★ |
+| 10 | [number-theory](./10-number-theory) | Prime numbers, modular arithmetic, RSA, GCD, Chinese remainder theorem | 4h | ★★★ |
+| 11 | [calculus](./11-calculus) | Limits, derivatives, integrals, series, multivariable calculus | 5h | ★★★ |
+| 12 | [linear-algebra](./12-linear-algebra) | Vectors, matrices, SVD, QR decomposition, eigenvalues, transformations | 5h | ★★★★ |
+| 13 | [mathematical-optimization](./13-mathematical-optimization) | Gradient descent, Newton's method, Lagrange multipliers, convex optimization | 5h | ★★★★ |
+| 14 | [information-theory](./14-information-theory) | Entropy, mutual information, KL divergence, channel capacity, compression | 4h | ★★★★ |
+| 15 | [numerical-methods](./15-numerical-methods) | Integration, root finding, interpolation, ODE solvers, finite differences | 5h | ★★★★ |
 
-**Total estimated time: 36 hours**
+**Total estimated time: 60 hours**
 
 ## How to Use
 
@@ -43,21 +48,25 @@ Read THEORY.md and MATH_FOUNDATION.md for conceptual understanding. Implement al
 ## Prerequisites
 
 - Basic algebra and arithmetic at high-school level
-- Java 11+ (for programming exercises)
+- Java 21+ (for programming exercises)
 - Scientific curiosity and willingness to work through proofs
+- For advanced labs (12-15): multivariable calculus and linear algebra recommended
 
 ## Learning Path
 
 ```
 01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 11
 Arith   Alg    Geom   Trig    Disc    Combo   Graph   Calc
-                                Math                   ⁱ
+                                Math                   
                                 │
-                                ├─→ 08 ──→ 09
-                                │    Prob    Stats
+                                ├─→ 08 ──→ 09 ──→ 10
+                                │    Prob    Stats   NumTh
+                                │
+                                └─→ 12 ──→ 13 ──→ 14 ──→ 15
+                                    LinAlg   Opt    InfoTh  NumMet
 ```
 
-Labs 01–04 build foundational mathematics. Lab 05 introduces discrete structures. Labs 06–07 extend to combinatorics and graphs. Labs 08–09 bridge to probability and statistics. Lab 11 covers calculus. Note: lab 10 (number theory) is forthcoming.
+Labs 01–04 build foundational mathematics. Lab 05 introduces discrete structures. Labs 06–07 extend to combinatorics and graphs. Labs 08–09 bridge to probability and statistics. Lab 10 covers number theory and cryptography. Lab 11 covers calculus. Labs 12–15 are advanced topics: linear algebra, mathematical optimization, information theory, and numerical methods — recommended for those pursuing machine learning, data science, or scientific computing.
 
 ## Related Academies
 

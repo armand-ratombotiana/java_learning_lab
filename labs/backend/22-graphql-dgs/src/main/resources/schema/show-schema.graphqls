@@ -1,0 +1,20 @@
+type Query {
+    shows: [Show]
+    show(id: ID!): Show
+}
+
+type Show {
+    id: ID!
+    title: String!
+    releaseYear: Int!
+    rating: Float
+    reviews: [Review]
+}
+
+type Review {
+    id: ID!
+    showId: ID!
+    username: String!
+    rating: Int!
+    comment: String
+}

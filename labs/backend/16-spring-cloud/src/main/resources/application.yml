@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: spring-cloud-lab
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    enabled: false
+  instance:
+    hostname: localhost
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 20
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 5s
+  retry:
+    configs:
+      default:
+        max-attempts: 3
+        wait-duration: 500ms
+  bulkhead:
+    configs:
+      default:
+        max-concurrent-calls: 10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,circuitbreakers
+  health:
+    circuitbreakers:
+      enabled: true
+
+logging:
+  level:
+    com.learning.backend16: DEBUG
+    org.springframework.cloud: INFO

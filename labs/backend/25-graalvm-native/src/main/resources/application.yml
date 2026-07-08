@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: graalvm-native-lab
+server:
+  port: 8080
+
+logging:
+  level:
+    com.learning.backend25: DEBUG

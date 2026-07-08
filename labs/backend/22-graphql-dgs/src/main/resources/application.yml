@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: graphql-dgs-lab
+
+server:
+  port: 8080
+
+dgs:
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      locations: classpath*:**/*.graphqls
+
+logging:
+  level:
+    com.learning.backend22: DEBUG
+    com.netflix.graphql: INFO
