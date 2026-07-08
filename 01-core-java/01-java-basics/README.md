@@ -27,10 +27,110 @@ By completing this module, you will:
 - ✅ Work with single and multi-dimensional arrays
 - ✅ Manipulate strings efficiently
 - ✅ Apply best practices for Java basics
+- ✅ Understand edge cases through 18 interactive quizzes
+- ✅ Use modern Java features (var, records, null safety)
 
 ---
 
-## 📖 Topics Covered
+## 🚀 Quick Start
+
+### Build the module
+```bash
+mvn clean install
+```
+
+### Run all demos and quizzes
+```bash
+mvn exec:java -Dexec.mainClass=com.learning.Main
+```
+
+### Run only tests
+```bash
+mvn test
+```
+
+### Run specific quiz class
+```bash
+java -cp target/classes com.learning.quizzes.JavaBasicsQuizzes
+```
+
+---
+
+## 📋 Interactive Quiz System
+
+This module includes **18 interactive quizzes** that demonstrate edge cases and best practices:
+
+### Core Quizzes (1-15)
+1. **Type Widening** - Automatic vs manual type conversions
+2. **String Pooling** - String interning and memory optimization
+3. **Integer Overflow** - Silent overflow behavior in Java
+4. **Floating-Point Precision** - IEEE 754 limitations
+5. **Variable Scope** - Shadowing and scope hierarchy
+6. **Operator Precedence** - Order of evaluation rules
+7. **String Immutability** - Why Strings are immutable
+8. **Modulus with Negatives** - Unexpected % behavior
+9. **Switch Fall-Through** - Common switch bug pattern
+10. **Uninitialized Variables** - Local vs instance variable defaults
+11. **Increment Operators** - Prefix vs postfix behavior
+12. **Autoboxing** - Integer caching edge cases
+13. **Safe Iteration** - ConcurrentModificationException prevention
+14. **Integer Division** - Truncation and real-world bugs
+15. **Bitwise Operations** - Bit manipulation fundamentals
+
+### Modern Java Features (16-18)
+16. **Local Variable Type Inference** - `var` keyword usage
+17. **Null Safety Basics** - Null checking patterns
+18. **Records and Immutability** - Record types for data carriers
+
+### Running Quizzes Programmatically
+
+```java
+// Get all quiz topics
+List<String> topics = JavaBasicsQuizzes.getQuizTopics();
+System.out.println("Available topics: " + topics);
+
+// Run all quizzes and get count
+int completed = JavaBasicsQuizzes.runAllQuizzes();
+System.out.println("Completed " + completed + " quizzes");
+```
+
+---
+
+## 🧪 Testing & Verification
+
+### Test Coverage
+The module includes regression tests that verify:
+- All 18 quiz topics are properly registered
+- Quizzes execute without throwing exceptions
+- Quiz execution count matches expectations
+
+### Run Tests
+```bash
+# Run with verbose output
+mvn test -e
+
+# Run specific test class
+mvn test -Dtest=JavaBasicsQuizzesTest
+```
+
+### Test Results
+```
+Tests run: 2
+Successful: 2
+Failed: 0
+```
+
+---
+
+## 🛠️ How to Run
+
+```bash
+mvn clean test
+mvn exec:java -Dexec.mainClass=com.learning.Main
+java -cp target/classes com.learning.Main
+```
+
+## �📖 Topics Covered
 
 ### 1. Variables (`Variables.java`)
 

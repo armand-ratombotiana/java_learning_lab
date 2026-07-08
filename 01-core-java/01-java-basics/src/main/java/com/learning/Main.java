@@ -1,5 +1,7 @@
 package com.learning;
 
+import com.learning.quizzes.JavaBasicsQuizzes;
+
 /**
  * Main class demonstrating Java Basics concepts.
  * 
@@ -55,6 +57,10 @@ public class Main {
         // Elite Training (Hands-on Coding Exercises)
         System.out.println("\n10. Elite Training - Practical Exercises:");
         EliteTraining.demonstrateEliteTraining();
+
+        // Interactive quizzes
+        System.out.println("\n11. Interactive Quizzes:");
+        JavaBasicsQuizzes.runAllQuizzes();
 
         System.out.println("\n\n=== Java Basics Module Complete ===");
         System.out.println("All demonstrations executed successfully!");

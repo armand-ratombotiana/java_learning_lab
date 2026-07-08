@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 /**
  * Java Basics - Code-Based Quizzes
@@ -16,8 +18,42 @@ import java.util.List;
  */
 public class JavaBasicsQuizzes {
 
+    private static final String HELLO = "hello";
+    private static final String RESULT_PREFIX = "Result: ";
+    private static final Map<String, Runnable> QUIZZES = new LinkedHashMap<>();
+
+    static {
+        QUIZZES.put("Type Widening", JavaBasicsQuizzes::quiz1TypeWidening);
+        QUIZZES.put("String Pooling", JavaBasicsQuizzes::quiz2StringPooling);
+        QUIZZES.put("Integer Overflow", JavaBasicsQuizzes::quiz3IntegerOverflow);
+        QUIZZES.put("Floating-Point Precision", JavaBasicsQuizzes::quiz4FloatingPoint);
+        QUIZZES.put("Variable Scope", JavaBasicsQuizzes::quiz5VariableScope);
+        QUIZZES.put("Operator Precedence", JavaBasicsQuizzes::quiz6OperatorPrecedence);
+        QUIZZES.put("String Immutability", JavaBasicsQuizzes::quiz7StringImmutability);
+        QUIZZES.put("Modulus with Negatives", JavaBasicsQuizzes::quiz8ModulusNegatives);
+        QUIZZES.put("Switch Fall-Through", JavaBasicsQuizzes::quiz9SwitchFallThrough);
+        QUIZZES.put("Uninitialized Variables", JavaBasicsQuizzes::quiz10UninitializedVariables);
+        QUIZZES.put("Increment Operators", JavaBasicsQuizzes::quiz11IncrementOperators);
+        QUIZZES.put("Autoboxing", JavaBasicsQuizzes::quiz12Autoboxing);
+        QUIZZES.put("Safe Iteration", JavaBasicsQuizzes::quiz13SafeIteration);
+        QUIZZES.put("Integer Division", JavaBasicsQuizzes::quiz14IntegerDivision);
+        QUIZZES.put("Bitwise Operations", JavaBasicsQuizzes::quiz15BitwiseOperations);
+        QUIZZES.put("Local Variable Type Inference", JavaBasicsQuizzes::quiz16LocalVariableTypeInference);
+        QUIZZES.put("Null Safety Basics", JavaBasicsQuizzes::quiz17NullSafetyBasics);
+        QUIZZES.put("Records and Immutability", JavaBasicsQuizzes::quiz18RecordsAndImmutability);
+    }
+
+    public static List<String> getQuizTopics() {
+        return new ArrayList<>(QUIZZES.keySet());
+    }
+
+    public static int runAllQuizzes() {
+        QUIZZES.values().forEach(Runnable::run);
+        return QUIZZES.size();
+    }
+
     // ==================== QUIZ 1: Type Widening ====================
-    private static void quiz1_typeWidening() {
+    private static void quiz1TypeWidening() {
         System.out.println("\n=== QUIZ 1: Type Widening ===");
         System.out.println("Which conversions are automatic (widening)?");
         System.out.println();
@@ -42,12 +78,12 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 2: String Pooling ====================
-    private static void quiz2_stringPooling() {
+    private static void quiz2StringPooling() {
         System.out.println("\n=== QUIZ 2: String Pooling and Interning ===");
         
-        String s1 = "hello";              // Literal → goes to pool
-        String s2 = "hello";              // Literal → found in pool
-        String s3 = new String("hello");  // Constructor → new heap object
+        String s1 = HELLO;              // Literal → goes to pool
+        String s2 = HELLO;              // Literal → found in pool
+        String s3 = new String(HELLO);  // Constructor → new heap object
         
         System.out.println("s1 = \"hello\"");
         System.out.println("s2 = \"hello\"");
@@ -63,7 +99,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 3: Integer Overflow ====================
-    private static void quiz3_integerOverflow() {
+    private static void quiz3IntegerOverflow() {
         System.out.println("\n=== QUIZ 3: Integer Overflow ===");
         
         int max = Integer.MAX_VALUE;
@@ -71,7 +107,7 @@ public class JavaBasicsQuizzes {
         System.out.println("Adding 1...");
         
         int overflow = max + 1;
-        System.out.println("Result: " + overflow);
+        System.out.println(RESULT_PREFIX + overflow);
         System.out.println("This is: Integer.MIN_VALUE = " + Integer.MIN_VALUE);
         System.out.println();
         System.out.println("⚠️  OVERFLOW IS SILENT - No exception, just wraps around!");
@@ -83,7 +119,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 4: Floating-Point Precision ====================
-    private static void quiz4_floatingPoint() {
+    private static void quiz4FloatingPoint() {
         System.out.println("\n=== QUIZ 4: Floating-Point Precision Trap ===");
         
         double x = 0.1;
@@ -114,7 +150,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 5: Variable Scope ====================
-    private static void quiz5_variableScope() {
+    private static void quiz5VariableScope() {
         System.out.println("\n=== QUIZ 5: Variable Scope and Shadowing ===");
         
         int x = 1;
@@ -140,7 +176,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 6: Operator Precedence ====================
-    private static void quiz6_operatorPrecedence() {
+    private static void quiz6OperatorPrecedence() {
         System.out.println("\n=== QUIZ 6: Operator Precedence ===");
         
         int result = 10 + 5 * 2 - 3 / 2;
@@ -159,7 +195,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 7: String Immutability ====================
-    private static void quiz7_stringImmutability() {
+    private static void quiz7StringImmutability() {
         System.out.println("\n=== QUIZ 7: String Immutability ===");
         
         String original = "Java";
@@ -183,7 +219,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 8: Modulus with Negatives ====================
-    private static void quiz8_modulusNegatives() {
+    private static void quiz8ModulusNegatives() {
         System.out.println("\n=== QUIZ 8: Modulus with Negative Numbers ===");
         
         System.out.println("7 % 3 = " + (7 % 3));
@@ -201,7 +237,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 9: Switch Fall-Through ====================
-    private static void quiz9_switchFallThrough() {
+    private static void quiz9SwitchFallThrough() {
         System.out.println("\n=== QUIZ 9: Switch Statement Fall-Through ===");
         
         int day = 2;
@@ -243,7 +279,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 10: Uninitialized Variables ====================
-    private static void quiz10_uninitializedVariables() {
+    private static void quiz10UninitializedVariables() {
         System.out.println("\n=== QUIZ 10: Uninitialized Variables ===");
         System.out.println();
         
@@ -277,7 +313,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 11: Prefix vs Postfix Increment ====================
-    private static void quiz11_incrementOperators() {
+    private static void quiz11IncrementOperators() {
         System.out.println("\n=== QUIZ 11: Prefix vs Postfix Increment ===");
         
         int x = 5;
@@ -309,7 +345,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 12: Autoboxing and Object Equality ====================
-    private static void quiz12_autoboxing() {
+    private static void quiz12Autoboxing() {
         System.out.println("\n=== QUIZ 12: Autoboxing and == vs .equals() ===");
         
         Integer i1 = 100;
@@ -332,7 +368,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 13: ConcurrentModificationException ====================
-    private static void quiz13_safeIteration() {
+    private static void quiz13SafeIteration() {
         System.out.println("\n=== QUIZ 13: Safe Iteration (ConcurrentModificationException) ===");
         
         List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C"));
@@ -372,7 +408,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 14: Integer Division ====================
-    private static void quiz14_integerDivision() {
+    private static void quiz14IntegerDivision() {
         System.out.println("\n=== QUIZ 14: Integer Division Truncates ===");
         
         System.out.println("7 / 2 = " + (7 / 2) + " (not 3.5!)");
@@ -401,7 +437,7 @@ public class JavaBasicsQuizzes {
     }
 
     // ==================== QUIZ 15: Bitwise Operations ====================
-    private static void quiz15_bitwiseOperations() {
+    private static void quiz15BitwiseOperations() {
         System.out.println("\n=== QUIZ 15: Bitwise Operations ===");
         
         int x = 5;      // 0101
@@ -436,6 +472,40 @@ public class JavaBasicsQuizzes {
         System.out.println("Can EXECUTE? " + ((perms & EXECUTE) != 0));
     }
 
+    private static void quiz16LocalVariableTypeInference() {
+        System.out.println("\n=== QUIZ 16: Local Variable Type Inference ===");
+
+        var name = "Ada";
+        var age = 36;
+        var score = 99.5;
+
+        System.out.println("var name = \"Ada\"; -> " + name);
+        System.out.println("var age = 36; -> " + age);
+        System.out.println("var score = 99.5; -> " + score);
+        System.out.println("Type inference keeps code concise while the type is still strongly checked.");
+    }
+
+    private static void quiz17NullSafetyBasics() {
+        System.out.println("\n=== QUIZ 17: Null Safety Basics ===");
+
+        String maybeName = null;
+        System.out.println("Value before check: " + maybeName);
+        System.out.println("Safe access with ternary: " + (maybeName != null ? maybeName : "<missing>"));
+        System.out.println("Null checks prevent accidental dereferencing and NPEs.");
+    }
+
+    private static void quiz18RecordsAndImmutability() {
+        System.out.println("\n=== QUIZ 18: Records and Immutability ===");
+
+        record Point(int x, int y) {}
+        Point point = new Point(3, 4);
+
+        System.out.println("record Point(int x, int y) {} ");
+        System.out.println("point = " + point);
+        System.out.println("point.x = " + point.x());
+        System.out.println("Records provide concise immutable data carriers.");
+    }
+
     // ==================== Main Menu ====================
     public static void main(String[] args) {
         System.out.println("╔════════════════════════════════════════════╗");
@@ -443,28 +513,14 @@ public class JavaBasicsQuizzes {
         System.out.println("║  Run individual quiz methods to see        ║");
         System.out.println("║  interactive demonstrations                ║");
         System.out.println("╚════════════════════════════════════════════╝");
-        
-        // Run all quizzes
-        quiz1_typeWidening();
-        quiz2_stringPooling();
-        quiz3_integerOverflow();
-        quiz4_floatingPoint();
-        quiz5_variableScope();
-        quiz6_operatorPrecedence();
-        quiz7_stringImmutability();
-        quiz8_modulusNegatives();
-        quiz9_switchFallThrough();
-        quiz10_uninitializedVariables();
-        quiz11_incrementOperators();
-        quiz12_autoboxing();
-        quiz13_safeIteration();
-        quiz14_integerDivision();
-        quiz15_bitwiseOperations();
-        
+
+        int completed = runAllQuizzes();
+
         System.out.println("\n╔════════════════════════════════════════════╗");
         System.out.println("║  All quizzes completed!                    ║");
         System.out.println("║  Review QUIZZES.md and EDGE_CASES.md       ║");
         System.out.println("║  for more detailed explanations            ║");
+        System.out.println("║  Completed quizzes: " + completed + "                 ║");
         System.out.println("╚════════════════════════════════════════════╝");
     }
 }
