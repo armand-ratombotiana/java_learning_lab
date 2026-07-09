@@ -21,6 +21,13 @@
 - JEP 213: Try-With-Resources Enhancement — Java 9
 - JEP 358: Helpful NullPointerExceptions — Java 14
 
+## Deep Dive References
+- [JVMS §3.12 — Throwing and Handling Exceptions](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-3.html) — Exception table and bytecode
+- [JVMS §4.7.3 — Code Attribute Exception Table](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html) — Exception table structure
+- [JVM Anatomy Quark #18: Stack Trace](https://shipilev.net/jvm/anatomy-quarks/18-stacktrace/) — Stack trace construction costs
+- [JEP 358: Helpful NullPointerExceptions](https://openjdk.org/jeps/358) — Detailed NPE messages (Java 14+)
+- [Throwable.addSuppressed JavaDoc](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Throwable.html) — Suppressed exception API
+
 ## Related Patterns
 - [Result Pattern in Java](https://www.baeldung.com/java-result-type)
 - [Circuit Breaker Pattern](https://martinfowler.com/bliki/CircuitBreaker.html)

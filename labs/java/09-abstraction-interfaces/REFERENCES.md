@@ -23,6 +23,13 @@
 - [Baeldung — Functional Interfaces in Java](https://www.baeldung.com/java-8-functional-interfaces)
 - [Baeldung — Lambda Expressions Guide](https://www.baeldung.com/java-8-lambda-expressions-tips)
 
+## Deep Dive References
+- [JLS §15.12.2.5 — Most-Specific Method Resolution](https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html) — Default method ambiguity resolution
+- [JEP 213: Interface Default Methods](https://openjdk.org/jeps/213) — Specification for default and static interface methods
+- [JEP 359: Records](https://openjdk.org/jeps/359) — Records and interfaces
+- [Bridge Methods in the JVM](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html) — Oracle tutorial on bridge methods
+- [Lambda Metafactory JavaDoc](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/invoke/LambdaMetafactory.html) — Official API documentation
+
 ## Principles
 - Dependency Inversion Principle
 - Interface Segregation Principle

@@ -1,5 +1,14 @@
 # References: Class Loading & Bytecode
 
+- **JVM Specification Chapter 4 (Class File Format)** - https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html
+- **ASM 9.x User Guide** - https://asm.ow2.io/asm4-guide.pdf
+- **MethodHandle API** (Oracle) - https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/invoke/package-summary.html
+- **JSR 292: invokedynamic** - https://jcp.org/en/jsr/detail?id=292
+- **Nest-Based Access (JEP 181)** - https://openjdk.org/jeps/181
+- **LambdaMetafactory Internals** - https://cr.openjdk.org/~briangoetz/lambda/lambda-translation.html
+- **Bytecode Wrangling with ASM** (InfoQ) - https://www.infoq.com/articles/ASM-Introduction/
+- **Invokedynamic 101** (Brian Goetz) - https://www.oracle.com/technical-resources/articles/java/InvokeDynamic-1.html: Class Loading & Bytecode
+
 ## Official Documentation
 - [ClassLoader Javadoc](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/ClassLoader.html)
 - [JVM Specification — Class File Format](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-4.html)

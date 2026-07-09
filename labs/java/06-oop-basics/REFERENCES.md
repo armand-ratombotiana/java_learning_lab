@@ -16,6 +16,13 @@
 - JEP 359: Records — Java 16
 - JEP 395: Records (Standard) — Java 16
 
+## Deep Dive References
+- [JVM Anatomy Quark #1: Object Header](https://shipilev.net/jvm/anatomy-quarks/1-object-header/) — Aleksey Shipilëv on object header layout
+- [JVM Anatomy Quark #2: Field Access Costs](https://shipilev.net/jvm/anatomy-quarks/2-field-access-costs/) — Field access performance
+- [JVM Anatomy Quark #23: Compressed OOPs](https://shipilev.net/jvm/anatomy-quarks/23-compressed-oops/) — Compressed OOP deep dive
+- [Object Layout in HotSpot](https://wiki.openjdk.org/display/HotSpot/ObjectLayout) — OpenJDK Wiki
+- [JOL (Java Object Layout)](https://github.com/openjdk/jol) — Tool for analyzing object layouts
+
 ## Patterns
 - [Builder Pattern](https://www.baeldung.com/creational-design-patterns)
 - [Factory Method Pattern](https://www.baeldung.com/java-factory-pattern)

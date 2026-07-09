@@ -19,6 +19,13 @@
 ## JEPs
 - JEP 397: Sealed Classes — Java 17
 
+## Deep Dive References
+- [JVMS §3.8 — Compiling Inheritance](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-3.html) — Bytecode for inheritance
+- [JLS §15.12.2.5 — Default Method Resolution](https://docs.oracle.com/javase/specs/jls/se21/html/jls-15.html) — Most-specific default algorithm
+- [Initialization Order in Java](https://www.artima.com/insidejvm/ed2/jvmP.html) — Bill Venners on JVM initialization
+- [Diamond Problem in Java 8](https://blogs.oracle.com/javamagazine/post/java-8-default-methods-diamond-problem) — Oracle Java Magazine
+- [Bridge Methods and Synthetic Constructors](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html) — Oracle tutorial on bridge methods
+
 ## Principles
 - Liskov Substitution Principle (LSP)
 - Fragile Base Class Problem

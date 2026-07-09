@@ -38,6 +38,16 @@
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) — IDE with real-time syntax checking
 - [javap](https://docs.oracle.com/en/java/javase/21/docs/specs/man/javap.html) — Class file disassembler (included in JDK)
 
+## Deep Dive References
+
+- [JLS Chapter 3 — Lexical Structure](https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html) — The definitive spec for Unicode escapes, tokens, and whitespace handling
+- [JLS Chapter 14 — Try-With-Resources](https://docs.oracle.com/javase/specs/jls/se21/html/jls-14.html#jls-14.20.3) — Formal desugaring specification
+- [OpenJDK Parser Source (javac)](https://github.com/openjdk/jdk/tree/master/src/jdk.compiler/share/classes/com/sun/tools/javac/parser) — Scanner and Parser implementation
+- [JEP 286: Local-Variable Type Inference](https://openjdk.org/jeps/286) — var keyword specification
+- [JEP 378: Text Blocks](https://openjdk.org/jeps/378) — Triple-quoted string literals
+- [JEP 440: Record Patterns](https://openjdk.org/jeps/440) — Deconstruction patterns in Java 21
+- [JVM Tool Interface — javap](https://docs.oracle.com/en/java/javase/21/docs/specs/man/javap.html) — Class file disassembler reference
+
 ## Practice Platforms
 
 - [LeetCode Java Track](https://leetcode.com/)

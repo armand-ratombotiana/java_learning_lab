@@ -1,5 +1,14 @@
 # References: JVM Tuning
 
+- **Java GC Tuning Guide** (Oracle) - https://docs.oracle.com/en/java/javase/21/gctuning/
+- **Compressed OOPs** (John Rose) - https://wiki.openjdk.org/display/HotSpot/CompressedOops
+- **JVM Ergonomics** - https://docs.oracle.com/en/java/javase/21/vm/ergonomics.html
+- **Large Pages in HotSpot** - https://docs.oracle.com/en/java/javase/21/vm/large-pages.html
+- **Container Support (JEP 388)** - https://openjdk.org/jeps/388
+- **TLAB Sizing** (Sanjeev Krishnan) - https://shipilev.net/jvm/anatomy-park/4-tlab-allocation/
+- **Biased Locking Removal (JEP 374)** - https://openjdk.org/jeps/374
+- **Java Performance Tuning Guide** (Scott Oaks) - O'Reilly, *Java Performance: The Definitive Guide*: JVM Tuning
+
 ## Official Documentation
 - [Java HotSpot VM Options](https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html)
 - [JVM Tuning Guide](https://docs.oracle.com/en/java/javase/21/gc/tuning.html)

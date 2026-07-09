@@ -18,6 +18,13 @@
 - JEP 355: Text Blocks — Java 15
 - JEP 378: Text Blocks (Standard) — Java 15
 
+## Deep Dive References
+- [JVMS §2.7 — Array Types](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html#jvms-2.7) — Array types in the JVM
+- [JVMS §newarray / anewarray](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-6.html) — Array allocation instructions
+- [String Deduplication in G1 GC](https://docs.oracle.com/en/java/javase/21/gctuning/g1-garbage-collector.html) — G1 string deduplication
+- [Aleksey Shipilëv: String Concatenation](https://shipilev.net/jvm/anatomy-quarks/17-string-concatenation/) — Deep analysis of concatenation strategies
+- [String Table Tuning](https://docs.oracle.com/en/java/javase/21/vm/string-table-tuning.html) — String pool sizing and performance
+
 ## Tools
 - [fastutil](https://fastutil.di.unimi.it/) — Type-specific collections (avoids boxing)
 - [Apache Commons Lang — StringUtils](https://commons.apache.org/proper/commons-lang/) — Enhanced string utilities

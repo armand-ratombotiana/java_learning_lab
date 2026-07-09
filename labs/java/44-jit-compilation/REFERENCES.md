@@ -1,5 +1,14 @@
 # References: JIT Compilation
 
+- **Tiered Compilation in HotSpot** (OpenJDK) - https://wiki.openjdk.org/display/HotSpot/TieredCompilation
+- **JIT Compiler Overview** - https://docs.oracle.com/en/java/javase/21/vm/compiler-overview.html
+- **C2 Sea-of-Nodes IR** (Cliff Click) - https://www.oracle.com/technetwork/java/javase/tech/c2-ir-20062024.html
+- **JITWatch** (AdoptOpenJDK) - https://github.com/AdoptOpenJDK/jitwatch
+- **Deoptimization in HotSpot** - https://wiki.openjdk.org/display/HotSpot/Deoptimization
+- **Intrinsic Methods in HotSpot** - https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/vmIntrinsics.hpp
+- **On-Stack Replacement (OSR)** - https://wiki.openjdk.org/display/HotSpot/OnStackReplacement
+- **PrintCompilation Output Explained** - https://blogs.oracle.com/johnomics/post/java-printcompilation-output-explained: JIT Compilation
+
 ## Official Documentation
 - [JIT Compilation in HotSpot](https://docs.oracle.com/en/java/javase/21/vm/java-virtual-machine-guide.pdf)
 - [HotSpot Compilation Flags Reference](https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html)

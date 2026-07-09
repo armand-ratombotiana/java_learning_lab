@@ -5,7 +5,7 @@
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-25-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-26-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Intermediate_to_Expert-purple?style=for-the-badge)
 
 **Build production-grade backend services in Java — from REST APIs to reactive microservices**
@@ -66,8 +66,9 @@ The Backend Academy covers the full backend engineering landscape in the Java ec
 | 23 | [CQRS with Axon Framework](./23-cqrs-axon/) | Axon Framework, command/query buses, event sourcing, sagas | 6-7 hrs | Expert | |
 | 24 | [Backend Performance Optimization](./24-backend-performance/) | Profiling, JMH benchmarks, connection pooling, async I/O, caching | 5-6 hrs | Advanced | |
 | 25 | [GraalVM Native Images](./25-graalvm-native/) | Native images, reflection config, resource bundles, AOT compilation | 4-5 hrs | Advanced | [24-graalvm-native](../../24-graalvm-native/) |
+| 26 | [Spring Boot Internals](./26-spring-boot-internals/) | Auto-configuration deep-dive, conditionals, dispatcher chain, actuator internals, custom starters, embedded containers | 6-8 hrs | Expert | |
 
-**Total estimated time: 100-130 hours**
+**Total estimated time: 106-138 hours**
 
 ---
 
@@ -80,9 +81,9 @@ Core   Boot    REST    JPA     DB      Security  Micro   Quarkus Helid  Javalin 
          12 ──→ 13 ──→ 14 ──→ 15 ──→ 16 ──→ 17 ──→ 18 ──→ 19 ──→ 20
         Kafka   RMQ     Camel   Reactv  Spring  API     Batch   SSE     Security
                                        Cloud   Docs
-         21 ──→ 22 ──→ 23 ──→ 24 ──→ 25
-        Multi   GraphQL CQRS   Perf    GraalVM
-        Tenancy
+         21 ──→ 22 ──→ 23 ──→ 24 ──→ 25      26
+        Multi   GraphQL CQRS   Perf    GraalVM Spring
+        Tenancy                          Internals
 ```
 
 Start with the Spring path (01–06), then explore alternative frameworks (07–11) and messaging (12–14). Labs 15–25 are advanced standalone topics covering cloud infrastructure, security, performance, and modern patterns.

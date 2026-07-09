@@ -17,6 +17,13 @@
 - JEP 420: Pattern Matching for Switch (Preview) — Java 18
 - JEP 441: Pattern Matching for Switch — Java 21
 
+## Deep Dive References
+- [JVMS §3 — Compiling Java Control Flow](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-3.html) — How if/switch/loops compile to bytecode
+- [JEP 441: Pattern Matching for switch](https://openjdk.org/jeps/441) — Pattern matching in switch (Java 21)
+- [C2 Branch Prediction Heuristics](https://wiki.openjdk.org/display/HotSpot/BranchPrediction) — OpenJDK Wiki on branch prediction
+- [Aleksey Shipilëv: Loop Optimization](https://shipilev.net/jvm/anatomy-quarks/5-loop-optimization/) — JVM loop optimization techniques
+- [Branch Prediction in Modern CPUs](https://en.wikipedia.org/wiki/Branch_predictor) — Branch predictor overview
+
 ## Tools
 - [SpotBugs](https://spotbugs.github.io/) — Detects switch fall-through, unreachable code
 - [PMD](https://pmd.github.io/) — Control flow analysis

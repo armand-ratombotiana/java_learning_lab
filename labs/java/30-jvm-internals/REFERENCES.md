@@ -11,3 +11,9 @@
 - *Java Performance: The Definitive Guide* by Scott Oaks
 - *Optimizing Java* by Benjamin J. Evans, James Gough, Chris Newland
 - *The Java Virtual Machine Specification* by Tim Lindholm et al.
+- **JVM Anatomy Park** (Shipilev) - https://shipilev.net/jvm/anatomy-park/
+- **HotSpot Runtime Overview** (OpenJDK Wiki) - https://wiki.openjdk.org/display/HotSpot/RuntimeOverview
+- **JVM Internals** (James D. Bloom) - https://blog.jamesdbloom.com/JVMInternals.html
+- **Safepoint and GC** (Nitsan Wakart) - https://psy-lob-saw.blogspot.com/p/safepoints.html
+- **Java Object Header** (Chris Newland) - https://www.chrisnewland.com/articles/object-headers-in-the-jvm
+- **JMX Best Practices** (Oracle) - https://docs.oracle.com/javase/tutorial/jmx/

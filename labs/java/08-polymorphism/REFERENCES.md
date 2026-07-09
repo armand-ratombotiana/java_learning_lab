@@ -21,6 +21,13 @@
 - JEP 394: Pattern Matching for instanceof — Java 16
 - JEP 441: Pattern Matching for switch — Java 21
 
+## Deep Dive References
+- [JVMS §2.9.4 — Virtual Invocation](https://docs.oracle.com/javase/specs/jvms/se21/html/jvms-2.html) — Dynamic dispatch in JVM
+- [JVM Anatomy Quark #4: Inline Cache](https://shipilev.net/jvm/anatomy-quarks/4-inline-cache/) — C2 inline cache analysis
+- [JVM Anatomy Quark #5: Polymorphic Call Sites](https://shipilev.net/jvm/anatomy-quarks/5-polymorphic-call-sites/) — Polymorphic site optimization
+- [VTable Implementation in HotSpot](https://wiki.openjdk.org/display/HotSpot/VirtualCalls) — OpenJDK Wiki on vtables
+- [Interface Dispatch in HotSpot](https://wiki.openjdk.org/display/HotSpot/InterfaceCalls) — Itable implementation
+
 ## Principles
 - Open/Closed Principle
 - Liskov Substitution Principle
