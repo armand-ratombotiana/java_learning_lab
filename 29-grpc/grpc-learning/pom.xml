@@ -7,8 +7,7 @@
     <parent>
         <groupId>com.learning</groupId>
         <artifactId>java-learning-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
+        <version>1.0.0</version><relativePath>../../../pom.xml</relativePath></parent>
 
     <artifactId>grpc-learning</artifactId>
     <version>1.0.0</version>
@@ -43,3 +42,4 @@
         </plugins>
     </build>
 </project>
+

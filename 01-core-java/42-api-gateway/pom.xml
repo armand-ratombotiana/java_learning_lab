@@ -6,3 +6,4 @@
   <name>42 API Gateway</name><description>Spring Cloud Gateway, routing, rate limiting, authentication</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
 </project>
+

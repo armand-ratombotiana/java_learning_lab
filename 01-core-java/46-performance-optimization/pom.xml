@@ -6,3 +6,4 @@
   <name>46 Performance Optimization</name><description>JVM tuning, profiling, benchmarking, optimization techniques</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
 </project>
+

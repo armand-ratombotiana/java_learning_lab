@@ -4,8 +4,7 @@
     <parent>
         <groupId>com.learning</groupId>
         <artifactId>java-learning-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
+        <version>1.0.0</version><relativePath>../../../pom.xml</relativePath></parent>
     <artifactId>redis-cache</artifactId>
     <name>Redis Cache</name>
     <dependencies>
@@ -20,3 +19,4 @@
     </dependencies>
     <build><plugins><plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin></plugins></build>
 </project>
+

@@ -102,7 +102,6 @@
         <module>24-graalvm-native</module>
 
         <!-- Apache Camel -->
-        <module>16-apache-camel/camel-learning</module>
 
         <!-- Kotlin Coroutines -->
         <module>25-kotlin-coroutines</module>
@@ -164,27 +163,6 @@
         <module>57-service-mesh</module>
         <module>58-serverless</module>
         <module>59-webassembly</module>
-        <module>60-blockchain</module>
-        <module>61-ml</module>
-        <module>62-data-pipeline</module>
-        <module>63-streaming</module>
-        <module>64-cdc</module>
-        <module>65-ddd</module>
-        <module>66-cqrs</module>
-        <module>67-saga</module>
-        <module>68-springmodulith</module>
-        <module>69-r2dbc</module>
-        <module>70-ai</module>
-        <module>71-deep-learning</module>
-        <module>72-langchain4j</module>
-        <module>73-spring-ai</module>
-        <module>74-opennlp</module>
-        <module>75-weka</module>
-        <module>76-tribuo</module>
-        <module>77-vector-database</module>
-        <module>78-nlp-pipeline</module>
-        <module>79-llm-integration</module>
-        <module>80-computer-vision</module>
 
         <!-- New Modules -->
         <module>01-core-java/15-jvm-internals</module>

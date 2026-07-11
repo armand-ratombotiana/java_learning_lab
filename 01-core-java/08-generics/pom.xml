@@ -9,7 +9,7 @@
         <groupId>com.learning</groupId>
         <artifactId>java-learning-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../../../pom.xml</relativePath>
     </parent>
 
     <artifactId>module-08-generics</artifactId>
@@ -21,3 +21,4 @@
     </dependencies>
 
 </project>
+

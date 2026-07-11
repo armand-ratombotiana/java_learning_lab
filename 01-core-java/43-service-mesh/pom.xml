@@ -6,3 +6,4 @@
   <name>43 Service Mesh</name><description>Istio, Linkerd, mTLS, traffic management, observability</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
 </project>
+

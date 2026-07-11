@@ -6,3 +6,4 @@
   <name>47 Memory Management and Profiling</name><description>JVM memory model, GC tuning, heap dumps, MAT, JProfiler</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
 </project>
+

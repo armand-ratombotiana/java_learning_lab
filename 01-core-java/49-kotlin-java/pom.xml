@@ -6,3 +6,4 @@
   <name>49 Kotlin for Java Developers</name><description>Kotlin syntax, coroutines, extension functions, interop</description>
   <properties><maven.compiler.source>21</maven.compiler.source><maven.compiler.target>21</maven.compiler.target></properties>
 </project>
+

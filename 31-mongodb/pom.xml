@@ -4,9 +4,9 @@
     <parent>
         <groupId>com.learning</groupId>
         <artifactId>java-learning-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
+        <version>1.0.0</version><relativePath>../../pom.xml</relativePath></parent>
     <artifactId>mongodb</artifactId>
     <packaging>pom</packaging>
     <modules><module>mongodb-repository</module></modules>
 </project>
+

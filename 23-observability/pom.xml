@@ -7,8 +7,7 @@
     <parent>
         <groupId>com.learning</groupId>
         <artifactId>java-learning-parent</artifactId>
-        <version>1.0.0</version>
-    </parent>
+        <version>1.0.0</version><relativePath>../../pom.xml</relativePath></parent>
 
     <artifactId>observability</artifactId>
     <version>1.0.0</version>
@@ -22,3 +21,4 @@
         <module>micrometer-learning</module>
     </modules>
 </project>
+
