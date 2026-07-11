@@ -1,68 +1,39 @@
-# Math Foundation: Key Statistics for Data Wrangling
+# Mathematical Foundation of Data Wrangling
 
-## 1. Z-Score Normalization
+## 📏 Feature Scaling Mathematics
 
-Maps data to a distribution with mean = 0 and standard deviation = 1.
+### 1. Min-Max Normalization
+This technique rescales the data so that all values fall within a specific range, typically $[0, 1]$.
 
-$$ z = \frac{x - \mu}{\sigma} $$
-
-```java
-public DoubleColumn zScore(DoubleColumn col) {
-    double mean = col.mean();
-    double std = col.stdDev();
-    double[] result = new double[col.size()];
-    for (int i = 0; i < col.size(); i++) {
-        result[i] = (col.getDouble(i) - mean) / std;
-    }
-    return DoubleColumn.create("z_" + col.name(), result);
-}
-```
-
-## 2. Min-Max Normalization
-
-Scales values to range [0, 1].
-
+Let $x$ be an original value, $x_{min}$ be the minimum value in the feature column, and $x_{max}$ be the maximum value.
+The normalized value $x'$ is:
 $$ x' = \frac{x - x_{min}}{x_{max} - x_{min}} $$
 
-```java
-public DoubleColumn minMaxScale(DoubleColumn col) {
-    double min = col.min();
-    double max = col.max();
-    if (Math.abs(max - min) < 1e-10) {
-        return DoubleColumn.create("scaled_" + col.name(), 
-            Collections.nCopies(col.size(), 0.5));
-    }
-    return col.subtract(min).divide(max - min).setName("scaled_" + col.name());
-}
-```
+*Pros*: Preserves all relationships in the data exactly. Does not change the distribution.
+*Cons*: Highly sensitive to outliers. If one outlier is extremely large, it will compress all the normal data into a tiny range near 0.
 
-## 3. IQR for Outlier Detection
+### 2. Z-Score Standardization
+This technique centers the data around a mean of 0 and scales it based on the standard deviation.
 
-$$ IQR = Q3 - Q1 $$
-$$ Outlier = x < Q1 - 1.5 \times IQR \text{ or } x > Q3 + 1.5 \times IQR $$
+Let $\mu$ be the mean of the feature column and $\sigma$ be the standard deviation.
+The standardized value $z$ is:
+$$ z = \frac{x - \mu}{\sigma} $$
 
-```java
-public Selection outlierMask(DoubleColumn col) {
-    double q1 = col.quartile(1);
-    double q3 = col.quartile(3);
-    double iqr = q3 - q1;
-    double lower = q1 - 1.5 * iqr;
-    double upper = q3 + 1.5 * iqr;
-    return col.isGreaterThan(upper).or(col.isLessThan(lower));
-}
-```
+Where:
+$$ \mu = \frac{1}{n} \sum_{i=1}^{n} x_i $$
+$$ \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2} $$
 
-## 4. Imputation: Mean vs. Median
+*Pros*: Less sensitive to extreme outliers than Min-Max. Required for many algorithms (like SVMs and Neural Networks) that assume data is normally distributed around zero.
 
-| Method | Use Case | Robustness |
-|---|---|---|
-| Mean | Symmetric, no outliers | Not robust (one outlier shifts mean) |
-| Median | Skewed distributions | Robust |
-| Mode | Categorical data | Appropriate for labels |
+## 🎯 Outlier Detection: Interquartile Range (IQR)
+The IQR is a robust statistical measure to identify outliers without being skewed by the outliers themselves (unlike mean and standard deviation).
 
-```java
-public double imputeValue(DoubleColumn col) {
-    double skew = col.skewness();
-    return Math.abs(skew) > 1.0 ? col.median() : col.mean();
-}
-```
+1. Order the data from lowest to highest.
+2. Find the median (Q2).
+3. Find the median of the lower half (Q1, 25th percentile).
+4. Find the median of the upper half (Q3, 75th percentile).
+5. Calculate the IQR: 
+   $$ IQR = Q3 - Q1 $$
+6. Define the bounds. Any data point outside these bounds is considered an outlier:
+   - Lower Bound = $Q1 - 1.5 \times IQR$
+   - Upper Bound = $Q3 + 1.5 \times IQR$
