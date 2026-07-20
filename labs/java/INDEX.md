@@ -4,7 +4,7 @@
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Labs](https://img.shields.io/badge/Labs-52-blue?style=for-the-badge)
+![Labs](https://img.shields.io/badge/Labs-117-blue?style=for-the-badge)
 ![Level](https://img.shields.io/badge/Level-Beginner_to_Expert-green?style=for-the-badge)
 
 **Master Java from fundamentals to production-ready mastery**
@@ -93,7 +93,7 @@ The Java Academy provides a comprehensive, deep-dive curriculum covering the ent
 | 51 | [Advanced Concurrency Patterns](./51-advanced-concurrency/) | 6-8 hrs | Expert |
 | 52 | [Performance Antipatterns & Debugging](./52-performance-antipatterns/) | 4-6 hrs | Expert |
 
-**Total estimated time: 200-280 hours across all 52 labs**
+**Total estimated time: 400-560 hours across 52 core labs + 65 atomic micro-labs**
 
 ---
 
@@ -149,8 +149,12 @@ Each lab contains:
 | [Memory Model Deep Dive](./memory-deep/) | 5 | JMM foundations, reordering, memory barriers, final semantics, DCL pattern |
 | [Modern Java Deep Dive](./modern-java-deep/) | 5 | Records, sealed classes, pattern matching, virtual threads, structured concurrency |
 | [Performance Deep Dive](./performance-deep/) | 5 | async-profiler, JMH, JFR streaming, memory leaks, GC log analysis |
+| [Serialization Deep Dive](./serialization-deep/) | 5 | Java serialization, Protocol Buffers, JSON/Jackson, XML/JAXB, Kryo |
+| [Networking Deep Dive](./networking-deep/) | 5 | Socket programming, NIO selectors, HTTP clients, Netty, gRPC networking |
+| [Testing Deep Dive](./testing-deep/) | 5 | JUnit 5 fundamentals, parameterized tests, Mockito, Testcontainers, AssertJ |
+| [Reactive Deep Dive](./reactive-deep/) | 5 | Reactive Streams, Project Reactor, WebFlux, RSocket, reactive testing |
 
-**45 new atomic micro-labs added. Total: 97 labs.**
+**65 new atomic micro-labs added. Total: 117 labs.**
 
 ---
 
@@ -174,15 +178,17 @@ Start at Lab 21 (Java 21 Features) or jump to specific topics. For deep JVM/conc
 
 ## Related Academies
 
-- [Algorithms Academy](../algorithms/) — 25 labs, Active
-- [Data Structures Academy](../data-structures/) — 20 labs, Active
-- [Backend Academy](../backend/) — Active
-- [System Design Academy](../system-design/) — Active
-- [Cloud Engineering Academy](../cloud/) — Active
-- [AI Academy](../ai/) — Active
-- [Math Academy](../math/) — Active
-- [Data Science Academy](../data-science/) — Active
-- [Capstone Projects](../capstones/) — Active
+- [Algorithms Academy](../algorithms/) — 40 labs
+- [Data Structures Academy](../data-structures/) — 35 labs
+- [Backend Academy](../backend/) — 26 labs
+- [System Design Academy](../system-design/) — 15 labs
+- [Cloud Academy](../cloud/) — 15 labs
+- [AI Academy](../ai/) — 30 core + 50 micro labs
+- [Math Academy](../math/) — 15 core + 30 micro labs
+- [Data Science Academy](../data-science/) — 15 core + 18 micro labs
+- [Capstone Projects](../capstones/) — 8 projects
+- [Oracle APEX](../oracle-apex/) — 8 labs
+- [Oracle EBS](../oracle-ebs/) — 10 labs
 
 ---
 
