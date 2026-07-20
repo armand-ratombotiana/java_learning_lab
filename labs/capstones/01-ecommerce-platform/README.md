@@ -1,78 +1,70 @@
-# Capstone 01: E-Commerce Platform
+# E-Commerce Platform
 
-## Overview
-Full e-commerce with orders, payments, inventory, recommendations
+A production-grade e-commerce platform built in Java implementing product catalog management, shopping cart with persistence, order state machine, payment processing with idempotency, inventory management with reservation/release, collaborative filtering recommendation engine, and admin analytics dashboard.
 
-This lab provides comprehensive coverage of all major concepts, implementations,
-and best practices for E-Commerce Platform. Through detailed theory, code deep dives,
-exercises, and projects, you will gain both theoretical understanding and
-practical implementation skills.
+## Architecture Overview
 
-## Prerequisites
-- Java 21+
-- Basic understanding of distributed systems
-- Familiarity with REST APIs and networking
-- Knowledge of data structures and algorithms
-
-## What You Will Learn
-- Core concepts and architecture of E-Commerce Platform
-- Implementation patterns and best practices
-- Performance optimization and scaling strategies
-- Security considerations and common pitfalls
-- Testing and debugging approaches
-
-## Lab Structure
-| File | Description |
-|------|-------------|
-| THEORY.md | Comprehensive theoretical foundations |
-| MATH_FOUNDATION.md | Mathematical concepts and formulas |
-| CODE_DEEP_DIVE.md | Detailed code walkthrough |
-| ARCHITECTURE.md | System design and component architecture |
-| SECURITY.md | Security considerations and implementations |
-| PERFORMANCE.md | Performance analysis and optimization |
-| REFACTORING.md | Code refactoring patterns |
-| DEBUGGING.md | Debugging strategies and tools |
-| COMMON_MISTAKES.md | Frequent pitfalls and solutions |
-| STEP_BY_STEP.md | Step-by-step implementation guide |
-| VISUAL_GUIDE.md | Visual diagrams and explanations |
-| INTERNALS.md | Internal workings and mechanisms |
-| HOW_IT_WORKS.md | High-level operational explanation |
-| MENTAL_MODELS.md | Conceptual models for understanding |
-| HISTORY.md | Historical development and context |
-| WHY_IT_MATTERS.md | Importance and real-world impact |
-| WHY_IT_EXISTS.md | Problem domain and motivation |
-| REFERENCES.md | External references and resources |
-| REFLECTION.md | Self-assessment and reflection prompts |
-| INTERVIEW.md | Interview questions and answers |
-| FLASHCARDS.md | Key concept review cards |
-| EXERCISES.md | Practice exercises with solutions |
-| QUIZ.md | Knowledge assessment questions |
-
-## Quick Start
-```bash
-cd 01-ecommerce-platform
-# Start with README.md and THEORY.md
-# Then explore CODE_DEEP_DIVE.md
-# Complete exercises and projects
+```
+┌─────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐
+│ Product     │  │ Shopping     │  │ Order State  │  │ Payment          │
+│ Catalog     │  │ Cart         │  │ Machine      │  │ Processor        │
+├─────────────┤  ├──────────────┤  ├──────────────┤  ├──────────────────┤
+│ Search      │  │ Add/Remove   │  │ PENDING →    │  │ Idempotency      │
+│ Filter      │  │ Quantity     │  │ CONFIRMED →  │  │ CREDIT_CARD      │
+│ Category    │  │ Total Calc   │  │ PROCESSING → │  │ PAYPAL           │
+│ Tag Index   │  │ Persistence  │  │ SHIPPED →    │  │ Refund           │
+└─────────────┘  └──────────────┘  │ DELIVERED    │  └──────────────────┘
+                                   └──────────────┘
+┌─────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│ Inventory   │  │ Recommendation   │  │ Admin Analytics  │
+│ Manager     │  │ Engine           │  │                  │
+├─────────────┤  ├──────────────────┤  ├──────────────────┤
+│ Reserve     │  │ Collaborative    │  │ Sales Summary    │
+│ Release     │  │ Filtering        │  │ Category Breakd. │
+│ Low Stock   │  │ Popular Products │  │ Conversion Rate  │
+│ Thresholds  │  │ Frequently Together│  │ Revenue History  │
+└─────────────┘  └──────────────────┘  └──────────────────┘
 ```
 
-## Learning Path
-1. Read THEORY.md for conceptual understanding
-2. Study MATH_FOUNDATION.md for quantitative aspects
-3. Follow CODE_DEEP_DIVE.md for implementation details
-4. Complete EXERCISES.md to practice
-5. Take QUIZ.md to assess knowledge
-6. Build MINI_PROJECT for hands-on experience
-7. Tackle REAL_WORLD_PROJECT for production scenarios
+## Features
 
-## Key Topics Covered
-- Core concepts and architecture patterns
-- Mathematical foundations and algorithms
-- Implementation strategies in Java 21+
-- Performance optimization techniques
-- Security best practices
-- Testing and quality assurance
-- Deployment and operations
-- Monitoring and observability
+- **ProductCatalog**: Full CRUD with search, category/tag/price-range filtering, active flag management
+- **ShoppingCart**: Thread-safe cart with quantity management, subtotal/total calculation, persistent mode flag
+- **OrderStateMachine**: Finite state machine with valid transition validation, audit logging per order
+- **PaymentProcessor**: Multi-method payments with idempotency key support, refund capability
+- **InventoryManager**: Thread-safe stock reservation/release with low-stock and out-of-stock detection
+- **RecommendationEngine**: Collaborative filtering using user behavior similarity, popular products, frequently-bought-together
+- **AdminAnalytics**: Order/revenue tracking, category breakdown, day-over-day sales, conversion rate, AOV
 
-## Estimated Time: 6 hours
+## Tech Stack
+
+- Java 21+ (records, sealed classes, pattern matching)
+- JUnit 5 for testing
+- In-memory concurrent storage (ConcurrentHashMap, CopyOnWriteArrayList)
+- BigDecimal for precise monetary calculations
+
+## Usage
+
+```java
+var catalog = new ProductCatalog();
+catalog.addProduct(new Product("p1", "Laptop", "Gaming laptop",
+    new BigDecimal("1299.99"), "Electronics", List.of("tech"), 50, true));
+
+var cart = new ShoppingCart("cart-1", "user-1");
+cart.addItem("p1", "Laptop", 1, new BigDecimal("1299.99"));
+
+var osm = new OrderStateMachine();
+osm.createOrder("ord-1", "user-1", cart.getItems(), cart.getTotal());
+osm.transition("ord-1", OrderState.CONFIRMED, "Payment received");
+```
+
+## Testing
+
+Run tests with JUnit 5. Tests cover:
+- Product catalog CRUD, search, filtering
+- Shopping cart operations and total calculation
+- Order state machine transitions and validation
+- Payment processing and idempotency
+- Inventory reservation and release
+- Recommendation collaborative filtering
+- Admin analytics aggregation

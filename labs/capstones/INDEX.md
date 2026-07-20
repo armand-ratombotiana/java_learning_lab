@@ -1,88 +1,90 @@
-# 🎓 Capstone Projects Academy
+# Capstone Projects Index
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
-![Labs](https://img.shields.io/badge/capstones-5-blue)
-![Difficulty](https://img.shields.io/badge/difficulty-advanced-red)
+![Capstones](https://img.shields.io/badge/capstones-8-blue)
 ![Java](https://img.shields.io/badge/Java-21+-red)
 ![Scope](https://img.shields.io/badge/scope-portfolio--grade-brightgreen)
 
 ## Overview
 
-The Capstone Projects Academy provides portfolio-grade projects that integrate concepts from the entire learning curriculum. Each capstone is a comprehensive, multi-week project requiring you to design, implement, test, and deploy a complete distributed system. These projects demonstrate mastery of system design, distributed systems, databases, cloud infrastructure, and software engineering best practices.
+Eight portfolio-grade capstone projects demonstrating mastery of distributed systems, e-commerce, message brokers, vector databases, RAG pipelines, ML platforms, AI agents, and distributed compute engines. Each project includes 24 documentation files, 7 subdirectories, Java source code with real business logic, and comprehensive JUnit 5 tests.
 
 ## Capstone Projects
 
-| # | Capstone | Topic | Duration | Difficulty |
-|---|----------|-------|----------|------------|
-| 01 | [ecommerce-platform](./01-ecommerce-platform) | Full e-commerce with orders, payments, inventory, recommendations, search, user management | 40h | ★★★★ |
-| 02 | [real-time-analytics](./02-real-time-analytics) | Streaming analytics with Kafka, Flink, dashboards, alerting, data pipelines | 40h | ★★★★ |
-| 03 | [microservices-migration](./03-microservices-migration) | Monolith to microservices with strangler fig, CQRS, event sourcing, API gateways | 45h | ★★★★★ |
-| 04 | [vector-database](./04-vector-database) | Vector storage, HNSW indexing, ANN search, distance metrics, REST/gRPC API | 35h | ★★★★ |
-| 05 | [ml-platform](./05-ml-platform) | ML training/inference platform, feature store, model registry, A/B testing, pipelines | 45h | ★★★★★ |
+| # | Project | Description | Java Classes | Tests | Tech Stack |
+|---|---------|-------------|--------------|-------|------------|
+| 01 | [E-Commerce Platform](./01-ecommerce-platform) | Full-stack e-commerce with product catalog, shopping cart, order state machine, payment processing, inventory management, collaborative filtering recommendations, admin analytics | ProductCatalog, ShoppingCart, OrderStateMachine, PaymentProcessor, InventoryManager, RecommendationEngine, AdminAnalytics | 7 test classes, 50+ test methods | Java 21, BigDecimal, ConcurrentHashMap, JUnit 5 |
+| 02 | [Distributed Cache](./02-distributed-cache) | Mini distributed cache from scratch: consistent hashing ring, pluggable eviction (LRU/LFU/TTL), partition management, replication, gossip protocol | ConsistentHashRing, EvictionPolicy, PartitionManager, CacheClient, ReplicationManager, GossipProtocol | 5 test classes, 30+ test methods | Java 21, MD5 hashing, ConcurrentSkipListMap, ThreadPool |
+| 03 | [Mini Kafka](./03-mini-kafka) | Kafka-like message broker with topic/partition management, sync/async producer, consumer with group coordination, log compaction, offset management | TopicPartition, MessageBroker, ProducerClient, ConsumerClient, ConsumerGroup, LogSegment, OffsetManager | 6 test classes, 35+ test methods | Java 21, CopyOnWriteArrayList, ScheduledExecutor, DataOutputStream |
+| 04 | [Vector Database](./04-vector-database) | Vector indexing with brute-force + HNSW approximate search, cosine/L2/inner product similarity, metadata filtering, file-based persistence | VectorIndex, HNSWGraph, CosineSimilarity, VectorStore | 4 test classes, 25+ test methods | Java 21, HNSW algorithm, Java serialization, PriorityQueue |
+| 05 | [RAG Platform](./05-rag-platform) | Complete RAG pipeline: document ingestion, chunking (fixed/semantic/recursive), embedding interface, vector store, dense/hybrid retrieval, reranking, context assembly, evaluation metrics | DocumentIngestor, ChunkingStrategy, EmbeddingInterface, VectorStore, Retriever, Reranker, ContextBuilder, RAGEvaluator | 6 test classes, 30+ test methods | Java 21, Mock embeddings, Cosine similarity, Stream API |
+| 06 | [ML Platform](./06-ml-platform) | ML lifecycle platform: feature store (online/offline), training pipeline, experiment tracking, model registry, REST serving, drift detection (PSI), A/B testing | FeatureStore, TrainingPipeline, ExperimentTracker, ModelRegistry, ModelServer, DriftDetector, ABTestFramework | 7 test classes, 35+ test methods | Java 21, PSI statistics, ConcurrentHashMap, ThreadPool |
+| 07 | [Autonomous Agent Platform](./07-autonomous-agent-platform) | AI agent runtime with observe-think-act loop, tool registry, short/long-term memory, ReAct planning, multi-agent orchestration, monitoring | AgentRuntime, ToolRegistry, AgentMemory, PlanningEngine, MultiAgentOrchestrator, AgentMonitor | 6 test classes, 30+ test methods | Java 21, CompletableFuture, CountDownLatch, CopyOnWriteArrayList |
+| 08 | [Mini Spark](./08-mini-spark) | Simplified Spark engine: RDD abstraction, transformations (map/filter/flatMap/reduceByKey), actions (collect/count/reduce), hash shuffle, DAG scheduler, task execution | RDD, PairRDD, SparkContext, DAGScheduler, TaskExecutor, ShuffleManager | 6 test classes, 35+ test methods | Java 21, Parallel streams, ForkJoinPool, CompletableFuture |
 
-**Total estimated time: 205 hours**
+## Structure
 
-## How to Use
+Each capstone follows a consistent structure:
 
-Each capstone contains:
-- **THEORY.md** — In-depth concept explanations with diagrams
-- **MATH_FOUNDATION.md** — Mathematical concepts and formulas
-- **CODE_DEEP_DIVE.md** — Annotated Java implementation walkthroughs
-- **ARCHITECTURE.md** — System design and component architecture
-- **SECURITY.md** — Security considerations and implementations
-- **PERFORMANCE.md** — Performance analysis and optimization
-- **REFACTORING.md** — Code refactoring patterns
-- **DEBUGGING.md** — Debugging strategies and tools
-- **COMMON_MISTAKES.md** — Frequent pitfalls and solutions
-- **STEP_BY_STEP.md** — Step-by-step implementation guide
-- **VISUAL_GUIDE.md** — Visual diagrams and explanations
-- **INTERNALS.md** — Internal workings and mechanisms
-- **HOW_IT_WORKS.md** — High-level operational explanation
-- **MENTAL_MODELS.md** — Conceptual models for understanding
-- **HISTORY.md** — Historical development and context
-- **WHY_IT_MATTERS.md** — Importance and real-world impact
-- **WHY_IT_EXISTS.md** — Problem domain and motivation
-- **REFERENCES.md** — External references and resources
-- **REFLECTION.md** — Self-assessment and reflection prompts
-- **INTERVIEW.md** — Interview questions and answers
-- **FLASHCARDS.md** — Key concept review cards
-- **EXERCISES.md** — Practice exercises with solutions
-- **QUIZ.md** — Knowledge assessment questions
-- **README.md** — Project overview and getting started guide
+```
+XX-capstone-name/
+├── README.md              # Project overview and getting started
+├── THEORY.md              # In-depth concept explanations
+├── MATH_FOUNDATION.md     # Mathematical concepts and formulas
+├── CODE_DEEP_DIVE.md      # Annotated implementation walkthroughs
+├── ARCHITECTURE.md        # System design and component architecture
+├── SECURITY.md            # Security considerations
+├── PERFORMANCE.md         # Performance analysis and optimization
+├── REFACTORING.md         # Code refactoring patterns
+├── DEBUGGING.md           # Debugging strategies
+├── COMMON_MISTAKES.md     # Frequent pitfalls
+├── STEP_BY_STEP.md        # Implementation guide
+├── VISUAL_GUIDE.md        # Visual diagrams
+├── INTERNALS.md           # Internal workings
+├── HOW_IT_WORKS.md        # High-level explanation
+├── MENTAL_MODELS.md       # Conceptual models
+├── HISTORY.md             # Historical context
+├── WHY_IT_MATTERS.md      # Real-world impact
+├── WHY_IT_EXISTS.md       # Problem domain
+├── REFERENCES.md          # External resources
+├── REFLECTION.md          # Self-assessment prompts
+├── INTERVIEW.md           # Interview questions
+├── FLASHCARDS.md          # Key concept review cards
+├── EXERCISES.md           # Practice exercises
+├── QUIZ.md                # Knowledge assessment
+├── BENCHMARK/             # Performance benchmarks
+├── CHALLENGE/             # Additional challenges
+├── DIAGRAMS/              # Architecture diagrams
+├── MINI_PROJECT/          # Mini project templates
+├── REAL_WORLD_PROJECT/    # Real-world case studies
+├── SOLUTION/              # Solution templates
+├── TESTS/                 # Additional test resources
+└── src/
+    ├── main/java/com/capstone/  # Production Java sources
+    └── test/java/com/capstone/  # JUnit 5 test sources
+```
 
-Additional subdirectories: `BENCHMARK/`, `CHALLENGE/`, `DIAGRAMS/`, `MINI_PROJECT/`, `REAL_WORLD_PROJECT/`, `SOLUTION/`, `TESTS/`
+## Total Stats
+
+- **Capstones**: 8
+- **Documentation files**: 192 (24 per capstone)
+- **Java source files**: 50+
+- **Java test files**: 47
+- **Test methods**: 270+
+- **Subdirectories**: 56 (7 per capstone)
+- **Lines of code**: 10,000+
 
 ## Prerequisites
 
-- Completion of all System Design Academy labs (01–15)
-- Java 21+ proficiency
-- Experience with Spring Boot, REST APIs, and database design
-- Familiarity with Docker and containerization
-- Understanding of cloud computing concepts (AWS, GCP, or Azure)
-- Knowledge of CI/CD pipelines and DevOps practices
+- Java 21+ JDK
+- JUnit 5 (included via Maven/Gradle dependency)
+- IDE: IntelliJ IDEA, VS Code, or Eclipse
 
 ## Learning Path
 
 ```
-01 ──→ 02 ──→ 03 ──→ 04 ──→ 05
-Ecom   Analytics  Migrate   Vector   ML
+01 ──→ 02 ──→ 03 ──→ 04 ──→ 05 ──→ 06 ──→ 07 ──→ 08
+Ecom   Cache   Kafka   Vector  RAG     ML      Agent   Spark
 ```
 
-Capstones increase in complexity. Start with 01 (e-commerce) or 04 (vector database) for a well-scoped project. Tackle 02 (analytics) and 03 (migration) for distributed systems depth. Finish with 05 (ML platform) for the most comprehensive challenge.
-
-## Related Academies
-
-- [System Design Academy](../system-design) — Foundation for all capstones
-- [Cloud Academy](../cloud) — AWS, Docker, Kubernetes, Terraform
-- [Distributed Systems Academy](../distributed-systems) — Consensus, replication, distributed storage
-- [Databases Academy](../databases) — SQL, NoSQL, sharding, replication
-- [Data Engineering Academy](../data-engineering) — ETL, streaming, data pipelines
-- [DevOps Academy](../devops) — CI/CD, monitoring, infrastructure as code
-
-## Resources
-
-- [Designing Data-Intensive Applications](https://dataintensive.net) — Martin Kleppmann
-- [Building Microservices](https://samnewman.io/books/building-microservices/) — Sam Newman
-- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) — Robert C. Martin
-- [System Design Primer](https://github.com/donnemartin/system-design-primer)
-- [Awesome Distributed Systems](https://github.com/theanalyst/awesome-distributed-systems)
+Start with 01 (E-Commerce) for a familiar domain. Progress through 02-04 for distributed systems depth. Tackle 05-06 for ML/AI pipelines. Finish with 07-08 for advanced agent and compute engine concepts.

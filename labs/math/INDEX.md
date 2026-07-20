@@ -1,7 +1,7 @@
 # Mathematics Academy
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
-![Labs](https://img.shields.io/badge/labs-15-blue)
+![Labs](https://img.shields.io/badge/labs-19-blue)
 ![Difficulty](https://img.shields.io/badge/difficulty-foundation--to--advanced-red)
 ![Topics](https://img.shields.io/badge/topics-math--cs--stats-green)
 
@@ -30,6 +30,19 @@ The Mathematics Academy builds a comprehensive foundation in mathematical thinki
 | 15 | [numerical-methods](./15-numerical-methods) | Integration, root finding, interpolation, ODE solvers, finite differences | 5h | ★★★★ |
 
 **Total estimated time: 60 hours**
+
+### Deep-Dive Modules
+
+The following atomic deep-dive micro-labs provide expanded coverage of core topics, with 24 educational files each, Java 21+ source code, JUnit 5 tests, and 7 project subdirectories:
+
+| # | Module | Labs | Topics |
+|---|--------|------|--------|
+| 16 | [calculus-deep](./calculus-deep) | 8 | Limits, continuity, derivatives, integration, differential equations, multivariable calculus, vector calculus |
+| 17 | [linear-algebra-deep](./linear-algebra-deep) | 8 | Vector spaces, linear transformations, matrix decompositions, eigenvalues, inner products, tensors, applied LA, matrix calculus |
+| 18 | [probability-deep](./probability-deep) | 8 | Probability axioms, random variables, distributions, multivariate statistics, LLN/CLT, estimation, hypothesis testing, Bayesian |
+| 19 | [discrete-deep](./discrete-deep) | 6 | Logic, set theory, combinatorics, graph theory, generating functions, number theory |
+
+**Total deep-dive labs: 30 | Additional estimated time: 150 hours**
 
 ## How to Use
 

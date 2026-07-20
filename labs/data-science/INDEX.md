@@ -1,7 +1,7 @@
 # Data Science Academy
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
-![Labs](https://img.shields.io/badge/labs-15-blue)
+![Labs](https://img.shields.io/badge/labs-17-blue)
 ![Difficulty](https://img.shields.io/badge/difficulty-intermediate-red)
 ![Java](https://img.shields.io/badge/Java-21+-red)
 
@@ -42,6 +42,17 @@ The Data Science Academy teaches end-to-end data analysis in Java. Starting from
 | 15 | [data-pipelines](./15-data-pipelines) | Feature engineering pipelines, data transforms, imputation, encoding, scaling | 5h | **** |
 
 **Total estimated time: 64 hours**
+
+### Deep-Dive Modules
+
+The following atomic deep-dive micro-labs provide expanded coverage of data science topics, with 24 educational files each, Java 21+ source code, JUnit 5 tests, and 7 project subdirectories:
+
+| # | Module | Labs | Topics |
+|---|--------|------|--------|
+| 16 | [analysis-deep](./analysis-deep) | 10 | Data wrangling, visualization, descriptive stats, EDA, feature engineering, time series, causal inference, experimentation, anomaly detection, data pipelines |
+| 17 | [ml-pipelines-deep](./ml-pipelines-deep) | 8 | Feature stores, model training pipelines, evaluation, interpretability, serving, monitoring, MLOps orchestration, fraud detection system |
+
+**Total deep-dive labs: 18 | Additional estimated time: 90 hours**
 
 ## How to Use
 

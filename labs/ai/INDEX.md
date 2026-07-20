@@ -66,3 +66,21 @@ All labs include working Java code for:
 3. Practice with coding exercises
 4. Build mini-projects to solidify concepts
 5. Complete real-world projects for portfolio
+## NEW: Deep Dive Modules (Atomic Micro-Labs)
+
+### Module 1: Math for AI Deep Dive
+- [math-for-ai-deep](math-for-ai-deep/) - 10 micro-labs on vector spaces, matrices, eigenvalues, calculus, probability, Bayesian inference, information theory, optimization, gradient descent variants, numerical computing
+
+### Module 2: Classical ML Deep Dive
+- [classical-ml-deep](classical-ml-deep/) - 10 micro-labs on linear regression, logistic regression, SVM, decision trees, random forest, gradient boosting, PCA, K-Means, DBSCAN, anomaly detection
+
+### Module 3: Neural Networks Deep Dive
+- [neural-networks-deep](neural-networks-deep/) - 10 micro-labs on perceptron, MLP backprop, activation functions, loss functions, regularization, weight initialization, optimizers, normalization layers, advanced architectures, model compression
+
+### Module 4: Deep Learning Architectures
+- [deep-learning-deep](deep-learning-deep/) - 10 micro-labs on CNN fundamentals, CNN architectures, RNN LSTM GRU, seq2seq attention, transformer from scratch, attention variants, positional encoding, transformer normalization, KV cache, inference optimization
+
+### Module 5: LLMs & GenAI Deep Dive
+- [llm-genai-deep](llm-genai-deep/) - 10 micro-labs on embeddings semantic, HNSW indexing, RAG pipeline, RAG evaluation, prompt engineering, LLM agents, fine-tuning, RLHF, hallucination mitigation, AI safety
+
+Each micro-lab contains: 24 documentation files, 7 subdirectories, Java source code with JUnit 5 tests, and complete implementations.

@@ -137,6 +137,23 @@ Each lab contains:
 
 ---
 
+
+## Deep Dive Modules
+
+### Level 6: Atomic Deep Dives
+| Module | Labs | Focus |
+|--------|------|-------|
+| [Collections Deep Dive](./collections-deep/) | 10 | HashMap internals, ConcurrentHashMap, LinkedList/ArrayList, TreeMap, PriorityQueue, Bloom filter |
+| [Concurrency Deep Dive](./concurrency-deep/) | 10 | Thread lifecycle, synchronized, volatile, atomics, AQS, CompletableFuture, ForkJoin, StampedLock, Phaser, structured concurrency |
+| [JVM Deep Dive](./jvm-deep/) | 10 | Class file format, class loading, bytecode, ASM, method handles, JIT, G1/ZGC/Shenandoah GC, JVM tuning |
+| [Memory Model Deep Dive](./memory-deep/) | 5 | JMM foundations, reordering, memory barriers, final semantics, DCL pattern |
+| [Modern Java Deep Dive](./modern-java-deep/) | 5 | Records, sealed classes, pattern matching, virtual threads, structured concurrency |
+| [Performance Deep Dive](./performance-deep/) | 5 | async-profiler, JMH, JFR streaming, memory leaks, GC log analysis |
+
+**45 new atomic micro-labs added. Total: 97 labs.**
+
+---
+
 ## How to Use This Academy
 
 ### For Beginners

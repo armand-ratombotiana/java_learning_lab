@@ -1,108 +1,54 @@
-# E-Commerce Platform: Theory
+# E-Commerce Platform - Theory
 
-## 1. Introduction
+## Core Concepts
 
-E-Commerce Platform represents a fundamental area of distributed systems engineering
-that addresses critical challenges in modern application development.
+### 1. ProductCatalog manages product lifecycle with CRUD operations, search by name/description, filtering by category/tag/price range, and active flag management. The catalog maintains category and tag indices for fast lookups.
 
-### 1.1 Problem Domain
-Modern applications face several challenges that E-Commerce Platform addresses:
-- Scale: Handling millions of concurrent users and requests
-- Reliability: Ensuring system availability and data durability
-- Performance: Maintaining low latency and high throughput
-- Consistency: Managing data correctness across distributed nodes
-- Complexity: Coordinating multiple services and components
+ProductCatalog manages product lifecycle with CRUD operations, search by name/description, filtering by category/tag/price range, and active flag management. The catalog maintains category and tag indices for fast lookups.
 
-## 2. Core Concepts
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-### 2.1 Fundamental Principles
-The architecture of E-Commerce Platform is built on key principles:
-- **Decomposition**: Complex systems are broken into manageable components
-- **Abstraction**: Well-defined interfaces hide internal complexity
-- **Redundancy**: Critical components are replicated for fault tolerance
-- **Partitioning**: Data and workload divided across multiple nodes
+### 2. ShoppingCart provides thread-safe cart operations with line-item management, automatic subtotal/total recalculation, and persistent mode tracking. Uses BigDecimal for precise monetary calculations.
 
-### 2.2 Key Terminology
-- **Throughput**: Operations completed per unit time
-- **Latency**: Time to complete a single operation
-- **Availability**: Proportion of time system is operational
-- **Durability**: Persistence of data once written
-- **Consistency**: Agreement of data across replicas
+ShoppingCart provides thread-safe cart operations with line-item management, automatic subtotal/total recalculation, and persistent mode tracking. Uses BigDecimal for precise monetary calculations.
 
-## 3. Architecture Overview
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-The E-Commerce Platform system follows a layered architecture:
-1. **Client Layer**: Handles user requests and API interactions
-2. **Service Layer**: Implements business logic and orchestration
-3. **Data Layer**: Manages storage, caching, and persistence
-4. **Infrastructure Layer**: Networking, compute, and storage resources
+### 3. OrderStateMachine 
 
-## 4. Design Patterns
+OrderStateMachine implements a finite state machine pattern with strict transition validation. Valid transitions are PENDING->CONFIRMED->PROCESSING->SHIPPED->DELIVERED, with CANCELLED and REFUNDED as terminal states. All transitions are audited.
 
-### 4.1 Structural Patterns
-- **Proxy Pattern**: Intermediate layer for access control and caching
-- **Facade Pattern**: Simplified interface to complex subsystems
-- **Adapter Pattern**: Convert between different interfaces
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-### 4.2 Behavioral Patterns
-- **Observer Pattern**: Event notification between components
-- **Strategy Pattern**: Interchangeable algorithms
-- **Command Pattern**: Encapsulated request processing
+### 4. PaymentProcessor supports CREDIT_CARD, DEBIT_CARD, PAYPAL, STRIPE, and BANK_TRANSFER methods. 
 
-### 4.3 Distributed Patterns
-- **Circuit Breaker**: Prevent cascading failures
-- **Bulkhead**: Isolate failures to prevent system-wide impact
-- **Saga**: Manage distributed transactions
-- **CQRS**: Separate read and write models
+PaymentProcessor supports CREDIT_CARD, DEBIT_CARD, PAYPAL, STRIPE, and BANK_TRANSFER methods. Implements idempotency key pattern to prevent duplicate payments, with full refund lifecycle.
 
-## 5. Trade-offs and Decisions
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-### 5.1 Consistency vs Availability
-The CAP theorem states distributed systems choose between:
-- CP: Sacrifice availability during partitions
-- AP: Sacrifice consistency during partitions
+### 5. InventoryManager uses pessimistic locking for thread-safe stock reservation and release. Tracks low-stock thresholds and supports automatic out-of-stock detection.
 
-### 5.2 Latency vs Throughput
-- Batch processing increases throughput but adds latency
-- Caching reduces latency but adds complexity
-- Compression reduces bandwidth but increases CPU usage
+InventoryManager uses pessimistic locking for thread-safe stock reservation and release. Tracks low-stock thresholds and supports automatic out-of-stock detection.
 
-### 5.3 Cost vs Performance
-- Infrastructure costs (compute, storage, network)
-- Operational costs (monitoring, maintenance)
-- Performance requirements (latency SLAs, throughput targets)
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-## 6. Implementation Considerations
+### 6. RecommendationEngine uses collaborative filtering to find similar users and recommend products they purchased. Also supports popular products and frequently-bought-together analysis.
 
-### 6.1 Java 21+ Features
-- Virtual threads for lightweight concurrency
-- Pattern matching for cleaner code
-- Records for immutable data carriers
-- Sealed classes for controlled inheritance
+RecommendationEngine uses collaborative filtering to find similar users and recommend products they purchased. Also supports popular products and frequently-bought-together analysis.
 
-### 6.2 Testing Strategy
-- Unit tests for individual components
-- Integration tests for component interactions
-- Performance tests for throughput and latency
-- Chaos tests for fault tolerance
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-### 6.3 Monitoring and Observability
-- Metrics collection (Prometheus, Micrometer)
-- Distributed tracing (OpenTelemetry)
-- Structured logging (SLF4J, Logback)
-- Health checks and readiness probes
+### 7. AdminAnalytics aggregates order data into real-time dashboards with revenue tracking, category breakdowns, conversion rates, and average order value calculations.
 
-## 7. Scaling
-- **Horizontal Scaling**: Add more nodes to handle increased load
-- **Vertical Scaling**: Increase resources on existing nodes
-- **Auto-scaling**: Dynamic resource adjustment based on metrics
+AdminAnalytics aggregates order data into real-time dashboards with revenue tracking, category breakdowns, conversion rates, and average order value calculations.
 
-## 8. Security
-- Authentication and authorization
-- Encryption in transit and at rest
-- Rate limiting and throttling
-- Input validation and sanitization
+Key implementation details: the system uses concurrent data structures (ConcurrentHashMap, CopyOnWriteArrayList) for thread safety. Error handling follows fail-fast principles with IllegalArgumentException for validation and IllegalStateException for invalid operations. All components are designed for testability with clear interfaces and dependency injection.
 
-## 9. Conclusion
-E-Commerce Platform requires deep understanding of distributed systems principles,
-practical implementation skills, and careful consideration of trade-offs.
+## Design Principles
+
+The architecture follows SOLID principles with single-responsibility classes, open-for-extension design, and dependency inversion. Thread safety is achieved through immutable records, atomic operations, and synchronized blocks where necessary. All components include comprehensive JUnit 5 test coverage with parameterized tests and edge case handling.
+
+## Performance Characteristics
+
+Operations are O(1) for hash-based lookups, O(log n) for tree-based structures, and O(n) for linear scans. Memory usage is proportional to the number of stored elements with per-entry overhead for indexing structures. Concurrent access patterns use lock striping and non-blocking algorithms where possible to minimize contention.
+
