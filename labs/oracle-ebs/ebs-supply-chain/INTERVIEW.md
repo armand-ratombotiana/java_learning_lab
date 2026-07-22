@@ -1,41 +1,55 @@
-# Interview: EBS Supply Chain
+# Interview Questions: EBS Supply Chain
 
-## Technical Questions
+## Oracle-Specific Questions
+- Explain the EBS Inventory (INV) architecture: organization structure, subinventories, locators, and item master.
+- How does the Order Management (OM) process flow work from order entry, booking, pick release, ship confirm to invoicing?
+- What is Advanced Pricing in EBS and how do you configure price lists, discounts, modifiers, and qualifiers?
+- Explain Available-to-Promise (ATP) — how does it check inventory and supply availability in real-time?
+- How does Purchasing (PO) process: requisition to PO generation, approval workflow, receiving, and invoicing?
+- What are the key Supply Chain tables: MTL_SYSTEM_ITEMS_B, OE_ORDER_HEADERS_ALL, PO_HEADERS_ALL, MTL_ONHAND_QUANTITIES?
+- How do you configure sourcing rules and allocation rules in EBS Supply Chain?
+- Explain lot control, serial control, and LPN tracking in EBS Inventory.
 
-### Q1: Explain EBS multi-tier architecture.
+## Google Cloud / Technical
+- EBS Order Management integration with Google Cloud Tasks
+- Cloud IoT for EBS inventory tracking with RFID
+- Google Maps API for EBS supply chain logistics
 
-A: Three tiers: desktop (Forms/OAF), application (Forms server, OHS, concurrent managers), database (Oracle DB 19c).
+## Microsoft / Azure
+- Azure Logic Apps for EBS PO approval workflows
+- Dynamics 365 Supply Chain vs EBS Supply Chain
+- Power BI for EBS supply chain analytics
 
-### Q2: What is MOAC?
+## Amazon / AWS
+- EBS OM integration with Amazon MQ for order events
+- AWS IoT Core for EBS warehouse sensors
+- Amazon Forecast for EBS demand planning
 
-A: Multi-Org Access Control lets one EBS instance serve multiple operating units using VPD with FND_MOBS.
+## Apple
+- Supply chain data security for Apple supplier compliance
+- iOS warehouse scanning integration with EBS INV
 
-### Q3: Describe EBR in R12.2.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK |
+| LC 262 | Trips and Users | Hard | JOIN + Filter |
+| LC 585 | Investments in 2016 | Medium | Self JOIN |
+| LC 601 | Human Traffic of Stadium | Hard | Self JOIN |
+| LC 618 | Students Report | Hard | PIVOT |
 
-A: Edition-Based Redefinition allows multiple object versions. ADOP manages prepare, apply, finalize, cutover, cleanup.
+## Production Scenarios
+- Scenario 1: "Production incident — ATP check returning incorrect availability causing overselling"
+- Scenario 2: "Performance tuning — Order Import concurrent program processing very slowly"
+- Scenario 3: "Disaster recovery — MTL_ONHAND_QUANTITIES corrupted after miscount adjustment"
+- Scenario 4: "Security breach — Unauthorized PO approval via workflow bypass"
 
-### Q4: Explain concurrent processing.
-
-A: Manager polls FND_CONCURRENT_REQUESTS for pending requests, spawns workers, updates status when done.
-
-### Q5: What is CEMLI?
-
-A: Configuration, Extension, Modification, Localization, Integration - five customization categories.
-
-### Q6: How does VPD work?
-
-A: Adds WHERE clause via fine-grained access control. FND_MOBS adds org_id filtering.
-
-### Q7: ADOP phases?
-
-A: Prepare (create edition), Apply (apply patches), Finalize (ready), Cutover (switch), Cleanup (remove old).
-
-## Behavioral Questions
-
-- Describe a challenging EBS implementation.
-
-- How to handle production issues?
-
-- Approach to EBS security?
-
-- How to stay current with EBS updates?
+## Interview Patterns & Tips
+- EBS Supply Chain interviews cover OM, INV, PO, and Pricing deeply
+- ATP calculation and sourcing rules are frequent interview topics
+- OCP EBS Supply Chain certification covers the full order-to-cash cycle
+- Supply Chain consultants earn $120K-$175K; architects $150K-$210K

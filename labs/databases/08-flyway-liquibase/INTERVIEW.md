@@ -1,18 +1,53 @@
-# Interview: Database Migrations
+# Interview Questions: Database Migrations (Flyway/Liquibase — Oracle Focus)
 
-## Common Questions
+## Oracle-Specific Questions
+- Compare Flyway vs Liquibase for Oracle database migration management.
+- How do you handle Oracle-specific DDL (tablespaces, partitioning, materialized views) in migration scripts?
+- How do you manage Oracle edition-based redefinition (EBR) with Flyway migrations?
+- How do you handle Oracle's `ALTER TABLE MODIFY` vs `ALTER TABLE ADD` in versioned migrations?
+- What are Oracle's DDL locking implications during migrations? How do you minimize downtime?
+- How do you handle Oracle PL/SQL objects (packages, procedures, functions) with Flyway?
+- How do you test Flyway/Liquibase migrations against Oracle in CI/CD pipelines?
+- How do you roll back a failed migration on Oracle without data loss?
 
-**Q:** Compare Flyway vs Liquibase.
-**A:** Flyway is SQL-first, simpler, opinionated. Liquibase is XML/JSON/YAML-based, more flexible (rollback built-in, preconditions, contexts). Flyway's rollback is paid; Liquibase includes it free.
+## Google Cloud / Technical
+- Flyway with Cloud SQL Oracle-compatible migrations
+- Cloud Build + Flyway for automated schema migration CI/CD
+- Cloud SQL migration assessment for Oracle schema compatibility
 
-**Q:** How do you handle a failed migration in production?
-**A:** 1) Don't panic. 2) Assess: can the SQL be fixed and re-run? 3) Use `flyway repair` to clear the failed entry. 4) Fix the migration SQL. 5) Re-run. 6) If data corruption occurred, restore from backup.
+## Microsoft / Azure
+- Flyway with Azure SQL Database — migration from Oracle schema
+- Azure DevOps pipelines for Liquibase Oracle migrations
+- Azure SQL migrations from Oracle — schema conversion
 
-**Q:** How do you manage migrations across multiple database vendors?
-**A:** Liquibase abstracts DDL (vendor-agnostic changelogs). Flyway uses vendor-specific SQL but supports different migration directories per database type via location configuration.
+## Amazon / AWS
+- AWS DMS + Flyway for schema migration and data sync from Oracle
+- RDS Oracle with Flyway — migration best practices
+- Aurora PostgreSQL migration from Oracle schema with Liquibase
 
-**Q:** Describe your ideal migration strategy.
-**A:** Small, atomic, well-tested migrations. SQL-first for DDL. Java for complex data migrations. CI/CD-gated. All changes reviewed. Rollback plan documented. Out-of-order migrations disabled in production.
+## Apple
+- Schema migration audit trail for compliance
+- Data migration privacy: masking PII during schema changes
 
-**Q:** How do you prevent locking issues during migrations?
-**A:** Use `pt-online-schema-change` or `gh-ost` for large ALTER TABLE. Run migrations during low traffic. Batch large data changes. Set appropriate lock wait timeouts.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 196 | Delete Duplicate Emails | Easy | Self JOIN |
+| LC 197 | Rising Temperature | Easy | DATEDIFF |
+
+## Production Scenarios
+- Scenario 1: "Migration fails mid-way — Oracle DDL lock timeout kills migration"
+- Scenario 2: "Rollback disaster — Oracle flashback vs Flyway undo"
+- Scenario 3: "Out-of-order migration causes schema inconsistency"
+- Scenario 4: "Oracle tablespace full during migration — recovery strategy"
+
+## Interview Patterns & Tips
+- Oracle interviews value experience with schema migration tools for enterprise databases
+- Know how to handle Oracle-specific DDL in versioned migrations
+- Experience with zero-downtime Oracle migrations is highly valued
+- Database migration specialist roles: $120K-$175K
+- OCP: Oracle Database SQL certification recommended

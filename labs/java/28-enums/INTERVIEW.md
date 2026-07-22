@@ -1,25 +1,59 @@
 # Interview Questions: Enums
 
-## Q1: How are enums different from integer constants?
-Enums are type-safe (compiler rejects invalid values), have namespace (qualify with enum name), provide toString(), support methods and fields, and can be iterated with values(). Integer constants lack all these properties.
+## Company-Specific Focus
 
-## Q2: Can an enum have abstract methods?
-Yes. Each enum constant must implement the abstract method. This enables behavior-driven enums where each constant has different behavior.
+### Google
+- Enums as more than constants: instance fields, methods, abstract methods per constant
+- EnumSet and EnumMap: specialized, compact, performant implementations
+- Using enumerated values in switch expressions for exhaustive matching in Java 21
 
-## Q3: How do EnumMap and EnumSet work internally?
-EnumMap uses an array sized to the number of enum constants. Operations use ordinal() as array index. EnumSet uses a bit vector (a single long or an array of longs for large enums). Both are more compact and faster than general-purpose alternatives.
+### Microsoft
+- Enum vs C# enum: Java enums are objects, C# enums are value types. Why?
+- Strategy pattern using enum: clean code for handling each possible value
+- Ordinal: why it exists and why it should not be used for persistence
 
-## Q4: Why are enums the best singleton implementation?
-Enums provide: serialization safety (JVM guarantees singleness), reflection protection (cannot create additional instances via reflection), and a concise syntax. This was Bloch's recommendation in Effective Java, Item 3.
+### Amazon
+- Enum for status modeling in state machine: internal state transitions in the order lifecycle
+- Using enums constants for configuration key constants
+- Persistence: use name() or ordinal? Why neither is ideal
 
-## Q5: How does enum serialization work?
-The JVM serializes the enum constant's name, not its field values. On deserialization, `valueOf()` is called to return the existing singleton. This prevents multiple instances and ensures the singleton guarantee.
+### Meta
+- Thread safe constants: enum constants are singletons, safe by construction
+- Abstract method per enum constant: why this eliminates many if-else chains
+- Enum.valueOf vs name/ordinal comparison
 
-## Q6: Can you extend an enum?
-No. Enums implicitly extend `java.lang.Enum`, and Java doesn't support multiple inheritance of state. All enums are implicitly final.
+### Apple
+- Equality guarantee: enums are singletons; == works correctly
+- Idea of using an enum for the Optionals pattern
+- EnumMap: memory and performance compared to regular HashMap
 
-## Q7: How do you add behavior to enums?
-Add an abstract method and implement it in each constant. For small variations, use a concrete method that switches on a field. For complex behavior per constant, use the abstract method approach.
+### Oracle
+- JLS 8.9: Enum Types: type safety from the compiler
+- Enums extend java.lang.Enum: you cannot extend anything else
+- Enum to JVM: each constant is a singleton class in the JVM
 
-## Q8: What's the difference between name() and toString()?
-`name()` returns the exact string used in the enum declaration. `toString()` is the same by default but can be overridden for user-friendly names.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 851 Loud and Rich | Medium | Amazon, Apple | Enum for status modeling |
+| 773 Sliding Puzzle | Hard | Google, Amazon | Tile direction as enum |
+| 909 Snakes and Ladders | Medium | Amazon, Apple, Google | Direction enum |
+| 1162 As Far from Land as Possible | Medium | Google, Amazon | Quad directions |
+| 200 Number of Islands | Medium | Amazon, Google, Apple | Direction control |
+
+## Real Production Scenarios
+- **Airbnb**: Adding a new enum value caused the service to go down because of a case of a switch without a default branch
+- **Spotify**: Using an enum for AudioFormat — persisted to the DB via ordinal. Then the constant order changed making migration difficult
+- **Uber**: Using enums for trip state caused a compile-time safety guarantee of all trips being in one of 7 states
+
+## Interview Patterns & Tips
+- **Enum values are objects, but** they implement Comparable and Serializable by default.
+- **Switch with enum**: The compiler checks that all values are matched if used with pattern matching (Java 21+).
+- **Persistence**: Store string (.name()) or a custom code, not the .ordinal(). The ordinal can change if enumeration order changes.
+
+## Deep Dive Questions
+- **JVM**: How are enums compiled to class files? Each enum constant is a static final field of the enum type.
+- **Memory**: How does the JVM store enum constants? (Object header overhead, fields, and class metadata)
+- **EnumMap**: How does an EnumMap outperform a HashMap? It uses the ordinal as an internal array index.
+- **Reflection**: How can enums be created via reflection? Are they protected against new instances?
+- **Serialization**: How are enums deserialized safely? Through the use of the readResolve() method

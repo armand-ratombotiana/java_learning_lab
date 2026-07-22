@@ -1,32 +1,60 @@
 # Interview Questions: Threading Deep Dive
 
-## Beginner
-1. Explain the difference between `Thread.start()` and `Thread.run()`.
-2. What is a thread pool and why would you use one?
-3. What is the difference between `sleep()` and `wait()`?
-4. How do you create a thread in Java?
+## Company-Specific Focus
 
-## Intermediate
-5. Explain how ThreadPoolExecutor decides when to create a new thread.
-6. What is work-stealing in ForkJoinPool?
-7. Compare thenApply, thenApplyAsync, thenCompose, and thenComposeAsync.
-8. What is the completion stage order for CompletableFuture.allOf?
+### Google
+- Thread lifecycle: NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED
+- Thread priorities and OS scheduling: JVM thread priority to native thread priority mapping
+- Daemon vs user threads: when to use each
 
-## Advanced
-9. How does the JVM implement the `ctl` field in ThreadPoolExecutor?
-10. Explain the Treiber stack used for CompletableFuture's dependent chain.
-11. How does StructuredTaskScope prevent thread leaks from subtasks?
-12. What memory ordering guarantees does fork/join provide?
-13. How does ForkJoinPool's common pool differ from a custom instance?
-14. What happens when a CompletableFuture's dependent throws an exception?
+### Microsoft
+- Java threads vs CLR threads: mapping to OS threads
+- ThreadGroup API: legacy, why it's mostly deprecated
+- Thread.UncaughtExceptionHandler for robust applications
 
-## Expert
-15. Design a thread pool that dynamically adjusts size based on queue latency.
-16. How would you implement a priority-based thread pool using PriorityBlockingQueue?
-17. What are the performance implications of using StructuredTaskScope with 10,000 subtasks?
-18. How does the JVM handle InterruptedException in CompletableFuture stages?
-19. Explain the role of VarHandle in the ForkJoinPool implementation.
-20. How would you implement a thread-safe work-stealing deque without Lock?
+### Amazon
+- Worker thread pools for request processing in high throughput services
+- Thread per request vs event loop model: tradeoffs at scale
+- Thread creation overhead: why thread pooling is essential
 
-## Answers
-Answers are available in the SOLUTION directory.
+### Meta
+- Thread context switching: cost and measurement
+- Thread stack size: default, tuning, implications
+- Platform threads vs virtual threads in Java 21+
+
+### Apple
+- Thread local storage: ThreadLocal, InheritableThreadLocal
+- ThreadLocal memory leaks in application server environments
+- Thread naming and identification for debugging
+
+### Oracle
+- JVM thread implementation: 1:1 mapping to OS threads (HotSpot)
+- Thread priorities: Windows, Linux, macOS mapping differences
+- Thread state representation in the JVM
+- java.lang.Thread internals: native thread creation
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1114 Print in Order | Easy | Google, Apple, Microsoft | Thread ordering with CountDownLatch |
+| 1115 Print FooBar Alternately | Medium | Amazon, Google | Two-thread coordination |
+| 1116 Print Zero Even Odd | Medium | Google, Apple, Microsoft | Multi-thread coordination |
+| 1117 Building H2O | Medium | Google, Amazon | Complex thread synchronization |
+| 1226 The Dining Philosophers | Medium | Amazon, Google, Microsoft | Classic thread synchronization problem |
+
+## Real Production Scenarios
+- **Uber**: Thread pool exhaustion in a rate-limited service — all 200 threads were blocked on a network call
+- **LinkedIn**: Thread leak caused by not properly handling InterruptedException — threads never terminated
+- **Twitter**: Thread dump analysis revealed 300 threads stuck in BLOCKED state on a single synchronized map
+
+## Interview Patterns & Tips
+- **Thread dump analysis**: Learn to read thread dumps for deadlock detection
+- **InterruptedException**: Always handle it properly (restore interrupt flag or propagate)
+- **Thread pools**: Use ThreadPoolExecutor directly, not Executors factory methods
+
+## Deep Dive Questions
+- **JVM**: How does the JVM create a platform thread? Through JNI and native OS thread creation
+- **Thread state**: How does the JVM track thread states and transitions?
+- **Context switching**: What is the cost of context switching between threads?
+- **Memory**: What is the default thread stack size? How much memory does an idle thread consume?
+- **Java 21+**: How do virtual threads differ in memory consumption and lifecycle?

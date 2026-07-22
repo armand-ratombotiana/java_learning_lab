@@ -1,33 +1,58 @@
-﻿# Interview Questions
+﻿# Interview Questions: Memory Model
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Java Memory Model (JMM): happens-before relationships, visibility guarantees
+- Volatile: semantics, ordering guarantees, read/write reordering restrictions
+- Synchronized: mutual exclusion and memory visibility guarantees
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- JMM vs .NET memory model: release/acquire semantics, volatile differences
+- JMM: happens-before, sequential consistency for data-race-free programs
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Double-checked locking: the pattern, the bug, the fix with volatile
+- Final fields and their initialization safety guarantee
+- Memory barriers on ARM vs x86: how JMM maps to hardware
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Data race vs race condition: what JMM prevents and what it doesn't
+- Reordering: compiler, JIT, and CPU reordering of instructions
+- Atomicity: when operations are atomic on primitive types
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- JMM on ARM processors: weaker memory ordering than x86
+- Final field semantics: safe publication of immutable objects
+- Effective immutability for thread safety without synchronization
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- JLS 17: Threads and Locks — the formal JMM specification
+- JSR 133: the Java Memory Model and Thread Specification
+- Causality: what formal guarantees the JMM gives
+- The happens-before partial order definition
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems - memory model is foundational for concurrency) |
+| 1114 Print in Order | Easy | Google, Apple | Visibility of ready flag |
+| 1115 Print FooBar Alternately | Medium | Amazon, Microsoft | Volatile/atomic for turn control |
+| 1116 Print Zero Even Odd | Medium | Google, Apple | Sequential consistency |
+
+## Real Production Scenarios
+- **LinkedIn**: ThreadLocal + volatile bug causing stale user session data across requests
+- **Twitter**: A data race in a cache caused some servers to serve stale data for up to 30 seconds
+- **Airbnb**: Double-checked locking on a configuration cache — missing volatile caused NPE
+
+## Interview Patterns & Tips
+- **Happens-before**: If one action happens-before another, the first is visible and ordered before the second
+- **Volatile**: Provides visibility for single reads/writes but not compound actions
+- **Safe publication**: Use final fields, volatile, or proper locking for safe object publishing
+
+## Deep Dive Questions
+- **Reordering**: What reordering does the JVM allow? What does volatile prevent?
+- **Memory barriers**: How is volatile implemented on x86 vs ARM?
+- **Final fields**: How does the JMM guarantee that final fields are visible after construction?
+- **JIT**: Can the JIT remove a volatile read? (No, but it can optimize it in some cases)
+- **Java 9+**: VarHandle and memory ordering modes: acquire/release/opaque/plain

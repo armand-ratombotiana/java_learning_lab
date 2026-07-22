@@ -1,26 +1,54 @@
-﻿# Socket Programming -- Interview Questions
-## Common Interview Questions
+﻿# Interview Questions: Socket Programming
 
-### Q1: What is the TCP three-way handshake?
-A: SYN -> SYN-ACK -> ACK sequence that establishes a TCP connection.
+## Company-Specific Focus
 
-### Q2: What is the difference between TCP and UDP?
-A: TCP is connection-oriented, reliable, ordered. UDP is connectionless, unreliable, unordered.
+### Google
+- Socket: endpoint for communication between two machines
+- TCP sockets: Socket (client), ServerSocket (server)
+- UDP sockets: DatagramSocket, DatagramPacket
 
-### Q3: How does non-blocking I/O differ from blocking I/O?
-A: Blocking I/O waits for the operation to complete. Non-blocking returns immediately.
+### Microsoft
+- Java sockets vs .NET TcpClient/TcpListener
+- Socket options: SO_TIMEOUT, SO_REUSEADDR, TCP_NODELAY
 
-### Q4: What is the C10K problem?
-A: Handling 10,000 concurrent connections. Thread-per-connection fails; event loop solves it.
+### Amazon
+- Connection pooling: reusing sockets for efficiency
+- Socket timeouts: connect timeout, read timeout
+- Non-blocking sockets: setting channel to non-blocking mode
 
-### Q5: How does HTTP/2 multiplexing work?
-A: Multiple streams over a single TCP connection, eliminating head-of-line blocking.
+### Meta
+- BIO (Blocking I/O): thread per connection model
+- Socket state: connected, closed, bound
+- Half-close: shutdownOutput vs shutdownInput
 
-### Q6: What is backpressure and why is it important?
-A: Backpressure regulates data flow to prevent consumers from being overwhelmed.
+### Apple
+- SSL/TLS: SSLSocket for secure connections
+- SocketChannel: NIO channel for socket communication
 
-### Q7: Explain the Reactor pattern.
-A: Event demultiplexing and dispatch: select() then handle events for each ready channel.
+### Oracle
+- java.net.Socket and ServerSocket
+- java.net.DatagramSocket for UDP
+- TCP vs UDP: reliability vs performance
+- Socket exceptions: ConnectException, BindException, SocketTimeoutException
 
-### Q8: How do you debug network issues in production?
-A: Use thread dumps, JFR, Wireshark captures, connection metrics, and distributed tracing.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — socket programming is networking) |
+
+## Real Production Scenarios
+- **Cloudflare**: TCP connection pool exhaustion caused 502 errors — increased pool size
+- **Uber**: Socket timeout not set caused threads to block indefinitely — setting SO_TIMEOUT resolved
+
+## Interview Patterns & Tips
+- **TCP**: reliable, ordered, connection-oriented
+- **UDP**: unreliable, unordered, connectionless
+- **Socket timeout**: always set connect and read timeouts
+- **TCP_NODELAY**: disable Nagle's algorithm for low-latency
+
+## Deep Dive Questions
+- **TCP handshake**: How does TCP three-way handshake work?
+- **Socket state machine**: What are the states of a TCP socket?
+- **SO_TIMEOUT**: What happens when a read times out?
+- **TCP_NODELAY**: What is Nagle's algorithm and why disable it?
+- **Half-close**: What happens when one end closes the connection?

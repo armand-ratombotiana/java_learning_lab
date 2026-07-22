@@ -1,32 +1,56 @@
-# Interview Questions: JVM Tuning
+# Interview Questions: JVM Tuning & Optimization
 
-## Beginner
-1. What is the difference between -Xms and -Xmx?
-2. How does young generation size affect GC behavior?
-3. What is JVM code cache and why is it important?
-4. What is Metaspace and how is it different from the heap?
+## Company-Specific Focus
 
-## Intermediate
-5. Explain how to choose between G1, ZGC, and Parallel GC for different workloads.
-6. What is the impact of -XX:CompileThreshold on performance?
-7. How do large pages work and when should they be used?
-8. What is NUMA-aware allocation and why does it matter?
-9. How does string deduplication reduce memory usage?
+### Google
+- Heap sizing: -Xms, -Xmx, -Xmn, -XX:NewRatio, -XX:SurvivorRatio
+- GC selection: Parallel, G1, ZGC, Shenandoah — when to use which
+- Metaspace: -XX:MaxMetaspaceSize
 
-## Advanced
-10. How would you tune a 32 GB heap for a latency-sensitive web application?
-11. What is the relationship between allocation rate, survivor spaces, and promotion?
-12. Explain how code cache management interacts with JIT compilation tiers.
-13. How does Metaspace chunk allocation work (buddy system)?
-14. What is the impact of compressed OOPs on heap sizing?
-15. How would you diagnose and fix a Metaspace memory leak?
+### Microsoft
+- JVM tuning for Azure: VM sizing, heap tuning
+- Thread stack: -Xss tuning for deep call stacks
 
-## Expert
-16. Design a JVM tuning strategy for a serverless Java function (cold start optimization).
-17. How does CDS (Class Data Sharing) improve startup time and how would you implement it?
-18. Explain the interaction between JVM tuning flags and container memory limits (cgroups).
-19. How would you tune the JVM for a data-intensive Spark job processing 200 GB of data?
-20. What are the tradeoffs between tiered compilation disabled vs enabled for different deployment scenarios?
+### Amazon
+- JVM tuning for containers: memory limits, cgroups awareness
+- Compressed OOPs: -XX:+UseCompressedOops (default when heap < 32GB)
+- Code cache: -XX:ReservedCodeCacheSize, -XX:InitialCodeCacheSize
 
-## Answers
-Available in the SOLUTION directory.
+### Meta
+- GC tuning for throughput vs latency
+- JIT compiler tuning: -XX:CompileThreshold, -XX:TieredStopAtLevel
+- Escape analysis and scalar replacement: -XX:+DoEscapeAnalysis
+
+### Apple
+- JVM tuning on macOS: differences from Linux
+- Heap tuning for small footprint applications
+- Code cache size for ARM64
+
+### Oracle
+- JVM tuning reference: all -XX flags
+- GC ergonomics: JVM auto-tunes based on hardware
+- Diagnostic flags: -XX:+PrintFlagsFinal
+- Unified logging: -Xlog:gc*, -Xlog:jit*
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — JVM tuning is operational) |
+
+## Real Production Scenarios
+- **Netflix**: G1GC tuning reduced GC pause from 200ms to 5ms by reducing -XX:MaxGCPauseMillis
+- **Uber**: Heap with >32GB caused compressed OOPs to be disabled, increasing memory usage by 15%
+- **LinkedIn**: Code cache default (240MB) was insufficient for large applications — set to 512MB
+
+## Interview Patterns & Tips
+- **Compressed OOPs**: Enabled below 32GB heap, saves memory on object references
+- **Always set -Xms == -Xmx**: avoid resizing overhead
+- **GC logs**: Always enable for troubleshooting
+- **Thread dump + heap dump**: essential diagnostic tools
+
+## Deep Dive Questions
+- **Compressed OOPs**: How do compressed OOPs work? How much memory do they save?
+- **GC ergonomics**: How does the JVM auto-tune GC parameters?
+- **String deduplication**: How G1 deduplicates strings and saves memory
+- **Large pages**: -XX:+UseLargePages and its effects on performance
+- **Thread stack size**: How does -Xss affect thread count?

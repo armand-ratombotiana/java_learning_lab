@@ -1,36 +1,56 @@
-# Interview Questions
+# Interview Questions: APEX Advanced Worksheets
 
-## Level 1: Fundamentals
-1. Basic question one?
-2. Basic question two?
-3. Basic question three?
-4. Basic question four?
-5. Basic question five?
+## Oracle-Specific Questions
+- Explain APEX Collections — how do you create, populate, and use collections for shopping carts or temporary data?
+- What are APEX caching strategies? Compare page cache, region cache, and result cache.
+- How do you manage credentials in APEX? What is the `APEX_CREDENTIAL` API and how do you use it for REST calls?
+- How does APEX send email? Explain `APEX_MAIL` package configuration and SMTP server setup.
+- How do you generate PDFs from APEX — compare BI Publisher, Apache FOP, and APEX Office Print (AOP)?
+- How do you create ZIP files in PL/SQL using `APEX_ZIP` package for bulk file downloads?
+- Explain APEX JET Charts — how do you create interactive charts and customize them?
+- What are APEX Plugins? How do you create and use custom plugins for reusable components?
 
-## Level 2: Intermediate
-6. Intermediate question one?
-7. Intermediate question two?
-8. Intermediate question three?
-9. Intermediate question four?
-10. Intermediate question five?
+## Google Cloud / Technical
+- APEX mail integration with Google Workspace SMTP relay
+- Google Cloud Print alternatives for APEX PDF generation
+- Cloud Storage for APEX file uploads and downloads
 
-## Level 3: Advanced
-11. Advanced question one?
-12. Advanced question two?
-13. Advanced question three?
-14. Advanced question four?
-15. Advanced question five?
+## Microsoft / Azure
+- Azure Communication Services email integration with APEX
+- SharePoint integration for APEX document storage
+- Office 365 SMTP relay for APEX mail
 
-## Level 4: Expert
-16. Expert question one?
-17. Expert question two?
-18. Expert question three?
-19. Expert question four?
-20. Expert question five?
+## Amazon / AWS
+- Amazon SES for APEX email delivery at scale
+- S3 presigned URLs for APEX file downloads
+- Lambda@Edge for APEX PDF generation offloading
 
-## Level 5: Hands-On
-21. Hands-on coding exercise one?
-22. Hands-on coding exercise two?
-23. Hands-on coding exercise three?
-24. Hands-on coding exercise four?
-25. Hands-on coding exercise five?
+## Apple
+- AirPrint compatibility with APEX printing features
+- iCloud integration for APEX file storage
+
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK |
+| LC 262 | Trips and Users | Hard | JOIN + CASE |
+| LC 569 | Median Employee Salary | Hard | PERCENTILE_CONT |
+| LC 571 | Find Median Given Frequency | Hard | Window + SUM |
+| LC 601 | Human Traffic of Stadium | Hard | Self JOIN |
+| LC 618 | Students Report | Hard | PIVOT |
+
+## Production Scenarios
+- Scenario 1: "Production incident — APEX_MAIL queue backing up, emails not sending for 6 hours"
+- Scenario 2: "Performance tuning — APEX JET Chart query taking 45 seconds to render dashboard"
+- Scenario 3: "Disaster recovery — Collection data lost after session timeout for in-progress orders"
+- Scenario 4: "Security breach — Cached report data contains PII accessible by unauthorized users"
+
+## Interview Patterns & Tips
+- Oracle values experience with APEX advanced features like collections, caching, and mail
+- Expect questions about file handling (ZIP, PDF) and how to process large files in APEX
+- Plugin development expertise is a differentiator
+- Senior APEX roles with advanced feature expertise: $135K-$200K

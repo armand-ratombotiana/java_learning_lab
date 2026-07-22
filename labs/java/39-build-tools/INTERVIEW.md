@@ -1,33 +1,56 @@
-﻿# Interview Questions
+﻿# Interview Questions: Build Tools
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Maven vs Gradle: phases vs tasks, XML vs Groovy/Kotlin DSL
+- Dependency management: transitive dependencies, conflict resolution, exclusions
+- Multi-module builds: managing large-scale Java projects
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Maven build tool vs MSBuild in .NET ecosystem
+- Integration with Azure DevOps: Maven deploy, CI/CD pipelines
+- Gradle incremental builds for faster local development
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Gradle vs Maven in the AWS SDK codebase
+- Custom Gradle plugins for internal tooling
+- Build optimization: parallel execution, daemon, cache
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Build caching: how to speed up 100k+ module builds
+- Dependency convergence: preventing classpath conflicts
+- Lombok, annotation processors, and build configuration
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Maven for Java modules on macOS
+- Build portability: cross platform builds
+- Gradle vs Xcode build: different world
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- Maven Standard Directory Layout
+- The build phase lifecycle: compile, test, package, deploy
+- Build tools and the Java module system: modular JARs
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems - but build tool patterns apply to project design) |
+
+## Real Production Scenarios
+- **Netflix**: A transitive dependency conflict caused a NoSuchMethodError at runtime — resolved with dependency constraint in Gradle
+- **Uber**: A multi-module build took 30 minutes — migrated from Maven to Gradle, reduced to 8 minutes
+- **Twitter**: Build artifacts from CI had inconsistent versions across modules — fixed by BOM (Bill of Materials) management
+
+## Interview Patterns & Tips
+- **Maven**: POM.XML, dependency management, transitive dependency resolution
+- **Gradle**: Groovy/Kotlin DSL, incremental build, build cache
+- **Plugin**: maven-compiler-plugin, maven-surefire-plugin
+- **Version management**: BOM for consistent transitive dependencies
+
+## Deep Dive Questions
+- **JVM**: How does Maven/Gradle execute tests? Forked JVM per test suite
+- **Memory**: How much memory does the build daemon consume when building large projects?
+- **Performance**: What are the benefits of Gradle's build cache for CI performance?
+- **Module system**: How to build modular JARs with module-info.java
+- **Java 21+**: Toolchain support for multiple JDK versions within one build

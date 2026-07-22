@@ -1,33 +1,56 @@
-﻿# Interview Questions
+﻿# Interview Questions: Reactive Programming
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Reactive Streams specification: Publisher, Subscriber, Subscription, Processor
+- Project Reactor vs RxJava: choosing the right reactive library
+- Backpressure handling: how reactive streams handle demand
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Reactive in Java vs .NET Reactive Extensions (Rx.NET)
+- Spring WebFlux: building reactive web services
+- Observable vs Flowable vs Flux: backpressure support
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Reactive patterns in microservices: event-driven architecture
+- Non-blocking I/O: WebFlux with Netty for high throughput
+- Backpressure: how to handle load spikes in reactive systems
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Reactive testing: StepVerifier, TestPublisher
+- Error handling in reactive chains: onErrorResume, onErrorReturn
+- Schedulers: parallel vs elastic vs boundedElastic
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Memory management in reactive: avoiding object buildup
+- Reactive streams and virtual threads: performance comparison
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- Reactive Streams specification integration in Java 9 (Flow API)
+- java.util.concurrent.Flow classes: Publisher, Subscriber, Subscription
+- Reactive landscape in Java: Project Reactor, RxJava
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (Reactive patterns apply architecturally to many problems) |
+| 146 LRU Cache | Medium | Google, Amazon | Reactive cache invalidation patterns |
+
+## Real Production Scenarios
+- **Netflix**: Backpressure handling failure in Hystrix caused cascading failure
+- **LinkedIn**: Using reactive streams for data ingestion pipeline processing 1M events/sec
+- **Twitter**: WebFlux migration from Spring MVC improved throughput by 200%
+
+## Interview Patterns & Tips
+- **Cold vs Hot publishers**: cold emits per subscriber, hot broadcasts
+- **Backpressure**: subscriber controls the demand via request(n)
+- **Schedulers**: control on which thread the reactive chain runs
+- **Mono vs Flux**: 0-1 vs 0-N elements
+
+## Deep Dive Questions
+- **Reactive Streams spec**: What are the rules about onNext?
+- **Backpressure**: How does Project Reactor implement backpressure?
+- **Schedulers**: How does parallel scheduler differ from boundedElastic?
+- **Testing**: How to test reactive streams with StepVerifier?
+- **Java 9 Flow**: How does the Flow API compare with Reactive Streams?

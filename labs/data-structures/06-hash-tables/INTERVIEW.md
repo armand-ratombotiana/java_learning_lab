@@ -1,50 +1,86 @@
 # Interview Questions: Hash Tables
 
-## Easy
+## LeetCode Problem Map
+| Problem | Difficulty | Company Signal | Pattern |
+|---------|-----------|----------------|---------|
+| [LC 1 Two Sum](https://leetcode.com/problems/two-sum/) | Easy | Google, Meta, Amazon, Microsoft, Apple | HashMap lookup |
+| [LC 49 Group Anagrams](https://leetcode.com/problems/group-anagrams/) | Medium | Amazon, Meta, Google, Microsoft | HashMap keyed by sorted string |
+| [LC 128 Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | Google, Amazon, Meta, Microsoft | HashSet spanning |
+| [LC 560 Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | Medium | Meta, Amazon, Google, Microsoft | Prefix sum + HashMap |
+| [LC 242 Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Easy | Amazon, Google, Microsoft, Apple, Meta | Character count map |
+| [LC 290 Word Pattern](https://leetcode.com/problems/word-pattern/) | Easy | Google, Apple, Amazon | Bijection map |
+| [LC 359 Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/) | Easy | Google, Amazon, Meta | Timestamp map |
+| [LC 146 LRU Cache](https://leetcode.com/problems/lru-cache/) | Medium | Amazon, Meta, Google, Microsoft | LinkedHashMap / HashMap + DLL |
+| [LC 706 Design HashMap](https://leetcode.com/problems/design-hashmap/) | Easy | Microsoft, Amazon, Apple | Array of buckets with chaining |
+| [LC 3 Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Medium | Amazon, Meta, Google, Microsoft, Apple | Sliding window + HashMap |
+| [LC 76 Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) | Hard | Meta, Amazon, Google, Microsoft | Sliding window + HashMap |
+| [LC 347 Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Amazon, Meta, Google, Microsoft | HashMap + bucket sort |
+| [LC 380 Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) | Medium | Amazon, Google, Meta, Microsoft | HashMap + ArrayList |
+| [LC 454 4Sum II](https://leetcode.com/problems/4sum-ii/) | Medium | Amazon, Meta, Google, Microsoft | HashMap of pair sums |
 
-1. **Two Sum** — Return indices of two numbers that sum to target (HashMap).
+## NeetCode Reference
+NeetCode 150: Arrays & Hashing category — 9 problems using hash maps and hash sets extensively.
 
-2. **Contains Duplicate** — Check if any value appears at least twice (HashSet).
+## Company-Specific Questions
 
-3. **Valid Anagram** — Check if two strings are anagrams (HashMap character count).
+### Google
+- Design a hash map from scratch — handle collisions (chaining/open addressing), load factor, resizing
+- How does Java 8+ optimize HashMap for hash collision attacks (treeify threshold)?
+- Design a distributed key-value store — consistent hashing, replication, quorum
+- Why is HashMap iteration order non-deterministic? When is this a problem?
 
-4. **First Unique Character** — Find first non-repeating character (HashMap of counts).
+### Microsoft
+- Group anagrams — optimize for Unicode strings with large character sets
+- Implement a bijection (bidirectional map) — what data structures would you use?
+- How does ConcurrentHashMap achieve thread safety without locking on reads?
 
-## Medium
+### Meta
+- Top K frequent words — HashMap + min-heap vs bucket sort, trade-offs
+- Insert/Delete/GetRandom O(1) — how does HashMap + ArrayList support this?
+- Design a URL shortener (two HashMaps: short→long, long→short)
 
-5. **Group Anagrams** — Group anagrams together (HashMap of sorted strings → list).
+### Amazon
+- Subarray sum equals K — why does prefix sum + HashMap work? What about negative numbers?
+- Design a product page that stores customer reviews — HashMap of productId → list of reviews
+- LRU Cache using LinkedHashMap (access-order) — explain the constructor parameters
 
-6. **Top K Frequent Elements** — Return k most frequent elements (HashMap + bucket sort).
+### Apple
+- How does NSDictionary (Objective-C) compare to Java HashMap?
+- Minimum window substring — explain the contracting sliding window algorithm
+- Design a cache for thumbnails with limited memory (HashMap + eviction policy)
 
-7. **Longest Consecutive Sequence** — O(n) time, find longest consecutive sequence.
+### Oracle
+- Explain the `hashCode()` and `equals()` contract — what happens if you override only one?
+- What is the difference between `HashMap`, `LinkedHashMap`, `TreeMap`, `ConcurrentHashMap`?
+- How does hash table bucketing work in Java 8? What is the TREEIFY_THRESHOLD?
+- What is the performance impact of a bad hashCode() implementation?
 
-8. **Subarray Sum Equals K** — Count subarrays summing to k (prefix sum HashMap).
+## Real Production Scenarios
 
-9. **LRU Cache** — Design a least-recently-used cache (LinkedHashMap or HashMap + doubly linked list).
+- **Scenario 1: URL Shortener** — A URL shortening service stores ~100M mappings from short codes to long URLs in a HashMap-like store (Redis or Memcached). The short code is generated by base64 encoding an auto-increment ID. A Bloom filter checks if a custom alias is already taken before consulting the map.
 
-10. **Encode and Decode TinyURL** — Design a URL shortening service (two HashMaps).
+- **Scenario 2: Real-Time Analytics Counters** — A web analytics platform counts page views, unique visitors, and custom events per page. Uses a `ConcurrentHashMap<String, AtomicLong>` for counters. The map grows with new pages; periodic aggregation threads scan the map and push to a database.
 
-## Hard
+- **Scenario 3: Session Store** — A web application stores HTTP session data in a distributed HashMap (Hazelcast, Redis Cluster). Session IDs are the keys, and user session objects are values. The map supports TTL-based eviction and atomic updates (compare-and-swap for optimistic locking).
 
-11. **Design HashMap** — Implement your own hash map with separate chaining, load factor, and resize.
+## Interview Tips
 
-12. **Minimum Window Substring** — Find smallest window containing all chars of target string (HashMap + sliding window).
+- Time: O(1) average for get/put, O(n) worst case with bad hash distribution, O(n) for resizing
+- Space: O(n + capacity) — bucket array overhead + per-entry objects
+- Common edge cases: null keys/values, hash collisions, concurrent modification, load factor tuning
+- HashMap capacity should be a power of 2 (Bitwise AND for index calculation, not modulo)
+- Resizing is expensive (O(n)) — pre-size if expected size is known
+- Java 8+ optimizes: when a bucket exceeds 8 entries, it becomes a Red-Black tree (O(log n) worst case)
 
-13. **Max Points on a Line** — Given n points, find max points on a line (HashMap of slope → count).
+## Java-Specific Considerations
 
-14. **Insert Delete GetRandom O(1)** — Design a data structure supporting insert, delete, getRandom in O(1) (HashMap + ArrayList).
-
-## Key Patterns
-
-- **HashMap for lookup**: cache computed values, store indices for quick retrieval
-- **HashMap for counting**: frequency maps are the most common pattern
-- **Prefix sum + HashMap**: subarray sum problems
-- **Sliding window + HashMap**: substring problems
-- **HashMap + doubly linked list**: LRU cache
-
-## Java-Specific Topics
-
-- Difference between HashMap, LinkedHashMap, TreeMap, ConcurrentHashMap
-- hashCode() and equals() contract — must override both
-- HashMap vs HashSet (HashSet is wrapper around HashMap)
-- HashMap capacity and load factor tuning
+- `HashMap<K,V>` — unsorted, O(1) average, allows one null key, thread-unsafe, fail-fast iterator
+- `LinkedHashMap<K,V>` — insertion/access order predictable, slightly more memory, LRU cache via `removeEldestEntry()`
+- `TreeMap<K,V>` — sorted via Comparable/Comparator, O(log n), Red-Black tree, NavigableMap interface
+- `ConcurrentHashMap<K,V>` — lock-free reads, CAS writes, uses `computeIfAbsent()` for atomic lazy init
+- `Hashtable<K,V>` — legacy, synchronized, single lock, no nulls — do not use in new code
+- `Collections.synchronizedMap()` — wraps any Map, but each operation locks on the wrapper
+- `EnumMap<K,V>` — ultra-fast, array-backed, key must be enum type
+- `IdentityHashMap<K,V>` — reference equality, not equals(), used in serialization/deep-copy frameworks
+- `WeakHashMap<K,V>` — keys with weak references, auto-cleanup on GC — useful for caches with non-essential entries
+- `Map.of()` (Java 9+) — immutable singleton/small maps with zero overhead

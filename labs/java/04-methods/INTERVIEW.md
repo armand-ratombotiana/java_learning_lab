@@ -1,25 +1,62 @@
-# Methods — Interview Questions
+# Interview Questions: Methods
 
-1. **Q: Is Java pass-by-value or pass-by-reference?** A: Pass-by-value. For primitives, value is copied. For objects, reference value is copied — you can modify the object but cannot swap references.
+## Company-Specific Focus
 
-2. **Q: What is method overloading?** A: Multiple methods with same name, different parameter lists. Resolved at compile time based on argument types.
+### Google
+- Method dispatch: static vs virtual, JIT devirtualization and inline caching
+- Overload resolution: how the compiler chooses the most specific method
+- Varargs method performance: array creation overhead for each invocation
 
-3. **Q: How does varargs work?** A: `void method(String... args)` compiles to `void method(String[] args)`. Each call site creates an array. Must be last parameter, only one allowed.
+### Microsoft
+- Method reference vs lambda: are they equivalent in bytecode?
+- Java C# differences: extension methods in C# vs static utility methods in Java
+- Overloading with generics: type erasure and bridge methods
 
-4. **Q: Can you overload a method by changing return type only?** A: No. Return type is not part of method signature. Must differ in parameter count or types.
+### Amazon
+- Inline caching and JIT inlining decisions for virtual methods in AWS SDK
+- Interface default methods and diamond problem resolution
+- Recursive method stack depth vs iterative solutions for server-side reliability
 
-5. **Q: What is the difference between overloading and overriding?** A: Overloading = same name, different params (compile-time). Overriding = same signature (runtime). Overriding is for subclasses.
+### Meta
+- The cost of method calls in tight loops: JIT inlining thresholds
+- Default methods in functional interfaces for compatibility in maintained libraries
+- Method overloading resolution with method references
 
-6. **Q: Why does recursion cause StackOverflowError?** A: Each recursive call adds a stack frame. Default stack size is ~1MB. Deep recursion fills the stack.
+### Apple
+- Considerations for using private vs package-private methods for encapsulation
+- Constructors: chaining with `this()` and `super()`, inheritance ordering
+- Method visibility: public API vs internal implementation
 
-7. **Q: What is a static method?** A: Method that belongs to the class, not instances. Called on class name: `ClassName.method()`. Cannot access instance variables.
+### Oracle
+- Method signature, erasure, and bridge methods in the JLS
+- How are `invokevirtual`, `invokespecial`, `invokeinterface`, `invokestatic` JVM instructions different?
+- The `invokedynamic` instruction: how methods are bootstrapped for lambdas
+- Method handle API and the bytecode it generates
 
-8. **Q: What are the steps in a method call?** A: (1) Push arguments, (2) Create stack frame, (3) Store return address, (4) Execute method body, (5) Return value, (6) Restore caller frame.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 50 Pow(x, n) | Medium | Amazon, Google | Recursive vs iterative with odd/even handling |
+| 509 Fibonacci Number | Easy | Facebook, Amazon | Recursive without memo => exponential time; with memo => linear |
+| 779 K-th Symbol in Grammar | Medium | Google, Apple | Recursive function with ternary division |
+| 1614 Maximum Nesting Depth of Parentheses | Easy | Amazon, Microsoft | Methods for modular decomposition |
+| 1823 Find the Winner of the Circular Game | Medium | Google, Apple | Recursive elimination function |
 
-9. **Q: What is the `main` method?** A: Entry point of Java application. Signature: `public static void main(String[])`. JVM calls it to start the program.
+## Real Production Scenarios
+- **Uber**: Overloaded methods caused ambiguous call after library version update; explicit casting needed
+- **Airbnb**: Varargs method call in hot loop creating 100K array objects per second — refactored to accept an explicit parameter
+- **Pinterest**: Deep call stack from recursion caused `StackOverflowError` during batch processing; rewrote as iteration
 
-10. **Q: What is method inlining?** A: JIT optimization where method body replaces the call site. Eliminates call overhead. Applied to small, hot methods.
+## Interview Patterns & Tips
+- **Overload resolution**: The compiler picks the most specific type at compile-time, not runtime
+- **Overriding vs hiding**: Static methods cannot be overridden, only hidden. The method called depends on the compile-time type of the expression
+- **Varargs as last parameter**: If there is no argument for a varargs parameter, an empty array is passed, not null
+- **Bride methods**: When a subclass overrides a parent method with a narrower return type (covariant return), the compiler generates a bridge method
+- **Constructors**: If you don't define any, Java provides a no-arg constructor automatically; if you define a parameterized constructor, you must explicitly define a no-arg one if needed
 
-11. **Q: What is a synthetic method?** A: Compiler-generated method for language features (e.g., bridge methods for generics). Not present in source code.
-
-12. **Q: Can you define a method inside another method?** A: No (traditional methods). Yes for lambdas and local classes (Java 8+).
+## Deep Dive Questions
+- **JVM**: How do the `invokevirtual` and `invokeinterface` instructions differ in their virtual method lookups? Which has higher overhead?
+- **Bytecode**: What does the bytecode for a varargs method call look like? How does the resulting `anewarray` instruction work before invocation?
+- **JIT**: How does the JIT compiler decide to inline a method? What are the trade-offs with stack depth and code size?
+- **Concurrency**: Is it safe to call a synchronized method in a class that also has non-synchronized methods accessing the same member? What can go wrong?
+- **Java 21+**: With the implementation of virtual threads, what are the new recommendations for recursive method depth due to potential stack copying?

@@ -1,29 +1,59 @@
-# Structured Concurrency & Scoped Values — Interview Questions
+# Interview Questions: Structured Concurrency & Scoped Values
 
-## Question 1: Core Concepts
-**Q:** Explain structured concurrency and scoped values and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- StructuredTaskScope: managing virtual threads with scoped lifecycle
+- Shutdown on failure: capturing errors from concurrent subtasks
+- Structured concurrency vs unstructured thread management
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- StructuredTaskScope vs C# Task.WhenAll pattern
+- Error propagation in structured concurrency
+- Scoped values for context propagation
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- Scoped values replacing ThreadLocal in virtual thread environment
+- Request-scoped context propagation without memory leaks
+- Structured concurrency for microservice orchestration
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- Task failure handling: shutting down sibling tasks on failure
+- ScopedValue: inheriting context across virtual threads
+- Memory safety: scoped values prevent ThreadLocal leaks
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Structured concurrency for clean resource management
+- ScopedValue vs ThreadLocal: why scoped values are safer
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- JEP 428: Structured Concurrency (Incubator)
+- JEP 429: Scoped Values (Incubator)
+- JEP 446: Scoped Values (Second Preview in Java 21)
+- JEP 453: Structured Concurrency (Preview in Java 21)
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1114 Print in Order | Easy | Google, Amazon, Microsoft | Structured coordination of tasks |
+| 1115 Print FooBar Alternately | Medium | Google, Amazon | Structured coordination |
+| 1242 Web Crawler Multithreaded | Medium | Amazon, Google | Structured crawling |
+| 1226 The Dining Philosophers | Medium | Amazon, Google, Microsoft | Structured resource management |
+
+## Real Production Scenarios
+- **Twitter**: Using StructuredTaskScope for an API that calls 4 downstream services — any failure cancels all others
+- **LinkedIn**: Scoped values for tracing context in virtual threads — replaced ThreadLocal for zero leaks
+- **Uber**: Scoped values for request-scoped security context propagating across async boundaries
+
+## Interview Patterns & Tips
+- **StructuredTaskScope**: Subtasks are managed within a scope; all must complete or be cancelled
+- **ShutdownOnFailure**: If one subtask fails, all remaining active subtasks are cancelled
+- **ScopedValue**: A value bound to a thread/scope, inherited by child virtual threads
+- **ScopedValue vs ThreadLocal**: ScopedValue is immutable (per scope), avoids memory leaks
+
+## Deep Dive Questions
+- **JVM**: How does StructuredTaskScope manage virtual thread lifecycle?
+- **ScopedValue**: How is ScopedValue implemented at the JVM level?
+- **Rebind**: How does ScopedValue.where() work for rebinding values in subtasks?
+- **Memory**: Why do scoped values prevent memory leaks that ThreadLocal had?
+- **Performance**: What is the cost of structured concurrency vs unstructured thread management?

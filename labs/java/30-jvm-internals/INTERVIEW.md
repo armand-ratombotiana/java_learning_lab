@@ -1,25 +1,62 @@
 # Interview Questions: JVM Internals
 
-## Q1: What is the JVM architecture?
-The JVM consists of the Class Loader Subsystem (loading, linking, initialization), Runtime Data Areas (heap, stack, method area, PC registers, native stacks), Execution Engine (interpreter, JIT compilers, GC), and Native Interface (JNI).
+## Company-Specific Focus
 
-## Q2: How does GC work in the JVM?
-GC identifies unreachable objects and reclaims their memory. The GC roots are thread stacks, static fields, JNI references, and active monitors. Live objects are traced from roots. G1 divides the heap into regions and collects the regions with most garbage first.
+### Google
+- JVM architecture: class loader subsystem, runtime data areas, execution engine
+- HotSpot internals: details about the JIT, garbage collection, profiling
+- JVM tuning: applying Xms/Xmx, GC choice, metaspace, and code cache
 
-## Q3: Explain JIT compilation.
-The JVM starts by interpreting bytecode. Frequently executed (hot) methods are compiled to native code. C1 (client compiler) provides quick optimization with profiling. C2 (server compiler) provides aggressive optimization. Tiered compilation starts with interpreter, progresses through C1 tiers, and eventually reaches C2.
+### Microsoft
+- JVM vs CLR: architecture and memory management comparison
+- Metadata in the JVM: class file parsing vs CLI metadata
+- JVM performance tuning for enterprise Java applications on Azure
 
-## Q4: What is the difference between -Xms and -Xmx?
--Xms sets the initial heap size (allocated at startup). -Xmx sets the maximum heap size (heap can grow up to this). Setting them equal avoids resizing overhead.
+### Amazon
+- JVM warm up: why microservices need warmup strategies on AWS
+- JDK Flight Recorder: event-based monitoring and production troubleshooting
+- JVM crash analysis: hs_err log and core dumps
 
-## Q5: How does escape analysis work?
-The JIT determines if an object escapes the method or thread. Non-escaping objects can be: allocated on the stack, scalar-replaced (fields stored directly in registers/memory), or synchronized eliminated.
+### Meta
+- Garbage collection: how different generations/collectors work
+- Escape analysis: allocating on stack where possible
+- JIT compilation: C1 vs C2, tiered compilation and inlining decisions
 
-## Q6: What is biased locking?
-Biased locking optimizes for objects locked by a single thread by biasing the object header toward that thread. After revocation threshold is exceeded, biased locking is disabled (default behavior since Java 15).
+### Apple
+- JVM on macOS: always ARM native (since JDK 17)
+- Object layout: mark word, klass pointer, field alignment
+- Page size: macOS uses 16KB pages vs Linux 4KB
 
-## Q7: How does the class loader hierarchy work?
-Bootstrap ClassLoader (loads JDK core classes) → Platform/Extension ClassLoader (loads JDK extension classes) → Application/System ClassLoader (loads application classpath). Custom ClassLoaders can define new class loading strategies. Delegation is parent-first by default.
+### Oracle
+- JVM specification: the bible for JVM implementations
+- HotSpot JVM: the reference implementation, open source
+- The JVM execution model: interpretation -> tiered -> native code
+- Flight Recorder and Mission Control
 
-## Q8: What causes a full GC?
-Full GC occurs when: concurrent GC fails (promotion failure), metaspace fills up, System.gc() is called, or -XX:+DisallowExplicitGC is absent. Full GC is a stop-the-world, single-threaded mark-sweep-compact operation that pauses all application threads.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LeetCode problems map to JVM internals — but the following test JVM knowledge) |
+| Implement a simple class loader | N/A | Google, Microsoft | Understand delegation model |
+| Explain GC log output | N/A | Amazon, Google | JVM problem diagnosis |
+| Interpret hs_err log | N/A | Meta, Apple | Analyzing JVM crashes |
+
+## Real Production Scenarios
+- **Netflix**: JVM crash due to a large thread stack caused two hours of downtime — forced to set Xss explicitly
+- **Uber**: Code cache full warning degraded performance of the JIT — added -XX:ReservedCodeCacheSize=256m
+- **Twitter**: A JVM was paused for 50 seconds due to full GC cause of metaspace growing endlessly
+
+## Interview Patterns & Tips
+- **HotSpot**: Most production JVM is OpenJDK HotSpot
+- **-Xms == -Xmx**: Avoid resizing pauses during execution
+- **Choose GC based on the workload**: 
+  - Throughput: ParallelGC
+  - Low latency: G1GC, ZGC, Shenandoah
+  - Large heap (>100GB): ZGC or Shenandoah
+
+## Deep Dive Questions
+- **JVM memory**: Explain the runtime data areas: heap, stack, method area, PC Register, native method stack
+- **Class file format**: The magic number (0xCAFEBABE), version, constant pool, methods, and attributes
+- **Class loading**: Delegation hierarchy, loading, linking (verification, preparation, resolution), initialization
+- **JIT**: What triggers C1 vs C2 compilation? Tiered compilation phases
+- **GC**: What are GC roots? How does tracing work from roots to live objects?

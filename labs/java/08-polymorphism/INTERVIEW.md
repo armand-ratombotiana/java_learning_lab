@@ -1,25 +1,62 @@
-# Polymorphism — Interview Questions
+# Interview Questions: Polymorphism
 
-1. **Q: What is polymorphism and why is it useful?** A: The ability of an object to take many forms. Enables programming to interfaces, the Strategy pattern, and the Open/Closed Principle.
+## Company-Specific Focus
 
-2. **Q: How does dynamic method dispatch work?** A: JVM looks up the actual object's class at runtime, finds the method in the vtable, and executes that version. The reference type determines available methods; the object type determines implementation.
+### Google
+- Dynamic vs static polymorphism: method dispatch differences and JIT impact
+- Runtime polymorphism with interfaces: method table and class hierarchy depth cost
+- Polymorphism and code bloat: how virtual dispatch affects performance
 
-3. **Q: What is the difference between compile-time and runtime polymorphism?** A: Compile-time = overloading (method resolution by compiler). Runtime = overriding (method resolution by JVM via vtable).
+### Microsoft
+- Java is virtual by default; C# needs explicit `virtual` keyword. How does this impact design?
+- Overload vs Override: compile-time vs runtime resolution
+- Polymorphism in Java generics: bridge methods for type hierarchy
 
-4. **Q: Can you have polymorphism without inheritance?** A: Yes — interface polymorphism. Different classes implementing the same interface can be used interchangeably.
+### Amazon
+- Polymorphic dispatch overhead in performance-sensitive loops
+- Use-case specific polymorphism: visitor pattern in language interpreters
+- Double dispatch via pattern matching: Java 21+ making it cleaner
 
-5. **Q: What is the Open/Closed Principle?** A: Software entities should be open for extension but closed for modification. Polymorphism achieves this — add new subclasses without modifying existing code.
+### Meta
+- Performance-first: avoiding overload dispatch in hot code paths
+- Branch misprediction cost on modern CPUs due to virtual dispatch
+- Using enum dispatch as polymorphism light
 
-6. **Q: How does the JIT optimize polymorphic calls?** A: Type profiling → if monomorphic (1 type), devirtualize and inline. If bimorphic (2 types), inline both with type check. If megamorphic (3+), keep virtual dispatch.
+### Apple
+- Using sealed classes to limit inheritance and make virtual calls JIT-friendly
+- Polymorphism for extending library without modifying the base
+- Proper equals implementation: polymorphic type check using getClass vs instanceof
 
-7. **Q: What is a covariant return type?** A: Java 5+ feature where an overriding method can return a more specific (subtype) return type. Example: `Dog reproduce()` in Dog when Animal's method returns `Animal`.
+### Oracle
+- Polymorphism and virtual methods in the JVM specification
+- Invokevirtual and invokeinterface: underlying mechanisms and differences
+- Method resolution rules in successive interfaces (8 and 9)
+- Polymorphism with generics: type erasure and heap pollution
 
-8. **Q: Why can't you override static methods?** A: Static methods are class-level — they belong to the class, not instances. They're resolved at compile time based on reference type, not runtime object type.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1472 Design Browser History | Medium | Apple, Amazon, Google | Polymorphic actions pattern |
+| 1650 Lowest Common Ancestor of a Binary Tree III | Medium | Microsoft, Google | Subtype polymorphism for tree nodes |
+| 1628 Design an Expression Tree with Evaluate Function | Medium | Amazon, Apple | Polymorphism for node types |
+| 341 Flatten Nested List Iterator | Medium | Apple, Google, Amazon | NestedInteger with double dispatch |
+| 430 Flatten a Multilevel Doubly Linked List | Medium | Amazon, Google | Polymorphic fields |
 
-9. **Q: What is the difference between `instanceof` and `getClass()`?** A: `instanceof` checks if an object is an instance of a type OR its subtypes. `getClass() == X.class` checks exact class only (not subtypes).
+## Real Production Scenarios
+- **Shopify**: Instanceof checks in a user-permission model requiring monthly updates — refactored to polymorphic dispatch
+- **Uber**: A 1-second CPU time per request attributed to JIT deoptimizing megamorphic call sites in the core workflow
+- **Pinterest**: A visitor pattern for content type handling outgrowing its design — replaced with pattern matching switch
 
-10. **Q: What is the Strategy pattern?** A: Define a family of algorithms (interfaces), encapsulate each (implementations), make them interchangeable. Client selects strategy at runtime.
+## Interview Patterns & Tips
+- **Virtual is default in Java**: All non-static, non-final, non-private methods are virtual. Final/private methods are resolved at compile time and may be inlined.
+- **instanceof is slow in hot paths**: Consider replacement with polymorphism through interface or switch expressions
+- **Covariant returns**: Overriding method can return a subclass of the original return type
+- **Polymorphism and constructors**: Calling an overridden method from within a parent constructor can lead to uninitialized state issues
+- **Co/Contravariance in generics**: Use `? extends T` for covariance and `? super T` for contravariance
 
-11. **Q: How does overload resolution work with null?** A: If multiple methods match (e.g., `method(Object)` and `method(String)`), `method(null)` is ambiguous — compiler error.
-
-12. **Q: What is the difference between polymorphic and non-polymorphic?** A: Polymorphic: method behavior depends on runtime type. Non-polymorphic: method behavior depends on reference type (static methods, overloaded methods).
+## Deep Dive Questions
+- **JVM**: How does inlining cache work in HotSpot JVM? What is the bi-morphic and megamorphic call site threshold?
+- **Bytecode**: How do invokevirtual vs invokeinterface compare? What is the byte code for the former and the latter?
+- **JIT**: What is the number of unique types (*_) necessary to trigger deoptimization?
+- **Memory**: How is the virtual method table (vtable) laid out in memory? Does it include methods from all ancestors?
+- **Java 21+**: How can pattern matching and sealed classes reduce the need for the visitor pattern?

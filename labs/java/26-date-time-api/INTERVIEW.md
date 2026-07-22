@@ -1,31 +1,59 @@
-# Interview Questions: Date-Time API
+# Interview Questions: Date & Time API
 
-## Q1: What problems did the java.time API solve?
-It replaced the flawed `java.util.Date` and `java.util.Calendar` classes. Key improvements: immutable and thread-safe, clear separation of concerns (date vs time vs datetime vs zoned), ISO-8601 compliance, fluent API, proper DST handling, and thread-safe formatting.
+## Company-Specific Focus
 
-## Q2: Explain the difference between LocalDate, LocalDateTime, and ZonedDateTime.
-LocalDate is a date without time (e.g., 2024-03-15). LocalDateTime adds time but no timezone (e.g., 2024-03-15T14:30). ZonedDateTime adds timezone rules (e.g., 2024-03-15T14:30-04:00[America/New_York]). Use LocalDate for birthdays, ZonedDateTime for appointments, LocalDateTime as intermediate representation.
+### Google
+- java.time vs legacy Date/Calendar: why a new API was needed
+- Instant, LocalDate, LocalTime, ZonedDateTime: when to use each
+- Duration and Period: machine time vs human time representation
 
-## Q3: How does the API handle DST transitions?
-ZonedDateTime uses the ZoneId's rules to handle DST. When adding days across DST transitions, the clock time is preserved (e.g., 10 AM stays 10 AM). When converting between timezones, the instant is preserved. The API also handles gaps (spring forward) and overlaps (fall back) by resolving to the valid offset.
+### Microsoft
+- Java java.time vs .NET DateTime and TimeSpan
+- Time Zone handling: ZoneId, ZoneOffset, ZonedDateTime
+- Formatting and parsing: DateTimeFormatter design
 
-## Q4: What is the difference between Duration and Period?
-Duration is time-based (seconds, nanoseconds) for machine time. Period is date-based (years, months, days) for human time. Duration.ofDays(1) is always 24 hours. Period.ofDays(1) can be 23, 24, or 25 hours on DST transition days.
+### Amazon
+- Distributed time handling across AWS regions: using Instant for UTC shared timestamps
+- Scheduling via the new API: expressing interval in Duration
+- Date range queries in DynamoDB using the SDK and ISO-8601
 
-## Q5: How is DateTimeFormatter different from SimpleDateFormat?
-DateTimeFormatter is immutable and thread-safe. SimpleDateFormat is not thread-safe. DateTimeFormatter uses pattern letters similar to SimpleDateFormat but has more consistent behavior and better error messages. It also provides predefined ISO formatters and localized formatters.
+### Meta
+- Time zone conversion: storing as UTC and converting to local time
+- DST handling: ZonedDateTime vs OffsetDateTime
+- The day light savings overlap: choosing early vs late offset
 
-## Q6: Explain the hierarchy of the java.time package.
-Core classes: `Instant` (machine timestamp), `LocalDate`/`LocalTime`/`LocalDateTime` (local), `ZonedDateTime`/`OffsetDateTime` (zoned). Amounts: `Duration` (time), `Period` (date). Formatting: `DateTimeFormatter`. Adjusters: `TemporalAdjusters`. Units: `ChronoUnit`. All implement `Temporal` or `TemporalAccessor`.
+### Apple
+- Immutability of java.time types: all are final and thread safe
+- Truncation: specifically truncatedTo for time buckets
+- Temporal adjusters: firstDayOfMonth, next, etc.
 
-## Q7: How do you test code that uses java.time?
-Use `Clock` to inject time. `Clock.fixed()` provides a fixed instant for deterministic tests. `Clock.offset()` shifts the clock. The `now()` methods are overloaded to accept a `Clock` parameter.
+### Oracle
+- JSR 310: the design from Stephen Colebourne (Joda-Time creator)
+- JLS: The new Date and Time API replaces the old Date and Calendar
+- The JVM backing: these are all pure Java with no native code
 
-## Q8: What is the proleptic Gregorian calendar?
-The java.time API extends Gregorian calendar rules backward before 1582 (when the Gregorian calendar was adopted). This is called the "proleptic" Gregorian calendar. It differs from the legacy `GregorianCalendar` which used a hybrid Julian/Gregorian system.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 539 Minimum Time Difference | Medium | Amazon, Google, Apple | Convert to minutes since midnight and sort |
+| 1185 Day of the Week | Easy | Amazon, Apple, Google | Use LocalDate to get DayOfWeek |
+| 1154 Day of the Year | Easy | Google, Microsoft | Using LocalDate.of(YYYY, MM, DD).getDayOfYear() |
+| 1360 Number of Days Between Two Dates | Easy | Amazon, Apple | ChronoUnit.DAYS.between |
+| 1185 Day of week from date | Easy | Amazon, Google | LocalDate parsing and getDayOfWeek |
 
-## Q9: How do you handle leap seconds?
-The API does not handle leap seconds. It uses "smoothed" UTC where a day is always exactly 86,400 seconds. Leap seconds are absorbed into the following day's first second.
+## Real Production Scenarios
+- **Stripe**: Using the legacy Date class for transaction timestamps caused an off-by-one-hour bug in 30% of US Eastern Time Zone customers due to DST
+- **Uber**: Using LocalDateTime instead of ZonedDateTime for trip times resulted in a one-hour difference in all trip data during DST transitions
+- **LinkedIn**: The Gregorian calendar for an old crop of user dates gave a wrong age result; refactoring to java.time fixed it
 
-## Q10: How do you calculate age in years?
-`Period.between(birthDate, today).getYears()`. This handles leap years correctly. Don't use `ChronoUnit.YEARS.between()` which gives a simpler but less accurate calculation.
+## Interview Patterns & Tips
+- **Instant vs ZonedDateTime**: Instant is a machine timestamp; ZonedDateTime is human-readable time
+- **Formatting is not thread safe**: The old SimpleDateFormat is not thread safe; DateTimeFormatter is
+- **Parse vs parseBest**: Use parseBest when trying to accept a variable format input
+
+## Deep Dive Questions
+- **Int representation**: How does LocalDate store internal state? Since Java 9, it uses an int for the day (epoch day)
+- **JIT**: Are java.time operations JIT friendly? The classes have small allocations for each value
+- **Memory size**: How many bytes the Instant object takes? (two longs and object header)
+- **Performance**: How fast is a call to Instant.now()? What is the use of a tick clock?
+- **Leap seconds**: Does java.time handle leap seconds?

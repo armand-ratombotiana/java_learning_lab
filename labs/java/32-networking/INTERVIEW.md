@@ -1,33 +1,60 @@
-﻿# Interview Questions
+﻿# Interview Questions: Networking
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Socket programming in Java: TCP and UDP sockets, ServerSocket
+- NIO for high throughput networking: Selectors, Channels, Buffers
+- gRPC: building high-performance RPC services over HTTP/2
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Java networking vs C# socket programming
+- HTTP client in Java 11+: making REST calls
+- SSL/TLS in Java: SSLSocket, SSLContext, trust managers
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Netty vs NIO: when to use a framework vs raw NIO at scale
+- HTTP/2: performance impact on service communication
+- Connection pooling in HTTP clients: keep alive, retries
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Non-blocking IO vs blocking: production scenarios
+- DNS resolution in Java: InetAddress, caching
+- Socket timeout: best practices at scale
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Using DgramSocket for low-level network tests
+- The URL class and URI handling nuances
+- Secure socket configuration
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- The java.net package: all core networking APIs
+- SocketImpl: the abstract SPI for custom socket implementations
+- Java 11 HttpClient: the modern replacement for HttpURLConnection
+- The security of the TLS stack in the JDK
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 207 Course Schedule | Medium | Amazon, Google, Apple | Dependency graph resembles network connections |
+| 210 Course Schedule II | Medium | Amazon, Google | Topological ordering of service calls |
+| 127 Word Ladder | Hard | Amazon, Apple | BFS traversal |
+| 399 Evaluate Division | Medium | Amazon, Google | Weighted graph traversal |
+| 207 Course Schedule | Medium | Amazon, Microsoft, Google | Graph relationships |
+
+## Real Production Scenarios
+- **Cloudflare**: TCP connection pool exhaustion in the load balancer — increased max connections
+- **Netflix**: TLS handshake latency added 200ms to each request — upgraded to TLS 1.3
+- **LinkedIn**: DNS caching caused stale mapping after a failover — set networkaddress.cache.ttl=0
+
+## Interview Patterns & Tips
+- **Socket timeout**: Always set connect and read timeouts when using java.net.Socket.
+- **HTTP/2**: Multiplexing reduces latency over HTTP/1.1 head-of-line blocking.
+- **SSLContext**: Use TLSv1.2+ and avoid deprecated protocols.
+
+## Deep Dive Questions
+- **JVM networking**: How does the JVM implement a Socket.connect() call?
+- **NIO**: How does a Selector work at the OS level? (epoll on Linux, kqueue on macOS)
+- **Performance**: How does JVM handle high throughput networking?
+- **Thread model**: Thread per connection vs Reactor based event loop.
+- **Zero copy**: How does FileChannel.transferTo optimize network I/O?

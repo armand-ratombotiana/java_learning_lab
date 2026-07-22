@@ -1,26 +1,55 @@
-﻿# HTTP Clients (Java 11+) -- Interview Questions
-## Common Interview Questions
+﻿# Interview Questions: HTTP Clients
 
-### Q1: What is the TCP three-way handshake?
-A: SYN -> SYN-ACK -> ACK sequence that establishes a TCP connection.
+## Company-Specific Focus
 
-### Q2: What is the difference between TCP and UDP?
-A: TCP is connection-oriented, reliable, ordered. UDP is connectionless, unreliable, unordered.
+### Google
+- Java 11 HttpClient: modern replacement for HttpURLConnection
+- HTTP/1.1 and HTTP/2: built-in HTTP/2 support
+- WebSocket: built-in WebSocket client support
 
-### Q3: How does non-blocking I/O differ from blocking I/O?
-A: Blocking I/O waits for the operation to complete. Non-blocking returns immediately.
+### Microsoft
+- HttpClient vs .NET HttpClient: comparable design
+- HTTP/2 multiplexing: performance benefits
 
-### Q4: What is the C10K problem?
-A: Handling 10,000 concurrent connections. Thread-per-connection fails; event loop solves it.
+### Amazon
+- REST API consumption: HttpClient for calling REST services
+- Connection pooling: keep-alive connections for efficiency
+- Retry logic: implementing retry with circuit breaker pattern
 
-### Q5: How does HTTP/2 multiplexing work?
-A: Multiple streams over a single TCP connection, eliminating head-of-line blocking.
+### Meta
+- Asynchronous: HttpClient.sendAsync() for non-blocking requests
+- BodyHandlers: handling response bodies (String, InputStream, File)
+- Timeouts: connect timeout, request timeout
 
-### Q6: What is backpressure and why is it important?
-A: Backpressure regulates data flow to prevent consumers from being overwhelmed.
+### Apple
+- HTTP/2: multiplexing over a single connection
+- SSL/TLS: HTTPS with built-in TLS support
+- Redirects: following HTTP redirects
 
-### Q7: Explain the Reactor pattern.
-A: Event demultiplexing and dispatch: select() then handle events for each ready channel.
+### Oracle
+- java.net.http.HttpClient (JDK 11+)
+- HttpRequest: building HTTP requests
+- HttpResponse: handling HTTP responses
+- HTTP/2 and WebSocket support built-in
 
-### Q8: How do you debug network issues in production?
-A: Use thread dumps, JFR, Wireshark captures, connection metrics, and distributed tracing.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — HTTP clients are networking APIs) |
+
+## Real Production Scenarios
+- **Netflix**: Java 11 HttpClient reduced connection overhead by 40% over HttpURLConnection
+- **Uber**: HttpClient timeouts prevented cascading failures in microservice calls
+
+## Interview Patterns & Tips
+- **HttpClient is immutable**: one instance can be reused
+- **send() vs sendAsync()**: blocking vs non-blocking
+- **BodyHandlers**: ofString(), ofInputStream(), ofFile()
+- **HTTP/2**: built-in, no additional dependencies
+
+## Deep Dive Questions
+- **HttpClient internals**: How does HttpClient manage connections?
+- **HTTP/2**: How does HTTP/2 multiplexing work?
+- **sendAsync**: How does HttpClient implement non-blocking requests?
+- **BodyHandler**: How are response bodies handled?
+- **Build pattern**: How does HttpRequest use the builder pattern?

@@ -1,128 +1,53 @@
-# Synchronized Internals — Interview Questions
+# Interview Questions: Synchronized Internals
 
-## Beginner Questions
+## Company-Specific Focus
 
-### Q1: What is the main purpose of this data structure?
-**A**: To provide efficient storage and retrieval of elements with specific performance guarantees.
+### Google
+- synchronized method vs synchronized block: bytecode differences (ACC_SYNCHRONIZED flag vs monitorenter/monitorexit)
+- Object monitor: each object has a monitor associated with it
+- Reentrant synchronization: same thread can acquire the same lock multiple times
 
-### Q2: What is the difference between Collection and Collections?
-**A**: Collection is an interface (root of the collection hierarchy). Collections is a utility class with static methods.
+### Microsoft
+- synchronized vs C# lock statement: similar monitor-based approach
+- Synchronized and thread safety: guarantees visibility and atomicity
 
-### Q3: What is the difference between List and Set?
-**A**: List allows duplicates and maintains insertion order. Set does not allow duplicates.
+### Amazon
+- Synchronized in high-throughput services: avoid long critical sections
+- Performance: biased (pre Java 15), lightweight, heavyweight monitor transitions
+- Synchronized block size: keep critical sections as small as possible
 
-## Intermediate Questions
+### Meta
+- Biased locking: optimization for single-thread access (removed in Java 15)
+- Lock coarsening: JIT merges adjacent synchronized blocks on same object
+- Lock elimination: JIT removes unnecessary locks (escape analysis)
 
-### Q4: How does this structure work internally?
-**A**: Explain the backing data structure, the algorithm for storing and retrieving, and how collisions are handled.
+### Apple
+- Thread safety with synchronized: simplest mechanism
+- Performance impact: monitor acquisition overhead
 
-### Q5: When would you choose this over alternatives?
-**A**: Compare with similar structures. List scenarios where this is optimal and where it is not.
+### Oracle
+- synchronized JVM specification: monitorenter/monitorexit bytecodes
+- Object header mark word: encodes lock state
+- Monitor inflation: biased -> lightweight -> heavyweight
 
-### Q6: How do you make it thread-safe?
-**A**: External synchronization, synchronized wrappers, or use concurrent variants.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1114 Print in Order | Easy | Google, Amazon | Synchronized + volatile ordering |
+| 1115 FooBar Alternately | Medium | Amazon, Google | wait/notify with synchronized |
 
-### Q7: Explain fail-fast and fail-safe iterators.
-**A**: Fail-fast (HashMap, ArrayList) throw ConcurrentModificationException on concurrent modification. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) iterate over a snapshot.
+## Real Production Scenarios
+- **LinkedIn**: Large synchronized block in cache caused 200-thread contention bottleneck
+- **Amazon**: Nested synchronized blocks caused deadlock — two locks acquired in different order
 
-## Advanced Questions
+## Interview Patterns & Tips
+- **Monitor**: synchronized uses object's monitor for mutual exclusion
+- **Reentrancy**: same thread can re-acquire a lock it already holds
+- **Visibility**: synchronized guarantees happens-before between unlock and subsequent lock
 
-### Q8: How does the resize mechanism work?
-**A**: Explain the growth factor, threshold calculation, rehashing process, and complexity analysis.
-
-### Q9: What is the load factor and why is it important?
-**A**: Controls the density before resize. Default 0.75 balances time and space. Lower = less collisions, more memory.
-
-### Q10: How does the structure handle concurrent access?
-**A**: Explain CAS operations, lock striping, copy-on-write, snapshot iteration for concurrent variants.
-
-### Q11: What is the performance impact of poor hash distribution?
-**A**: All keys map to same bucket -> O(n) operations. Mitigated by treeification at threshold 8.
-
-### Q12: Memory profiling — how do you identify issues?
-**A**: JOL for memory layout, heap dump analysis with MAT, GC log analysis with GCeasy.
-
-## Coding Questions
-
-### Q13: Implement a simple version from scratch.
-### Q14: Implement a thread-safe cache using this structure.
-### Q15: Implement an LRU cache using LinkedHashMap.
-### Q16: Write code to count word frequency in a large file.
-### Q17: Implement a custom iterator for this structure.
-
-
-## Further Exploration
-
-### Additional Reading
-- Review the companion files in this micro-lab for deeper understanding
-- Complete the exercises in EXERCISES.md to apply your knowledge
-- Build the MINI_PROJECT to cement the concepts
-- Test yourself with QUIZ.md and FLASHCARDS.md
-- Practice with INTERVIEW.md questions for job preparation
-
-### Related Concepts
-- equals() and hashCode() contracts in Java
-- Comparable and Comparator interfaces for ordering
-- Iterator and Iterable patterns for traversal
-- Stream API for functional-style operations
-- Serialization for object persistence
-- Cloning and defensive copying
-
-### Best Practices
-1. Always choose the right data structure for your use case
-2. Consider initial capacity for large datasets
-3. Use immutable objects as keys in hash-based collections
-4. Synchronize externally or use concurrent variants for thread safety
-5. Profile before optimizing - don't guess about performance
-6. Document ordering guarantees your code depends on
-7. Use interfaces (Map, List, Set) for variable declarations
-8. Prefer composition over inheritance for custom collections
-9. Override toString() for meaningful debug output
-10. Consider memory implications of your collection choices
-
-### Common Pitfalls to Avoid
-- Using mutable objects as keys in HashMap/HashSet
-- Iterating and modifying without using iterator methods
-- Assuming iteration order without checking documentation
-- Using LinkedList when random access is needed
-- Ignoring initial capacity for large collections
-- Forgetting to override both equals() and hashCode()
-- Using == instead of equals() for key comparison
-- Not handling ConcurrentModificationException properly
-
-### Next Steps
-1. Implement a custom version of this data structure from scratch
-2. Benchmark against the standard Java implementation
-3. Analyze memory usage with JOL (Java Object Layout)
-4. Profile performance with async-profiler
-5. Write comprehensive unit tests covering all edge cases
-6. Design a thread-safe variant for concurrent use cases
-7. Research alternative implementations in other languages
-8. Apply the concept to a real-world project
-
-### Key Takeaways Summary
-- Understand the internal mechanics and algorithmic complexity
-- Know the performance characteristics and memory footprint
-- Recognize appropriate use cases and selection criteria
-- Master common patterns and anti-patterns
-- Develop debugging intuition for related issues
-- Build mental models that transfer to other concepts
-
-### Discussion Questions
-1. How would you design this differently if starting from scratch?
-2. What are the limits of this approach in terms of scale?
-3. How does this concept interact with modern hardware (CPU caches, NUMA)?
-4. What alternatives exist in other programming languages?
-5. How would you implement this for a distributed system?
-
-### Code Review Checklist
-- [ ] Correct equals() and hashCode() implementations for keys
-- [ ] Appropriate initial capacity and load factor selection
-- [ ] Proper synchronization or concurrent variant for shared state
-- [ ] No concurrent modification during iteration
-- [ ] Immutable or effectively immutable key objects
-- [ ] Consistent use of interface types for declarations
-- [ ] Proper null handling (or documentation of non-null requirement)
-- [ ] toString() implementation for debugging
-- [ ] Serializable implementation if needed
-- [ ] Performance considerations documented
+## Deep Dive Questions
+- **Object header**: How does the mark word encode lock state?
+- **Monitor inflation**: How does biased locking transition to lightweight and then to heavyweight?
+- **Contention**: What happens when a thread tries to acquire a locked monitor?
+- **WaitSet vs EntrySet**: What are these monitor structures?
+- **Biased locking revocation**: Why was biased locking disabled in Java 15?

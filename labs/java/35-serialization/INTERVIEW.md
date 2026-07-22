@@ -1,33 +1,63 @@
-﻿# Interview Questions
+﻿# Interview Questions: Serialization
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Java serialization: ObjectOutputStream, ObjectInputStream, serialVersionUID
+- Transient fields: skipping serialization for non-essential or derived data
+- Custom writeObject/readObject for custom serialization logic
+- Protocol Buffers: why Google created protobuf over Java serialization
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Java serialization vs C# BinaryFormatter/DataContractSerializer
+- Performance considerations: Java serialization is slow and insecure
+- JSON with Jackson or Gson: modern serialization choices
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- JSON serialization for REST APIs: Jackson, fasterxml, annotations
+- Avro for Kafka: schema evolution for streaming data
+- Kryo for high performance serialization within data pipelines
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Serialization performance: Kryo vs Protobuf vs Avro vs JSON
+- Serializable migration: adding serialVersionUID to existing classes
+- Externalizable interface: complete control
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Avoid Java serialization: security vulnerabilities, large payloads
+- Using JSON for API responses and configuration
+- Write replace/readResolve patterns for singleton control
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- The Java serialization specification: Object Serialization Stream Protocol
+- serialVersionUID: how it ensures class compatibility
+- Secure serialization: deserialization filtering (JEP 290, 415)
+- Java serialization deprecation plans
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 297 Serialize and Deserialize Binary Tree | Hard | Google, Amazon, Apple, Microsoft | Tree serialization with delimiters |
+| 271 Encode and Decode Strings | Medium | Amazon, Google, Apple | String list serialization with length prefix |
+| 428 Serialize and Deserialize N-ary Tree | Hard | Amazon, Google | N-ary tree serialization |
+| 449 Serialize and Deserialize BST | Medium | Amazon, Google, Apple | BST serialization using preorder |
+| 535 Encode and Decode TinyURL | Medium | Google, Amazon, Apple | URL mapping serialization |
+
+## Real Production Scenarios
+- **Log4Shell**: Java deserialization of JNDI lookups caused a global security incident
+- **Uber**: Java serialization of a large object graph caused OOM — migrated to Protocol Buffers
+- **Netflix**: Deserialization filter (JEP 290) prevented a remote code execution attempt in production
+
+## Interview Patterns & Tips
+- **Always declare serialVersionUID**: to ensure class version compatibility during deserialization.
+- **Transient**: fields that should not be serialized (passwords, derived data).
+- **Externalizable**: When you need complete control over the serialized form.
+- **ObjectInputStream filtering**: Always use a deserialization filter.
+- **JSON, Protobuf, Avro**: Prefer these over Java serialization for modern systems.
+
+## Deep Dive Questions
+- **JVM**: How does Java serialization work at the JVM level? The ObjectOutputStream writes the class descriptor and field values to the stream.
+- **Security**: What vulnerabilities exist in Java deserialization? How does the filter (JEP 290) mitigate them?
+- **Performance**: What makes Java serialization slow compared to Kryo or Protobuf?
+- **Memory**: How does serialization affect GC? Large object graphs create many temporary objects.
+- **Compact strings in Java 9+**: How does compact string affect the serialized format of Strings?

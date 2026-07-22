@@ -1,43 +1,58 @@
-# Interview Questions: Advanced SQL
+# Interview Questions: Advanced SQL (Oracle Focus)
 
-## Beginner Level
-1. What is a window function and how is it different from GROUP BY?
-2. Explain the difference between ROW_NUMBER, RANK, and DENSE_RANK.
-3. What is a CTE and when would you use it?
-4. Explain the MERGE statement in Oracle.
-5. What is an execution plan and how do you generate one?
+## Oracle-Specific Questions
+- Explain Oracle's analytic functions: `ROW_NUMBER`, `RANK`, `DENSE_RANK`, `LEAD`, `LAG`, `FIRST_VALUE`, `LAST_VALUE` with window frames.
+- How does Oracle's `MATCH_RECOGNIZE` work for pattern matching in SQL? Give a real-world example.
+- Explain Oracle's `MODEL` clause for spreadsheet-like calculations in SQL.
+- How does Oracle's recursive CTE (`WITH RECURSIVE` / `WITH ... CONNECT BY`) work for hierarchical queries?
+- What is the Oracle `PIVOT` / `UNPIVOT` syntax and how does it compare to using `CASE` expressions?
+- Explain Oracle's `MERGE` statement for upsert operations — when does it insert, update, or delete?
+- How does Oracle handle JSON in SQL: `JSON_VALUE`, `JSON_QUERY`, `JSON_TABLE`, `JSON_EXISTS`, `JSON_OBJECT`, `JSON_ARRAYAGG`?
+- Explain Oracle SQL Plan Management and how to evolve plan baselines.
 
-## Intermediate Level
-6. How would you find the top-N rows per department using window functions?
-7. Explain the difference between ROWS and RANGE in window frame clauses.
-8. Write a recursive CTE to find all direct and indirect reports for a given manager.
-9. What is the PIVOT operation and when would you use it over CASE expressions?
-10. Explain the CONNECT BY clause with PRIOR keyword.
+## Google Cloud / Technical
+- BigQuery SQL vs Oracle SQL for analytics — window functions and CTE differences
+- Cloud SQL PostgreSQL vs Oracle for recursive CTEs
+- BigQuery `MATCH_RECOGNIZE` vs Oracle pattern matching
 
-## Advanced Level
-11. How does Oracle's cost-based optimizer estimate cardinality?
-12. Explain the Oracle MODEL clause and provide a use case.
-13. What is MATCH_RECOGNIZE and how does it differ from LEAD/LAG?
-14. What are the different types of partitioning and when do you use each?
-15. Explain SQL Plan Management and how it prevents regression.
+## Microsoft / Azure
+- SQL Server window functions vs Oracle analytic functions
+- T-SQL `PIVOT` vs Oracle `PIVOT` syntax differences
+- Azure Synapse analytics window functions
 
-## Expert Level
-16. How does the Oracle optimizer choose between nested loops and hash join?
-17. What is an adaptive execution plan and how is it enabled?
-18. Explain how Oracle handles recursive CTE execution internally.
-19. Describe the difference between global and local partitioned indexes.
-20. How do you evolve SQL plan baselines?
+## Amazon / AWS
+- Amazon Redshift window functions vs Oracle
+- Redshift `MATCH_RECOGNIZE` compatibility
+- AWS DMS SQL conversion for advanced SQL features
 
-## Hands-On Questions
-21. Write a query to calculate moving average of stock prices for the last 7 days.
-22. Write a query using MATCH_RECOGNIZE to detect consecutive profit growth.
-23. Tune a query showing FULL TABLE SCAN on a large table.
-24. Design partition strategy for a 10B row order table with date-range access.
-25. Create a SPM baseline and test plan evolution.
+## Apple
+- Advanced SQL for Apple analytics pipelines
+- Data privacy in complex SQL queries
 
-## Oracle-Specific
-26. What Oracle-specific SQL features exist?
-27. What is the difference between SPM and SQL Profiles?
-28. When would you use function-based index vs regular B-tree?
-29. Explain Oracle's histogram types and when they are used.
-30. How does Oracle handle automatic SQL tuning and what is SQL Tuning Advisor?
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 177 | Nth Highest Salary | Medium | DENSE_RANK |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG / Self JOIN |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK + Filter |
+| LC 569 | Median Employee Salary | Hard | PERCENTILE_CONT |
+| LC 571 | Find Median Given Frequency | Hard | Window + SUM OVER |
+| LC 601 | Human Traffic of Stadium | Hard | Self JOIN + LAG |
+| LC 615 | Average Salary | Hard | CASE + AVG |
+| LC 618 | Students Report | Hard | PIVOT |
+| LC 626 | Exchange Seats | Medium | CASE + LEAD/LAG |
+| LC 1097 | Game Play Analysis V | Hard | LEAD + Window |
+
+## Production Scenarios
+- Scenario 1: "Window function causing spool space exhaustion — sort on huge dataset"
+- Scenario 2: "MATCH_RECOGNIZE query timing out — pattern matching on unbounded stream"
+- Scenario 3: "MERGE statement causing ORA-30926 — duplicate source rows"
+- Scenario 4: "Recursive CTE cycling — infinite recursion detection"
+
+## Interview Patterns & Tips
+- Advanced SQL interviews at Oracle expect mastery of analytic functions
+- `MATCH_RECOGNIZE` and `MODEL` clause are differentiating topics for senior roles
+- OCP SQL certification covers advanced query techniques
+- Data analysts with Oracle SQL: $100K-$160K
+- SQL performance tuning experts: $130K-$200K

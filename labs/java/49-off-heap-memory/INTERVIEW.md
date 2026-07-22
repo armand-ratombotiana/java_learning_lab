@@ -1,29 +1,58 @@
-# Off-Heap Memory & Direct Buffers — Interview Questions
+# Interview Questions: Off-Heap Memory & Direct Buffers
 
-## Question 1: Core Concepts
-**Q:** Explain off-heap memory and direct buffers and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- DirectByteBuffer vs HeapByteBuffer: allocation, performance, use cases
+- Off-heap memory management: sun.misc.Unsafe, VarHandle
+- MappedByteBuffer: memory-mapped files for large data processing
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- Direct memory vs .NET managed/unmanaged memory
+- Memory-mapped files in Java vs C# MemoryMappedFile
+- Unsafe API and its usage for off-heap memory
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- Off-heap caching: using direct memory to reduce GC pressure
+- Memory-mapped files for large dataset processing
+- Direct buffers for high-performance network I/O
+- Netty's Buffer API: PooledByteBufAllocator
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- GC and off-heap: why off-heap memory does not cause GC pauses
+- Unsafe.allocateMemory() and deallocateMemory() patterns
+- Off-heap memory leak detection and prevention
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Memory-mapped files for resource-constrained devices
+- Direct buffer sizing and fragmentation on macOS
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- java.nio.Buffer: heap vs direct buffer internals
+- Unsafe API: sun.misc.unsafe for off-heap operations
+- Direct memory: -XX:MaxDirectMemorySize
+- Cleaner API: phantom references for native buffer cleanup
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — off-heap is a memory management technique) |
+| 146 LRU Cache | Medium | Amazon, Google | Off-heap cache design |
+
+## Real Production Scenarios
+- **Netflix**: Direct memory leak in Netty caused OOM for 32GB direct memory — not bounded by MaxDirectMemorySize
+- **Uber**: Memory-mapped file for geospatial index reduced query latency by 80%
+- **LinkedIn**: Using Unsafe for off-heap cache avoided GC pauses and tripled throughput
+
+## Interview Patterns & Tips
+- **Direct vs Heap**: Direct buffers allocate outside the heap, avoid GC but require manual management
+- **MaxDirectMemorySize**: Default equals -Xmx, needs tuning for direct buffer usage
+- **Phantom references**: Used by DirectByteBuffer for cleaner to free native memory
+- **Unsafe**: Not supported in future JDK versions; use VarHandle or ByteBuffer instead
+
+## Deep Dive Questions
+- **DirectByteBuffer**: How does DirectByteBuffer allocate native memory? The cleaner mechanism.
+- **MaxDirectMemorySize**: How is direct memory accounted and limited?
+- **Unsafe**: How does Unsafe.allocateMemory work?
+- **MappedByteBuffer**: How does MappedByteBuffer map files to virtual memory?
+- **GC and off-heap**: How does off-heap memory avoid GC but still need native memory management?

@@ -1,36 +1,53 @@
-# Interview Questions
+# Interview Questions: PL/SQL Advanced (Oracle Focus)
 
-## Level 1: Fundamentals
-1. Basic question one?
-2. Basic question two?
-3. Basic question three?
-4. Basic question four?
-5. Basic question five?
+## Oracle-Specific Questions
+- Explain pipelined table functions in PL/SQL — how do they improve performance for ETL processes?
+- How does the PL/SQL result cache work? Explain `RESULT_CACHE` pragma and `RELIES_ON` clause.
+- What is Virtual Private Database (VPD) in PL/SQL? How do you implement `DBMS_RLS` policies?
+- Explain Oracle Scheduler: `DBMS_SCHEDULER` jobs, schedules, programs, and chains.
+- How does Oracle Advanced Queuing (AQ) work? Explain `ENQUEUE`, `DEQUEUE`, and propagation.
+- Explain ORDS AutoREST with PL/SQL: how to expose PL/SQL procedures as REST endpoints.
+- What is Oracle SODA (Simple Oracle Document Access) and how does it work with PL/SQL?
+- How do you profile and tune PL/SQL? Explain `DBMS_PROFILER`, `DBMS_HPROF`, and `DBMS_TRACE`.
+- How does PL/SQL unit testing work? Explain `utPLSQL` v3 and code coverage.
+- What is Oracle's DBMS_PREPROCESSOR and DBMS_METADATA for PL/SQL source analysis?
 
-## Level 2: Intermediate
-6. Intermediate question one?
-7. Intermediate question two?
-8. Intermediate question three?
-9. Intermediate question four?
-10. Intermediate question five?
+## Google Cloud / Technical
+- Cloud SQL PostgreSQL vs Oracle for stored procedure logic
+- Cloud Functions vs Oracle PL/SQL for event-driven processing
+- Pub/Sub vs Oracle AQ for message queuing
 
-## Level 3: Advanced
-11. Advanced question one?
-12. Advanced question two?
-13. Advanced question three?
-14. Advanced question four?
-15. Advanced question five?
+## Microsoft / Azure
+- Azure SQL elastic jobs vs Oracle Scheduler
+- Service Bus vs Oracle Advanced Queuing
+- Azure Functions vs Oracle PL/SQL for business logic
 
-## Level 4: Expert
-16. Expert question one?
-17. Expert question two?
-18. Expert question three?
-19. Expert question four?
-20. Expert question five?
+## Amazon / AWS
+- AWS Lambda vs Oracle PL/SQL scheduled jobs
+- Amazon SQS vs Oracle AQ for message queuing
+- AWS Step Functions vs Oracle Scheduler chains
 
-## Level 5: Hands-On
-21. Hands-on coding exercise one?
-22. Hands-on coding exercise two?
-23. Hands-on coding exercise three?
-24. Hands-on coding exercise four?
-25. Hands-on coding exercise five?
+## Apple
+- PL/SQL for Apple enterprise data processing pipelines
+- Advanced PL/SQL for Apple supplier compliance systems
+
+## LeetCode-Style Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| Pipeline | Data Transformation | Hard | Pipelined Function |
+| Caching | Result Set Cache | Medium | RESULT_CACHE |
+| Scheduling | Job Automation | Medium | DBMS_SCHEDULER |
+| Queuing | Message Processing | Hard | AQ Enqueue/Dequeue |
+
+## Production Scenarios
+- Scenario 1: "Pipelined table function causing memory exhaustion — not using PIPELINED correctly"
+- Scenario 2: "Result cache returning stale data — RELIES_ON not tracking dependencies"
+- Scenario 3: "AQ queue growing unbounded — dequeuer not keeping up"
+- Scenario 4: "VPD policy function blocking all queries — policy function bug"
+
+## Interview Patterns & Tips
+- Advanced PL/SQL interviews test pipelined functions, result cache, AQ, and profiling
+- Know Oracle's enterprise features: Scheduler, AQ, VPD, and when to use each
+- OCP Advanced PL/SQL certification covers these enterprise features
+- PL/SQL architects: $140K-$200K
+- Experience with Oracle enterprise features is rare and highly valued

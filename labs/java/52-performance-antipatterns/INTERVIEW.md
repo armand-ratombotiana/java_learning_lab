@@ -1,29 +1,57 @@
-# Java Performance Antipatterns & Debugging — Interview Questions
+# Interview Questions: Performance Antipatterns & Debugging
 
-## Question 1: Core Concepts
-**Q:** Explain performance antipatterns and debugging and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- Excessive object allocation: hidden allocations from autoboxing, string concat
+- Inefficient data structures: using ArrayList when HashMap is needed
+- Thread contention: excessive synchronization in hot paths
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- Memory leaks: ThreadLocal, classloader leaks, listener registration
+- Logging performance: string concatenation in log messages
+- I/O performance: blocking I/O in async patterns
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- GC pressure: high allocation rate, promotion failures
+- Thread pool mismanagement: unbounded queues, core vs max pool size
+- Connection pool leaks: unclosed resources, exhausted pools
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- Reflection overhead: calling Method.invoke() in hot paths
+- Serialization bottlenecks: Java serialization is slow and bloated
+- Exception overhead: using exceptions for control flow
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Object overhead: creating too many small objects
+- Unbounded caches: HashMap without size limit causes OOM
+- Unclosed resources: file handles, sockets
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- Common JVM performance antipatterns: memory leaks, GC tuning misconfiguration
+- Thread dump analysis for deadlocks and contention
+- Heap dump analysis for memory leak identification
+- JFR event analysis for performance bottlenecks
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — antipatterns are debugging concepts) |
+
+## Real Production Scenarios
+- **Amazon**: Connection pool leak caused service outage every 48 hours — missing close() in finally block
+- **Netflix**: String concatenation in a hot loop caused 30% CPU usage — fixed with StringBuilder
+- **LinkedIn**: ThreadLocal leak in a request processing filter caused OOM after 48 hours of uptime
+
+## Interview Patterns & Tips
+- **Don't optimize prematurely**: but avoid known antipatterns from the start
+- **Profile first**: use JFR, async-profiler to identify actual bottlenecks
+- **Common patterns**: excessive allocation, thread contention, memory leaks
+- **Connection leaks**: always use try-with-resources
+
+## Deep Dive Questions
+- **Memory leak identification**: How to find a memory leak with heap dump analysis?
+- **Thread contention**: How to identify thread contention with thread dumps?
+- **GC pressure**: How to identify high allocation rate using JFR?
+- **False sharing**: How to detect false sharing? (perf c2c on Linux)
+- **Bottleneck**: How to identify a CPU bottleneck vs I/O bottleneck?

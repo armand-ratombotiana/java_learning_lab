@@ -1,18 +1,51 @@
-# Interview: Connection Pooling
+# Interview Questions: Connection Pooling (Oracle Focus)
 
-## Common Questions
+## Oracle-Specific Questions
+- Compare HikariCP with Oracle UCP (Universal Connection Pool) for connection management.
+- How does HikariCP's ConcurrentBag implementation work with Oracle's connection model?
+- What is the optimal pool size for an Oracle OLTP application? Explain Little's Law in this context.
+- How do you configure Oracle connection validation? Explain `SELECT 1 FROM DUAL` vs Oracle's `isValid()`.
+- How does Oracle's DRCP (Database Resident Connection Pooling) differ from application-side pooling?
+- How do you tune HikariCP for Oracle RAC environments with multiple instances?
+- Explain connection leak detection in HikariCP: `leakDetectionThreshold` and how it works with Oracle.
+- What happens to pooled connections when Oracle RAC fails over? How does HikariCP handle this?
 
-**Q:** How do you determine the optimal connection pool size?
-**A:** Start with `CPUCores × 2 + diskSpindles`. Monitor `connections.active` and `connections.pending` at peak load. If pending > 0, increase pool. Lower bound: P99 query latency × target throughput from Little's Law.
+## Google Cloud / Technical
+- Cloud SQL connection pooling best practices
+- Cloud SQL proxy vs HikariCP for connection management
+- AlloyDB connection pooling compared to Oracle UCP
 
-**Q:** What happens if the database restarts while connections are in the pool?
-**A:** HikariCP validates connections before use (`connection-test-query`). Stale connections fail validation and are evicted. New connections are created to replace them.
+## Microsoft / Azure
+- Azure SQL connection pooling vs Oracle UCP
+- Azure Connection Monitor for database pool metrics
+- SQL Server connection pooling differences from Oracle
 
-**Q:** Explain HikariCP's ConcurrentBag.
-**A:** It's a lock-free bag using ThreadLocal cache (fast path) and shared CopyOnWriteArrayList. CAS operations for state transitions. No synchronized blocks in the common path. This makes HikariCP extremely fast for connection borrow/return.
+## Amazon / AWS
+- RDS Proxy for Oracle connection pooling
+- RDS Oracle vs HikariCP pool sizing on AWS
+- Aurora connection management vs Oracle UCP
 
-**Q:** How do you handle connection pools in a multi-tenant application?
-**A:** Options: 1) Separate pool per tenant (isolation, more resources). 2) Single shared pool with tenant-aware routing (efficient, more complex). 3) Connection proxy that sets tenant context.
+## Apple
+- Connection pooling for Apple server-side Java apps with Oracle
+- Secure connection management for Apple services
 
-**Q:** What metrics do you monitor for connection pools?
-**A:** Active connections, idle connections, pending threads (waiting), timeout count, connection acquire time, connection usage time. All available via JMX/HikariCP MXBean.
+## LeetCode-Style Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| Thread Pool | Web Server Threads | Medium | Resource Management |
+| Pool Sizing | Little's Law | Medium | Queueing Theory |
+| Rate Limiter | Token Bucket | Medium | Algorithm |
+| Circuit Breaker | Resilience Pattern | Hard | State Machine |
+
+## Production Scenarios
+- Scenario 1: "HikariCP pool exhausted — connections not returned to pool"
+- Scenario 2: "Oracle DRCP + HikariCP double pooling causing contention"
+- Scenario 3: "RAC failover: HikariCP connections pointing to failed node"
+- Scenario 4: "Connection validation 'SELECT 1 FROM DUAL' causing 1M queries/day"
+
+## Interview Patterns & Tips
+- Oracle interviews expect deep understanding of connection pooling for high-throughput apps
+- Know HikariCP configuration for Oracle-specific scenarios (RAC, Data Guard)
+- Pool sizing using Little's Law is a common interview question
+- Performance engineering roles: $130K-$195K
+- Oracle UCP certification is a plus for enterprise roles

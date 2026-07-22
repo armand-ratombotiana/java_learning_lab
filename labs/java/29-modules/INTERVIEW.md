@@ -1,25 +1,62 @@
-# Interview Questions: Modules
+# Interview Questions: Modular System (JPMS)
 
-## Q1: What problem does JPMS solve?
-It solves classpath hell (no explicit dependencies, missing classes at runtime only), weak encapsulation (all public classes visible), and unreliable configuration. JPMS provides strong encapsulation, explicit dependencies, and reliable configuration verified at compile/startup time.
+## Company-Specific Focus
 
-## Q2: What is a module descriptor?
-module-info.java is the module descriptor. It declares the module name, required modules (requires), exported packages (exports), opened packages (opens), and service declarations (provides/uses).
+### Google
+- Module descriptor (module-info.java): exports, requires, opens, provides
+- Module graph resolution at compile and runtime
+- ServiceLoader based on provides/uses: inter-module service discovery
 
-## Q3: exports vs opens?
-exports makes packages accessible for compile-time and runtime access. opens makes packages accessible for reflection only (runtime). opens is needed by frameworks like Hibernate, Spring, and Jackson that use reflection to access private fields.
+### Microsoft
+- Java modules vs .NET assemblies: concept comparison
+- Module system for enterprise security: what used to be accessible via reflection is now controlled
+- Strong encapsulation: what happens with illegal access
 
-## Q4: What is the difference between module path and classpath?
-Modules on the module path have explicit dependencies checked at startup. They enjoy strong encapsulation. Classpath (unnamed module) is a catch-all where all packages are accessible but without module guarantees. Named modules cannot access unnamed modules directly.
+### Amazon
+- Modularization for large monoliths: breaking an application into modules with clear boundaries
+- Module linking: jlink to create custom runtime images for microservices; reducing size
+- Lamda deployment with jlink: 200MB JDK to 40MB runtime
 
-## Q5: How does transitive require work?
-`requires transitive` means that any module that requires your module also gets access to the transitively required module. It's used when your module exports types from another module.
+### Meta
+- Module system migration: what breaks and how to handle sun.misc.Unsafe
+- Multi-module project: badge for backward compatability via --add-exports
+- Module compatibility for open source libraries
 
-## Q6: What is an automatic module?
-A non-modular JAR placed on the module path automatically becomes an automatic module. It reads all other modules and exports all its packages. This provides backward compatibility for libraries not yet modularized.
+### Apple
+- Creating modules for the MacOS runtime
+- Reducing attack surface: only exposed packages
+- Using jlink to create optimized, smaller JVMs
 
-## Q7: How do you migrate a large application to modules?
-Start by identifying module boundaries. Use jdeps to analyze dependencies. Add module-info.java to bottom-level modules first, working up. Use --add-reads, --add-exports, --add-opens flags for unresolved dependencies during migration.
+### Oracle
+- JEP 261: Module System (Project Jigsaw)
+- JLS: The module declaration syntax
+- The JDK itself is modularized: java.base, java.sql, java.xml
+- JVM: how does the module system change class loading and accessibility checks
 
-## Q8: What is jlink used for?
-jlink creates a custom runtime image containing only the modules your application needs. This dramatically reduces the distribution size (from ~300MB JDK to ~30-50MB custom runtime).
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 146 LRU Cache | Medium | Google, Apple, Amazon, Microsoft | Class design in a modular structure |
+| 208 Implement Trie | Medium | Amazon, Google | Interface and implementation separation |
+| 380 Insert Delete GetRandom O(1) | Medium | Amazon, Apple | Module packaging for algorithm |
+| 211 Design Add and Search Words Data Structure | Medium | Google, Amazon | Module level shield of details |
+| 348 Design Tic-Tac-Toe | Medium | Google, Microsoft | Design in modular approach |
+
+## Real Production Scenarios
+- **Amazon**: JHipster monolith split into 12 modules — reduced build time from 15min to 3min
+- **LinkedIn**: JDK 9 migration required 200+ --add-exports JVM args for internal sun.misc usage
+- **Google**: jlink for the Android bridge service — reduced from 40MB JDK to 12MB runtime
+
+## Interview Patterns & Tips
+- **module-info.java**: The most compact file in Java land and the most disruptive
+- **Open packages**: Needs for reflection (for frameworks) — module must `opens` the package
+- **jlink**: A very common mention — produce custom runtime images for small deployables.
+- **Automatic modules**: library placed on the classpath becomes an automatic module.
+- **multi-release JARs**: one JAR that can have module info for JDK 9+ and not for JDK 8
+
+## Deep Dive Questions
+- **Class loading**: How does the module system get integrated in the JVM's class loading architecture?
+- **Memory**: How does the module metadata use metaspace?
+- **Reflection**: How are accessibility checks tightened?
+- **JVM startup**: How does the module graph resolution impact JVM startup time?
+- **Performance**: Is performance improved by having fewer types to scan for the JIT?

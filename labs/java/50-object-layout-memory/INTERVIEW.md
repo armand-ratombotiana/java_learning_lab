@@ -1,29 +1,55 @@
-# Java Object Layout & Memory Internals — Interview Questions
+# Interview Questions: Object Layout & Memory Internals
 
-## Question 1: Core Concepts
-**Q:** Explain Java object layout and memory internals and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- Object header: mark word (8 bytes on 64-bit), klass pointer (4/8 bytes with compressed OOPs)
+- Instance fields alignment and padding
+- Array object header: mark word, klass pointer, length field
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- Java object layout vs .NET object layout
+- Sizeof: no direct operator, use JOL (Java Object Layout) tool
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- Compressed OOPs: how references are encoded when heap < 32GB
+- Field ordering: JVM reorders fields for optimal alignment
+- TLAB: Thread Local Allocation Buffer for allocation efficiency
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- Object size calculation using JOL
+- Field packing and false sharing
+- Object alignment: 8-byte alignment by default
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Object layout on ARM64: differences from x86_64
+- Memory alignment considerations on Apple Silicon
+- Heap fragmentation analysis
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- OpenJDK JOL (Java Object Layout) tool
+- JVM specification: object representation
+- Object header structure in HotSpot
+- Field layout: allocation order vs @Contended annotation
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — object layout is a JVM internal concept) |
+
+## Real Production Scenarios
+- **LinkedIn**: False sharing in a high-throughput counter array — 8x performance improvement with @Contended
+- **Netflix**: Object size analysis using JOL revealed a core object was 3x larger than expected due to alignment
+- **Uber**: Compressed OOPs disabled because heap grew beyond 32GB — increasing memory by 15%
+
+## Interview Patterns & Tips
+- **JOL**: Use the JOL tool to measure object sizes and layout
+- **Compressed OOPs**: Enabled by default when heap < 32GB
+- **False sharing**: Multiple threads accessing different fields in the same cache line
+
+## Deep Dive Questions
+- **Mark word**: What fields are stored in the mark word? (Identity hash, GC age, lock state)
+- **Klass pointer**: What does the klass pointer reference?
+- **Compressed OOPs**: How does the JVM compress 64-bit references into 32-bit?
+- **@Contended**: How does the @Contended annotation prevent false sharing?
+- **Field layout**: How does the JVM order fields within an object?

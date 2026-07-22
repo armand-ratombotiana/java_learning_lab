@@ -1,29 +1,55 @@
-# Profiling & Observability Deep Dive — Interview Questions
+# Interview Questions: Profiling & Observability
 
-## Question 1: Core Concepts
-**Q:** Explain profiling and observability and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- Continuous profiling: async-profiler, JFR streaming
+- Observability: distributed tracing, metrics, logs
+- Flame graphs and icicle graphs for CPU and allocation analysis
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- Application Insights for Java: distributed tracing, metric collection
+- Thread dump analysis: jstack, thread state analysis
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- Profiling in production: JFR, async-profiler, JMC
+- AWS X-Ray: distributed tracing integration
+- CloudWatch metrics: JVM metrics monitoring
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- Memory profiling: heap dump analysis, MAT, JProfiler
+- Latency analysis: P99, P999 latency and percentiles
+- GC log analysis: gceasy.io, GCViewer
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Low-overhead profiling: JFR with minimal performance impact
+- Metrics collection for macOS deployments
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- JDK Mission Control (JMC): UI for JFR analysis
+- JDK Flight Recorder (JFR): event based, low overhead recording
+- jcmd: diagnostic command tool
+- jhsdb: postmortem analysis tool
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — profiling/observability is operational) |
+
+## Real Production Scenarios
+- **Netflix**: JFR streaming to detect memory leaks in production without restart
+- **Uber**: async-profiler used to identify CPU hot spot in the trip matching algorithm
+- **LinkedIn**: Thread dump analysis identified 200 threads in BLOCKED state on a single lock
+
+## Interview Patterns & Tips
+- **async-profiler**: Open source, low overhead, CPU/ALLOC/LOCK profiling
+- **JFR**: Built into the JDK, near zero overhead
+- **Flame graphs**: X-axis is sampling count, Y-axis is stack depth
+- **Three pillars of observability**: Metrics, logs, traces
+
+## Deep Dive Questions
+- **JFR**: How does JFR achieve low overhead? Uses ring buffers, thread-local events
+- **async-profiler**: How does it collect stack traces? Uses perf_events (Linux), ktrace (macOS)
+- **Sampling**: How does async-profiler handle sampling frequency vs accuracy?
+- **Heap dump**: What is in a heap dump? How to analyze with MAT?
+- **Distributed tracing**: How does context propagation work across services?

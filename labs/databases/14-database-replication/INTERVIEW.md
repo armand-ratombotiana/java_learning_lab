@@ -1,75 +1,51 @@
-﻿# Interview Questions: Database Replication
+﻿# Interview Questions: Database Replication (Oracle Focus)
 
-## Basic Level
+## Oracle-Specific Questions
+- Explain Oracle Data Guard architecture: physical standby vs logical standby vs snapshot standby.
+- How does Oracle Active Data Guard differ from regular Data Guard? What features require Active Data Guard license?
+- Explain Oracle GoldenGate architecture: Extract, Pump, Replicat, and trail files.
+- How does Oracle RAC with Data Guard provide high availability and disaster recovery?
+- What is Oracle Far Sync for zero data loss in Data Guard?
+- Explain Oracle's Maximum Protection, Maximum Availability, and Maximum Performance protection modes.
+- How do you monitor Data Guard lag and resolve log transport gaps?
+- Compare Oracle GoldenGate bidirectional replication with Data Guard for active-active scenarios.
 
-### Q1: What is database replication and why is it used?
-**A:** It's a strategy that distributes data across multiple independent database instances to overcome storage, throughput, and geographic limitations of single-node databases.
+## Google Cloud / Technical
+- Cloud SQL read replicas vs Oracle Data Guard
+- Cloud Spanner replication vs Oracle GoldenGate
+- BigQuery CDC with Oracle GoldenGate
 
-### Q2: What is a routing key?
-**A:** A column or set of columns that determines how data is distributed. Every row is assigned to a node based on its routing key value.
+## Microsoft / Azure
+- Azure SQL Active Geo-Replication vs Oracle Data Guard
+- SQL Server Always On vs Oracle RAC + Data Guard
+- Azure Database Migration Service for Oracle CDC
 
-### Q3: Explain the difference between horizontal and vertical partitioning.
-**A:** Horizontal (sharding) splits rows across tables/databases. Vertical splits columns within a table.
+## Amazon / AWS
+- Amazon RDS Multi-AZ vs Oracle Data Guard
+- AWS DMS CDC from Oracle to target databases
+- Aurora Global Database vs Oracle GoldenGate
 
-### Q4: What makes a good routing key?
-**A:** High cardinality, even distribution, stability, and alignment with query patterns.
+## Apple
+- Cross-region data replication for Apple services
+- Data sovereignty compliance in replication
 
-### Q5: Range vs hash distribution?
-**A:** Range divides by value ranges (good for ordered queries, hotspot risk). Hash distributes evenly (breaks range locality).
+## LeetCode-Style Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| CAP Theorem | Consistency vs Availability | Medium | Distributed Systems |
+| Replication Lag | Eventual Consistency | Medium | Timing Analysis |
+| Conflict Resolution | Last Writer Wins | Hard | CRDT |
+| Log Shipping | WAL-based Replication | Medium | Log Sequence Numbers |
 
-## Intermediate Level
+## Production Scenarios
+- Scenario 1: "Data Guard gap not resolving — archive log deletion before shipping"
+- Scenario 2: "GoldenGate replication lag causing stale data on target"
+- Scenario 3: "RAC node failure — Data Guard failover initiated incorrectly"
+- Scenario 4: "Bidirectional GoldenGate conflict — same row updated on both sides"
 
-### Q6: How does consistent hashing work?
-**A:** Keys and nodes are placed on a hash ring. Keys go to the nearest node clockwise. Virtual nodes improve distribution. Node changes move only K/N keys.
-
-### Q7: What is scatter-gather?
-**A:** Query broadcast to all nodes in parallel, results collected and merged. Used when routing key isn't in the query.
-
-### Q8: How do you handle transactions across nodes?
-**A:** Options: 2PC (strong consistency, blocking), Saga (non-blocking with compensation), or avoid (design to minimize cross-node ops).
-
-### Q9: What is a hotspot and how do you mitigate it?
-**A:** A node receiving disproportionate traffic. Mitigations: better key selection, composite keys, virtual nodes, dynamic rebalancing, caching.
-
-### Q10: How do you rebalance data?
-**A:** Monitor skew, plan movement, execute migration in batches, update routing table, clean up.
-
-## Advanced Level
-
-### Q11: Design a distributed database for a global social media platform.
-**A:** Geographic distribution, composite routing key (region + user_id hash), read replicas per region, eventual consistency across regions, caching layer.
-
-### Q12: How do you ensure consistency during rebalancing?
-**A:** Mark routing as \"migrating\", dual-write, backfill, verify checksums, atomic routing update, cleanup.
-
-### Q13: What causes split-brain and how to prevent it?
-**A:** Multiple nodes think they're primary. Prevention: quorum writes, leases, fencing (STONITH), network redundancy.
-
-### Q14: Client-side vs proxy routing?
-**A:** Client-side: simpler, lower latency, needs updates. Proxy: transparent, centralized, adds network hop.
-
-### Q15: Describe a real distributed database failure.
-**A:** Instagram's monotonically increasing keys, Twitter's \"fail whale\", celebrity hotspot issues. Key lessons: always hash, monitor, automate.
-
-## System Design Questions
-
-### Q16: Design for an e-commerce platform.
-**Key considerations:** Routing key (customer_id), product catalog (separate, replicated), consistency (strong for orders, eventual for recommendations).
-
-### Q17: How to migrate from single-node to distributed?
-**Plan:** Choose key, set up routing, dual-writes, backfill, verify, gradual cutover, decommission old.
-
-### Q18: Design a monitoring system.
-**Metrics:** Per-node QPS, latency, error rate, data size, connection pool, skew factor.
-**Alerting:** Skew > 0.3, P99 > 50ms, error rate > 1%, capacity > 70%.
-
-### Q19: Compare approaches.
-| System | Approach | Strengths |
-|--------|----------|-----------|
-| MongoDB | Range/hash | Flexible, built-in |
-| Cassandra | Consistent hashing | Excellent distribution |
-| CockroachDB | Auto range | No manual management |
-| Vitess | Range + hash | SQL compatible |
-
-### Q20: Emerging trends?
-AI-driven key recommendation, serverless transparent distribution, edge computing, CRDTs, multi-cloud fabrics, compute-storage separation.
+## Interview Patterns & Tips
+- Oracle interviews deeply test Data Guard and GoldenGate knowledge
+- Expect architecture design questions for HA/DR using Oracle replication
+- OCP covers: Data Guard Administration, Oracle Backup and Recovery
+- OCM requires advanced Data Guard and RAC troubleshooting
+- HA/DR architects: $140K-$210K; GoldenGate specialists: $130K-$190K

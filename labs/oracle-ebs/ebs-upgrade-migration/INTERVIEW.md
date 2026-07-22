@@ -1,41 +1,56 @@
-# Interview: EBS Upgrade and Migration
+# Interview Questions: EBS Upgrade and Migration
 
-## Technical Questions
+## Oracle-Specific Questions
+- Explain the ADOP (Application Online Patching) cycle: prepare, apply, finalize, cutover, cleanup phases.
+- How does Edition-Based Redefinition (EBR) support zero-downtime patching in R12.2?
+- What are the pre-requisite checks for upgrading from R12.1 to R12.2? List the certification matrix.
+- How do you migrate EBS from on-premise to Oracle Cloud Infrastructure (OCI)?
+- Explain the EBS upgrade path: 11i → R12.1 → R12.2. What are the key considerations for each step?
+- What is the EBS Technology Stack: what versions of database, Forms, and Java are certified with R12.2?
+- How do you clone an EBS environment using `adcfgclone.pl`? What are the post-clone steps?
+- Explain the EBS Cloud Migration options: OCI, AWS, Azure — what are the architecture differences?
 
-### Q1: Explain EBS multi-tier architecture.
+## Google Cloud / Technical
+- Migrating EBS to Google Cloud Compute Engine — reference architecture
+- Cloud Storage for EBS migration data transfer
+- Migrate for Compute Engine (formerly Velostrata) for EBS lift-and-shift
 
-A: Three tiers: desktop (Forms/OAF), application (Forms server, OHS, concurrent managers), database (Oracle DB 19c).
+## Microsoft / Azure
+- EBS on Azure: certified VMs, storage, and networking configuration
+- Azure Database Migration Service for EBS to PostgreSQL
+- Azure Site Recovery for EBS disaster recovery migration
 
-### Q2: What is MOAC?
+## Amazon / AWS
+- AWS Database Migration Service (DMS) for EBS database migration
+- EBS on AWS Quick Start reference deployment
+- Server Migration Service for EBS application tier
 
-A: Multi-Org Access Control lets one EBS instance serve multiple operating units using VPD with FND_MOBS.
+## Apple
+- Data privacy during EBS cloud migration — GDPR compliance
+- Secure data transfer for EBS migration to Apple suppliers
 
-### Q3: Describe EBR in R12.2.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 177 | Nth Highest Salary | Medium | DENSE_RANK |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK |
+| LC 262 | Trips and Users | Hard | JOIN + Filter |
+| LC 569 | Median Employee Salary | Hard | PERCENTILE_CONT |
 
-A: Edition-Based Redefinition allows multiple object versions. ADOP manages prepare, apply, finalize, cutover, cleanup.
+## Production Scenarios
+- Scenario 1: "Production incident — ADOP cutover fails, database edition switch incomplete"
+- Scenario 2: "Performance tuning — Post-upgrade performance degradation due to stale statistics"
+- Scenario 3: "Disaster recovery — Migration to cloud fails, on-premise rollback required"
+- Scenario 4: "Security breach — Migration data intercepted during cloud transfer"
 
-### Q4: Explain concurrent processing.
-
-A: Manager polls FND_CONCURRENT_REQUESTS for pending requests, spawns workers, updates status when done.
-
-### Q5: What is CEMLI?
-
-A: Configuration, Extension, Modification, Localization, Integration - five customization categories.
-
-### Q6: How does VPD work?
-
-A: Adds WHERE clause via fine-grained access control. FND_MOBS adds org_id filtering.
-
-### Q7: ADOP phases?
-
-A: Prepare (create edition), Apply (apply patches), Finalize (ready), Cutover (switch), Cleanup (remove old).
-
-## Behavioral Questions
-
-- Describe a challenging EBS implementation.
-
-- How to handle production issues?
-
-- Approach to EBS security?
-
-- How to stay current with EBS updates?
+## Interview Patterns & Tips
+- EBS upgrade interviews focus on ADOP, EBR, and R12.2 architecture
+- Expect detailed questions about the ADOP lifecycle and rollback procedures
+- OCP EBS Upgrade certification covers upgrade planning, execution, and post-upgrade validation
+- Upgrade consultants: $130K-$190K; Migration architects: $150K-$220K
+- Cloud migration experience (OCI/AWS/Azure) is highly valued

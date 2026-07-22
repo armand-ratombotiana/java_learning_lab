@@ -1,33 +1,59 @@
-﻿# Interview Questions
+﻿# Interview Questions: Best Practices
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Effective Java: Joshua Bloch's rules practiced at Google
+- Code review checklist: style, performance, concurrency, security
+- Builder pattern, dependency injection, immutability
+- Error handling: Google's approach to checked vs unchecked exceptions
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Java best practices in enterprise development
+- Design patterns in Java: Singleton, Factory, Strategy, Observer
+- Writing testable code: dependency injection, mockable interfaces
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Code quality metrics: maintainability, cyclomatic complexity, test coverage
+- Immutable objects: the benefits for multithreaded microservices
+- Code review: performance considerations for distributed systems
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Clean code: readable, maintainable, and performant
+- Concurrency best practices: thread safety in shared data structures
+- Using Optional correctly: avoiding Optional fields
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Favoring immutability for concurrent code
+- Using records for value objects
+- Avoiding unnecessary object creation
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- Java Language Specification and Java API documentation
+- Following Java naming conventions
+- The Java Code Conventions document
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (Best practices apply to all coding problems) |
+| 146 LRU Cache | Medium | Google, Apple, Amazon | Design best practices in cache |
+| 208 Implement Trie | Medium | Amazon, Google | Clean class design |
+
+## Real Production Scenarios
+- **Amazon**: A mutable static variable caused a production outage — not following immutability best practices
+- **Google**: Without using try-with-resources, a database connection leaked in a microservice
+- **Slack**: Not using generics caused a ClassCastException in production
+
+## Interview Patterns & Tips
+- **Immutability**: Use final fields, records, and unmodifiable collections
+- **Error handling**: Fail fast for programming errors, handle gracefully for recoverable issues
+- **Documentation**: Javadoc for public APIs, comments for non-obvious logic
+- **Testing**: Write testable code from the start
+
+## Deep Dive Questions
+- **Immutability**: How does immutability help with thread safety?
+- **Defensive copies**: When should you create defensive copies?
+- **equals/hashCode**: The contract and implementation best practices
+- **Serialization**: What are best practices for serializable classes?
+- **Performance**: What are the best practices for writing high-performance Java code?

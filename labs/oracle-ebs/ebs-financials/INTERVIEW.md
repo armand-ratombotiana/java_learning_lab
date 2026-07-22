@@ -1,41 +1,57 @@
-# Interview: EBS Financials
+# Interview Questions: EBS Financials
 
-## Technical Questions
+## Oracle-Specific Questions
+- Explain the EBS General Ledger architecture: how do balancing segments, management segments, and secondary segments work?
+- How does Subledger Accounting (SLA) work? What is the difference between SLA and the old XLA architecture?
+- Describe the AP invoice lifecycle: from invoice entry, validation, approval to payment.
+- How does AR receipt processing work — automatic receipt, receipt on account, and bill receivable?
+- What is GL consolidation and how do you transfer balances between ledgers in EBS?
+- Explain the Payment Process Request (PPR) flow in EBS R12.2. How does it differ from the old payment batches?
+- How do you configure EBS Financials for multi-currency and foreign currency revaluation?
+- What are the key tables in EBS Financials: GL_BALANCES, AP_INVOICES_ALL, AR_CASH_RECEIPTS_ALL, XLA_AE_HEADERS?
 
-### Q1: Explain EBS multi-tier architecture.
+## Google Cloud / Technical
+- EBS Financials reporting with Google Looker via BI Publisher
+- Google Workspace integration for AP approval workflows
+- Cloud Storage for EBS financial reports archival
 
-A: Three tiers: desktop (Forms/OAF), application (Forms server, OHS, concurrent managers), database (Oracle DB 19c).
+## Microsoft / Azure
+- Azure SQL Database financial reporting vs EBS GL
+- Power BI integration with EBS GL, AP, AR data
+- Dynamics 365 Finance vs EBS Financials comparison
 
-### Q2: What is MOAC?
+## Amazon / AWS
+- AWS QuickSight dashboards for EBS financial KPIs
+- Amazon S3 for EBS financial report storage
+- AWS Lambda for EBS financial data validation
 
-A: Multi-Org Access Control lets one EBS instance serve multiple operating units using VPD with FND_MOBS.
+## Apple
+- Financial data privacy: Sarbanes-Oxley compliance for APEX/Apple
+- Mobile approval workflows for AP invoices on iOS
 
-### Q3: Describe EBR in R12.2.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 177 | Nth Highest Salary | Medium | DENSE_RANK |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK |
+| LC 262 | Trips and Users | Hard | JOIN + CASE |
+| LC 569 | Median Employee Salary | Hard | PERCENTILE_CONT |
+| LC 571 | Find Median Given Frequency | Hard | Window + SUM |
+| LC 615 | Average Salary | Hard | CASE + AVG |
 
-A: Edition-Based Redefinition allows multiple object versions. ADOP manages prepare, apply, finalize, cutover, cleanup.
+## Production Scenarios
+- Scenario 1: "Production incident — GL period close fails due to unposted SLA journal entries"
+- Scenario 2: "Performance tuning — AP Invoice Validation taking hours for large batches"
+- Scenario 3: "Disaster recovery — Corrupted GL_BALANCES after incomplete consolidation"
+- Scenario 4: "Security breach — Payment file intercepted during PPR processing"
 
-### Q4: Explain concurrent processing.
-
-A: Manager polls FND_CONCURRENT_REQUESTS for pending requests, spawns workers, updates status when done.
-
-### Q5: What is CEMLI?
-
-A: Configuration, Extension, Modification, Localization, Integration - five customization categories.
-
-### Q6: How does VPD work?
-
-A: Adds WHERE clause via fine-grained access control. FND_MOBS adds org_id filtering.
-
-### Q7: ADOP phases?
-
-A: Prepare (create edition), Apply (apply patches), Finalize (ready), Cutover (switch), Cleanup (remove old).
-
-## Behavioral Questions
-
-- Describe a challenging EBS implementation.
-
-- How to handle production issues?
-
-- Approach to EBS security?
-
-- How to stay current with EBS updates?
+## Interview Patterns & Tips
+- Oracle EBS Financials interviews focus on SLA, GL consolidation, and the AP/AR lifecycle
+- Expect scenario-based questions about period-end close and financial reporting
+- OCP EBS Financials certification covers GL, AP, AR fundamentals
+- EBS Financials consultants: $120K-$180K; managers: $150K-$210K
+- Understanding of Oracle SLA architecture is critical for senior roles

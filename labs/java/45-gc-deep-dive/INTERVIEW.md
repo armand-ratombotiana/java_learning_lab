@@ -1,32 +1,58 @@
-# Interview Questions: Garbage Collection
+# Interview Questions: Garbage Collection Deep Dive
 
-## Beginner
-1. What is garbage collection and why does Java use it?
-2. Explain the difference between minor GC and major GC.
-3. What is the difference between Serial, Parallel, and G1 GC?
-4. What is an OutOfMemoryError and what causes it?
+## Company-Specific Focus
 
-## Intermediate
-5. Explain G1's region-based design and how it achieves pause time targets.
-6. What are ZGC colored pointers and how do they enable concurrent compaction?
-7. What is the role of remembered sets in G1?
-8. Describe the G1 marking cycle phases.
-9. What is the difference between stop-the-world and concurrent GC?
+### Google
+- GC roots: what are they and how tracing works from roots
+- Generational hypothesis: most objects die young
+- G1 GC: region-based, concurrent, incremental, mixed collections
 
-## Advanced
-10. How does ZGC's load barrier work? What is the overhead?
-11. Explain how G1's SATB algorithm prevents object loss during concurrent marking.
-12. What is the relationship between allocation rate, promotion rate, and GC frequency?
-13. How does the JVM implement root scanning for virtual threads (continuations)?
-14. Compare ZGC's colored pointers with Shenandoah's Brooks pointers.
-15. How do heap size and live set size affect GC pause time for different collectors?
+### Microsoft
+- Java GC vs .NET GC: generational, workstation vs server mode
+- G1 GC: how it works and how to tune it for low latency
+- ZGC: low-latency garbage collection for large heaps
 
-## Expert
-16. Design a GC strategy for a real-time trading system with P99 latency < 1ms.
-17. How would you implement a custom GC algorithm for a specific workload pattern?
-18. Explain the impact of compressed OOPs on ZGC colored pointers.
-19. How does GC interact with the JIT compiler's code cache and nmethods?
-20. What are the challenges of implementing GC for non-heap memory (off-heap, DirectByteBuffer)?
+### Amazon
+- GC tuning for high throughput microservices
+- ZGC and Shenandoah: sub-millisecond pause times
+- G1 GC tuning: -XX:G1HeapRegionSize, -XX:MaxGCPauseMillis
 
-## Answers
-Available in the SOLUTION directory.
+### Meta
+- G1 GC: mixed GC, remembered sets, SATB algorithm
+- GC logs: how to read and analyze GC logs for optimization
+- Object allocation and TLAB (Thread Local Allocation Buffers)
+
+### Apple
+- GC on macOS with different heap sizes
+- ZGC on ARM: how it differs
+- GC for memory-constrained environments
+
+### Oracle
+- HotSpot GC architecture: generational, concurrent, parallel
+- G1, ZGC, Shenandoah, Parallel, Serial GC
+- GC ergonomics: auto-tuning based on hardware
+- GC logging: -Xlog:gc* in Java 9+ unified logging
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — GC is a JVM runtime mechanism) |
+| 146 LRU Cache | Medium | Google, Amazon | Understanding object lifecycle and GC roots |
+
+## Real Production Scenarios
+- **Amazon**: Full GC paused the entire fleet for 5 seconds — caused by a promotion failure in G1
+- **Netflix**: ZGC with a 300GB heap provided <1ms pause times for the recommendation engine
+- **LinkedIn**: CMS GC (legacy) caused long concurrent mode failures — migrated to G1
+
+## Interview Patterns & Tips
+- **GC tuning**: Choose GC based on requirements: throughput (Parallel), low-latency (G1/ZGC/Shenandoah)
+- **GC logs**: Always enable GC logging for troubleshooting
+- **TLAB**: Each thread gets a TLAB for allocation without synchronization
+- **Heap analysis**: jmap, MAT, jhat for heap dump analysis
+
+## Deep Dive Questions
+- **Roots**: What are the GC roots? (stack, static, JNI, active monitors)
+- **Generational**: Why are objects allocated in Eden and promoted to Survivor/Old?
+- **G1**: How does G1 divide the heap? What are remembered sets and SATB?
+- **ZGC**: How does ZGC achieve sub-millisecond pause times?
+- **Shenandoah**: How does Shenandoah differ from ZGC?

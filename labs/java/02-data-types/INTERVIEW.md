@@ -1,25 +1,63 @@
-# Data Types — Interview Questions
+# Interview Questions: Data Types
 
-1. **Q: How are primitive types stored in memory?** A: Primitive local variables are stored on the stack. Primitive fields are stored inline in the object on the heap. Primitives are values, not references.
+## Company-Specific Focus
 
-2. **Q: What is autoboxing and what are its pitfalls?** A: Automatic conversion between primitives and wrappers. Pitfalls: null unboxing (NPE), == comparison (cached range), performance overhead in loops.
+### Google
+- Integer overflow behavior: how Java differs from C/C++ in signed overflow invariance
+- `==` vs `.equals()` with Integer cache values (-128 to 127)
+- Floating-point precision in financial calculations — why never use `float`/`double` for money
 
-3. **Q: How does the Integer cache work?** A: Integer caches -128 to 127. `valueOf()` returns cached instances in this range. Configure upper bound with `-XX:AutoBoxCacheMax=size`.
+### Microsoft
+- Type conversion and upcasting/downcasting in Java vs C#
+- Value types: does Java have anything like C#'s `struct`? Comparison with records in Java 16+
+- Nullable reference types — C# handles them; where does Java stand?
 
-4. **Q: Why is 0.1 + 0.2 != 0.3 in Java?** A: Floating-point IEEE 754 representation. 0.1 cannot be represented exactly in binary. Use BigDecimal for exact decimal arithmetic.
+### Amazon
+- Memory cost of objects vs primitives in high-scale services; object header overhead
+- BigInteger usage for large number calculations in analytics systems
+- String vs char[] for sensitive data: security implications in payment processing
 
-5. **Q: What is the difference between float and double?** A: float = 32 bits, ~7 decimal digits precision. double = 64 bits, ~15 decimal digits precision. double is default for floating-point literals.
+### Meta
+- Primitive array vs wrapper array memory consumption
+- Cache-line effects of boolean arrays in high-frequency polling
+- Preferring `int` over `long` when value fits: CPU register usage
 
-6. **Q: What is NaN and how do you check for it?** A: Not-a-Number (0.0/0.0). Use `Double.isNaN(x)`. NaN != NaN (always false).
+### Apple
+- Value-based classes in Java: `LocalDate`, `Optional` — immutability guarantees
+- Equality semantics: custom `.equals()` implementing type-checks properly
+- Tightly packing data for Java object memory efficiency
 
-7. **Q: What happens with integer overflow?** A: Wraps around silently (unlike C/C++ which has undefined behavior). Use `Math.addExact()`, `Math.multiplyExact()` to detect overflow.
+### Oracle
+- JLS 4: Types, Values, and Variables; JVM specification on type representations
+- What is a "primitive value" vs "reference value" in terms of JVM spec
+- Evolution of types across Java versions: value types (Project Valhalla)
+- How do type annotations (@NonNull, @Nullable) relate to the type system?
 
-8. **Q: What is the difference between `int` and `Integer`?** A: int = primitive (value). Integer = wrapper object (reference). Integer can be null, needed for generics. int is more memory-efficient.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 7 Reverse Integer | Easy | Google, Amazon | Overflow detection via comparison |
+| 9 Palindrome Number | Easy | Apple, Adobe | Reversing half the number vs full string conversion |
+| 202 Happy Number | Easy | Facebook, Microsoft | Cycle detection using HashSet of sums |
+| 231 Power of Two | Easy | Google | Bit manipulation on primitive int |
+| 268 Missing Number | Easy | Amazon, Apple | XOR gauss technique for finding missing int |
 
-9. **Q: Why use BigDecimal instead of double for money?** A: double has rounding errors (0.1 + 0.2 != 0.3). BigDecimal provides exact decimal arithmetic with configurable rounding.
+## Real Production Scenarios
+- **Airbnb**: Integer overflow in timestamp calculation for reward expiry dates — production tickets expired years early
+- **LinkedIn**: Float cumulative error in analytics — database storage of 2.01 as 2.00999999 ruined weekly reports
+- **GitHub**: `==` Integer comparison bug in rest API — IDs larger than 127 caused duplicate entries in cache
 
-10. **Q: What is `var` and when should you use it?** A: Local variable type inference (Java 10+). Use when type is obvious: `var list = new ArrayList<String>();`. Not for method params, fields, or return types.
+## Interview Patterns & Tips
+- **The Integer cache trap**: `Integer.valueOf(100) == Integer.valueOf(100)` is true, but `Integer.valueOf(200) == Integer.valueOf(200)` is false. Always use `.equals()` for object comparisons
+- **Float/Double IEEE 754**: 0.1 + 0.2 != 0.3 — explain why rounding errors occur
+- **Integer overflow is silent** in Java (C# can do `checked` blocks; Java can't)
+- **Switch with String**: The compiler uses `hashCode()` + `equals()`. This handles collisions and is safe but not free
+- **Unicode and char**: Java char is 16-bit; points above U+FFFF require two chars (surrogate pairs), use code point based methods instead
+- **Bitwise & Logical**: `&` and `|` vs `&&` and `||` — the difference between bitwise AND and short-circuit logical AND
 
-11. **Q: Can you explain Java's type promotion rules?** A: Binary numeric promotion: if either operand is double → double, else float → float, else long → long, else int.
-
-12. **Q: What is a widening vs narrowing conversion?** A: Widening = smaller type to larger (implicit, safe). Narrowing = larger to smaller (explicit cast, possible data loss).
+## Deep Dive Questions
+- **JVM internals**: How are primitive types actually stored on the JVM stack vs the heap? Explain operand stack, local variable array, and object fields representation.
+- **Memory model**: What is the object header structure? How much overhead does an `Integer` wrapper object impose over a plain `int`?
+- **Class file format**: How are String literals stored in the constant pool? How does the CONSTANT_String_info differ from CONSTANT_Utf8_info?
+- **JIT**: Can the JIT optimize escape-analyzed objects to have value-like behavior on stack?
+- **Java 21+**: What would nullable primitive types look like if they were added to Java? (JEP draft related)

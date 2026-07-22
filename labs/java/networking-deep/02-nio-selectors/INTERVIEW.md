@@ -1,26 +1,53 @@
-﻿# NIO Selectors -- Interview Questions
-## Common Interview Questions
+﻿# Interview Questions: NIO Selectors
 
-### Q1: What is the TCP three-way handshake?
-A: SYN -> SYN-ACK -> ACK sequence that establishes a TCP connection.
+## Company-Specific Focus
 
-### Q2: What is the difference between TCP and UDP?
-A: TCP is connection-oriented, reliable, ordered. UDP is connectionless, unreliable, unordered.
+### Google
+- NIO Selector: multiplexing multiple channels with a single thread
+- SelectableChannel: channels that can be used with Selector
+- SelectionKey: represents a channel's registration with a Selector
 
-### Q3: How does non-blocking I/O differ from blocking I/O?
-A: Blocking I/O waits for the operation to complete. Non-blocking returns immediately.
+### Microsoft
+- Java NIO vs .NET async I/O
+- Selector: OS-level event notification (epoll, kqueue, select)
 
-### Q4: What is the C10K problem?
-A: Handling 10,000 concurrent connections. Thread-per-connection fails; event loop solves it.
+### Amazon
+- Reactor pattern: single thread handles many connections
+- NIO + Netty: Netty is built on top of NIO Selectors
+- Performance: handling tens of thousands of connections with a few threads
 
-### Q5: How does HTTP/2 multiplexing work?
-A: Multiple streams over a single TCP connection, eliminating head-of-line blocking.
+### Meta
+- OP_ACCEPT, OP_CONNECT, OP_READ, OP_WRITE: interest sets
+- select() vs selectNow(): blocking vs non-blocking selector operation
+- wakeup(): waking up a blocked selector
 
-### Q6: What is backpressure and why is it important?
-A: Backpressure regulates data flow to prevent consumers from being overwhelmed.
+### Apple
+- kqueue: macOS/BSD event notification mechanism
+- epoll vs kqueue: platform-specific selector implementations
 
-### Q7: Explain the Reactor pattern.
-A: Event demultiplexing and dispatch: select() then handle events for each ready channel.
+### Oracle
+- java.nio.channels.Selector, SelectionKey, SelectableChannel
+- SelectorProvider: platform-specific provider
+- Selector.wakeup(): interrupt a blocked select operation
 
-### Q8: How do you debug network issues in production?
-A: Use thread dumps, JFR, Wireshark captures, connection metrics, and distributed tracing.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — NIO Selectors are networking architecture) |
+
+## Real Production Scenarios
+- **Netflix**: NIO Selector-based event loop handles 50K+ concurrent connections per instance
+- **Cloudflare**: Selector.wakeup() race condition caused missed events — careful handling required
+
+## Interview Patterns & Tips
+- **Reactor pattern**: one thread handles multiple connections
+- **select() vs poll() vs epoll()**: Linux I/O multiplexing evolution
+- **Channel registration**: register channels with a Selector for interest events
+- **Selector loop**: typical pattern: select() -> process keys -> cancel -> repeat
+
+## Deep Dive Questions
+- **epoll vs select**: Why is epoll more scalable than select?
+- **Selector loop**: Write the typical NIO selector event loop
+- **SelectionKey**: What information does a SelectionKey hold?
+- **wakeup()**: How does Selector.wakeup() work?
+- **Platform implementations**: How does Selector differ across Linux, macOS, Windows?

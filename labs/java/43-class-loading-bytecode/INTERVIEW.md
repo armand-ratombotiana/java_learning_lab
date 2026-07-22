@@ -1,31 +1,57 @@
-# Interview Questions: Class Loading & Bytecode
+# Interview Questions: JVM Class Loading & Bytecode
 
-## Beginner
-1. What is the purpose of a ClassLoader?
-2. Describe the ClassLoader delegation model.
-3. What is the difference between ClassNotFoundException and NoClassDefFoundError?
-4. How do you load a class at runtime in Java?
+## Company-Specific Focus
 
-## Intermediate
-5. Explain the structure of a .class file (magic number, version, constant pool, etc.).
-6. How does ASM's visitor pattern work for reading and writing bytecode?
-7. What is invokedynamic and when would you use it?
-8. How do lambda expressions compile to bytecode?
+### Google
+- Class loading: loading, linking (verification, preparation, resolution), initialization
+- Class loader hierarchy: Bootstrap, Platform, Application
+- Custom class loaders: URLClassLoader, defining custom loading strategies
 
-## Advanced
-9. How does the JVM's class verification process work? What does it check?
-10. Explain how Metaspace (Java 8+) differs from PermGen (Java 7 and earlier).
-11. How would you implement a hot-reload plugin system using custom ClassLoaders?
-12. What is the relationship between MethodHandle, invokedynamic, and reflection?
-13. How does the JIT treat invokedynamic call sites differently from regular virtual calls?
+### Microsoft
+- Java class loading vs .NET assembly loading
+- Bytecode format vs MSIL (CIL)
+- Verification in JVM vs PEVerify in .NET
 
-## Expert
-14. Design a ClassLoader that supports class versioning (multiple versions of the same class).
-15. How does AppCDS work and what are its limitations?
-16. Explain the constant pool resolution process. When does resolution fail and why?
-17. How would you use ASM to add a method to an existing class at runtime?
-18. What are the thread safety guarantees of class loading (concurrent loading of the same class)?
-19. How does the JVM's class unloading mechanism interact with the garbage collector?
+### Amazon
+- Class loading in containerized environments
+- Bytecode manipulation: ASM, ByteBuddy, cglib for proxying
+- HotSwap: replacing code at runtime via DCEVM
 
-## Answers
-Available in the SOLUTION directory.
+### Meta
+- Bytecode analysis: reading class files, constant pool, instruction sets
+- Proxy classes and dynamic class generation
+- Instrumentation: java.lang.instrument for agents
+
+### Apple
+- Bytecode verification: ensuring type safety at the JVM level
+- Class file format: magic number, version, constant pool
+- Security: class loading and code source
+
+### Oracle
+- JVM Specification: The class file format (Chapter 4)
+- Bytecode instruction set: 256+ instructions, stack based
+- Class loading delegation model
+- DefineClass vs LoadClass/FindClass
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — bytecode is a JVM implementation concept) |
+| 208 Implement Trie | Medium | Amazon, Google | Class loading analogous to trie with delegation |
+
+## Real Production Scenarios
+- **Uber**: Custom class loader for hot reloading plugin modules in microservice architecture
+- **Netflix**: ByteBuddy generated proxy classes for Hystrix command wrapping
+- **LinkedIn**: ClassLoader leak from redeployment in Tomcat — classes in permgen not GC'd
+
+## Interview Patterns & Tips
+- **Delegation model**: parent-first loading, child-first for application servers
+- **ClassLoader leak**: a common issue in app servers — the loaded class references a class from a stale classloader
+- **Instrumentation**: java agents for profiling, monitoring, AOP
+
+## Deep Dive Questions
+- **Class file**: Describe the major sections of the class file format
+- **Bytecode**: What is the stack-based execution model?
+- **Verification**: What does the bytecode verifier check?
+- **Constant pool**: What is stored in the constant pool?
+- **ASM**: How do libraries like ASM generate bytecode? (ClassWriter, MethodVisitor)

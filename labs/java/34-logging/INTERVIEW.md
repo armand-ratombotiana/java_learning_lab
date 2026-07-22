@@ -1,33 +1,58 @@
-﻿# Interview Questions
+﻿# Interview Questions: Logging
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- SLF4J vs Log4j 2 vs java.util.logging — choosing a logging facade
+- Log levels: TRACE, DEBUG, INFO, WARN, ERROR usage conventions
+- Structured logging: JSON format for machine processing
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Java logging vs .NET logging: log4j vs NLog/serilog
+- Application Insights integration from Java
+- Correlation IDs for distributed tracing in Azure
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Log aggregation in the cloud: sending logs to CloudWatch
+- Async logging: preventing IO from blocking the application
+- MDC (Mapped Diagnostic Context) for request-scoped context
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Performance cost of logging at scale: string formatting and GC
+- Log rotation: preventing disk full scenarios
+- Avoid logging sensitive data: PII scrubbing
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Unified logging on macOS
+- Using System.Logger since Java 9
+- Testing framework integration
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- java.util.logging overview (JUL)
+- The LogManager and configuration
+- Integration: how JUL connects to SLF4J via jul-to-slf4j bridge
+- System.Logger since Java 9
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (Logging patterns are applied to all production problems - no direct LC mappings) |
+| 355 Design Twitter | Medium | Amazon, Google | Event log design pattern |
+
+## Real Production Scenarios
+- **Log4Shell (CVE-2021-44228)**: Log4j JNDI injection — a security disaster caused by a logging library
+- **Amazon**: async appender losing logs during an outage — the buffer was too small
+- **Netflix**: Logging in a critical path caused P99 latency increase due to string formatting
+
+## Interview Patterns & Tips
+- **Use SLF4J**: Parameterized logging {} avoids string creation if log level is disabled
+- **Avoid string concat**: `log.debug("user " + id + " login")` — always creates strings. Use `log.debug("user {} login", id)`
+- **Don't log sensitive data**: PII, passwords, tokens — use a filter if needed
+- **Log context**: Add correlation ID to every log line for distributed debugging
+
+## Deep Dive Questions
+- **JVM**: How does the logging framework interact with the JVM when writing to disk?
+- **Async logging**: How is the disruptor pattern used by log4j2 for high throughput?
+- **Memory**: How does logging large strings affect GC?
+- **Performance**: What is the cost of a single log.debug() call when disabled?
+- **JUL vs Log4j vs SLF4J**: How do these frameworks interface with each other?

@@ -1,25 +1,62 @@
-# Control Flow — Interview Questions
+# Interview Questions: Control Flow
 
-1. **Q: What is short-circuit evaluation?** A: `&&` and `||` evaluate right operand only when needed. Prevents unnecessary computation and NullPointerException: `obj != null && obj.isValid()`.
+## Company-Specific Focus
 
-2. **Q: How does a switch on String work internally?** A: Compiler generates two-level switch: hash code switch, then equals verification. Avoids O(n) string comparison.
+### Google
+- Advanced `switch` expression exhaustiveness checking and pattern matching interaction
+- Loop unrolling and optimization: how does the JIT treat counted vs uncounted loops?
+- `if`-heavy code refactoring into polymorphic dispatch for performance in latency-critical services
 
-3. **Q: What is the difference between for and for-each?** A: for-each is cleaner for arrays/Iterables. For arrays, both compile to same bytecode. For Iterables, for-each uses Iterator.
+### Microsoft
+- `switch` expression as a replacement for if-else chains in pipeline processing
+- Guarded patterns in `when` clauses: similarity to C# pattern matching
+- Nullable value types and flow analysis around `if (x != null)` patterns
 
-4. **Q: Can you use break/continue with labels?** A: Yes: `outer: for (...) { for (...) { if (...) break outer; } }`. Exits/continues the labeled loop.
+### Amazon
+- Loop optimization in high-throughput services: how for-each loop over an ArrayList compiles to indexed loop
+- Avoid branching in hot paths: using arrays as jump tables
+- Using `break` and `continue` with labels for multi-level loop control in graph traversals
 
-5. **Q: What is the difference between while and do-while?** A: while checks condition before body (0+ iterations). do-while checks after body (1+ iterations).
+### Meta
+- Performance consequences of deep if-else chains on branch prediction
+- For-each loop performance with different collection types in hot paths
+- Short-circuit evaluation: impact on null-safety and performance
 
-6. **Q: What is a switch expression and how is it different?** A: Java 14+: `int x = switch(v) { case 1 -> 10; default -> 0; };`. No fall-through, must be exhaustive, can be assigned.
+### Apple
+- Using enhanced switch with sealed types for exhaustive pattern matching
+- Preferring switch expressions over if-else for better control flow readability
+- Definite assignment analysis: how the compiler checks variables are initialized before use
 
-7. **Q: How does the compiler detect unreachable code?** A: Flow analysis: after break/continue/return/throw, next statement is unreachable. `if (false) { }` body is also unreachable.
+### Oracle
+- Evolution of switch from statement to expression (JEP 325, 354, 361, 406)
+- Pattern matching for switch: JEP 441 in Java 21, combining type checking and destructuring
+- How do switch on String, enum, and integer differ in compiled bytecode?
+- Lambda control flow: restrictions on `break` and `continue` in lambdas
 
-8. **Q: What is the enhanced for-loop limitation?** A: Cannot modify the underlying collection during iteration (ConcurrentModificationException). Cannot access index.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 20 Valid Parentheses | Easy | Amazon, Google, Microsoft | Stack + if-else for matching |
+| 71 Simplify Path | Medium | Facebook, Apple | Splitting and switch on token types |
+| 22 Generate Parentheses | Medium | Amazon, Bloomberg | Recursive backtracking with pruning |
+| 394 Decode String | Medium | Google, Apple | Stack-based parsing with if-else conditions |
+| 726 Number of Atoms | Hard | Amazon, Google | Control flow for tokenization and recursion |
 
-9. **Q: What is loop invariant code motion?** A: Compiler moves loop-invariant computations outside the loop. `for (int i = 0; i < list.size(); i++)` — size() can be hoisted.
+## Real Production Scenarios
+- **Stripe**: Outage caused by floating-point comparison in control flow — `if (x == y)` for computed doubles left edge cases unhandled
+- **Twitter**: Deep statement-level if-else in payment flow caused a bug when a new region was introduced; refactored to enum-based dispatch
+- **Netflix**: Switch on enum dropped a new case causing fall-through bug to a default handler; unreachable branch not caught at compile time
 
-10. **Q: Which is faster: if-else or switch?** A: switch with dense int values uses tableswitch (O(1)). if-else is O(n) in worst case. For small numbers, difference is negligible.
+## Interview Patterns & Tips
+- **Switch vs if-else**: Switch with String/Enum is compiled differently; the JVM uses tableswitch for dense int values, lookupswitch for sparse. JIT then optimizes further based on profile data
+- **Fall-through in switch**: Unless you use the arrow form, the previous `break`-less semantics are preserved and can cause bugs
+- **Try-with-resources**: Not just a syntax sugar: the compiler generates hidden code for exception suppression, which is critical for correct resource handling
+- **For-each is not always safe**: If you modify the list in the loop (add/remove), you get `ConcurrentModificationException` — but only with fail-fast iterators
+- **Labeled break**: Rarely used but very effective in nested loops; prevents the need for flags
 
-11. **Q: What is the ternary operator?** A: `condition ? valueIfTrue : valueIfFalse`. Compact if-else expression. Overuse hurts readability.
-
-12. **Q: Can you use a switch on a long?** A: No. Switch supports byte, short, char, int, String, enum. Not long, float, double, boolean.
+## Deep Dive Questions
+- **Compilation of switch**: How is a switch on String compiled? Show the process using hashcode lookup with collision verification.
+- **JVM spec**: How does the JVM handle the difference between tableswitch and lookupswitch? When does it use each?
+- **JIT optimization**: How does the JIT compiler handle a for loop with a variable upper bound vs a constant one? Loop unrolling, vectorization, null-check elimination.
+- **Java 21+**: How does pattern matching in switch change the internal representation of switch expressions? What is the impact on the constant pool size?
+- **Threading**: Are `break`, `continue`, and `return` inside a lambda body safe in a concurrent context? What happens to captured variables?

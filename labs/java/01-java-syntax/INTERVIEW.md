@@ -1,57 +1,63 @@
-# Java Syntax — Interview Questions
+# Interview Questions: Java Syntax
 
-## Question 1: Entry Point
-**Q:** Why is `main` declared `public static void`?
-**A:** `public` so the JVM can access it, `static` so it can be called without creating an instance, `void` because the JVM exits via `System.exit()` — the return value would serve no purpose. The `String[] args` parameter passes command-line arguments.
+## Company-Specific Focus
 
-## Question 2: Primitive vs Reference
-**Q:** What is the difference between `int` and `Integer` in terms of syntax?
-**A:** `int` is a primitive type — it's a value, not an object. `Integer` is a wrapper class. Syntax differences: `int x = 5;` vs `Integer x = Integer.valueOf(5);`. Autoboxing (Java 5+) blurs this: `Integer x = 5;` is syntactic sugar for `Integer.valueOf(5)`.
+### Google
+- Language fundamentals as building blocks for complex systems; expects precise understanding of JVM memory model for primitives vs objects
+- Tricky questions on autoboxing in loops causing hidden allocation overhead
+- Multiplication vs bit-shifting micro-optimizations in high-frequency trading contexts
 
-## Question 3: Final Keyword
-**Q:** What does `final` mean when applied to a variable, method, and class?
-**A:** Variable: cannot be reassigned (but object contents can change). Method: cannot be overridden. Class: cannot be subclassed.
+### Microsoft
+- Syntax differences in Java vs C#; questions on cross-language migration patterns
+- `var` keyword in Java 10+ vs implicit typing in C#
+- Byte-level operations for protocol parsing in Azure IoT scenarios
 
-## Question 4: Static Keyword
-**Q:** What does `static` mean in `public static void main`?
-**A:** `static` means the method belongs to the class, not instances. It can be called without creating an object. Static methods cannot access instance variables directly — they have no `this` reference.
+### Amazon
+- Primitive vs Object memory overhead in high-scale cloud services
+- Syntax-level performance considerations for cost-efficient computing
+- Fail-fast vs fail-safe iteration semantics with concurrent modification
 
-## Question 5: String Switch Internals
-**Q:** How does a `switch` on Strings work internally?
-**A:** The compiler compiles it into: (1) Get the string's hash code, (2) Use a `tableswitch`/`lookupswitch` on the hash, (3) In each case, verify the match with `.equals()`. This handles hash collisions.
+### Meta
+- String concatenation in loops: `+` vs `StringBuilder` and the impact on GC
+- Enhanced for-each loop with `Iterable`: performance considerations
+- Java 17 (LTS) vs Java 21 features in production
 
-## Question 6: Checked vs Unchecked Exceptions
-**Q:** What syntax difference is there between checked and unchecked exceptions?
-**A:** Checked exceptions (subclasses of `Exception` but not `RuntimeException`) must be either caught with `try-catch` or declared with `throws` in the method signature. Unchecked exceptions (`RuntimeException` and subclasses) do not require either.
+### Apple
+- Immutability enforcement through syntax: `final` fields, unmodifiable wrappers
+- Memory-efficient idioms: primitives over wrappers, array over ArrayList
+- Annotation syntax and retention policies
 
-## Question 7: Varargs Rules
-**Q:** What are the rules for using varargs (`...`)?
-**A:** (1) Varargs must be the last parameter. (2) There can be at most one varargs parameter. (3) The method can be called with zero or more arguments for that parameter. (4) Inside the method, the varargs parameter is treated as an array.
+### Oracle
+- Java Language Specification (JLS) sections relevant to each syntax element
+- `switch` expressions vs statements: evolution from JEP 325 to JEP 420
+- JVM specification compliance: exactly how `javac` compiles each syntax element
+- Language evolution: from Java 1.0 syntax to modern Java (preview features)
 
-## Question 8: Anonymous Classes
-**Q:** What is the syntax for creating an anonymous inner class?
-**A:** `new SuperType() { body }`. Example:
-```java
-Runnable r = new Runnable() {
-    @Override
-    public void run() {
-        System.out.println("Running");
-    }
-};
-```
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 150 Evaluate Reverse Polish Notation | Medium | Amazon, Google | Token parsing, string-to-integer conversion |
+| 227 Basic Calculator II | Medium | Facebook, Amazon | Parsing expressions with operator precedence |
+| 8 String to Integer (atoi) | Medium | Microsoft, Apple | State machine, overflow handling, whitespace/characters |
+| 282 Expression Add Operators | Hard | Google, Meta | Recursive parsing, operator precedence |
+| 224 Basic Calculator | Hard | Facebook, Amazon, Apple | Expression parsing with parentheses |
 
-## Question 9: Static Imports
-**Q:** What is a static import and when would you use it?
-**A:** `import static com.example.Constants.MAX_VALUE;` imports a static member so you can use it without the class name. Use sparingly for constants or utility methods that are used frequently within a class.
+## Real Production Scenarios
+- **Amazon DynamoDB team**: Integer overflow bug in token-based pagination that caused 5-hour outage — root cause was unsigned comparison emulation
+- **Google**: Legacy code migration from Java 8 to Java 17 uncovered `T` <-> `? super T` incompatibility in generic methods with varargs — required 200+ code changes
+- **Uber**: Autoboxing in big-data pipeline caused 2TB memory increase in production — hidden allocation through implicit `Integer.valueOf()` call in loop
 
-## Question 10: Diamond Operator
-**Q:** What is the diamond operator `<>` and why was it introduced?
-**A:** `<>` allows the compiler to infer generic type arguments from the context. Before Java 7, you had to repeat the type: `List<String> list = new ArrayList<String>();`. With diamond: `List<String> list = new ArrayList<>();`. Reduces verbosity without sacrificing type safety.
+## Interview Patterns & Tips
+- **Recognize the pattern**: Syntax questions are often disguised as performance or correctness problems
+- **Time complexity**: Syntax-level decisions (e.g., using a for-each loop vs indexed loop for a list) usually O(n) but constant factors matter
+- **Space complexity**: `String.split()` generates an array of new strings; if processing many records, consider `Pattern.split()` instead
+- **Java-specific gotcha**: The default `toString()` of an array returns a weird string; always use `Arrays.toString()` for debugging
+- **Gotcha**: Autoboxing of `int` in collections uses `Integer.valueOf()` with an internal cache for -128 to 127 — outside this range, new objects are created
+- **Gotcha**: The `++` prefix/postfix operator in Java is not atomic, even for `int` or `long`, without synchronization
 
-## Question 11: Java 8+ Lambda Syntax
-**Q:** What are the two forms of lambda expression syntax?
-**A:** (1) Expression form: `(params) -> expression` (e.g., `(x, y) -> x + y`). (2) Block form: `(params) -> { statements; }` (e.g., `(x, y) -> { return x + y; }`). If there's a single parameter, parentheses can be omitted: `x -> x * 2`.
-
-## Question 12: Switch Expressions vs Switch Statements
-**Q:** What is the syntax difference between a switch statement and a switch expression?
-**A:** Switch statements use `:` and `break`: `switch(x) { case 1: doSomething(); break; }`. Switch expressions use `->` and can be assigned: `int result = switch(x) { case 1 -> 10; case 2 -> 20; default -> 0; };`. Switch expressions must be exhaustive and don't fall through.
+## Deep Dive Questions
+- **JVM/bytecode**: What bytecode instructions are generated for `String x = "hello" + name;`? Show the `invokevirtual` for StringBuilder.append
+- **Memory model**: How does the JVM ensure visibility when a `volatile` variable is read? What is the store-load barrier ordering?
+- **Compiler optimization**: Under what conditions will the JIT compiler inline a getter method? What are the default-XX:InlineSmallCode and -XX:FreqInlineSize settings?
+- **Java 21+ features**: How does pattern matching in `switch` (JEP 441) change the way you handle null in switch expressions? How does the compiler resolve exhaustiveness?
+- **Concurrency**: If you have a class with only `final` fields that are all immutable objects, is it automatically thread-safe? Explain with reference to the JMM

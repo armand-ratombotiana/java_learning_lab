@@ -1,31 +1,55 @@
-# Interview: MongoDB
+# Interview Questions: MongoDB (Oracle Comparison)
 
-## Beginner
+## Oracle-Specific Questions
+- Compare MongoDB's document model with Oracle's relational model — when would you use each?
+- How does MongoDB's sharding compare to Oracle's partitioning and RAC for horizontal scaling?
+- Compare MongoDB indexes (single field, compound, multikey, text, geospatial) with Oracle indexes.
+- How does MongoDB's aggregation pipeline compare to Oracle SQL for analytics?
+- Explain MongoDB transactions (multi-document ACID) vs Oracle transactions — what are the limitations?
+- How does MongoDB replication (replica sets) compare to Oracle Data Guard?
+- Compare MongoDB WiredTiger storage engine with Oracle's storage architecture.
+- Oracle to MongoDB migration strategies — when does it make sense?
 
-**Q**: What is MongoDB and what makes it different from SQL databases?
-**A**: MongoDB is a NoSQL document database. Instead of tables and rows, it uses collections of JSON-like documents. Documents can have nested structures, arrays, and varying fields between documents. No fixed schema means faster iteration and direct mapping to application objects.
+## Google Cloud / Technical
+- Cloud Firestore vs MongoDB for serverless document storage
+- Cloud Spanner as a globally distributed alternative to MongoDB
+- Atlas (MongoDB Cloud) vs OCI for database deployment
 
-**Q**: How do you model a 1:N relationship in MongoDB?
-**A**: Two main approaches: embedding (store related data as subdocuments within the parent, good for small bounded relationships accessed together) and referencing (store child document IDs in an array or parent ID in child documents, good for unbounded relationships or independent access). Choose based on access patterns.
+## Microsoft / Azure
+- Azure Cosmos DB (MongoDB API) vs native MongoDB
+- Azure MongoDB migration from Oracle via CDC
+- Azure Data Factory for Oracle to MongoDB ETL
 
-## Intermediate
+## Amazon / AWS
+- Amazon DocumentDB (MongoDB-compatible) vs native MongoDB
+- AWS DMS for Oracle to DocumentDB migration
+- MongoDB Atlas on AWS vs Oracle RDS
 
-**Q**: Explain the aggregation pipeline and when you'd use it.
-**A**: The aggregation pipeline is a framework for data processing. Documents pass through stages like `$match` (filter), `$group` (aggregate), `$sort` (order), `$project` (reshape), and `$lookup` (join). Use it for reporting, data transformation, complex filtering, and computed aggregations that are too complex for `find()`.
+## Apple
+- MongoDB for Apple's cloud service data storage
+- Data privacy: MongoDB field-level encryption for PII
 
-**Q**: How does MongoDB handle ACID transactions?
-**A**: Since 4.0, MongoDB supports multi-document ACID transactions across collections. Since 4.2, transactions span sharded clusters. Use `startTransaction()`, `commitTransaction()`, `abortTransaction()`. Default transaction timeout is 60 seconds. Use `w: majority` and `readConcern: snapshot` for full ACID guarantees.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN (vs $lookup) |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | $lookup + $match |
+| LC 184 | Department Highest Salary | Medium | $group + $max |
+| LC 185 | Department Top Three Salaries | Hard | $group + $push |
+| LC 262 | Trips and Users | Hard | $lookup + $match |
+| LC 601 | Human Traffic of Stadium | Hard | $lookup + $group |
 
-**Q**: How do you choose a shard key?
-**A**: Ideal shard key has: high cardinality (many unique values), low frequency (few documents per value), and non-monotonic change pattern (avoids hot shards). Examples: hashed user ID, composite key of region + timestamp. Avoid: monotonically increasing keys (`_id`, timestamps without hashing).
+## Production Scenarios
+- Scenario 1: "Shard key hotspot causing 10x latency on one shard"
+- Scenario 2: "WiredTiger cache pressure causing write stalls"
+- Scenario 3: "Replica set election causing write availability gap"
+- Scenario 4: "Aggregation pipeline memory limit exceeded"
 
-## Advanced
-
-**Q**: Describe WiredTiger's snapshot isolation and conflict resolution.
-**A**: WiredTiger uses MVCC with snapshot isolation. Each transaction gets a snapshot of committed state at start time. Writes create new versions; reads see the snapshot version. On write conflict (two transactions modifying the same document), the second transaction receives a `WriteConflict` error and must retry. This is transparent in transactions but must be handled in application code for retryable writes.
-
-**Q**: Design a multi-tenant SaaS application on MongoDB.
-**A**: Options: (1) Database per tenant – best isolation, complex backup/restore, (2) Collection per tenant – moderate isolation, shared resources, (3) Threaded tenant pattern (single collection with tenantId field) – simplest operations, proper indexes on tenantId, potential hot spots. For most SaaS apps, a shared collection with tenantId index + RYOW (Read Your Own Write) consistency is recommended. Use zones/tag-aware sharding for geographic distribution.
-
-**Q**: How would you debug a sudden performance degradation in a MongoDB production cluster?
-**A**: 1) Check `currentOp()` for long-running queries. 2) Review slow queries in `system.profile`. 3) Check index usage with `$indexStats`. 4) Examine `serverStatus()` for page faults, lock percentage. 5) Review WiredTiger cache pressure. 6) Check replication lag. 7) Monitor network latency. 8) Look for collection scans in `log` level.
+## Interview Patterns & Tips
+- Oracle interviews ask MongoDB to evaluate Polyglot Persistence knowledge
+- Be ready to compare Oracle RAC with MongoDB sharding for scalability
+- Know when to use Oracle vs MongoDB in a microservices architecture
+- MongoDB expertise adds $10K-$20K premium to Oracle DBA roles
+- Migration architects: $130K-$190K

@@ -1,18 +1,58 @@
-# Interview: Query Optimization
+# Interview Questions: Query Optimization (Oracle Focus)
 
-## Common Questions
+## Oracle-Specific Questions
+- How does Oracle's Cost-Based Optimizer (CBO) work? Explain cardinality estimation, selectivity, and cost calculation.
+- Explain Oracle execution plans: what do full table scan, index range scan, index unique scan, and table access by rowid mean?
+- How do you read an Oracle execution plan using `DBMS_XPLAN.DISPLAY` and `DBMS_XPLAN.DISPLAY_CURSOR`?
+- Explain Oracle SQL Plan Management (SPM): how do you capture, evolve, and fix SQL plan baselines?
+- How does Oracle Adaptive Query Optimization work? Explain adaptive plans and adaptive statistics.
+- What are Oracle SQL Profiles and SQL Patches? How do they differ from SQL Plan Baselines?
+- Explain Oracle's join methods: Nested Loops, Hash Join, Sort Merge Join — when does CBO choose each?
+- How does Oracle Parallel Execution work? Explain `PARALLEL` hint and `DOP` (Degree of Parallelism).
 
-**Q:** How do you identify and fix a slow query?
-**A:** 1) Find it via pg_stat_statements or slow query log. 2) Run EXPLAIN (ANALYZE, BUFFERS). 3) Identify the bottleneck (seq scan, sort, join). 4) Add missing indexes, rewrite the query, or update statistics. 5) Verify with another EXPLAIN ANALYZE.
+## Google Cloud / Technical
+- Cloud SQL query optimization vs Oracle — EXPLAIN ANALYZE vs DBMS_XPLAN
+- BigQuery vs Oracle optimizer for analytical queries
+- Cloud Spanner query optimization differences
 
-**Q:** Explain how B-tree indexes work.
-**A:** Balanced tree with branching factor ~100-500. Leaf pages contain index entries + pointers to heap tuples. Search, insert, delete are O(log N). Supports equality, range, prefix matching, and sorting.
+## Microsoft / Azure
+- SQL Server Query Store vs Oracle SPM
+- Azure SQL Database Intelligent Insights vs Oracle ADDM
+- SQL Server vs Oracle optimizer for similar workloads
 
-**Q:** How does the database optimizer choose between index scan and seq scan?
-**A:** Based on statistics and cost estimation. Index scan is chosen when the estimated number of matching rows is small (<5-10% of table). Seq scan is preferred for larger fractions because random I/O costs more than sequential.
+## Amazon / AWS
+- Amazon RDS Oracle performance insights vs AWR
+- Aurora query optimization vs Oracle CBO
+- Redshift vs Oracle optimizer for data warehousing
 
-**Q:** What's the difference between a hash join and a merge join?
-**A:** Hash join builds a hash table on one relation and probes it – good for equi-joins on medium tables. Merge join requires sorted inputs and works well for large tables or pre-sorted data.
+## Apple
+- Query optimization for Apple-scale data volumes
+- Privacy-preserving query optimization techniques
 
-**Q:** How do you troubleshoot N+1 queries in a Spring Data JPA application?
-**A:** Enable SQL logging (`spring.jpa.show-sql=true`), count queries, identify lazy loads in loops. Fix with `JOIN FETCH` in `@Query`, `@EntityGraph`, or `@BatchSize`. Verify query count drops from N+1 to 1.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 177 | Nth Highest Salary | Medium | DENSE_RANK |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 185 | Department Top Three Salaries | Hard | Window Function |
+| LC 262 | Trips and Users | Hard | JOIN + CASE |
+| LC 569 | Median Employee Salary | Hard | PERCENTILE_CONT |
+| LC 571 | Find Median Given Frequency | Hard | Window + SUM OVER |
+| LC 601 | Human Traffic of Stadium | Hard | Self JOIN + Aggregate |
+
+## Production Scenarios
+- Scenario 1: "SQL plan regression after statistics gather — fixed with SPM baseline"
+- Scenario 2: "Full table scan on partitioned table — partition pruning not working"
+- Scenario 3: "Hash join spilling to disk — PGA_AGGREGATE_TARGET too low"
+- Scenario 4: "Cursor sharing not working — high version count causing latch contention"
+
+## Interview Patterns & Tips
+- Oracle query optimization interviews deeply test AWR, ASH, ADDM, and SQL Tuning Advisor
+- Expect actual execution plan analysis on the whiteboard
+- OCP Performance Tuning certification covers optimizer, SPM, and tuning tools
+- Performance engineers: $140K-$210K; DBAs: $120K-$180K
+- OCM certification requires expertise in using Oracle tuning tools

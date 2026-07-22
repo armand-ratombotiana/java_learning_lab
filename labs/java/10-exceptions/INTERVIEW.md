@@ -1,25 +1,62 @@
-# Exceptions — Interview Questions
+# Interview Questions: Exceptions
 
-1. **Q: What is the difference between checked and unchecked exceptions?** A: Checked (Exception subclasses except RuntimeException) must be caught or declared. Unchecked (RuntimeException, Error) don't require handling.
+## Company-Specific Focus
 
-2. **Q: When would you create a custom checked vs unchecked exception?** A: Checked: caller can reasonably recover (e.g., `FileNotFoundException`). Unchecked: programming error (e.g., `IllegalArgumentException`) or unlikely to recover.
+### Google
+- Exception handling performance: try-catch overhead, JIT inlining of cold blocks
+- Checked vs unchecked exceptions debate — Google generally prefers unchecked
+- Try-with-resources compilation: how close methods are called and suppressed exceptions
 
-3. **Q: What is the try-with-resources statement?** A: Java 7+ feature that automatically closes resources implementing `AutoCloseable`. Resources declared in try header are closed in reverse order.
+### Microsoft
+- Checked exceptions vs C# unchecked approach — language design differences and rationale
+- Java throws clause influences method overriding rules
+- Exception types and a contract for API usage
 
-4. **Q: What are suppressed exceptions?** A: When multiple exceptions occur (e.g., try body throws and close() also throws), secondary exceptions are suppressed. Access via `e.getSuppressed()`.
+### Amazon
+- Exception propagation across microservices — handling on the edge layer
+- Retry vs fail-fast — appropriate exception handling for resilience
+- Exception context enrichment for debugging in distributed systems
 
-5. **Q: How does exception propagation work?** A: If an exception is not caught in the current method, it propagates up the call stack. Each frame is checked for a matching handler. If none found, thread terminates.
+### Meta
+- try-with-resources vs try-catch-finally: code quality considerations
+- A runtime exception for programming errors, checked for recoverable
+- Custom exception design and effect of serialization
 
-6. **Q: What is exception chaining?** A: Wrapping one exception inside another to preserve the cause: `throw new MyException("message", originalCause)`. Cause accessible via `getCause()`.
+### Apple
+- Preferring immutable exception types
+- Exception transparency: layering custom exceptions with cause tracking
+- When to suppress vs propagate
 
-7. **Q: What happens if finally block throws an exception?** A: It replaces the original exception. The original exception is lost (unless the JVM handles it as suppressed). Avoid throwing in finally.
+### Oracle
+- JLS 11: Exceptions; throwable class hierarchy; checked vs unchecked
+- The Exception Table in the class file format and the JVM spec for exception handling
+- Stack trace generation — filling in and walking the stack for debugging
+- try-with-resources in the JVM: how is the try's resource closed and what is the suppressed exception mechanism?
 
-8. **Q: What is the performance cost of exceptions?** A: Creating exception captures stack trace (expensive). Throwing unwinds stack (moderate cost). try without throw is nearly free.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 160 Intersection of Two Linked Lists | Easy | Amazon, Google | Graceful exception handling for edge cases |
+| 135 Candy | Hard | Apple, Microsoft, Amazon | Index check via conditional, error assumptions |
+| 127 Word Ladder | Hard | Amazon, Google | Multi-catch and fallback logic |
+| 445 Add Two Numbers II | Medium | Amazon, Apple | Gracefully dealing with unequal length stacks |
+| 460 LFU Cache | Hard | Google, Microsoft | Edge case handling for argument validation |
 
-9. **Q: Can you use try-with-resources with multiple resources?** A: Yes: `try (FileReader fr = new FileReader("a"); BufferedReader br = new BufferedReader(fr))`. Resources closed in reverse order of declaration.
+## Real Production Scenarios
+- **Google**: A generic catch-all `catch (Exception e)` in a critical path silently swallowed the AIS (AssertionError) shutting down the whole pipeline
+- **Twitter**: Runtime exception on invalid thread pool state caused one service to stop processing completely - never Exposing details in error payload
+- **Spotify**: Using the Exception cause chain for error aggregation, kin aggregated count of unique root-cause exceptions with a gentle nudge to fix them
 
-10. **Q: How do helpful NullPointerExceptions work?** A: Java 14+ (JEP 358): JVM analyzes bytecode to determine exactly which variable was null in a chained expression. Enabled by default in Java 15+.
+## Interview Patterns & Tips
+- **Never do `catch (Exception e) { }`**: It hides important failures; at a minimum, log the exception
+- **Don't use exceptions for control flow**: They are for errors, not for managing logic
+- **Use custom exceptions with care**: They add maintenance overhead; consider using the standard JDK exceptions when suitable
+- **Always close resources**: Use try-with-resources or finally blocks to release them
+- **Throw early, catch late**: A method should throw unchecked exceptions to signal precondition failures
 
-11. **Q: What is the difference between `throw` and `throws`?** A: `throw` = execute the throw action. `throws` = declare that method may throw certain exceptions.
-
-12. **Q: What is the multi-catch feature?** A: Java 7+: catch multiple exception types in one block: `catch (IOException | SQLException e)`. The variable is implicitly final.
+## Deep Dive Questions
+- **JVM**: How does the JVM store exception table entries? How does it determine if an exception is handled?
+- **Bytecode**: How are try-catch-finally and try-with-resources compiled to bytecode? Show the relevant JVM instructions.
+- **JIT**: How does the JIT handle methods with try-catch blocks? Can the JIT remove exception-related code if it determines the exception is never thrown?
+- **Memory**: What structures does a JVM use for the stack trace? What is CPU/time cost of generating a stack trace?
+- **Exceptions, synchronized**: How does the interaction take place when an exception occurs in a synchronized block? 

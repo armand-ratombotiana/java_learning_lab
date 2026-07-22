@@ -1,75 +1,51 @@
-﻿# Interview Questions: Database Migration Strategies
+﻿# Interview Questions: Database Migration Strategies (Oracle Focus)
 
-## Basic Level
+## Oracle-Specific Questions
+- What are the key strategies for migrating Oracle databases to the cloud (OCI, AWS RDS, Azure SQL)?
+- How does Oracle GoldenGate enable zero-downtime migration? Explain the trickle-feed approach.
+- Compare Oracle export/import (`expdp`/`impdp`) vs RMAN for database migration.
+- How do you migrate Oracle EBS to OCI? What are the certification requirements and supported configurations?
+- Explain Oracle's Automatic Data Optimization (ADO) and Information Lifecycle Management (ILM) in migrations.
+- How do you migrate from Oracle to PostgreSQL using ora2pg or AWS DMS?
+- What are the common challenges in Oracle to cloud migrations? (licensing, character sets, timezone)
+- How do you migrate Oracle PL/SQL to PostgreSQL PL/pgSQL? What are the key syntax differences?
 
-### Q1: What is database migration strategies and why is it used?
-**A:** It's a strategy that distributes data across multiple independent database instances to overcome storage, throughput, and geographic limitations of single-node databases.
+## Google Cloud / Technical
+- Database Migration Service (DMS) for Oracle to Cloud SQL PostgreSQL
+- Striim and GoldenGate for Oracle to BigQuery streaming
+- Cloud SQL vs Bare Metal Solution for Oracle workloads
 
-### Q2: What is a routing key?
-**A:** A column or set of columns that determines how data is distributed. Every row is assigned to a node based on its routing key value.
+## Microsoft / Azure
+- Azure Database Migration Service for Oracle to Azure SQL
+- SQL Server Migration Assistant (SSMA) for Oracle
+- Azure SQL Managed Instance vs Oracle — feature comparison
 
-### Q3: Explain the difference between horizontal and vertical partitioning.
-**A:** Horizontal (sharding) splits rows across tables/databases. Vertical splits columns within a table.
+## Amazon / AWS
+- AWS DMS for Oracle to Aurora PostgreSQL migration
+- AWS Schema Conversion Tool (SCT) for Oracle schema conversion
+- RDS Oracle to Aurora Oracle — migration best practices
 
-### Q4: What makes a good routing key?
-**A:** High cardinality, even distribution, stability, and alignment with query patterns.
+## Apple
+- Data privacy during database migration — encryption at rest/in transit
+- Compliance validation in migration procedures
 
-### Q5: Range vs hash distribution?
-**A:** Range divides by value ranges (good for ordered queries, hotspot risk). Hash distributes evenly (breaks range locality).
+## LeetCode-Style Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| Migration Plan | Zero-Downtime Cutover | Hard | Rollback Strategy |
+| Data Validation | Record-level Reconciliation | Medium | Checksum |
+| Schema Conversion | PL/SQL to PL/pgSQL | Hard | Syntax Mapping |
+| Performance Baseline | Before/After Comparison | Medium | AWR vs pg_stat |
 
-## Intermediate Level
+## Production Scenarios
+- Scenario 1: "Oracle to PostgreSQL migration — character set conversion corrupts data"
+- Scenario 2: "GoldenGate migration lag causes cutover decision difficulty"
+- Scenario 3: "Schema conversion tool fails on complex PL/SQL package"
+- Scenario 4: "Migration rollback needed — data written to both databases inconsistently"
 
-### Q6: How does consistent hashing work?
-**A:** Keys and nodes are placed on a hash ring. Keys go to the nearest node clockwise. Virtual nodes improve distribution. Node changes move only K/N keys.
-
-### Q7: What is scatter-gather?
-**A:** Query broadcast to all nodes in parallel, results collected and merged. Used when routing key isn't in the query.
-
-### Q8: How do you handle transactions across nodes?
-**A:** Options: 2PC (strong consistency, blocking), Saga (non-blocking with compensation), or avoid (design to minimize cross-node ops).
-
-### Q9: What is a hotspot and how do you mitigate it?
-**A:** A node receiving disproportionate traffic. Mitigations: better key selection, composite keys, virtual nodes, dynamic rebalancing, caching.
-
-### Q10: How do you rebalance data?
-**A:** Monitor skew, plan movement, execute migration in batches, update routing table, clean up.
-
-## Advanced Level
-
-### Q11: Design a distributed database for a global social media platform.
-**A:** Geographic distribution, composite routing key (region + user_id hash), read replicas per region, eventual consistency across regions, caching layer.
-
-### Q12: How do you ensure consistency during rebalancing?
-**A:** Mark routing as \"migrating\", dual-write, backfill, verify checksums, atomic routing update, cleanup.
-
-### Q13: What causes split-brain and how to prevent it?
-**A:** Multiple nodes think they're primary. Prevention: quorum writes, leases, fencing (STONITH), network redundancy.
-
-### Q14: Client-side vs proxy routing?
-**A:** Client-side: simpler, lower latency, needs updates. Proxy: transparent, centralized, adds network hop.
-
-### Q15: Describe a real distributed database failure.
-**A:** Instagram's monotonically increasing keys, Twitter's \"fail whale\", celebrity hotspot issues. Key lessons: always hash, monitor, automate.
-
-## System Design Questions
-
-### Q16: Design for an e-commerce platform.
-**Key considerations:** Routing key (customer_id), product catalog (separate, replicated), consistency (strong for orders, eventual for recommendations).
-
-### Q17: How to migrate from single-node to distributed?
-**Plan:** Choose key, set up routing, dual-writes, backfill, verify, gradual cutover, decommission old.
-
-### Q18: Design a monitoring system.
-**Metrics:** Per-node QPS, latency, error rate, data size, connection pool, skew factor.
-**Alerting:** Skew > 0.3, P99 > 50ms, error rate > 1%, capacity > 70%.
-
-### Q19: Compare approaches.
-| System | Approach | Strengths |
-|--------|----------|-----------|
-| MongoDB | Range/hash | Flexible, built-in |
-| Cassandra | Consistent hashing | Excellent distribution |
-| CockroachDB | Auto range | No manual management |
-| Vitess | Range + hash | SQL compatible |
-
-### Q20: Emerging trends?
-AI-driven key recommendation, serverless transparent distribution, edge computing, CRDTs, multi-cloud fabrics, compute-storage separation.
+## Interview Patterns & Tips
+- Oracle cloud migration interviews are high-demand in the current market
+- Expect to design a complete migration strategy with zero-downtime cutover
+- OCP + Cloud certification is highly valued for migration roles
+- Migration architects: $140K-$210K; Cloud migration leads: $160K-$240K
+- Migration experience is one of the most sought-after Oracle skills

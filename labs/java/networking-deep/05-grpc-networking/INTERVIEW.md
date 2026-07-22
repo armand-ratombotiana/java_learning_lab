@@ -1,26 +1,55 @@
-﻿# gRPC Networking -- Interview Questions
-## Common Interview Questions
+﻿# Interview Questions: gRPC Networking
 
-### Q1: What is the TCP three-way handshake?
-A: SYN -> SYN-ACK -> ACK sequence that establishes a TCP connection.
+## Company-Specific Focus
 
-### Q2: What is the difference between TCP and UDP?
-A: TCP is connection-oriented, reliable, ordered. UDP is connectionless, unreliable, unordered.
+### Google
+- gRPC: high-performance RPC framework using HTTP/2 and Protocol Buffers
+- Service definition: .proto file defining RPC methods
+- Four call types: unary, server streaming, client streaming, bidirectional streaming
 
-### Q3: How does non-blocking I/O differ from blocking I/O?
-A: Blocking I/O waits for the operation to complete. Non-blocking returns immediately.
+### Microsoft
+- gRPC vs Azure Service Bus/REST
+- HTTP/2: multiplexed connections for efficiency
 
-### Q4: What is the C10K problem?
-A: Handling 10,000 concurrent connections. Thread-per-connection fails; event loop solves it.
+### Amazon
+- gRPC in microservices: type-safe, high-performance inter-service communication
+- Load balancing: gRPC requires L7 (not L4) load balancing
+- TLS: mutual TLS for service-to-service authentication
 
-### Q5: How does HTTP/2 multiplexing work?
-A: Multiple streams over a single TCP connection, eliminating head-of-line blocking.
+### Meta
+- Deadlines/timeouts: client-side deadline propagation
+- Interceptors: cross-cutting concerns (logging, metrics, auth)
+- Error handling: gRPC status codes
 
-### Q6: What is backpressure and why is it important?
-A: Backpressure regulates data flow to prevent consumers from being overwhelmed.
+### Apple
+- Streaming: server streaming for real-time data
+- Bidirectional streaming: full-duplex communication
+- Client-side streaming: aggregating data on the server
 
-### Q7: Explain the Reactor pattern.
-A: Event demultiplexing and dispatch: select() then handle events for each ready channel.
+### Oracle
+- gRPC uses HTTP/2 and Protocol Buffers
+- gRPC-Java: the Java gRPC implementation
+- Service stubs: generated blocking and async stubs
+- Channels: managing connections to gRPC servers
 
-### Q8: How do you debug network issues in production?
-A: Use thread dumps, JFR, Wireshark captures, connection metrics, and distributed tracing.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — gRPC is a framework for service communication) |
+
+## Real Production Scenarios
+- **Uber**: gRPC for inter-service communication reduced latency by 30% over REST
+- **Netflix**: gRPC with bidirectional streaming for real-time recommendation updates
+
+## Interview Patterns & Tips
+- **Protocol Buffers**: gRPC uses Protobuf as the interface definition language
+- **HTTP/2**: built-in multiplexing, header compression, streaming
+- **Stubs**: auto-generated client and server code
+- **Deadline**: client sets timeout propagated server-side
+
+## Deep Dive Questions
+- **HTTP/2**: How does gRPC leverage HTTP/2 features?
+- **Streaming**: How does gRPC implement server/client streaming?
+- **Load balancing**: Why does gRPC need client-side load balancing?
+- **Interceptors**: How do gRPC interceptors work?
+- **Performance**: How does gRPC compare to REST for service-to-service communication?

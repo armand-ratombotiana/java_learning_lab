@@ -1,85 +1,60 @@
-﻿# Testing — Flashcards
+﻿# Interview Questions: Testing
 
-## Card 1
-**Q:** What are the three phases of the TDD cycle?
-**A:** Red (write failing test), Green (make it pass), Refactor (improve code).
+## Company-Specific Focus
 
-## Card 2
-**Q:** What is the difference between @BeforeEach and @BeforeAll?
-**A:** @BeforeEach runs before every test method; @BeforeAll runs once before all test methods in the class.
+### Google
+- Unit testing with JUnit 5: @Test, assertions, lifecycle hooks (@BeforeEach, @AfterEach)
+- Mocking with Mockito: when/thenReturn, verify, argument matchers
+- Integration testing: how to test production scenarios
 
-## Card 3
-**Q:** How do you verify a method was called with Mockito?
-**A:** erify(mock).methodName(args) — checks the method was called at least once.
+### Microsoft
+- Java testing vs C# testing: JUnit vs NUnit/MSTest frameworks
+- Mocking with Mockito vs Moq (C#)
+- Parameterized tests: grouping similar test variations
 
-## Card 4
-**Q:** What is a stub in Mockito?
-**A:** A stub is a predefined return value for a method call: when(mock.method()).thenReturn(value).
+### Amazon
+- Integration tests for the service in the deployment pipeline
+- TestContainers: database/integration tests using containerized services
+- Chaos engineering: testing for resilience with fault injection
 
-## Card 5
-**Q:** What is the difference between a mock and a spy in Mockito?
-**A:** A mock has no real behavior (all methods return defaults). A spy wraps a real object, calling real methods unless stubbed.
+### Meta
+- Test coverage: what matters at scale vs vanity metrics
+- Property based testing using jqwik or quickcheck
+- Fuzz testing for security related APIs
 
-## Card 6
-**Q:** How do you test that a method throws an exception in JUnit 5?
-**A:** ssertThrows(ExpectedException.class, () -> object.method());
+### Apple
+- Unit vs. integration tests in an iOS context
+- Using test fixtures and dependency injection
+- Stubbing services
 
-## Card 7
-**Q:** What does @ParameterizedTest @CsvSource do?
-**A:** Runs the same test method multiple times with different arguments parsed from CSV strings.
+### Oracle
+- JUnit 5 architecture: JUnit Platform, Jupiter, Vintage
+- AssertJ for fluent assertions
+- Test lifecycle and its relation to the JVM
 
-## Card 8
-**Q:** Why is test isolation important?
-**A:** Tests should not share state — each test must be independent to avoid order-dependent failures.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (Testing concepts apply to all LC problems) |
+| 146 LRU Cache | Medium | Google, Apple, Amazon | Test cache eviction and ordering |
+| 380 Insert Delete GetRandom O(1) | Medium | Amazon, Apple, Google | Test random distribution |
+| 208 Implement Trie | Medium | Google, Amazon | Test all word operations |
+| 211 Design Add and Search Words Data Structure | Medium | Amazon, Google | Test edge cases with patterns |
 
-## Card 9
-**Q:** What is the testing pyramid?
-**A:** A model showing test distribution: many fast unit tests at base, fewer slower integration tests, and few E2E tests at top.
+## Real Production Scenarios
+- **Slack**: A flaky test failing in CI due to a race condition — stabilized by ordering the operation
+- **Uber**: Mocking a third-party service failed due to rate limiting — mock expectations changed
+- **Netflix**: TestContainers migration from a local database to Docker based reduced flaky tests by 90%
 
-## Card 10
-**Q:** What does ssertTrue(condition, "message") do when condition is false?
-**A:** Throws AssertionFailedError with the given message, marking the test as failed.
+## Interview Patterns & Tips
+- **FIRST principles**: Fast, Isolated, Repeatable, Self-validating, Timely
+- **Test one thing per test**: descriptive name, single assertion
+- **Mock external dependencies**: databases, network services, file systems
+- **Avoid test interdependence**: tests should run in any order
 
-## Card 11
-**Q:** How do you create a mock in Mockito without annotations?
-**A:** UserRepository mock = Mockito.mock(UserRepository.class);
-
-## Card 12
-**Q:** What is the default return value for a mock's unstubbed method returning Optional?
-**A:** Optional.empty()
-"@ | Set-Content -Path (Join-Path C:\Users\jratombo-adm\Desktop\java_learning_lab\labs\java\31-testing "FLASHCARDS.md") -Encoding UTF8
-
-@"
-# Testing — Interview Questions
-
-## Question 1: TDD Explanation
-**Q:** Explain the TDD cycle and its benefits.
-**A:** TDD follows Red-Green-Refactor: write a failing test (Red), write minimal code to pass (Green), then refactor (Refactor). Benefits: better design (test-first forces loose coupling), living documentation, regression safety net, and confidence to change code.
-
-## Question 2: Mock vs Stub
-**Q:** What's the difference between a mock and a stub?
-**A:** A stub provides canned answers to calls (state verification). A mock verifies that specific calls were made (behavior verification). In practice, Mockito blurs this — its mocks can also be stubbed.
-
-## Question 3: When to Use Integration Tests
-**Q:** When would you write an integration test instead of a unit test?
-**A:** When testing the interaction between real components: database access, REST API communication, file system operations, and message queue interactions. Integration tests verify that components wire together correctly.
-
-## Question 4: Handling Flaky Tests
-**Q:** How do you handle flaky tests in CI?
-**A:** First, investigate the root cause (shared state, timing, ordering). Temporarily mark with @Disabled with a bug reference. Fix the root cause — never retry flaky tests in CI (they hide real failures).
-
-## Question 5: Test Coverage Targets
-**Q:** What is a good test coverage target?
-**A:** 80-90% line coverage for production code is reasonable. More important: coverage of critical business logic should be 100%. Don't chase coverage numbers — write meaningful tests that verify behavior.
-
-## Question 6: Parameterized Tests
-**Q:** Why use parameterized tests over multiple test methods?
-**A:** They reduce boilerplate, make it easy to add new test cases (just add data), and clearly separate test logic from test data. One change to the test method updates all cases.
-
-## Question 7: Testing Private Methods
-**Q:** Should you test private methods?
-**A:** Generally no. Test the public methods that call them. If a private method is complex enough to warrant direct testing, extract it to a separate class. Private methods are implementation details.
-
-## Question 8: @InjectMocks Limitations
-**Q:** What are the limitations of @InjectMocks?
-**A:** It doesn't work with constructor injection if the constructor takes parameters that aren't mocks. It silently ignores mismatched types. Use constructor injection explicitly in production code.
+## Deep Dive Questions
+- **JVM**: How does JUnit discover tests? Uses reflection for @Test annotations
+- **Mockito**: How does Mockito create mocks? ByteBuddy generates a subclass at runtime
+- **Performance**: How many tests can be run per second in the JVM?
+- **Integration tests**: How to manage lifecycle with TestContainers?
+- **Java 21+**: Virtual threads and testing — tests for concurrency correctness?

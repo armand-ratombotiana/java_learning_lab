@@ -1,128 +1,60 @@
-# HashMap Internals — Interview Questions
+# Interview Questions: HashMap Internals
 
-## Beginner Questions
+## Company-Specific Focus
 
-### Q1: What is the main purpose of this data structure?
-**A**: To provide efficient storage and retrieval of elements with specific performance guarantees.
+### Google
+- HashMap internal structure: array of Node<K,V> bins, treeification threshold (8 -> 64)
+- Hash function: how key.hashCode() is transformed into bucket index (hash ^ (hash >>> 16))
+- Capacity and load factor: why default capacity is 16, load factor 0.75
 
-### Q2: What is the difference between Collection and Collections?
-**A**: Collection is an interface (root of the collection hierarchy). Collections is a utility class with static methods.
+### Microsoft
+- HashMap vs Dictionary<K,V> in C#: design differences in collision handling
+- Tree bins: why Java 8 converted linked lists to trees when collisions exceed threshold 8
 
-### Q3: What is the difference between List and Set?
-**A**: List allows duplicates and maintains insertion order. Set does not allow duplicates.
+### Amazon
+- HashMap performance in high-scale caches: pre-sized to avoid resizing
+- Resize operation: doubles capacity, rehashes all entries — O(n) cost
+- Initial capacity estimation: capacity = expected size / load factor + 1
 
-## Intermediate Questions
+### Meta
+- hashCode contract: equals consistency, distribution quality
+- Mutable keys: changing hash code while in map causes lookup failures
+- Custom key classes: overriding equals/hashCode properly
 
-### Q4: How does this structure work internally?
-**A**: Explain the backing data structure, the algorithm for storing and retrieving, and how collisions are handled.
+### Apple
+- HashMap vs IdentityHashMap: reference equality vs object equality
+- WeakHashMap: keys with weak references for caching
+- LinkedHashMap: insertion order vs access order iteration
 
-### Q5: When would you choose this over alternatives?
-**A**: Compare with similar structures. List scenarios where this is optimal and where it is not.
+### Oracle
+- HashMap spec: JCF documentation for contract and concurrency guarantees
+- Hash table in Java 7 vs 8: linked list migration to tree bins
+- Internal modCount for fail-fast iteration
 
-### Q6: How do you make it thread-safe?
-**A**: External synchronization, synchronized wrappers, or use concurrent variants.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1 Two Sum | Easy | Google, Amazon, Meta | HashMap for O(1) lookups |
+| 49 Group Anagrams | Medium | Amazon, Google, Apple | HashMap with sorted char key |
+| 128 Longest Consecutive Sequence | Medium | Google, Amazon | HashSet for O(1) membership |
+| 560 Subarray Sum Equals K | Medium | Amazon, Facebook | HashMap of prefix sums |
+| 380 Insert Delete GetRandom O(1) | Medium | Google, Amazon, Apple | HashMap + ArrayList combination |
+| 146 LRU Cache | Medium | Google, Amazon, Apple | LinkedHashMap access order |
 
-### Q7: Explain fail-fast and fail-safe iterators.
-**A**: Fail-fast (HashMap, ArrayList) throw ConcurrentModificationException on concurrent modification. Fail-safe (ConcurrentHashMap, CopyOnWriteArrayList) iterate over a snapshot.
+## Real Production Scenarios
+- **Amazon**: HashMap with initial capacity too low caused 30 resizes during warm-up — 500ms added to startup
+- **LinkedIn**: Mutable key in HashMap — employee object's hashCode changed after promotion (getNewSalary), making it unfindable
+- **Uber**: HashMap<Integer, X> with int autoboxing — cached Integer values (-128 to 127) vs heap allocated caused reference equality bugs
 
-## Advanced Questions
+## Interview Patterns & Tips
+- **Always override hashCode when overriding equals**: contract guarantees
+- **HashMap resize is expensive**: estimate initial capacity for known data sizes
+- **mutable keys break maps**: use immutable keys (records, String, Integer)
+- **null key**: HashMap allows one null key; stored in table[0]
 
-### Q8: How does the resize mechanism work?
-**A**: Explain the growth factor, threshold calculation, rehashing process, and complexity analysis.
-
-### Q9: What is the load factor and why is it important?
-**A**: Controls the density before resize. Default 0.75 balances time and space. Lower = less collisions, more memory.
-
-### Q10: How does the structure handle concurrent access?
-**A**: Explain CAS operations, lock striping, copy-on-write, snapshot iteration for concurrent variants.
-
-### Q11: What is the performance impact of poor hash distribution?
-**A**: All keys map to same bucket -> O(n) operations. Mitigated by treeification at threshold 8.
-
-### Q12: Memory profiling — how do you identify issues?
-**A**: JOL for memory layout, heap dump analysis with MAT, GC log analysis with GCeasy.
-
-## Coding Questions
-
-### Q13: Implement a simple version from scratch.
-### Q14: Implement a thread-safe cache using this structure.
-### Q15: Implement an LRU cache using LinkedHashMap.
-### Q16: Write code to count word frequency in a large file.
-### Q17: Implement a custom iterator for this structure.
-
-
-## Further Exploration
-
-### Additional Reading
-- Review the companion files in this micro-lab for deeper understanding
-- Complete the exercises in EXERCISES.md to apply your knowledge
-- Build the MINI_PROJECT to cement the concepts
-- Test yourself with QUIZ.md and FLASHCARDS.md
-- Practice with INTERVIEW.md questions for job preparation
-
-### Related Concepts
-- equals() and hashCode() contracts in Java
-- Comparable and Comparator interfaces for ordering
-- Iterator and Iterable patterns for traversal
-- Stream API for functional-style operations
-- Serialization for object persistence
-- Cloning and defensive copying
-
-### Best Practices
-1. Always choose the right data structure for your use case
-2. Consider initial capacity for large datasets
-3. Use immutable objects as keys in hash-based collections
-4. Synchronize externally or use concurrent variants for thread safety
-5. Profile before optimizing - don't guess about performance
-6. Document ordering guarantees your code depends on
-7. Use interfaces (Map, List, Set) for variable declarations
-8. Prefer composition over inheritance for custom collections
-9. Override toString() for meaningful debug output
-10. Consider memory implications of your collection choices
-
-### Common Pitfalls to Avoid
-- Using mutable objects as keys in HashMap/HashSet
-- Iterating and modifying without using iterator methods
-- Assuming iteration order without checking documentation
-- Using LinkedList when random access is needed
-- Ignoring initial capacity for large collections
-- Forgetting to override both equals() and hashCode()
-- Using == instead of equals() for key comparison
-- Not handling ConcurrentModificationException properly
-
-### Next Steps
-1. Implement a custom version of this data structure from scratch
-2. Benchmark against the standard Java implementation
-3. Analyze memory usage with JOL (Java Object Layout)
-4. Profile performance with async-profiler
-5. Write comprehensive unit tests covering all edge cases
-6. Design a thread-safe variant for concurrent use cases
-7. Research alternative implementations in other languages
-8. Apply the concept to a real-world project
-
-### Key Takeaways Summary
-- Understand the internal mechanics and algorithmic complexity
-- Know the performance characteristics and memory footprint
-- Recognize appropriate use cases and selection criteria
-- Master common patterns and anti-patterns
-- Develop debugging intuition for related issues
-- Build mental models that transfer to other concepts
-
-### Discussion Questions
-1. How would you design this differently if starting from scratch?
-2. What are the limits of this approach in terms of scale?
-3. How does this concept interact with modern hardware (CPU caches, NUMA)?
-4. What alternatives exist in other programming languages?
-5. How would you implement this for a distributed system?
-
-### Code Review Checklist
-- [ ] Correct equals() and hashCode() implementations for keys
-- [ ] Appropriate initial capacity and load factor selection
-- [ ] Proper synchronization or concurrent variant for shared state
-- [ ] No concurrent modification during iteration
-- [ ] Immutable or effectively immutable key objects
-- [ ] Consistent use of interface types for declarations
-- [ ] Proper null handling (or documentation of non-null requirement)
-- [ ] toString() implementation for debugging
-- [ ] Serializable implementation if needed
-- [ ] Performance considerations documented
+## Deep Dive Questions
+- **Treeify threshold**: Why is treeification threshold 8 and de-treeification threshold 6?
+- **Hash distribution**: How does HashMap spread hash bits evenly?
+- **Capacity alignment**: Why is capacity always a power of 2? (bit masking instead of modulo)
+- **Resize**: How does resize transfer entries from old table to new table?
+- **ConcurrentModification**: How does the iterator detect concurrent modification?

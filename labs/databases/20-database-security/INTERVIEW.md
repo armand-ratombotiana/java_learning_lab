@@ -1,75 +1,51 @@
-﻿# Interview Questions: Database Security
+﻿# Interview Questions: Database Security (Oracle Focus)
 
-## Basic Level
+## Oracle-Specific Questions
+- Explain Oracle's security architecture: authentication, authorization, and auditing (AAA).
+- How does Oracle Transparent Data Encryption (TDE) work? Explain column-level and tablespace-level encryption.
+- What is Oracle Database Vault? How does it prevent privileged user access to application data?
+- Explain Oracle's fine-grained access control (VPD) with `DBMS_RLS` for row-level security.
+- How does Oracle auditing work? Compare standard auditing, fine-grained auditing (FGA), and unified auditing.
+- What is Oracle Data Redaction? How does it mask sensitive data at query time?
+- Explain Oracle's network encryption: Oracle Net Services encryption and integrity settings.
+- How does Oracle key management work with Oracle Wallet and Oracle Key Vault?
 
-### Q1: What is database security and why is it used?
-**A:** It's a strategy that distributes data across multiple independent database instances to overcome storage, throughput, and geographic limitations of single-node databases.
+## Google Cloud / Technical
+- Cloud CMEK vs Oracle TDE for encryption key management
+- Cloud Audit Logs vs Oracle Unified Auditing
+- Cloud IAM vs Oracle Database Vault for access control
 
-### Q2: What is a routing key?
-**A:** A column or set of columns that determines how data is distributed. Every row is assigned to a node based on its routing key value.
+## Microsoft / Azure
+- Azure SQL TDE vs Oracle TDE comparison
+- Azure Defender for SQL vs Oracle Database Security
+- Azure Key Vault vs Oracle Wallet for key management
 
-### Q3: Explain the difference between horizontal and vertical partitioning.
-**A:** Horizontal (sharding) splits rows across tables/databases. Vertical splits columns within a table.
+## Amazon / AWS
+- AWS KMS vs Oracle TDE for encryption at rest
+- Amazon GuardDuty vs Oracle Database Security monitoring
+- RDS Oracle encryption options and limitations
 
-### Q4: What makes a good routing key?
-**A:** High cardinality, even distribution, stability, and alignment with query patterns.
+## Apple
+- Apple's data privacy requirements for database security
+- Database encryption for Apple user data compliance
 
-### Q5: Range vs hash distribution?
-**A:** Range divides by value ranges (good for ordered queries, hotspot risk). Hash distributes evenly (breaks range locality).
+## LeetCode-Style Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| Encryption | TDE Setup | Medium | Key Management |
+| Auditing | FGA Policy | Medium | Security Monitoring |
+| Access Control | VPD Policy | Hard | Row-Level Security |
+| Password Mgmt | Password Hash | Medium | Secure Storage |
 
-## Intermediate Level
+## Production Scenarios
+- Scenario 1: "TDE master key lost after server recovery — data inaccessible"
+- Scenario 2: "VPD policy causing query performance regression across all queries"
+- Scenario 3: "Database Vault blocking legitimate DBA maintenance operations"
+- Scenario 4: "Unified Auditing filling SYSTEM tablespace — database crash"
 
-### Q6: How does consistent hashing work?
-**A:** Keys and nodes are placed on a hash ring. Keys go to the nearest node clockwise. Virtual nodes improve distribution. Node changes move only K/N keys.
-
-### Q7: What is scatter-gather?
-**A:** Query broadcast to all nodes in parallel, results collected and merged. Used when routing key isn't in the query.
-
-### Q8: How do you handle transactions across nodes?
-**A:** Options: 2PC (strong consistency, blocking), Saga (non-blocking with compensation), or avoid (design to minimize cross-node ops).
-
-### Q9: What is a hotspot and how do you mitigate it?
-**A:** A node receiving disproportionate traffic. Mitigations: better key selection, composite keys, virtual nodes, dynamic rebalancing, caching.
-
-### Q10: How do you rebalance data?
-**A:** Monitor skew, plan movement, execute migration in batches, update routing table, clean up.
-
-## Advanced Level
-
-### Q11: Design a distributed database for a global social media platform.
-**A:** Geographic distribution, composite routing key (region + user_id hash), read replicas per region, eventual consistency across regions, caching layer.
-
-### Q12: How do you ensure consistency during rebalancing?
-**A:** Mark routing as \"migrating\", dual-write, backfill, verify checksums, atomic routing update, cleanup.
-
-### Q13: What causes split-brain and how to prevent it?
-**A:** Multiple nodes think they're primary. Prevention: quorum writes, leases, fencing (STONITH), network redundancy.
-
-### Q14: Client-side vs proxy routing?
-**A:** Client-side: simpler, lower latency, needs updates. Proxy: transparent, centralized, adds network hop.
-
-### Q15: Describe a real distributed database failure.
-**A:** Instagram's monotonically increasing keys, Twitter's \"fail whale\", celebrity hotspot issues. Key lessons: always hash, monitor, automate.
-
-## System Design Questions
-
-### Q16: Design for an e-commerce platform.
-**Key considerations:** Routing key (customer_id), product catalog (separate, replicated), consistency (strong for orders, eventual for recommendations).
-
-### Q17: How to migrate from single-node to distributed?
-**Plan:** Choose key, set up routing, dual-writes, backfill, verify, gradual cutover, decommission old.
-
-### Q18: Design a monitoring system.
-**Metrics:** Per-node QPS, latency, error rate, data size, connection pool, skew factor.
-**Alerting:** Skew > 0.3, P99 > 50ms, error rate > 1%, capacity > 70%.
-
-### Q19: Compare approaches.
-| System | Approach | Strengths |
-|--------|----------|-----------|
-| MongoDB | Range/hash | Flexible, built-in |
-| Cassandra | Consistent hashing | Excellent distribution |
-| CockroachDB | Auto range | No manual management |
-| Vitess | Range + hash | SQL compatible |
-
-### Q20: Emerging trends?
-AI-driven key recommendation, serverless transparent distribution, edge computing, CRDTs, multi-cloud fabrics, compute-storage separation.
+## Interview Patterns & Tips
+- Oracle security interviews cover TDE, VPD, Database Vault, and Auditing
+- Expect scenario-based questions about data breaches and compliance
+- OCP Database Security certification covers all Oracle security features
+- Security specialists: $130K-$200K; CISSP + Oracle skills: $150K-$220K
+- Oracle Key Vault and Database Vault knowledge is highly valued

@@ -1,26 +1,55 @@
-﻿# Netty Framework -- Interview Questions
-## Common Interview Questions
+﻿# Interview Questions: Netty Framework
 
-### Q1: What is the TCP three-way handshake?
-A: SYN -> SYN-ACK -> ACK sequence that establishes a TCP connection.
+## Company-Specific Focus
 
-### Q2: What is the difference between TCP and UDP?
-A: TCP is connection-oriented, reliable, ordered. UDP is connectionless, unreliable, unordered.
+### Google
+- Netty: asynchronous event-driven network application framework
+- ChannelHandler: processing I/O events
+- ChannelPipeline: chain of ChannelHandlers
+- EventLoop: thread that handles I/O events for channels
 
-### Q3: How does non-blocking I/O differ from blocking I/O?
-A: Blocking I/O waits for the operation to complete. Non-blocking returns immediately.
+### Microsoft
+- Netty vs .NET Kestrel/ASP.NET Core
+- NIO integration: Netty is built on top of NIO
 
-### Q4: What is the C10K problem?
-A: Handling 10,000 concurrent connections. Thread-per-connection fails; event loop solves it.
+### Amazon
+- Netty for high-performance microservices: gRPC, HTTP/2
+- ByteBuf: Netty's buffer API (pooled, direct buffers)
+- Netty's memory management: reducing GC overhead
 
-### Q5: How does HTTP/2 multiplexing work?
-A: Multiple streams over a single TCP connection, eliminating head-of-line blocking.
+### Meta
+- EventLoopGroup: thread group managing EventLoops
+- Bootstrapping: ServerBootstrap, Bootstrap
+- ChannelInitializer: configuring the pipeline
 
-### Q6: What is backpressure and why is it important?
-A: Backpressure regulates data flow to prevent consumers from being overwhelmed.
+### Apple
+- Netty in production: used by many large-scale systems
+- Backpressure: Netty handles writability changes
+- SSL/TLS: SslHandler for secure connections
 
-### Q7: Explain the Reactor pattern.
-A: Event demultiplexing and dispatch: select() then handle events for each ready channel.
+### Oracle
+- Netty is a third-party framework (not in JDK)
+- Used by: Spring WebFlux, gRPC, Apache Cassandra, Apache Spark
+- Netty is the foundation of reactive networking in Java
 
-### Q8: How do you debug network issues in production?
-A: Use thread dumps, JFR, Wireshark captures, connection metrics, and distributed tracing.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems — Netty is a networking framework) |
+
+## Real Production Scenarios
+- **Netflix**: Netty-based Zuul API gateway handles millions of requests per second
+- **LinkedIn**: Netty for real-time messaging infrastructure
+
+## Interview Patterns & Tips
+- **EventLoop**: each channel is assigned to an EventLoop for its lifetime
+- **ChannelPipeline**: handlers are executed in order
+- **ByteBuf**: poolable, reference-counted buffer
+- **Bootstrap**: helper class for channel initialization
+
+## Deep Dive Questions
+- **EventLoop**: How does EventLoop handle multiple channels?
+- **ChannelPipeline**: How do handlers process events?
+- **ByteBuf**: How does ByteBuf differ from ByteBuffer?
+- **Pooled buffers**: How does Netty's buffer pooling work?
+- **Backpressure**: How does Netty handle write buffer backpressure?

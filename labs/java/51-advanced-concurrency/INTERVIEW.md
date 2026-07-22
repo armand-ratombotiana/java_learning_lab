@@ -1,29 +1,61 @@
-# Advanced Concurrency Patterns — Interview Questions
+# Interview Questions: Advanced Concurrency Patterns
 
-## Question 1: Core Concepts
-**Q:** Explain advanced concurrency patterns and why it matters in modern Java development.
-**A:** This topic covers how modern Java applications manage concurrency, memory, and performance. It matters because applications increasingly need to leverage multi-core hardware, manage large data sets efficiently, and provide reliable service under load.
+## Company-Specific Focus
 
-## Question 2: Structured Concurrency
-**Q:** How does structured concurrency differ from traditional concurrency models?
-**A:** Structured concurrency binds task lifetimes to code blocks, ensuring that all subtasks complete before the scope exits. This guarantees proper cleanup and error propagation. Traditional models rely on manual lifecycle management with Future and ExecutorService, which can lead to thread leaks and lost errors.
+### Google
+- Non-blocking algorithms: CAS-based data structures
+- VarHandle: atomic operations on object fields
+- Producer-Consumer patterns: BlockingQueue variants
 
-## Question 3: JFR Profiling
-**Q:** How would you use JFR to diagnose a performance issue?
-**A:** Enable JFR with appropriate event settings, capture a recording during the performance issue, then analyze the recording. Key events to examine include GC events, lock contention events, allocation events, CPU sampling, and thread sleeps. JFR provides low-overhead continuous recording suitable for production use.
+### Microsoft
+- Advanced concurrency in Java vs .NET
+- ConcurrentHashMap: CAS operations, tree bins, resize
+- CompletableFuture: composing async operations
 
-## Question 4: Off-Heap Memory
-**Q:** When would you use off-heap memory in a Java application?
-**A:** Off-heap memory is useful for large caches, network buffers, memory-mapped files, and data that needs to be shared with native code. Benefits include reduced GC pressure, potential for larger allocations, and direct I/O. Trade-offs include manual memory management and serialization overhead.
+### Amazon
+- Non-blocking data structures for high throughput
+- CompletableFuture for async service composition
+- Backpressure patterns in concurrent systems
 
-## Question 5: False Sharing
-**Q:** What is false sharing and how do you prevent it?
-**A:** False sharing occurs when multiple threads modify variables on the same cache line, causing cache coherence traffic even though they access different variables. Prevention strategies include padding data structures to align variables on separate cache lines, using @Contended annotation, or restructuring data access patterns.
+### Meta
+- Lock-free programming: CAS loops, ABA problem
+- ConcurrentHashMap internals: Java 8+ improvements
+- Disruptor pattern: ring buffer for high throughput
 
-## Question 6: Disruptor Pattern
-**Q:** Explain the Disruptor pattern and its advantages.
-**A:** The Disruptor is a ring-buffer based event processing architecture that eliminates lock contention through careful memory layout, sequence barriers, and batch processing. Advantages include extremely low latency, predictable performance, and zero GC during steady-state operation.
+### Apple
+- Structured concurrency for coordination
+- Scoped values for cross-thread propagation
+- Immutable data structures for concurrent access
 
-## Question 7: Performance Antipatterns
-**Q:** What are the most common Java performance antipatterns?
-**A:** Common antipatterns include boxing overhead in hot paths, string concatenation with '+' in loops, ThreadLocal leaks in thread pools, excessive synchronization, finalizer usage, classloader leaks, and unbounded thread creation.
+### Oracle
+- java.util.concurrent.atomic: AtomicInteger, AtomicReference, LongAdder
+- VarHandle: Java 9+ method handles on object fields
+- CompletableFuture pipeline composition
+- Phaser, Exchanger, Semaphore
+
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| 1114 Print in Order | Easy | Google, Amazon, Microsoft | Atomic ordering |
+| 1115 Print FooBar Alternately | Medium | Amazon, Google | Non-blocking coordination |
+| 1116 Print Zero Even Odd | Medium | Google, Microsoft | Lock-free coordination |
+| 1242 Web Crawler Multithreaded | Medium | Amazon, Apple | Concurrent worker coordination |
+| 1226 The Dining Philosophers | Medium | Google, Amazon | Deadlock-free concurrent access |
+
+## Real Production Scenarios
+- **LinkedIn**: LongAdder replacing AtomicLong for a high contention counter improved throughput by 5x
+- **Netflix**: CompletableFuture composition for async pipeline of 5 services improved latency by 40%
+- **Uber**: ConcurrentHashMap resize caused CPU spike to 100% — resolved by pre-sizing the map
+
+## Interview Patterns & Tips
+- **CAS loops**: Atomic classes use compare-and-swap loops for lock-free updates
+- **ABA problem**: Use AtomicStampedReference for ABA prevention
+- **LongAdder vs AtomicLong**: LongAdder uses striped counters for higher throughput under contention
+- **CompletableFuture**: thenApply, thenCompose, thenCombine, allOf, anyOf
+
+## Deep Dive Questions
+- **CAS**: How does the JVM implement compareAndSwap? (CMPXCHG on x86)
+- **VarHandle**: How does VarHandle differ from reflected Field access?
+- **ConcurrentHashMap**: How does the table resize work?
+- **ABA**: What is the ABA problem? How is it prevented?
+- **CompletableFuture**: How does the async mechanism work under the hood?

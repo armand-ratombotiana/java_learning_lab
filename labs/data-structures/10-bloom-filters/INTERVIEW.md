@@ -1,53 +1,72 @@
 # Interview Questions: Bloom Filters
 
-## Conceptual
+## LeetCode Problem Map
+| Problem | Difficulty | Company Signal | Pattern |
+|---------|-----------|----------------|---------|
+| (No standard LeetCode problems — implement from scratch) | — | Google, Meta, Amazon, Microsoft, Oracle | System design / implementation |
 
-1. **Explain a Bloom filter** — Describe the data structure, its operations, and guarantees.
+## NeetCode Reference
+Bloom filters are not in LeetCode but are essential for system design interviews (Design YouTube, Design Web Crawler, Design URL Shortener).
 
-2. **False positives vs false negatives** — Which one does a Bloom filter allow, and why?
+## Company-Specific Questions
 
-3. **Parameter tuning** — Given n=10K desired P=1%, calculate m and k.
+### Google
+- Design a web crawler — how would you avoid revisiting billions of URLs when the set doesn't fit in memory?
+- How does Bigtable use Bloom filters to reduce disk reads? Explain the trade-off (filter size vs false positive rate vs saved I/O)
+- Design a system to detect new URLs for indexing — millions of URLs/day against a set of 100B already-indexed URLs
+- Explain how Chrome uses Bloom filters to detect malicious URLs
 
-4. **Real-world use cases** — Where are Bloom filters used in production?
+### Microsoft
+- Design a spell checker for 1M+ words — how would a Bloom filter help with memory-constrained (mobile) devices?
+- How would you use Bloom filters in a distributed cache to avoid cache stampede?
+- Compare Bloom filter vs HashSet for membership testing — memory, time, and accuracy trade-offs
 
-## System Design
+### Meta
+- Design a social graph deduplication service — how to check if a user ID has been processed before?
+- How would you detect duplicate photo uploads using perceptual hashing + Bloom filter?
+- Design Instagram's feed deduplication — avoid showing the same post twice
 
-5. **Design a cache with Bloom filter** — How would you use a Bloom filter to reduce cache misses and database load?
+### Amazon
+- Design DynamoDB's distributed system — how do Bloom filters reduce disk reads in SSTables?
+- How would you implement a Bloom filter for cache key membership in front of a database?
+- Design a recommendation system that doesn't recommend already-purchased items (Bloom filter of purchased product IDs)
 
-6. **Design a web crawler** — How would you avoid revisiting billions of URLs with limited memory?
+### Apple
+- How would you use a Bloom filter in iCloud to efficiently check file existence across devices?
+- Design a contact deduplication system when importing contacts from multiple sources
+- How does APNs (Apple Push Notification service) use probabilistic structures for device token management?
 
-7. **Design a spell checker** — How would you check if a word is in a dictionary of 1M words with minimal memory?
+### Oracle
+- How could Bloom filters be used in Oracle's database for anti-join optimization?
+- What is a Counting Bloom filter and how does it support deletion?
+- How does a Scalable Bloom filter handle unknown element counts?
+- Compare Bloom filter memory vs HashSet for 100M elements at 1% false positive rate
 
-8. **Design Bitcoin SPV** — How does a lightweight Bitcoin wallet use Bloom filters for transaction filtering?
+## Real Production Scenarios
 
-## Implementation
+- **Scenario 1: Web Crawler URL Deduplication** — A search engine crawler processes 1B+ URLs. A Bloom filter with 200MB of memory (~32 bits per element) provides a compact membership test. URLs that pass the Bloom filter are checked against an on-disk database for exact deduplication. False positives waste some I/O but are much cheaper than storing the full URL set in memory.
 
-9. **Implement a Bloom filter** — Write a Bloom filter class with put, mightContain, and parameter calculation.
+- **Scenario 2: Cache Miss Optimization** — A database-backed service uses a Bloom filter in front of the cache to check if a key exists. If the Bloom filter says "no", the service avoids both cache lookup and database query. For key-range queries (e.g., "user:123:*"), a counting Bloom filter tracks set members.
 
-10. **Counting Bloom filter** — How would you modify a Bloom filter to support deletion?
+- **Scenario 3: Bitcoin Simplified Payment Verification (SPV)** — A lightweight Bitcoin wallet uses Bloom filters to request relevant transactions from full nodes. The wallet creates a Bloom filter of its addresses and sends it to peers. Peers return matching transactions. The approach preserves privacy (partial address disclosure) while reducing bandwidth.
 
-11. **Merge two Bloom filters** — How would you combine two filters that were created with the same parameters?
+## Interview Tips
 
-## Analysis
+- Time: O(k) for add/check (k = number of hash functions, typically 3-15)
+- Space: ~1.44·log₂(1/P) bits per element for false positive rate P. For 1% FPR: ~9.6 bits/element
+- Common edge cases: empty filter, adding the same element multiple times, filter with no elements
+- Key formulas: m = -n·ln(P) / (ln(2))² bits, k = (m/n)·ln(2) hash functions
+- Bloom filters have NO false negatives — if it says "no", the element was definitely not added
+- Trade-off: lower P requires more bits per element and more hash functions
 
-12. **FPP vs fill rate** — Explain how the false positive rate changes as more elements are added.
+## Java-Specific Considerations
 
-13. **Bloom filter vs HashSet** — Compare space, time, and accuracy for membership testing.
-
-14. **Scalable Bloom filter** — How would you handle the case where the expected number of elements is unknown?
-
-## Key Points
-
-- Guava's `BloomFilter` is the standard Java implementation
-- Always verify "maybe" results with exact storage (Bloom filter is an optimization, not a replacement)
-- Never use for security-critical membership decisions (no false negative guarantee doesn't mean safe)
-- Parameters must be chosen based on expected n and acceptable P
-- Overfilling degrades performance gracefully (unlike hash tables which can become unusable)
-
-## Java-Specific Topics
-
-- `com.google.common.hash.BloomFilter` — how to create and use
-- `Funnels` — for funneling different types into the filter
-- `BitSet` — Java's bit-level data structure
-- Serialization of Bloom filters (for distributed systems)
-- Thread safety considerations (not thread-safe, use external sync)
+- `com.google.common.hash.BloomFilter<T>` (Guava) — `create(Funnel<T>, expectedInsertions, falseProbability)`
+- Guava's `BloomFilter` is serializable and supports `put()` and `mightContain()`
+- `Funnels` — `Funnels.stringFunnel(Charset)`, `Funnels.integerFunnel()`, `Funnels.byteArrayFunnel()`
+- Custom `Funnel` for user objects — override `funnel(T, PrimitiveSink)` to map fields to bytes
+- `java.util.BitSet` — used for Bloom filter bit array, `set()` and `get()` are O(1)
+- `BloomFilter.copy()` creates a copy; `BloomFilter.expectedFpp()` returns estimated false positive rate
+- From scratch: use `BitSet` or `long[]` for bit array, `MessageDigest` (MD5/SHA-256) for hashing, split hash into k sub-hashes via double hashing
+- Thread safety: Guava's `BloomFilter` is not thread-safe — use `synchronized` or `ReentrantReadWriteLock`
+- For distributed use: serialize bit array + hashCount; merge via bitwise OR (same params required)

@@ -1,41 +1,55 @@
-# Interview: EBS Technical Architecture
+# Interview Questions: EBS Technical Architecture
 
-## Technical Questions
+## Oracle-Specific Questions
+- Explain the Oracle Application Framework (OAF) architecture: how does BC4J (Business Components for Java) work in EBS?
+- How do you create and deploy OAF personalizations and extensions?
+- What is the concurrent program architecture? How do you develop and register executable and concurrent programs?
+- Explain the EBS Forms architecture: how do Forms services communicate with the database via FNDLIBR?
+- What is the Workflow (WF) architecture in EBS? How do workflow engine, item types, and activities interact?
+- How does the EBS document sequence architecture work for numbering invoices, POs, and payments?
+- Explain the EBS reporting architecture: XML Publisher (BI Publisher), Reports (RWP), and Discoverer.
+- How does the EBS attachment framework work: FND_ATTACHED_DOCUMENTS and relationship to JDrives?
 
-### Q1: Explain EBS multi-tier architecture.
+## Google Cloud / Technical
+- Running EBS OAF extensions on Google Cloud Run
+- Cloud SQL for EBS technical architecture migrations
+- Google Pub/Sub for EBS workflow event integration
 
-A: Three tiers: desktop (Forms/OAF), application (Forms server, OHS, concurrent managers), database (Oracle DB 19c).
+## Microsoft / Azure
+- Azure DevOps CI/CD for EBS CEMLI deployments
+- Azure App Service for EBS OAF extension hosting
+- Azure Functions for EBS workflow event processing
 
-### Q2: What is MOAC?
+## Amazon / AWS
+- AWS CodePipeline for EBS customization deployment
+- EBS OAF on AWS Elastic Beanstalk
+- Amazon SQS for EBS concurrent manager event queue
 
-A: Multi-Org Access Control lets one EBS instance serve multiple operating units using VPD with FND_MOBS.
+## Apple
+- EBS mobile architecture: iOS apps using OAF mobile extensions
+- Mac-based EBS Forms development environment setup
 
-### Q3: Describe EBR in R12.2.
+## LeetCode-Style SQL Problems
+| Problem | Topic | Difficulty | Pattern |
+|---------|-------|-----------|---------|
+| LC 175 | Combine Two Tables | Easy | JOIN |
+| LC 176 | Second Highest Salary | Easy | Subquery |
+| LC 177 | Nth Highest Salary | Medium | DENSE_RANK |
+| LC 178 | Rank Scores | Medium | DENSE_RANK |
+| LC 180 | Consecutive Numbers | Medium | LAG |
+| LC 181 | Employees Earning More Than Managers | Easy | Self JOIN |
+| LC 184 | Department Highest Salary | Medium | Correlated Subquery |
+| LC 185 | Department Top Three Salaries | Hard | DENSE_RANK |
+| LC 262 | Trips and Users | Hard | JOIN + Filter |
 
-A: Edition-Based Redefinition allows multiple object versions. ADOP manages prepare, apply, finalize, cutover, cleanup.
+## Production Scenarios
+- Scenario 1: "Production incident — OAF page throwing 'BC4J Exception: JBO-27000' after patch"
+- Scenario 2: "Performance tuning — Concurrent program waiting for 'Child' lock for hours"
+- Scenario 3: "Disaster recovery — Workflow engine corrupted after incomplete upgrade"
+- Scenario 4: "Security breach — OAF personalizations exposing hidden fields to users"
 
-### Q4: Explain concurrent processing.
-
-A: Manager polls FND_CONCURRENT_REQUESTS for pending requests, spawns workers, updates status when done.
-
-### Q5: What is CEMLI?
-
-A: Configuration, Extension, Modification, Localization, Integration - five customization categories.
-
-### Q6: How does VPD work?
-
-A: Adds WHERE clause via fine-grained access control. FND_MOBS adds org_id filtering.
-
-### Q7: ADOP phases?
-
-A: Prepare (create edition), Apply (apply patches), Finalize (ready), Cutover (switch), Cleanup (remove old).
-
-## Behavioral Questions
-
-- Describe a challenging EBS implementation.
-
-- How to handle production issues?
-
-- Approach to EBS security?
-
-- How to stay current with EBS updates?
+## Interview Patterns & Tips
+- EBS Technical Architecture interviews focus on OAF, BC4J, concurrent programs, and Forms
+- Expect whiteboarding of the EBS technology stack and how components communicate
+- OCP EBS Technical certification covers OAF, Forms, and concurrent processing
+- EBS Technical Architects: $140K-$200K; Lead Developers: $120K-$170K

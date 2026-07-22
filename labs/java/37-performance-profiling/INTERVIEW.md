@@ -1,33 +1,55 @@
-﻿# Interview Questions
+﻿# Interview Questions: Performance Profiling
 
-## Question 1: Core Concept
-Q: Explain the core concept and why it matters in Java development.
-A: This concept provides a structured approach to building Java applications. It improves maintainability, testability, and team collaboration. Every professional Java developer should understand it.
+## Company-Specific Focus
 
-## Question 2: SOLID Principles
-Q: How do the SOLID principles apply here?
-A: SOLID principles guide effective design. Single Responsibility keeps components focused. Open-Closed enables extension. Liskov Substitution ensures correct inheritance. Interface Segregation prevents fat interfaces. Dependency Inversion keeps code loosely coupled.
+### Google
+- Performance analysis tools: async-profiler, JFR, JMC
+- CPU profiling: sampling profilers vs tracing profilers
+- Allocation profiling: finding hot allocation sites and GC pressure
 
-## Question 3: Dependency Injection
-Q: What are the benefits of dependency injection?
-A: Benefits include easier testing (mock injection), loose coupling, configuration flexibility, and clearer dependencies.
+### Microsoft
+- Java performance: Azure Monitor, Application Insights for JVM
+- Thread dump analysis: thread state, lock contention
 
-## Question 4: Testing Strategy
-Q: How does good design affect testing?
-A: Well-designed components are naturally testable. Interfaces enable mocking, dependency injection allows isolation, and single responsibility means fewer test cases per class.
+### Amazon
+- Profiling in production: async-profiler, JFR streaming
+- Latency analysis: P99, P999, and application of queue delays
+- Flame graphs: interpreting CPU and allocation profiles
 
-## Question 5: Performance Considerations
-Q: What performance considerations apply?
-A: Consider object allocation overhead, interface dispatch cost (minimal after JIT), proxy/reflection overhead (avoid in hot paths), and appropriate caching strategies.
+### Meta
+- Memory profiling: what leaks memory in the production system
+- JIT compilation: how profiling data influences compilation decisions
 
-## Question 6: Code Review
-Q: What do you look for in code reviews?
-A: Check for proper abstraction levels, appropriate coupling, interface segregation, dependency injection usage, error handling, test coverage, and naming conventions.
+### Apple
+- Using the jcmd tool for on-demand profiling
+- Understanding GC pauses: G1GC vs ZGC
+- OS-level profiling: using perf on Linux to analyze the application
 
-## Question 7: Migration
-Q: How do you migrate a legacy codebase?
-A: Identify seams for extraction, extract interfaces, introduce dependency injection, add tests, and refactor gradually while keeping tests green.
+### Oracle
+- JDK Flight Recorder (JFR): event collection and streaming
+- JDK Mission Control (JMC): UI for analyzing JFR recordings
+- jcmd, jstack, jmap, jhat: diagnostic tools
+- Performance regression testing using JMH
 
-## Question 8: Best Practices
-Q: What are your top Java best practices?
-A: Follow SOLID, prefer composition over inheritance, program to interfaces, use dependency injection, write tests first, and keep methods small and focused.
+## LeetCode-Related Questions
+| LC Problem | Difficulty | Companies | Notes |
+|------------|------------|-----------|-------|
+| (No direct LC problems - profiling is a diagnostic activity) |
+
+## Real Production Scenarios
+- **Netflix**: P99 latency spike found to be caused by ZGC nongenerational mode; migrated to generational ZGC
+- **Uber**: CPU usage at 100% for 10 minutes after deployment — JIT compilation at tier 4 max
+- **LinkedIn**: Memory leak in the ThreadLocal variable across request processing — fixed by using try-finally to remove ThreadLocal values
+
+## Interview Patterns & Tips
+- **Tools**: async-profiler, JFR, JMC, jstack, jmap, jcmd
+- **Metric to watch**: GC pause time, allocation rate, code cache usage
+- **Flame Graphs**: analyze CPU time and memory allocation
+- **Continuous profiling**: JFR streaming for real-time analysis
+
+## Deep Dive Questions
+- **JFR**: How is JFR implemented? Low overhead, ring buffer based event recorder
+- **async-profiler**: How does it work? Uses perf_events on Linux, ktrace on macOS
+- **Sampling**: How does async-profiler collect call stacks? Uses signal-based sampling
+- **JIT profiling**: How does the JVM profiling data influence JIT compilation decisions?
+- **GC profiling**: How to identify the GC cause and its root cause in production
