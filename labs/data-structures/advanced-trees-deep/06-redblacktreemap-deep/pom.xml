@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- INHERIT FROM PARENT -->
+    <parent>
+        <groupId>com.learning</groupId>
+        <artifactId>java-learning-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../../../../../pom.xml</relativePath>
+    </parent>
+
+    <!-- MODULE-SPECIFIC CONFIG -->
+    <artifactId>data-structures-advanced-trees-deep-06-redblacktreemap-deep</artifactId>
+    <name>ADVANCED TREES DEEP DIVE - 06 Red-Black TreeMap Deep</name>
+    <description>Red-Black TreeMap with comparator support and ordered key-value pairs</description>
+    <packaging>jar</packaging>
+
+    <!-- MODULE-SPECIFIC PROPERTIES (if needed) -->
+    <properties>
+        <!-- Add only if different from parent -->
+    </properties>
+
+    <!-- MODULE-SPECIFIC DEPENDENCIES (if needed) -->
+    <dependencies>
+        <!-- Inherits all dependencies from parent -->
+        <!-- Add only module-specific dependencies here -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- MODULE-SPECIFIC BUILD PLUGINS (if needed) -->
+    <build>
+        <plugins>
+            <!-- Add only if special configuration needed -->
+        </plugins>
+    </build>
+</project>
