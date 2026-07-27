@@ -1,16 +1,49 @@
-# Replication: Interview Questions
+# Replication Strategies - Interview Preparation
 
-## Q1: How does MySQL replication work?
-**A**: Leader writes changes to binary log. Follower's IO thread reads binlog, writes to relay log. SQL thread applies relay log to local database. Can be sync or async.
+> Key interview questions about data replication in distributed systems.
 
-## Q2: What happens during a failover in leader/follower?
-**A**: Follower with most up-to-date data is promoted. Other followers point to new leader. Clients discover new leader via DNS, proxy, or service discovery.
+---
 
-## Q3: How does Cassandra handle replication?
-**A**: Configurable replication factor. Consistent hashing places data on nodes. Hinted handoff for temporary failures. Read repair and anti-entropy for consistency.
+## Core Interview Questions
 
-## Q4: Explain conflict resolution in multi-leader.
-**A**: Approaches: Last-Write-Wins (LWW with timestamps), CRDTs (convergent data types), custom merge (application-specific), version vectors (conflict detection).
+### Q1: Compare leader-follower, multi-leader, and leaderless replication
+**Answer**: Leader-follower: one leader accepts writes, followers replicate passively. Strongly consistent reads possible, but leader bottleneck. Multi-leader: multiple leaders accept writes, conflict resolution needed. Good for multi-region. Leaderless (Dynamo-style): any node accepts writes, quorum-based, no leader bottleneck.
 
-## Q5: How do you measure and monitor replication lag?
-**A**: Write timestamps to both leader and follower, measure difference. Read follower's lag metrics. Watch for growing lag indicating problems.
+### Q2: How does synchronous vs asynchronous replication differ?
+**Answer**: Synchronous: leader waits for all followers to acknowledge; strong consistency, higher latency (risk of unavailability if follower fails). Asynchronous: leader responds immediately; lower latency, weaker consistency, data loss risk on leader failure.
+
+### Q3: Explain read-after-write consistency in replication
+**Answer**: Ensures client sees its own writes. Solutions: read from leader (always most recent), use timestamps/version numbers, session readers pin to replica that has seen the write, wait for replication acknowledgment.
+
+### Q4: What is a replication lag and how do you handle it?
+**Answer**: Lag = time between write on leader and appearing on follower. Monitoring via seconds_behind_master. Mitigation: remove dependency on replica reads for critical paths, use replica for read-only queries, set replication priority.
+
+### Q5: How does multi-leader conflict resolution work?
+**Answer**: Conflict avoidance (route user writes to same leader), last-writer-wins (LWW using timestamps), CRDTs (merge operations), custom conflict handlers (application logic), version vectors with sibling resolution.
+
+## Company-Specific Focus
+
+| Company | Replication Focus |
+|---------|------------------|
+| Amazon | "DynamoDB's NWR quorum replication" |
+| Google | "Spanner's Paxos-based synchronous replication" |
+| Meta | "TAO's read-through/write-through caching" |
+| Netflix | "Multi-region Cassandra replication" |
+
+## LeetCode Connections
+
+| Problem | # | Replication Concept |
+|---------|---|--------------------|
+| Clone Graph | 133 | Graph replication |
+| Copy List with Random Pointer | 138 | State copy |
+| Same Tree | 100 | Replica verification |
+| Merge Intervals | 56 | Multi-leader merge |
+
+## System Design Connections
+
+- **Design a Global Database**: Multi-leader for cross-region, leader-follower per region
+- **Design a Chat System**: Multi-leader for active-active regions
+- **Design a User Profile Store**: Leader-follower with read replicas
+- **Design an Analytics Pipeline**: Leaderless for write-heavy workloads
+
+> **Key Insight**: Always discuss replication lag, conflict resolution, and consistency guarantees. Know which replication model each major system uses.

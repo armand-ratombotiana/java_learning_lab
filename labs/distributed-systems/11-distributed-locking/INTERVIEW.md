@@ -1,16 +1,49 @@
-# Distributed Locking: Interview Questions
+# Distributed Locking - Interview Preparation
 
-## Q1: How would you implement a distributed lock?
-**A**: Use ZooKeeper sequential ephemeral nodes for strong guarantees. Create /lock/node-0001, check if you're lowest. Watch predecessor. On release or session expiry, next in line gets lock.
+> Key interview questions about distributed locks and mutual exclusion.
 
-## Q2: What are the problems with Redlock?
-**A**: Clock drift can cause safety violations. Without fencing tokens, delayed lock holders can corrupt data. Martin Kleppmann argues it's unsafe without fencing.
+---
 
-## Q3: How do you handle a lock holder that pauses (GC)?
-**A**: Use fencing tokens - the resource validates each operation has an increasing token. Also set appropriate lease duration (accounting for max expected pause).
+## Core Interview Questions
 
-## Q4: What's the difference between ZooKeeper and etcd for locking?
-**A**: ZooKeeper: sequential nodes, watches. etcd: TTL leases, revision-based. Both provide linearizable operations. etcd is generally faster and simpler.
+### Q1: How does ZooKeeper implement distributed locks?
+**Answer**: Ephemeral sequential zNodes under /lock/resource. Clients create zNode, watch preceding zNode. Lowest sequence number holds lock. On release: zNode auto-deletes, next client's watch triggers. Fencing tokens: monotonic lock ID prevents stale lock holders.
 
-## Q5: When should you NOT use a distributed lock?
-**A**: When you can use optimistic concurrency control (CAS), when CRDTs can resolve conflicts, or when the operation can be made idempotent.
+### Q2: What is the fencing token problem?
+**Answer**: A client's lock expires (GC pause) but client still writes. Fencing tokens: monotonically increasing token assigned on each lock acquisition. Resource only accepts writes with valid token >= last seen token. Prevents split-brain writes.
+
+### Q3: Compare Redis Redlock vs ZooKeeper locks
+**Answer**: Redlock: acquire lock on majority of Redis nodes; if majority acquired, lock held. Simpler, faster, but less safe (no fencing tokens, clock skew). ZooKeeper: consensus-based, stronger guarantees, fencing tokens, but more complex and slower.
+
+### Q4: What is a "lease-based" lock?
+**Answer**: Lock with time-to-live. Holder must periodically renew. If holder crashes without releasing, lock auto-releases after lease expiry. Prevents deadlocks from crashed holders. ZooKeeper ephemeral nodes = lease-based.
+
+### Q5: How do you handle deadlocks in distributed locks?
+**Answer**: Lock ordering (always acquire locks in consistent order), timeouts with retry, hold locks for minimum time, deadlock detection via wait-for graphs, resource preemption.
+
+## Company-Specific Focus
+
+| Company | Locking Focus |
+|---------|--------------|
+| Google | "Chubby lock service - how does it work?" |
+| Amazon | "DynamoDB conditional write for optimistic locking" |
+| Apache | "ZooKeeper + Curator recipes for distributed coordination" |
+| Redis | "Redlock - controversy and proper usage" |
+
+## LeetCode Connections
+
+| Problem | # | Locking Concept |
+|---------|---|----------------|
+| Print FooBar Alternately | 1115 | Mutual exclusion |
+| H2O Generation | 1117 | Barrier synchronization |
+| The Dining Philosophers | 1226 | Deadlock prevention |
+| Design Bounded Blocking Queue | 1188 | Condition synchronization |
+
+## System Design Connections
+
+- **Design a Distributed Task Scheduler**: Lock tasks to prevent double execution
+- **Design a Leader Election System**: Lock for electing single leader
+- **Design a Resource Manager**: Distributed locks for resource access
+- **Design a Configuration Service**: Locks for write access control
+
+> **Key Insight**: Always discuss the fencing token pattern in locking interviews. Without it, lock-based systems are vulnerable to stale lock holders.

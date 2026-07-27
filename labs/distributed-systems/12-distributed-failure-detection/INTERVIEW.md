@@ -1,16 +1,49 @@
-# Failure Detection: Interview Questions
+# Distributed Failure Detection - Interview Preparation
 
-## Q1: How does Cassandra detect node failures?
-**A**: Uses phi-accrual failure detector. Tracks heartbeat timing history, computes phi (suspicion level). Configurable threshold. Adapts to network conditions automatically.
+> Key interview questions about detecting failures in distributed systems.
 
-## Q2: How does Raft detect leader failure?
-**A**: Followers expect periodic AppendEntries heartbeats from leader. If no heartbeat within election timeout (150-300ms randomized), follower becomes candidate and starts election.
+---
 
-## Q3: What's the difference between SWIM and gossip-based detection?
-**A**: SWIM uses direct pings and indirect probes for O(1) messages per node. Gossip exchanges full membership state with random nodes. SWIM is more efficient for large clusters.
+## Core Interview Questions
 
-## Q4: How do you tune a failure detector?
-**A**: Adjust: heartbeat interval (detection speed vs overhead), timeout/threshold (false positives vs detection latency), suspicion phase (recovery chance vs detection delay).
+### Q1: Compare heartbeat-based vs gossip-based failure detection
+**Answer**: Heartbeat: centralized, periodic messages to monitoring service. Simple but O(N) communication, single point of failure. Gossip: nodes exchange state with random peers. O(log N) convergence, decentralized, no SPOF. Phi Accrual (Cassandra) uses adaptive thresholds.
 
-## Q5: How do you handle GC pauses in failure detection?
-**A**: Set heartbeat timeout > max expected GC pause (e.g., 10-15 seconds), use phi-accrual (adapts to pauses), implement application-level heartbeats from separate threads.
+### Q2: Explain the Phi Accrual Failure Detector
+**Answer**: Measures suspicion level (-log10 of probability heartbeat arrives after elapsed time). Uses historical heartbeat intervals to compute normal distribution. Adapts to network variance. If phi > threshold (default 8), node suspected. More accurate than fixed timeout.
+
+### Q3: What is the "wrong suspicion" problem?
+**Answer**: Temporarily slow (GC pause, network congestion) nodes incorrectly marked failed. Mitigations: phi threshold tuning, suspicion level (not binary), acknowledgment round (SWIM protocol), indirect probing through peers.
+
+### Q4: How does SWIM protocol work for failure detection?
+**Answer**: SWIM = Scalable Weakly-consistent Infection-style Membership. Each round: ping random member. If no ack within timeout, ping K random members to indirectly ping target. On confirmed failure, disseminate via gossip. Eventually consistent membership.
+
+### Q5: How does Kubernetes detect node failures?
+**Answer**: Node controller monitors heartbeat timestamp in etcd. If node misses heartbeats for --node-monitor-period * --node-monitor-grace-period (~40s default), pod eviction begins. Taint-based eviction: node unreachable taint triggers pod eviction after --pod-eviction-timeout.
+
+## Company-Specific Focus
+
+| Company | Failure Detection Focus |
+|---------|-----------------------|
+| Amazon | "Gossip-based in DynamoDB using Phi Accrual" |
+| Google | "How does Borg detect node failures?" |
+| Netflix | "Chaos Monkey for failure testing" |
+| Hashicorp | "SWIM gossip protocol in Consul/memberlist" |
+
+## LeetCode Connections
+
+| Problem | # | Failure Detection Concept |
+|---------|---|-------------------------|
+| Longest Consecutive Sequence | 128 | Heartbeat timeout detection |
+| Number of Provinces | 547 | Cluster membership |
+| Graph Valid Tree | 261 | Acyclic cluster health |
+| Redundant Connection | 684 | Split brain detection |
+
+## System Design Connections
+
+- **Design a Cluster Membership Service**: Gossip-based failure detection
+- **Design a Load Balancer**: Health check-based failure detection
+- **Design a Monitoring System**: Heartbeat + Phi Accrual
+- **Design a Service Mesh**: Adaptive failure detection
+
+> **Key Insight**: Modern failure detection uses adaptive algorithms (Phi Accrual) not fixed timeouts. Discuss suspicion levels, not just binary alive/dead status.
