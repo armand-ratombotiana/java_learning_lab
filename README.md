@@ -12,6 +12,8 @@
 
 **A comprehensive, hands-on learning path for mastering Java ecosystem - from Core Java to Cloud-Native Microservices**
 
+> **📚 Academy Index:** Looking for the engineering academies (Java, AI, Algorithms, System Design, Data Science, Cloud, and 19 more)? See **[INDEX.md](./INDEX.md)** for the complete academy catalog with lab counts and deep-dive sub-academies.
+
 [✨ NEW: See IMPROVEMENTS.md](#recent-improvements) • [Getting Started](#-getting-started) • [Setup Guide](./SETUP.md) • [Learning Path](#-learning-path) • [Contributing](./CONTRIBUTING.md)
 
 </div>
