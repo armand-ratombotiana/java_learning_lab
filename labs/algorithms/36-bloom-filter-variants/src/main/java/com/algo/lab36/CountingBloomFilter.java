@@ -1,4 +1,4 @@
-﻿package com.algo.lab36;
+package com.algo.lab36;
 
 /**
  * Counting Bloom Filter with 4-bit counters supporting add, remove, and check operations.

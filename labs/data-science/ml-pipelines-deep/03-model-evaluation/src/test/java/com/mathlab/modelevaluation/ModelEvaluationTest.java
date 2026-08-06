@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelevaluation;
+package com.mathlab.modelevaluation;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

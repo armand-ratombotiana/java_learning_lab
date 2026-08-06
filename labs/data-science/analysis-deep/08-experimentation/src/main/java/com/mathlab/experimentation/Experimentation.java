@@ -1,4 +1,4 @@
-﻿package com.mathlab.experimentation;
+package com.mathlab.experimentation;
 
 import java.util.function.DoubleUnaryOperator;
 

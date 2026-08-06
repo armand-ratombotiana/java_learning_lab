@@ -1,4 +1,4 @@
-package com.javalab.07;
+package com.javalab.lab07;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

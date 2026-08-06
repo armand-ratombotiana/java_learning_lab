@@ -1,4 +1,4 @@
-﻿package com.mathlab.appliedla;
+package com.mathlab.appliedla;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

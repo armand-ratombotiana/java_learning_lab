@@ -1,6 +1,6 @@
-﻿# AssertJ Deep Dive -- Code Deep Dive
+# AssertJ Deep Dive -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.05
+Package: com.javalab.lab05
 ### Soft Assertions
 assertSoftly collects all failures
 ### Extracting

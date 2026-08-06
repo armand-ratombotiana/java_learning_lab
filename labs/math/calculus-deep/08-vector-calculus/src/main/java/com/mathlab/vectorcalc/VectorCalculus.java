@@ -1,4 +1,4 @@
-﻿package com.mathlab.vectorcalc;
+package com.mathlab.vectorcalc;
 
 import java.util.function.DoubleUnaryOperator;
 

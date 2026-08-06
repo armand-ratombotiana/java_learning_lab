@@ -1,4 +1,4 @@
-﻿package com.learning.backend21.tenant;
+package com.learning.backend21.tenant;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

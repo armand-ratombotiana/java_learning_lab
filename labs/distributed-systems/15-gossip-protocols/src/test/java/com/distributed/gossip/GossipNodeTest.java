@@ -1,4 +1,4 @@
-﻿package com.distributed.gossip;
+package com.distributed.gossip;
 
 import org.junit.jupiter.api.Test;
 import java.net.InetSocketAddress;

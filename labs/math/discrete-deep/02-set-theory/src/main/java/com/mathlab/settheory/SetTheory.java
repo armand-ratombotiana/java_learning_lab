@@ -1,4 +1,4 @@
-﻿package com.mathlab.settheory;
+package com.mathlab.settheory;
 
 import java.util.function.DoubleUnaryOperator;
 

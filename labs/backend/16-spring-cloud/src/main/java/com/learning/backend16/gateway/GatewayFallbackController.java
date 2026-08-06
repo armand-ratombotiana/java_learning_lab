@@ -1,4 +1,4 @@
-﻿package com.learning.backend16.gateway;
+package com.learning.backend16.gateway;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

@@ -1,4 +1,4 @@
-﻿package com.distributed.monitoring;
+package com.distributed.monitoring;
 
 import org.junit.jupiter.api.Test;
 import java.util.List;

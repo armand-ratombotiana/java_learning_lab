@@ -1,6 +1,6 @@
-﻿# HTTP Clients (Java 11+) -- Code Deep Dive
+# HTTP Clients (Java 11+) -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.03
+Package: com.javalab.lab03
 
 ### Java 11+ HttpClient
 HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();

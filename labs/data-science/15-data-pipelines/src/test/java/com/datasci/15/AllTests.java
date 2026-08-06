@@ -1,4 +1,4 @@
-package com.datasci.15;
+package com.datasci.lab15;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

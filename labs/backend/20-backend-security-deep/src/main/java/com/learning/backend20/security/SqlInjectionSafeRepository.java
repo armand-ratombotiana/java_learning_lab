@@ -1,4 +1,4 @@
-﻿package com.learning.backend20.security;
+package com.learning.backend20.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

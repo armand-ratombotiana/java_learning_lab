@@ -11,15 +11,14 @@ public class StructuredConcurrencyExample {
     public static void showStructuredConcurrency() throws Exception {
         System.out.println("=== Structured Concurrency ===");
 
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> user = scope.fork(() -> fetchUser());
-            Future<String> order = scope.fork(() -> fetchOrder());
+        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>awaitAllSuccessfulOrThrow())) {
+            StructuredTaskScope.Subtask<String> user = scope.fork(() -> fetchUser());
+            StructuredTaskScope.Subtask<String> order = scope.fork(() -> fetchOrder());
 
             scope.join();
-            scope.throwIfFailed();
 
-            System.out.println("  User: " + user.resultNow());
-            System.out.println("  Order: " + order.resultNow());
+            System.out.println("  User: " + user.get());
+            System.out.println("  Order: " + order.get());
         }
 
         System.out.println("Structured scope completed");

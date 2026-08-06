@@ -1,4 +1,4 @@
-package com.javalab.02;
+package com.javalab.lab02;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;

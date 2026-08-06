@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab19.sparsetable;
+package com.dsacademy.lab19.sparsetable;
 
 public class SparseTableSum {
     private final int[][] st;

@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelinterpret;
+package com.mathlab.modelinterpret;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab20.immutable;
+package com.dsacademy.lab20.immutable;
 
 public final class PersistentStack<E> {
     private static final PersistentStack<?> EMPTY = new PersistentStack<>(null, null, 0);

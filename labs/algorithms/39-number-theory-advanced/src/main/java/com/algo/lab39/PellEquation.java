@@ -1,4 +1,4 @@
-﻿package com.algo.lab39;
+package com.algo.lab39;
 
 import java.math.BigInteger;
 import java.util.List;

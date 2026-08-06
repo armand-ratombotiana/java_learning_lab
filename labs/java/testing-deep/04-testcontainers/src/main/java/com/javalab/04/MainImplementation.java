@@ -1,4 +1,4 @@
-﻿package com.javalab.04;
+package com.javalab.lab04;
 
 import java.sql.*;
 import java.util.ArrayList;

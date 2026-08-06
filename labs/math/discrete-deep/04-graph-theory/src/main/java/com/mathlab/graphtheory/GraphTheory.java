@@ -1,4 +1,4 @@
-﻿package com.mathlab.graphtheory;
+package com.mathlab.graphtheory;
 
 import java.util.function.DoubleUnaryOperator;
 

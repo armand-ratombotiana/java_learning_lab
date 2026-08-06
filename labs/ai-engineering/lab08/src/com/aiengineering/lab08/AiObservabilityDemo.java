@@ -26,6 +26,8 @@ public class AiObservabilityDemo {
             this.value = value;
             this.timestamp = System.currentTimeMillis();
         }
+
+        double value() { return value; }
     }
 
     static class MetricsCollector {

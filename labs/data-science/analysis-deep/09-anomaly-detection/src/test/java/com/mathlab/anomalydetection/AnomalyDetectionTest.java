@@ -1,4 +1,4 @@
-﻿package com.mathlab.anomalydetection;
+package com.mathlab.anomalydetection;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-﻿package com.distributed.queues;
+package com.distributed.queues;
 
 import java.util.Optional;
 

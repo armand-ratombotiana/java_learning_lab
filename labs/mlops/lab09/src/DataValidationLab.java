@@ -101,7 +101,7 @@ public class DataValidationLab {
                     "expect_column_values_between: " + column,
                     violationRatio == 0, violationRatio, 0,
                     String.format("(%d/%d out of [%.1f, %.1f])",
-                            outOfRange, col.size(), min, max)));
+                            outOfRange, col.size(), min.doubleValue(), max.doubleValue())));
         }
 
         void expectColumnValuesUnique(Dataset ds, String column) {

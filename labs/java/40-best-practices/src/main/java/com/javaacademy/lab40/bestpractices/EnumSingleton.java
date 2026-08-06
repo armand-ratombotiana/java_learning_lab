@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab40.bestpractices;
+package com.javaacademy.lab40.bestpractices;
 
 public enum EnumSingleton {
     INSTANCE;

@@ -1,4 +1,4 @@
-﻿package com.databases.dbtesting;
+package com.databases.dbtesting;
 
 import org.junit.jupiter.api.*;
 import java.util.*;

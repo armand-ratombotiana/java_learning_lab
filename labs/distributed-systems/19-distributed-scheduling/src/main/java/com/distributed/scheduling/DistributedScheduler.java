@@ -1,4 +1,4 @@
-﻿package com.distributed.scheduling;
+package com.distributed.scheduling;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,6 +3,9 @@ package com.net.http;
 import java.util.*;
 import java.util.concurrent.*;
 
+import com.net.http.HttpClientSim.HttpRequest;
+import com.net.http.HttpClientSim.HttpResponse;
+
 public class HttpServerSim {
 
     public interface HttpHandler {

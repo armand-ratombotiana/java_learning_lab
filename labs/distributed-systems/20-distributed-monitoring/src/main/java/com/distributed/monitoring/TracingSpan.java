@@ -1,4 +1,4 @@
-﻿package com.distributed.monitoring;
+package com.distributed.monitoring;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

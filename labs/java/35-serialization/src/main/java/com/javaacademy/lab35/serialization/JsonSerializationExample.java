@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab35.serialization;
+package com.javaacademy.lab35.serialization;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

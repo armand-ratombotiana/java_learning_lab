@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab17.spatial;
+package com.dsacademy.lab17.spatial;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

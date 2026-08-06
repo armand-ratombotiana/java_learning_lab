@@ -42,7 +42,7 @@ public class RLHF {
     }
 
     public double getReward(double[] state, int action) {
-        double[] sa = new double[stateDim + 1];
+        double[] sa = new double[stateDim + actionDim];
         System.arraycopy(state, 0, sa, 0, stateDim);
         sa[stateDim] = action;
         return rewardModel.forward(sa)[0];

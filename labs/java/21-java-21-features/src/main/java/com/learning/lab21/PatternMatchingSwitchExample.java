@@ -18,7 +18,7 @@ public class PatternMatchingSwitchExample {
     static String describe(Object obj) {
         return switch (obj) {
             case null -> "Null value";
-            case String s && s.length() > 0 -> "Non-empty String: " + s;
+            case String s when s.length() > 0 -> "Non-empty String: " + s;
             case Integer i when i > 0 -> "Positive Integer: " + i;
             case Double d -> "Double: " + d;
             case int[] arr -> "Array of length " + arr.length;

@@ -1,4 +1,4 @@
-﻿package com.mathlab.innerproducts;
+package com.mathlab.innerproducts;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

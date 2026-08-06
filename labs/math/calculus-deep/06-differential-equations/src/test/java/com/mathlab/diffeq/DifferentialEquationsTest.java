@@ -1,4 +1,4 @@
-﻿package com.mathlab.diffeq;
+package com.mathlab.diffeq;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

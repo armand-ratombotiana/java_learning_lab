@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab18.circularbuffer;
+package com.dsacademy.lab18.circularbuffer;
 
 public class RingBufferLog {
     private final String[] buffer;

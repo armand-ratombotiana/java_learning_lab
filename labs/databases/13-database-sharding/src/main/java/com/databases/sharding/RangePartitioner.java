@@ -1,4 +1,4 @@
-﻿package com.databases.sharding;
+package com.databases.sharding;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

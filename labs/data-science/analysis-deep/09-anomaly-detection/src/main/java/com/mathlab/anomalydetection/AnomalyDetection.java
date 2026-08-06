@@ -1,4 +1,4 @@
-﻿package com.mathlab.anomalydetection;
+package com.mathlab.anomalydetection;
 
 import java.util.function.DoubleUnaryOperator;
 

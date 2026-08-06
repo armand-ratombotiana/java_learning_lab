@@ -1,4 +1,4 @@
-﻿package com.learning.backend18.model;
+package com.learning.backend18.model;
 
 public class Product {
 

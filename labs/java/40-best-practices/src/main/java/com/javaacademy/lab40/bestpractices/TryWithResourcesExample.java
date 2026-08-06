@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab40.bestpractices;
+package com.javaacademy.lab40.bestpractices;
 
 import java.io.*;
 import java.nio.file.*;

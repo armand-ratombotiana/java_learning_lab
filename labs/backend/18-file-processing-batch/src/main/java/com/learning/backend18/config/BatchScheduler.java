@@ -1,4 +1,4 @@
-﻿package com.learning.backend18.config;
+package com.learning.backend18.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

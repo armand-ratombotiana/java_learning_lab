@@ -1,4 +1,4 @@
-﻿package com.javalab.02;
+package com.javalab.lab02;
 
 public class MainImplementation {
     

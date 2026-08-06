@@ -1,11 +1,11 @@
-﻿# Protocol Buffers -- Code Deep Dive
+# Protocol Buffers -- Code Deep Dive
 
 ## Main Implementation
 
 ### Class Structure
 The main class demonstrates Protocol Buffers serialization principles.
 
-**Package**: com.javalab.02
+**Package**: com.javalab.lab02
 
 ### Core Components
 1. **Proto Schema** - .proto file defining message structure

@@ -1,4 +1,4 @@
-﻿package com.learning.backend22.service;
+package com.learning.backend22.service;
 
 import com.learning.backend22.model.Review;
 import jakarta.annotation.PostConstruct;

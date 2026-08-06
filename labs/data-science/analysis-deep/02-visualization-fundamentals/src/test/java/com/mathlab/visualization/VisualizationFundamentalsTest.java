@@ -1,4 +1,4 @@
-﻿package com.mathlab.visualization;
+package com.mathlab.visualization;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

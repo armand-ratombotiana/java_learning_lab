@@ -1,6 +1,6 @@
-﻿# Socket Programming -- Code Deep Dive
+# Socket Programming -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.01
+Package: com.javalab.lab01
 
 ### EchoServer using ServerSocket
 ServerSocket serverSocket = new ServerSocket(port);

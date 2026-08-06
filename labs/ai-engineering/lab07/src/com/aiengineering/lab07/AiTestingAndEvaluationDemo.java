@@ -61,6 +61,8 @@ public class AiTestingAndEvaluationDemo {
             this.passed = passed;
             this.message = message;
         }
+
+        boolean passed() { return passed; }
     }
 
     static class TestSuite {

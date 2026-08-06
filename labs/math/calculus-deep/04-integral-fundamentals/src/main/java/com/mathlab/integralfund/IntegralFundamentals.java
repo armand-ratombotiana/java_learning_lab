@@ -1,4 +1,4 @@
-﻿package com.mathlab.integralfund;
+package com.mathlab.integralfund;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab39.buildtools;
+package com.javaacademy.lab39.buildtools;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

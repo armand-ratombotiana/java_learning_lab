@@ -1,4 +1,4 @@
-﻿package com.mathlab.dualtensors;
+package com.mathlab.dualtensors;
 
 import java.util.function.DoubleUnaryOperator;
 

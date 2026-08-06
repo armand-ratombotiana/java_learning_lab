@@ -1,4 +1,4 @@
-﻿package com.learning.backend20.controller;
+package com.learning.backend20.controller;
 
 import com.learning.backend20.config.RateLimitingConfig;
 import jakarta.validation.Valid;

@@ -41,7 +41,7 @@
 
 ## Package Structure
 ```
-com.javalab.09
+com.javalab.lab09
 +-- MainImplementation.java
 +-- MainImplementationTest.java
 ```

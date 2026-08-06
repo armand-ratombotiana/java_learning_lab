@@ -1,6 +1,6 @@
-﻿# WebFlux Deep Dive -- Code Deep Dive
+# WebFlux Deep Dive -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.03
+Package: com.javalab.lab03
 ### RouterFunction
 Functional routing with RouterFunctions.route()
 ### WebClient

@@ -121,7 +121,7 @@ public class KubernetesLab {
                 data:
                 """, name));
         for (Map.Entry<String, String> entry : config.entrySet()) {
-            sb.append(String.format("  %s: "%s"%n", entry.getKey(), entry.getValue()));
+            sb.append(String.format("  %s: \"%s\"%n", entry.getKey(), entry.getValue()));
         }
         return sb.toString();
     }

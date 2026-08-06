@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelmonitoring;
+package com.mathlab.modelmonitoring;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

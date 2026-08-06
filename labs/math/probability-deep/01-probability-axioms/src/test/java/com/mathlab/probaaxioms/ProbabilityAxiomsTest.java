@@ -1,4 +1,4 @@
-﻿package com.mathlab.probaaxioms;
+package com.mathlab.probaaxioms;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

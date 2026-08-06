@@ -1,4 +1,4 @@
-﻿package com.learning.backend17.config;
+package com.learning.backend17.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

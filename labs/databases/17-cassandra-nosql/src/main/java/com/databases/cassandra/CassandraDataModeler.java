@@ -1,4 +1,4 @@
-﻿package com.databases.cassandra;
+package com.databases.cassandra;
 
 import java.util.*;
 

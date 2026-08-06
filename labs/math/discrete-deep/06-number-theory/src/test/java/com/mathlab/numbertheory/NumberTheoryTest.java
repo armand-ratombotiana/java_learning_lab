@@ -1,4 +1,4 @@
-﻿package com.mathlab.numbertheory;
+package com.mathlab.numbertheory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab35.serialization;
+package com.javaacademy.lab35.serialization;
 
 import java.io.*;
 import java.util.Objects;

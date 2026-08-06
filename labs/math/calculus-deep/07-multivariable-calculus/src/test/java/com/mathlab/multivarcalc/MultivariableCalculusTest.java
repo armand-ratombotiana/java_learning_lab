@@ -1,4 +1,4 @@
-﻿package com.mathlab.multivarcalc;
+package com.mathlab.multivarcalc;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

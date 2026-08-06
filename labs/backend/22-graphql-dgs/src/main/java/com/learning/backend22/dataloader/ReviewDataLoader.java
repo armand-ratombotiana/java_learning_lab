@@ -1,4 +1,4 @@
-﻿package com.learning.backend22.dataloader;
+package com.learning.backend22.dataloader;
 
 import com.learning.backend22.model.Review;
 import com.learning.backend22.service.ReviewService;

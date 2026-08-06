@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelserving;
+package com.mathlab.modelserving;
 
 import java.util.function.DoubleUnaryOperator;
 

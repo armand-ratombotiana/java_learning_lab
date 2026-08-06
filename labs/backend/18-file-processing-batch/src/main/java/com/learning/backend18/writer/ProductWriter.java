@@ -1,4 +1,4 @@
-﻿package com.learning.backend18.writer;
+package com.learning.backend18.writer;
 
 import com.learning.backend18.model.Product;
 import org.slf4j.Logger;

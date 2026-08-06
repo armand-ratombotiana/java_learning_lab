@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab20.immutable;
+package com.dsacademy.lab20.immutable;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

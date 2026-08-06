@@ -1,4 +1,4 @@
-﻿package com.databases.replication;
+package com.databases.replication;
 
 import java.time.Instant;
 import java.util.*;

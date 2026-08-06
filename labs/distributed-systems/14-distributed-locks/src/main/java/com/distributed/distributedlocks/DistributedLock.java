@@ -1,4 +1,4 @@
-﻿package com.distributed.distributedlocks;
+package com.distributed.distributedlocks;
 
 import java.time.Duration;
 

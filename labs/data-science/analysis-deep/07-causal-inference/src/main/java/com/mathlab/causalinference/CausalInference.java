@@ -1,4 +1,4 @@
-﻿package com.mathlab.causalinference;
+package com.mathlab.causalinference;
 
 import java.util.function.DoubleUnaryOperator;
 

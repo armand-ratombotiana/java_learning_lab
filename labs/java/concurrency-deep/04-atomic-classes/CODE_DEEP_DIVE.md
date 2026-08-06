@@ -5,7 +5,7 @@
 ### Class Structure
 The main class implements the core data structure and operations:
 
-**Package**: com.javalab.04
+**Package**: com.javalab.lab04
 
 ### Fields
 - Internal storage array or structure

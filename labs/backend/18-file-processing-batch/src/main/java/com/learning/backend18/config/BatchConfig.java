@@ -1,4 +1,4 @@
-﻿package com.learning.backend18.config;
+package com.learning.backend18.config;
 
 import com.learning.backend18.model.Product;
 import com.learning.backend18.processor.ProductProcessor;

@@ -1,4 +1,4 @@
-﻿package com.mathlab.timeseries;
+package com.mathlab.timeseries;
 
 import java.util.function.DoubleUnaryOperator;
 

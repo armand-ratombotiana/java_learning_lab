@@ -1,4 +1,4 @@
-﻿package com.mathlab.vectorcalc;
+package com.mathlab.vectorcalc;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

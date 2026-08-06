@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab19.sparsetable;
+package com.dsacademy.lab19.sparsetable;
 
 public class DisjointSparseTable {
     private final int[][] st;

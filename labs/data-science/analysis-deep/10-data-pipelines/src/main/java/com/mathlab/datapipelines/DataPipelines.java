@@ -1,4 +1,4 @@
-﻿package com.mathlab.datapipelines;
+package com.mathlab.datapipelines;
 
 import java.util.function.DoubleUnaryOperator;
 

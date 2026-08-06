@@ -1,4 +1,4 @@
-﻿package com.mathlab.llnclt;
+package com.mathlab.llnclt;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

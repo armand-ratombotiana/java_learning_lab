@@ -1,6 +1,6 @@
-﻿# JUnit 5 Fundamentals -- Code Deep Dive
+# JUnit 5 Fundamentals -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.01
+Package: com.javalab.lab01
 ### Basic Test Structure
 Uses @Test, @DisplayName, and assertions
 ### Lifecycle Hooks

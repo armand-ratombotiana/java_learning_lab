@@ -1,4 +1,4 @@
-﻿package com.learning.backend22;
+package com.learning.backend22;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-﻿package com.databases.dbtesting;
+package com.databases.dbtesting;
 
 import java.util.*;
 import java.util.function.Supplier;

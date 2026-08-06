@@ -1,11 +1,11 @@
-﻿# XML Serialization -- Code Deep Dive
+# XML Serialization -- Code Deep Dive
 
 ## Main Implementation
 
 ### Class Structure
 The main class demonstrates XML serialization with JAXB.
 
-**Package**: com.javalab.04
+**Package**: com.javalab.lab04
 
 ### Core Components
 1. **JAXBContext** - Entry point for JAXB operations

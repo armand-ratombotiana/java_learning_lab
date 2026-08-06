@@ -1,4 +1,4 @@
-﻿package com.mathlab.featurestores;
+package com.mathlab.featurestores;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

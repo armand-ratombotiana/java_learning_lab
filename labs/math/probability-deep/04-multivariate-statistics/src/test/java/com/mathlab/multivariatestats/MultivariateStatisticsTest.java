@@ -1,4 +1,4 @@
-﻿package com.mathlab.multivariatestats;
+package com.mathlab.multivariatestats;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.networking.tcp-udp-deep-dive;
+package com.networking.tcp_udp_deep_dive;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

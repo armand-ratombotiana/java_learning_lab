@@ -19,7 +19,7 @@ public class QueryParser {
 
         @Override
         public String toString() {
-            return operationType + " " + operationName + args + " { " + fields + " }";
+            return operationType + " " + operationName + arguments + " { " + fields + " }";
         }
     }
 

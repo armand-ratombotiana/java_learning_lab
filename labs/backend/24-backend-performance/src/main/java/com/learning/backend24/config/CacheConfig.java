@@ -1,4 +1,4 @@
-﻿package com.learning.backend24.config;
+package com.learning.backend24.config;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

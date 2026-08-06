@@ -1,4 +1,4 @@
-﻿package com.learning.backend23.command;
+package com.learning.backend23.command;
 
 import com.learning.backend23.event.OrderCreatedEvent;
 import org.axonframework.commandhandling.CommandHandler;

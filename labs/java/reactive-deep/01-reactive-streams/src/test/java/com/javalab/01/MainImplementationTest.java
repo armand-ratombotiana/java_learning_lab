@@ -1,4 +1,4 @@
-﻿package com.javalab.01;
+package com.javalab.lab01;
 import org.junit.jupiter.api.*;
 import java.util.concurrent.Flow.*;
 import static org.junit.jupiter.api.Assertions.*;

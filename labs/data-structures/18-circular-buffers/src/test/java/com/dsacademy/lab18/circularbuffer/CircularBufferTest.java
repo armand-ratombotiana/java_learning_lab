@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab18.circularbuffer;
+package com.dsacademy.lab18.circularbuffer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

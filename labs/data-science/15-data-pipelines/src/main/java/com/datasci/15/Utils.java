@@ -1,4 +1,4 @@
-package com.datasci.15;
+package com.datasci.lab15;
 
 import java.util.*;
 

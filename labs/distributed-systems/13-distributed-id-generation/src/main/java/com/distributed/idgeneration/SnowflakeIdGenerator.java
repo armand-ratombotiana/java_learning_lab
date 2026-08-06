@@ -1,4 +1,4 @@
-﻿package com.distributed.idgeneration;
+package com.distributed.idgeneration;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;

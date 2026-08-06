@@ -1,4 +1,4 @@
-﻿package com.learning.backend16.config;
+package com.learning.backend16.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-﻿package com.learning.backend16.gateway;
+package com.learning.backend16.gateway;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;

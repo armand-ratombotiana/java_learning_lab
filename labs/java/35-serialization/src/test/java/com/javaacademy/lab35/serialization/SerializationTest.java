@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab35.serialization;
+package com.javaacademy.lab35.serialization;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

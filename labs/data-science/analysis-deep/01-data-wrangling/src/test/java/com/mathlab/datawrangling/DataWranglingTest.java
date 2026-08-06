@@ -1,4 +1,4 @@
-﻿package com.mathlab.datawrangling;
+package com.mathlab.datawrangling;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

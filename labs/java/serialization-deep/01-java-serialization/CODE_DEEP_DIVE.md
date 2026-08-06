@@ -1,11 +1,11 @@
-﻿# Java Serialization -- Code Deep Dive
+# Java Serialization -- Code Deep Dive
 
 ## Main Implementation
 
 ### Class Structure
 The main class demonstrates Java serialization fundamentals:
 
-**Package**: com.javalab.01
+**Package**: com.javalab.lab01
 
 ### Core Components
 1. **Serializable POJO** - A class implementing java.io.Serializable

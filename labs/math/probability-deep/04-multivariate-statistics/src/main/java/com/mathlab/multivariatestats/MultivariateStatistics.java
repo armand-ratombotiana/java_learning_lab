@@ -1,4 +1,4 @@
-﻿package com.mathlab.multivariatestats;
+package com.mathlab.multivariatestats;
 
 import java.util.function.DoubleUnaryOperator;
 

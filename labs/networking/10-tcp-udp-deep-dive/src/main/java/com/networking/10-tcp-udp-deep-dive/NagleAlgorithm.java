@@ -1,4 +1,4 @@
-package com.networking.tcp-udp-deep-dive;
+package com.networking.tcp_udp_deep_dive;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -63,11 +63,7 @@ public class NagleAlgorithm {
         System.arraycopy(data, 0, chunk, 0, actualSize);
         buffer.reset();
         if (actualSize < data.length) {
-            try {
-                buffer.write(data, actualSize, data.length - actualSize);
-            } catch (IOException e) {
-                throw new RuntimeException("Buffer error", e);
-            }
+            buffer.write(data, actualSize, data.length - actualSize);
         }
         return chunk;
     }

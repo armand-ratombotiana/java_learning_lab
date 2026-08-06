@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab35.serialization;
+package com.javaacademy.lab35.serialization;
 
 import com.google.protobuf.*;
 import java.util.Arrays;

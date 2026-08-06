@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab37.profiling;
+package com.javaacademy.lab37.profiling;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

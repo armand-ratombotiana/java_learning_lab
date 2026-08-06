@@ -1,4 +1,4 @@
-package com.datasci.11;
+package com.datasci.lab11;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

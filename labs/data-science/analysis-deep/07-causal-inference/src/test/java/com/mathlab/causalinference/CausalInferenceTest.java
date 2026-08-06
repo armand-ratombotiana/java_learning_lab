@@ -1,4 +1,4 @@
-﻿package com.mathlab.causalinference;
+package com.mathlab.causalinference;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

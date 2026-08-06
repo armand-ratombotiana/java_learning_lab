@@ -1,4 +1,4 @@
-﻿package com.javalab.05;
+package com.javalab.lab05;
 
 import io.grpc.*;
 import io.grpc.stub.StreamObserver;

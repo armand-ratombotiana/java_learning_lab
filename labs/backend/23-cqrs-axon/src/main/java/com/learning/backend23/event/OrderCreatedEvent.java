@@ -1,4 +1,4 @@
-﻿package com.learning.backend23.event;
+package com.learning.backend23.event;
 
 import java.time.Instant;
 import java.util.List;

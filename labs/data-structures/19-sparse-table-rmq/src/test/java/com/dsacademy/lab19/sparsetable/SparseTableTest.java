@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab19.sparsetable;
+package com.dsacademy.lab19.sparsetable;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

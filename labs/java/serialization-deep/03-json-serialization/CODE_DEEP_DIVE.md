@@ -1,11 +1,11 @@
-﻿# JSON Serialization -- Code Deep Dive
+# JSON Serialization -- Code Deep Dive
 
 ## Main Implementation
 
 ### Class Structure
 The main class demonstrates JSON serialization with Jackson.
 
-**Package**: com.javalab.03
+**Package**: com.javalab.lab03
 
 ### Core Components
 1. **ObjectMapper** - Jackson main serialization facade

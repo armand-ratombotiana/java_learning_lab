@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab20.immutable;
+package com.dsacademy.lab20.immutable;
 
 public final class PersistentBinaryTree<E extends Comparable<E>> {
     private final E value;

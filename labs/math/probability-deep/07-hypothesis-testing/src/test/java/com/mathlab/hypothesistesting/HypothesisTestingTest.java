@@ -1,4 +1,4 @@
-﻿package com.mathlab.hypothesistesting;
+package com.mathlab.hypothesistesting;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

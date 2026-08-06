@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelserving;
+package com.mathlab.modelserving;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

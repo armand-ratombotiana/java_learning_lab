@@ -1,6 +1,6 @@
-﻿# Netty Framework -- Code Deep Dive
+# Netty Framework -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.04
+Package: com.javalab.lab04
 
 ### Netty ChannelHandler Pipeline
 ServerBootstrap b = new ServerBootstrap();

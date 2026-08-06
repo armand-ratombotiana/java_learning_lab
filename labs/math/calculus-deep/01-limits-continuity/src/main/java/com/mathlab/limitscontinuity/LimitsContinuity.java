@@ -1,4 +1,4 @@
-﻿package com.mathlab.limitscontinuity;
+package com.mathlab.limitscontinuity;
 
 import java.util.function.DoubleUnaryOperator;
 

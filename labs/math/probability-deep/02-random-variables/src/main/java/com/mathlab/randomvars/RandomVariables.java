@@ -1,4 +1,4 @@
-﻿package com.mathlab.randomvars;
+package com.mathlab.randomvars;
 
 import java.util.function.DoubleUnaryOperator;
 

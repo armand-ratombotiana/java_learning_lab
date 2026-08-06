@@ -1,4 +1,4 @@
-﻿package com.mathlab.eigenvalues;
+package com.mathlab.eigenvalues;
 
 import java.util.function.DoubleUnaryOperator;
 

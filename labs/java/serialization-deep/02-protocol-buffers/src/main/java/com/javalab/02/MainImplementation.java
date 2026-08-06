@@ -1,4 +1,4 @@
-﻿package com.javalab.02;
+package com.javalab.lab02;
 
 import com.google.protobuf.*;
 import java.io.*;

@@ -1,4 +1,4 @@
-﻿package com.distributed.scheduling;
+package com.distributed.scheduling;
 
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;

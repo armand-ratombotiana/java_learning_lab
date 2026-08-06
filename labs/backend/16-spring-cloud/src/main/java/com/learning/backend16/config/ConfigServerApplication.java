@@ -1,4 +1,4 @@
-﻿package com.learning.backend16.config;
+package com.learning.backend16.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

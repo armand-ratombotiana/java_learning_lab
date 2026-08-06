@@ -1,6 +1,6 @@
-﻿# gRPC Networking -- Code Deep Dive
+# gRPC Networking -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.05
+Package: com.javalab.lab05
 
 ### gRPC Service Definition
 service Greeter { rpc SayHello (HelloRequest) returns (HelloReply); }

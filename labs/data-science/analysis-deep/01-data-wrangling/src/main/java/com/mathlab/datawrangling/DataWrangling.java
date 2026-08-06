@@ -1,4 +1,4 @@
-﻿package com.mathlab.datawrangling;
+package com.mathlab.datawrangling;
 
 import java.util.function.DoubleUnaryOperator;
 

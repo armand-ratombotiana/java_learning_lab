@@ -1,4 +1,4 @@
-﻿package com.learning.backend22.resolver;
+package com.learning.backend22.resolver;
 
 import com.learning.backend22.model.Show;
 import com.learning.backend22.service.ShowService;

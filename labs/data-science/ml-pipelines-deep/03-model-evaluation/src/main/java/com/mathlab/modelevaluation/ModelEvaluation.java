@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelevaluation;
+package com.mathlab.modelevaluation;
 
 import java.util.function.DoubleUnaryOperator;
 

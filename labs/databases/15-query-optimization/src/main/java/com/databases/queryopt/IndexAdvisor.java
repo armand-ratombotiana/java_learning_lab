@@ -1,4 +1,4 @@
-﻿package com.databases.queryopt;
+package com.databases.queryopt;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-﻿package com.learning.backend24.benchmark;
+package com.learning.backend24.benchmark;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;

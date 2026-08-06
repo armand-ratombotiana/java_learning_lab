@@ -1,4 +1,4 @@
-﻿package com.mathlab.vectorspaces;
+package com.mathlab.vectorspaces;
 
 import java.util.function.DoubleUnaryOperator;
 

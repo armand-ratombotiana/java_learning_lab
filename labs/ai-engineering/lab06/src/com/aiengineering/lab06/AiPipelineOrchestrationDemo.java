@@ -74,7 +74,7 @@ public class AiPipelineOrchestrationDemo {
             System.out.println("Pipeline \"" + name + "\" metrics:");
             for (TimedStage<?, ?> s : stages) {
                 System.out.printf("  %s: %d invocations, avg %.2f µs%n",
-                    s.getName(), s.getInvocations(), s.getAvgTimeMicros());
+                    s.getName(), s.getInvocations(), (double) s.getAvgTimeMicros());
             }
         }
     }
@@ -120,10 +120,10 @@ public class AiPipelineOrchestrationDemo {
         @Override
         public Double process(Map<String, Double> features) {
             // Simple mock model: weighted sum + bias
-            double score = features.getOrDefault("token_count", 0) * 0.1
-                + features.getOrDefault("avg_token_length", 0) * 0.3
-                + features.getOrDefault("unique_ratio", 0) * 0.4
-                + features.getOrDefault("keyword_density", 0) * 0.2
+            double score = features.getOrDefault("token_count", 0.0) * 0.1
+                + features.getOrDefault("avg_token_length", 0.0) * 0.3
+                + features.getOrDefault("unique_ratio", 0.0) * 0.4
+                + features.getOrDefault("keyword_density", 0.0) * 0.2
                 - 0.5;
             return Math.max(0, Math.min(1, score));
         }

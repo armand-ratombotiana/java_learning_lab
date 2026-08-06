@@ -1,4 +1,4 @@
-﻿package com.distributed.idgeneration;
+package com.distributed.idgeneration;
 
 import java.security.SecureRandom;
 import java.util.concurrent.atomic.AtomicLong;

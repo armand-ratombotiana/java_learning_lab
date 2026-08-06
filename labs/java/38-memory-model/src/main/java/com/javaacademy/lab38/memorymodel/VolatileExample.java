@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab38.memorymodel;
+package com.javaacademy.lab38.memorymodel;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

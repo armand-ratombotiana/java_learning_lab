@@ -1,4 +1,4 @@
-﻿package com.learning.backend21.tenant;
+package com.learning.backend21.tenant;
 
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;

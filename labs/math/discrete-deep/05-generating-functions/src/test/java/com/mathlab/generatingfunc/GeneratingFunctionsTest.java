@@ -1,4 +1,4 @@
-﻿package com.mathlab.generatingfunc;
+package com.mathlab.generatingfunc;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

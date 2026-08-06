@@ -63,7 +63,7 @@ This lab contains the following resources:
 
 ## Java Source Code
 
-All source code is in the `com.datasci.13` package under `src/main/java/`. Tests are in `src/test/java/`.
+All source code is in the `com.datasci.lab13` package under `src/main/java/`. Tests are in `src/test/java/`.
 
 ## Time Estimate
 

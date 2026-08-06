@@ -1,4 +1,4 @@
-﻿package com.mathlab.distributions;
+package com.mathlab.distributions;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

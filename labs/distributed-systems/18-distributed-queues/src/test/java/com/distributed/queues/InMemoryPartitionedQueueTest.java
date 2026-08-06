@@ -1,4 +1,4 @@
-﻿package com.distributed.queues;
+package com.distributed.queues;
 
 import org.junit.jupiter.api.Test;
 import java.util.Optional;

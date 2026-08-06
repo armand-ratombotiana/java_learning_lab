@@ -3,9 +3,9 @@
 ## Step 1: Create Project Structure
 ```
 my-project/
-+-- src/main/java/com.javalab.04/
++-- src/main/java/com.javalab.lab04/
 |   +-- MainImplementation.java
-+-- src/test/java/com.javalab.04/
++-- src/test/java/com.javalab.lab04/
 |   +-- MainImplementationTest.java
 +-- pom.xml (or build.gradle)
 ```
@@ -22,7 +22,7 @@ my-project/
 
 ## Step 3: Create Main Implementation
 ```java
-package com.javalab.04;
+package com.javalab.lab04;
 
 import java.util.Objects;
 

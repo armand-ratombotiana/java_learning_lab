@@ -1,4 +1,4 @@
-﻿package com.learning.backend19.controller;
+package com.learning.backend19.controller;
 
 import com.learning.backend19.model.StockPrice;
 import com.learning.backend19.service.StockPriceService;

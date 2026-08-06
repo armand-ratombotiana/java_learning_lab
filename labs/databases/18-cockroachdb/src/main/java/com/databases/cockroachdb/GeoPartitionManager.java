@@ -1,4 +1,4 @@
-﻿package com.databases.cockroachdb;
+package com.databases.cockroachdb;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

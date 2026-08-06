@@ -1,4 +1,4 @@
-﻿package com.learning.backend20.config;
+package com.learning.backend20.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

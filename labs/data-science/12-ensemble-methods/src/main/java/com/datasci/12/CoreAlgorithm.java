@@ -1,4 +1,4 @@
-package com.datasci.12;
+package com.datasci.lab12;
 
 import java.util.*;
 import java.util.function.*;
@@ -226,6 +226,6 @@ public class CoreAlgorithm {
     }
 
     public static class ConvergenceException extends RuntimeException {
-        public DataValidationException(String message) { super(message); }
+        public ConvergenceException(String message) { super(message); }
     }
 }

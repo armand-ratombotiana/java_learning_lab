@@ -1,4 +1,4 @@
-﻿package com.mathlab.multivarcalc;
+package com.mathlab.multivarcalc;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -1,4 +1,4 @@
-﻿package com.distributed.distributedcaching;
+package com.distributed.distributedcaching;
 
 import org.junit.jupiter.api.Test;
 import java.time.Duration;

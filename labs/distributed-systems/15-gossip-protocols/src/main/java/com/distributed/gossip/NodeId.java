@@ -1,4 +1,4 @@
-﻿package com.distributed.gossip;
+package com.distributed.gossip;
 
 import java.net.InetSocketAddress;
 import java.util.Objects;

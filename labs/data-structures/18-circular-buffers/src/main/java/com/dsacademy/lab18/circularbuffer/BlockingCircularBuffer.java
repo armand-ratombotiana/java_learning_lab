@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab18.circularbuffer;
+package com.dsacademy.lab18.circularbuffer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

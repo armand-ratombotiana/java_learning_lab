@@ -1,4 +1,4 @@
-package com.javalab.06;
+package com.javalab.lab06;
 
 import java.util.Arrays;
 import java.util.Comparator;

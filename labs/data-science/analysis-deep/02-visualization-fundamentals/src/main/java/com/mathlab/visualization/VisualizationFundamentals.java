@@ -1,4 +1,4 @@
-﻿package com.mathlab.visualization;
+package com.mathlab.visualization;
 
 import java.util.function.DoubleUnaryOperator;
 

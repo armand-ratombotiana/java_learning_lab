@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab32.networking;
+package com.javaacademy.lab32.networking;
 
 import org.junit.jupiter.api.*;
 import java.net.*;

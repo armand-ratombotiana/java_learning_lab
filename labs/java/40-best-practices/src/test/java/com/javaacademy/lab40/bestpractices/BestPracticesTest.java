@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab40.bestpractices;
+package com.javaacademy.lab40.bestpractices;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

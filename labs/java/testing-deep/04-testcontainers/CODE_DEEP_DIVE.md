@@ -1,6 +1,6 @@
-﻿# Testcontainers -- Code Deep Dive
+# Testcontainers -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.04
+Package: com.javalab.lab04
 ### Container Lifecycle
 @Testcontainers manages container lifecycle
 ### Module Containers

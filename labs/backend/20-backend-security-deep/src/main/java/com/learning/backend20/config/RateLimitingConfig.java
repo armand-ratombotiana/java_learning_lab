@@ -1,4 +1,4 @@
-﻿package com.learning.backend20.config;
+package com.learning.backend20.config;
 
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;

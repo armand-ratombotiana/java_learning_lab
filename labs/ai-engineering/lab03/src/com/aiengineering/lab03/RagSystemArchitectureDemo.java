@@ -72,7 +72,9 @@ public class RagSystemArchitectureDemo {
         int hash = text.hashCode();
         Random rng = new Random(hash);
         for (int i = 0; i < emb.length; i++) emb[i] = rng.nextFloat();
-        double norm = Math.sqrt(Arrays.stream(emb).map(v -> v * v).sum());
+        double sum = 0;
+        for (float f : emb) sum += f * f;
+        double norm = Math.sqrt(sum);
         for (int i = 0; i < emb.length; i++) emb[i] /= norm;
         return emb;
     }

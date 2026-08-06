@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelinterpret;
+package com.mathlab.modelinterpret;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

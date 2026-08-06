@@ -1,4 +1,4 @@
-﻿package com.distributed.timeordering;
+package com.distributed.timeordering;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

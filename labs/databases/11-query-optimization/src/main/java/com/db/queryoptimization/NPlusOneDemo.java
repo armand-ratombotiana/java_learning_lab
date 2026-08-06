@@ -2,6 +2,7 @@ package com.db.queryoptimization;
 
 import java.sql.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Demonstrates the N+1 query problem in JDBC/JPA contexts.

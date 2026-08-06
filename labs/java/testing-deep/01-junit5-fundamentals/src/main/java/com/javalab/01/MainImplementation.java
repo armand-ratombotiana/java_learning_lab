@@ -1,4 +1,4 @@
-﻿package com.javalab.01;
+package com.javalab.lab01;
 
 import java.util.function.IntUnaryOperator;
 

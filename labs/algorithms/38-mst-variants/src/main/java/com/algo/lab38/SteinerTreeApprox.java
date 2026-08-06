@@ -1,4 +1,4 @@
-﻿package com.algo.lab38;
+package com.algo.lab38;
 
 import java.util.*;
 

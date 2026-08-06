@@ -1,4 +1,4 @@
-package com.javalab.08;
+package com.javalab.lab08;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

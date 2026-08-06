@@ -1,4 +1,4 @@
-﻿package com.algo.lab36;
+package com.algo.lab36;
 
 import java.util.ArrayList;
 import java.util.List;

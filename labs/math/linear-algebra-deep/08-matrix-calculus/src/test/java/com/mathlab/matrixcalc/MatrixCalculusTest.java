@@ -1,4 +1,4 @@
-﻿package com.mathlab.matrixcalc;
+package com.mathlab.matrixcalc;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

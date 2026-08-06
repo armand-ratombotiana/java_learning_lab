@@ -1,4 +1,4 @@
-﻿package com.mathlab.frauddetection;
+package com.mathlab.frauddetection;
 
 import java.util.function.DoubleUnaryOperator;
 

@@ -1,4 +1,4 @@
-﻿package com.distributed.distributedlocks;
+package com.distributed.distributedlocks;
 
 import org.junit.jupiter.api.Test;
 import java.time.Duration;

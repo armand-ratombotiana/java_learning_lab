@@ -1,4 +1,4 @@
-﻿package com.distributed.idgeneration;
+package com.distributed.idgeneration;
 
 public interface IdGenerator<T> {
     T generate();

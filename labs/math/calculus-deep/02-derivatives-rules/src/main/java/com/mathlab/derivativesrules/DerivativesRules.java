@@ -1,4 +1,4 @@
-﻿package com.mathlab.derivativesrules;
+package com.mathlab.derivativesrules;
 
 import java.util.function.DoubleUnaryOperator;
 

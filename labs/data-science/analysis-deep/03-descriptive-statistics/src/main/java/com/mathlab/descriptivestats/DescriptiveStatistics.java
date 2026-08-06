@@ -1,4 +1,4 @@
-﻿package com.mathlab.descriptivestats;
+package com.mathlab.descriptivestats;
 
 import java.util.function.DoubleUnaryOperator;
 

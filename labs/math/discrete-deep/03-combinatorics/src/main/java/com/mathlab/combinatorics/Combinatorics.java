@@ -1,4 +1,4 @@
-﻿package com.mathlab.combinatorics;
+package com.mathlab.combinatorics;
 
 import java.util.function.DoubleUnaryOperator;
 

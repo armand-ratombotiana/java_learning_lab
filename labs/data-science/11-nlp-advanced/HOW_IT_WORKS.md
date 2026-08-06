@@ -11,7 +11,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 1.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 1.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -28,7 +28,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 2.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 2.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -45,7 +45,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 3.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 3.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -62,7 +62,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 4.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 4.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -79,7 +79,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 5.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 5.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -96,7 +96,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 6.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 6.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -113,7 +113,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 7.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 7.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -130,7 +130,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 8.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 8.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -147,7 +147,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 9.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 9.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.
@@ -164,7 +164,7 @@ In the context of Lab 11, this section explores critical aspects of Advanced NLP
 The fundamental principles discussed here build upon the theoretical foundations established in THEORY.md. Practitioners should be familiar with the core mathematical and algorithmic concepts before proceeding.
 
 ### 10.3 Practical Implementation
-Java implementation details for this topic are provided in the com.datasci.11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
+Java implementation details for this topic are provided in the com.datasci.lab11 package. The code demonstrates correct patterns while avoiding common pitfalls identified in COMMON_MISTAKES.md.
 
 ### 10.4 Best Practices
 Following established best practices ensures code quality, maintainability, and performance. Key recommendations include proper error handling, input validation, thorough testing, and comprehensive documentation.

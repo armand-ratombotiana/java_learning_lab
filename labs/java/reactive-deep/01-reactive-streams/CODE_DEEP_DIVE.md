@@ -1,6 +1,6 @@
-﻿# Reactive Streams -- Code Deep Dive
+# Reactive Streams -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.01
+Package: com.javalab.lab01
 ### Custom Publisher
 Implements Publisher<T> with Subscription
 ### Custom Subscriber

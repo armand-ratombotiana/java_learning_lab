@@ -1,11 +1,11 @@
-﻿# Kryo Serialization -- Code Deep Dive
+# Kryo Serialization -- Code Deep Dive
 
 ## Main Implementation
 
 ### Class Structure
 The main class demonstrates Kryo serialization principles.
 
-**Package**: com.javalab.05
+**Package**: com.javalab.lab05
 
 ### Core Components
 1. **Kryo Instance** - Main serialization engine

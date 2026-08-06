@@ -1,4 +1,4 @@
-﻿package com.mathlab.datapipelines;
+package com.mathlab.datapipelines;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.datasci.08;
+package com.datasci.lab08;
 
 import java.util.*;
 

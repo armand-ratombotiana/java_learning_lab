@@ -2,7 +2,7 @@
 
 ## 1. Package Structure
 
-The com.datasci.15 package contains: CoreAlgorithm.java (main algorithm), DataPreprocessor.java (data preparation), Metrics.java (evaluation), Utils.java (helper functions).
+The com.datasci.lab15 package contains: CoreAlgorithm.java (main algorithm), DataPreprocessor.java (data preparation), Metrics.java (evaluation), Utils.java (helper functions).
 
 ### 1.1 Directory Layout
 

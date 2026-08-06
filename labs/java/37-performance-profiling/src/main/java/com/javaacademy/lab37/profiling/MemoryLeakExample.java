@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab37.profiling;
+package com.javaacademy.lab37.profiling;
 
 import java.util.ArrayList;
 import java.util.List;

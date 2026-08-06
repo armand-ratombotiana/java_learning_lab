@@ -1,4 +1,4 @@
-﻿package com.mathlab.bayesianstats;
+package com.mathlab.bayesianstats;
 
 import java.util.function.DoubleUnaryOperator;
 

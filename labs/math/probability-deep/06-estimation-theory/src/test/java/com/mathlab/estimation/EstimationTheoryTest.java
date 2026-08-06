@@ -1,4 +1,4 @@
-﻿package com.mathlab.estimation;
+package com.mathlab.estimation;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

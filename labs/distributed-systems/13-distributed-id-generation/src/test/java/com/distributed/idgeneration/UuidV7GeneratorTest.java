@@ -1,4 +1,4 @@
-﻿package com.distributed.idgeneration;
+package com.distributed.idgeneration;
 
 import org.junit.jupiter.api.Test;
 import java.util.HashSet;

@@ -1,6 +1,6 @@
-﻿# Project Reactor -- Code Deep Dive
+# Project Reactor -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.02
+Package: com.javalab.lab02
 ### Flux Creation
 Flux.just(), Flux.fromIterable(), Flux.range()
 ### Operator Chaining

@@ -95,6 +95,13 @@ public class PromptEngineeringAtScaleDemo {
             this.variantA = a; this.variantB = b; this.trials = trials;
             this.winRateA = winRateA; this.avgLatencyA = avgA; this.avgLatencyB = avgB;
         }
+
+        String variantA() { return variantA; }
+        String variantB() { return variantB; }
+        int trials() { return trials; }
+        double winRateA() { return winRateA; }
+        double avgLatencyA() { return avgLatencyA; }
+        double avgLatencyB() { return avgLatencyB; }
     }
 
     static class ABTestFramework {

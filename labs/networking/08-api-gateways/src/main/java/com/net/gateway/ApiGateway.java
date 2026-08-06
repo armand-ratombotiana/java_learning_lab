@@ -60,6 +60,10 @@ public class ApiGateway {
             preFilters.add(filter);
         }
 
+        public void addPostFilter(GatewayFilter filter) {
+            postFilters.add(filter);
+        }
+
         public boolean route(GatewayContext ctx) {
             for (GatewayFilter filter : preFilters) {
                 if (!filter.filter(ctx)) {

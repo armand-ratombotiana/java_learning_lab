@@ -99,7 +99,7 @@ public class MAML {
 
         int numParams() { return inputDim * hiddenDim + hiddenDim + hiddenDim * outputDim + outputDim; }
 
-        Model clone() {
+        protected Model clone() {
             Model m = new Model(inputDim, hiddenDim, outputDim);
             for (int i = 0; i < inputDim; i++) System.arraycopy(w1[i], 0, m.w1[i], 0, hiddenDim);
             System.arraycopy(b1, 0, m.b1, 0, hiddenDim);

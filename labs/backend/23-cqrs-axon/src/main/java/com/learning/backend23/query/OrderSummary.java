@@ -1,4 +1,4 @@
-﻿package com.learning.backend23.query;
+package com.learning.backend23.query;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

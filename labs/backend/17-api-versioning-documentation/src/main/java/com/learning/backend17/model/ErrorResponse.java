@@ -1,4 +1,4 @@
-﻿package com.learning.backend17.model;
+package com.learning.backend17.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDateTime;

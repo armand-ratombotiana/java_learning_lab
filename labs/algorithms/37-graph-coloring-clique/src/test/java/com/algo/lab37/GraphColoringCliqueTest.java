@@ -1,4 +1,4 @@
-﻿package com.algo.lab37;
+package com.algo.lab37;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

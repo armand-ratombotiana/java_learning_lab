@@ -115,7 +115,7 @@ public final class StatisticalPower {
             double u = (t * x[i] + df) / (t + x[i] * Math.sqrt(df));
             integral += w[i] * studentTPdf(u, df);
         }
-        return normalCdf(ncp - t) + integral;
+        return normalCDF(ncp - t) + integral;
     }
 
     private static double nonCentralFCdf(double f, int df1, int df2, double ncp) {

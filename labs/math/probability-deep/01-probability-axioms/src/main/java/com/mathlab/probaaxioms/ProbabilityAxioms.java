@@ -1,4 +1,4 @@
-﻿package com.mathlab.probaaxioms;
+package com.mathlab.probaaxioms;
 
 import java.util.function.DoubleUnaryOperator;
 

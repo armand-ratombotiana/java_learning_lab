@@ -1,4 +1,4 @@
-﻿package com.learning.backend19.model;
+package com.learning.backend19.model;
 
 import java.time.Instant;
 

@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab17.spatial;
+package com.dsacademy.lab17.spatial;
 
 public class BoundingBox {
     public final double xMin, yMin, xMax, yMax;

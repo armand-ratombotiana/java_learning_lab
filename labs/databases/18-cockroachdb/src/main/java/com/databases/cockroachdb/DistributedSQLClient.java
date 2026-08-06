@@ -1,4 +1,4 @@
-﻿package com.databases.cockroachdb;
+package com.databases.cockroachdb;
 
 import java.sql.*;
 import java.util.*;

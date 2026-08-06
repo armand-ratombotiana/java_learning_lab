@@ -1,6 +1,6 @@
-﻿# Reactive Testing -- Code Deep Dive
+# Reactive Testing -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.05
+Package: com.javalab.lab05
 ### StepVerifier
 Verify reactive streams with assertions
 ### Virtual Time

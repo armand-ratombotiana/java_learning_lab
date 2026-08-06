@@ -1,4 +1,4 @@
-﻿package com.mathlab.integralfund;
+package com.mathlab.integralfund;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

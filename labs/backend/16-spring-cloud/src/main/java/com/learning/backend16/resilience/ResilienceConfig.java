@@ -1,4 +1,4 @@
-﻿package com.learning.backend16.resilience;
+package com.learning.backend16.resilience;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;

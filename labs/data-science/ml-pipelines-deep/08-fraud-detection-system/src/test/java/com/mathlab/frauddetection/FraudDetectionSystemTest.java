@@ -1,4 +1,4 @@
-﻿package com.mathlab.frauddetection;
+package com.mathlab.frauddetection;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

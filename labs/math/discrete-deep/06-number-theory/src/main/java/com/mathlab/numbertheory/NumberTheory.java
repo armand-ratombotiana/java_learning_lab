@@ -1,4 +1,4 @@
-﻿package com.mathlab.numbertheory;
+package com.mathlab.numbertheory;
 
 import java.util.function.DoubleUnaryOperator;
 

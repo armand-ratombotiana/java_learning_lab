@@ -1,4 +1,4 @@
-﻿package com.databases.cassandra;
+package com.databases.cassandra;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

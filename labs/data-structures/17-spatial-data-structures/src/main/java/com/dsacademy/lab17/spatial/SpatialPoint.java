@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab17.spatial;
+package com.dsacademy.lab17.spatial;
 
 import java.util.ArrayList;
 import java.util.List;

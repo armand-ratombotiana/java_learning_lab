@@ -1,6 +1,6 @@
-﻿# NIO Selectors -- Code Deep Dive
+# NIO Selectors -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.02
+Package: com.javalab.lab02
 
 ### Selector-based Event Loop
 Selector selector = Selector.open();

@@ -1,4 +1,4 @@
-﻿package com.mathlab.modelmonitoring;
+package com.mathlab.modelmonitoring;
 
 import java.util.function.DoubleUnaryOperator;
 

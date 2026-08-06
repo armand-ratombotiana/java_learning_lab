@@ -1,4 +1,4 @@
-﻿package com.mathlab.derivativesrules;
+package com.mathlab.derivativesrules;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

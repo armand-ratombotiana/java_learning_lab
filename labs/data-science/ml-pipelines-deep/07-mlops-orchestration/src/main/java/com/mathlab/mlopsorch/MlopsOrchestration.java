@@ -1,4 +1,4 @@
-﻿package com.mathlab.mlopsorch;
+package com.mathlab.mlopsorch;
 
 import java.util.function.DoubleUnaryOperator;
 

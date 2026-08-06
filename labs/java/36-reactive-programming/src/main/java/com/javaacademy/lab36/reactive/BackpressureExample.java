@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab36.reactive;
+package com.javaacademy.lab36.reactive;
 
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;

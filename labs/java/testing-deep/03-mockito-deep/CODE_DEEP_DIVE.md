@@ -1,6 +1,6 @@
-﻿# Mockito Deep Dive -- Code Deep Dive
+# Mockito Deep Dive -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.03
+Package: com.javalab.lab03
 ### Mock Creation
 @Mock creates mock, @InjectMocks injects dependencies
 ### Stubbing

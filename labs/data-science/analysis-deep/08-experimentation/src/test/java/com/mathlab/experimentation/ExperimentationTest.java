@@ -1,4 +1,4 @@
-﻿package com.mathlab.experimentation;
+package com.mathlab.experimentation;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

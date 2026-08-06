@@ -1,4 +1,4 @@
-package com.javalab.10;
+package com.javalab.lab10;
 
 import java.util.Objects;
 

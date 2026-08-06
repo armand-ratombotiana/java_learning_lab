@@ -1,4 +1,4 @@
-﻿package com.learning.backend17.exception;
+package com.learning.backend17.exception;
 
 import com.learning.backend17.model.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;

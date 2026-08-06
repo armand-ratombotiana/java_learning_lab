@@ -1,4 +1,4 @@
-﻿package com.mathlab.eigenvalues;
+package com.mathlab.eigenvalues;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

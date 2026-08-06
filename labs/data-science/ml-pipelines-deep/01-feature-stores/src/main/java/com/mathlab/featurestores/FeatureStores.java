@@ -1,4 +1,4 @@
-﻿package com.mathlab.featurestores;
+package com.mathlab.featurestores;
 
 import java.util.function.DoubleUnaryOperator;
 

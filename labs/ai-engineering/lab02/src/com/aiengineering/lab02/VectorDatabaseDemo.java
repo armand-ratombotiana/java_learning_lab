@@ -104,7 +104,8 @@ public class VectorDatabaseDemo {
                 .toArray();
 
             return Arrays.stream(topCentroids)
-                .flatMapToObj(i -> partitions.get(i).search(query, k).stream())
+                .mapToObj(i -> partitions.get(i).search(query, k).stream())
+                .flatMap(s -> s)
                 .sorted(Comparator.comparingDouble(ScoredResult::score))
                 .limit(k)
                 .toList();

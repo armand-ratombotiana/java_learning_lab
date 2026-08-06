@@ -1,4 +1,4 @@
-﻿package com.mathlab.integrationtech;
+package com.mathlab.integrationtech;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

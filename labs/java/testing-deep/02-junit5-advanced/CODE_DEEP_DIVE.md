@@ -1,6 +1,6 @@
-﻿# JUnit 5 Advanced -- Code Deep Dive
+# JUnit 5 Advanced -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.02
+Package: com.javalab.lab02
 ### Parameterized Tests
 @ParameterizedTest with @ValueSource, @CsvSource
 ### Dynamic Tests

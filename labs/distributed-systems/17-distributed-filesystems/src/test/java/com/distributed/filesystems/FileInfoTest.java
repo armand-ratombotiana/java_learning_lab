@@ -1,4 +1,4 @@
-﻿package com.distributed.filesystems;
+package com.distributed.filesystems;
 
 import org.junit.jupiter.api.Test;
 import java.time.Instant;

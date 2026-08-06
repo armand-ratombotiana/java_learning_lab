@@ -1,4 +1,4 @@
-﻿package com.mathlab.diffeq;
+package com.mathlab.diffeq;
 
 import java.util.function.DoubleUnaryOperator;
 

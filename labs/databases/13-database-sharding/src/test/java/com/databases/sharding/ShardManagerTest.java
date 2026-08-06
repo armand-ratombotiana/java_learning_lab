@@ -1,4 +1,4 @@
-﻿package com.databases.sharding;
+package com.databases.sharding;
 
 import org.junit.jupiter.api.*;
 import java.util.*;

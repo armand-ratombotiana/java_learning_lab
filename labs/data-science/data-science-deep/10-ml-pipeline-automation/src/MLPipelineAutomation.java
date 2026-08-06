@@ -2,6 +2,7 @@ package com.datascience.deep.lab10;
 
 import java.util.*;
 import java.util.function.DoubleUnaryOperator;
+import java.util.stream.IntStream;
 
 public final class MLPipelineAutomation {
 
@@ -185,8 +186,9 @@ public final class MLPipelineAutomation {
                 int n = X.length, p = X[0].length;
                 double meanY = Arrays.stream(y).average().orElseThrow();
                 for (int j = 0; j < p; j++) {
-                    double min = Arrays.stream(X).mapToDouble(r -> r[j]).min().orElseThrow();
-                    double max = Arrays.stream(X).mapToDouble(r -> r[j]).max().orElseThrow();
+                    final int col = j;
+                    double min = Arrays.stream(X).mapToDouble(r -> r[col]).min().orElseThrow();
+                    double max = Arrays.stream(X).mapToDouble(r -> r[col]).max().orElseThrow();
                     for (double thresh = min; thresh <= max; thresh += (max - min) / 10 + 1e-10) {
                         double sumL = 0, sumR = 0; int cntL = 0, cntR = 0;
                         for (int i = 0; i < n; i++) {

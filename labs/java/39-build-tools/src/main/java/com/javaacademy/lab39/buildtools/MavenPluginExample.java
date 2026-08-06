@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab39.buildtools;
+package com.javaacademy.lab39.buildtools;
 
 import java.io.*;
 import java.util.*;

@@ -19,6 +19,8 @@ public class ExperimentTrackingLab {
     /** Lightweight HTTP client for MLflow REST API calls. */
     static class MlflowTrackingClient {
         private final String trackingUri;
+        private boolean offline;
+        private int runCounter;
 
         MlflowTrackingClient(String trackingUri) {
             this.trackingUri = trackingUri;
@@ -31,6 +33,8 @@ public class ExperimentTrackingLab {
                 conn.setRequestMethod("POST");
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setDoOutput(true);
+                conn.setConnectTimeout(2000);
+                conn.setReadTimeout(2000);
                 try (OutputStream os = conn.getOutputStream()) {
                     os.write(json.getBytes(StandardCharsets.UTF_8));
                 }
@@ -39,16 +43,30 @@ public class ExperimentTrackingLab {
                     throw new RuntimeException("MLflow API error " + code + " for " + path);
                 }
                 return new String(conn.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+            } catch (java.net.ConnectException | java.net.SocketTimeoutException | java.net.UnknownHostException e) {
+                if (!offline) {
+                    offline = true;
+                    System.out.println("WARNING: MLflow server unreachable at " + trackingUri
+                        + " — switching to in-memory tracking (no data persisted)."
+                        + " Start mlflow server to persist runs.");
+                }
+                return localFallback(path);
             } catch (Exception e) {
                 throw new RuntimeException("MLflow API call failed: " + e.getMessage(), e);
             }
+        }
+
+        private String localFallback(String path) {
+            if (path.endsWith("/experiments/create")) return "{\"experiment_id\":\"local-1\"}";
+            if (path.endsWith("/runs/create")) return "{\"run_id\":\"local-run-" + (++runCounter) + "\"}";
+            return "{}";
         }
 
         String createExperiment(String name) {
             String json = "{\"name\":\"" + name + "\"}";
             String resp = postJson("/api/2.0/mlflow/experiments/create", json);
             // Extract experiment_id from response
-            return resp.replaceAll(".*\"experiment_id\":\"(\\d+)\".*", "$1");
+            return resp.replaceAll(".*\"experiment_id\":\"([^\"]+)\".*", "$1");
         }
 
         String createRun(String experimentId) {

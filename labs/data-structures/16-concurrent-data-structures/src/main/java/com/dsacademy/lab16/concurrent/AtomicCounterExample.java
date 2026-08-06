@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab16.concurrent;
+package com.dsacademy.lab16.concurrent;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;

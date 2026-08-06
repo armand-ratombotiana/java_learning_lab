@@ -1,4 +1,4 @@
-﻿package com.learning.backend23.query;
+package com.learning.backend23.query;
 
 import com.learning.backend23.event.OrderCreatedEvent;
 import org.axonframework.eventhandling.EventHandler;

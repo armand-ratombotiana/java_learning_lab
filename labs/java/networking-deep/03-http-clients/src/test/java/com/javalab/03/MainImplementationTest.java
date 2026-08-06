@@ -1,4 +1,4 @@
-﻿package com.javalab.03;
+package com.javalab.lab03;
 
 import org.junit.jupiter.api.*;
 import java.net.http.*;

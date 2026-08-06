@@ -1,4 +1,4 @@
-﻿package com.mathlab.appliedla;
+package com.mathlab.appliedla;
 
 import java.util.function.DoubleUnaryOperator;
 

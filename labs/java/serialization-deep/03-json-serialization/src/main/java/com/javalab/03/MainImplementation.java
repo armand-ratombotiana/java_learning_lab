@@ -1,4 +1,4 @@
-﻿package com.javalab.03;
+package com.javalab.lab03;
 
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;

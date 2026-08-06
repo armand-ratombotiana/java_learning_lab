@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab33.security;
+package com.javaacademy.lab33.security;
 
 import javax.crypto.*;
 import javax.crypto.spec.*;

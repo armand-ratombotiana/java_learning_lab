@@ -1,4 +1,4 @@
-﻿package com.mathlab.logicproofs;
+package com.mathlab.logicproofs;
 
 import java.util.function.DoubleUnaryOperator;
 

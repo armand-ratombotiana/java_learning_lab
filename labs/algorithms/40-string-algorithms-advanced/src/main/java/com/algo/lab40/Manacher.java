@@ -1,4 +1,4 @@
-﻿package com.algo.lab40;
+package com.algo.lab40;
 
 /**
  * Manacher's algorithm for finding the longest palindromic substring in O(n).

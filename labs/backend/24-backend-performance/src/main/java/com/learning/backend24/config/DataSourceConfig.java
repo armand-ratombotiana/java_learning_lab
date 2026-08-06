@@ -1,4 +1,4 @@
-﻿package com.learning.backend24.config;
+package com.learning.backend24.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

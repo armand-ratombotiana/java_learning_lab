@@ -1,4 +1,4 @@
-﻿package com.learning.backend21.config;
+package com.learning.backend21.config;
 
 import com.learning.backend21.tenant.TenantContext;
 import com.zaxxer.hikari.HikariConfig;

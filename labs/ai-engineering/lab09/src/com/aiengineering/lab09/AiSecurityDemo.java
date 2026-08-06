@@ -138,7 +138,7 @@ public class AiSecurityDemo {
             System.out.println("  Recent audit log entries:");
             log.subList(Math.max(0, log.size() - count), log.size())
                .forEach(e -> System.out.printf("    [%tT] %s %s %s on %s — %s%n",
-                   e.timestamp, e.user, e.action, e.success ? "OK" : "FAIL",
+                   Date.from(e.timestamp), e.user, e.action, e.success ? "OK" : "FAIL",
                    e.resource, e.details));
         }
 

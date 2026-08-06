@@ -1,4 +1,4 @@
-﻿package com.dsacademy.lab18.circularbuffer;
+package com.dsacademy.lab18.circularbuffer;
 
 import java.util.Arrays;
 

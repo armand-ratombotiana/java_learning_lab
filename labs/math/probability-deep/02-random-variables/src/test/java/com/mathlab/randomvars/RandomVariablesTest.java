@@ -1,4 +1,4 @@
-﻿package com.mathlab.randomvars;
+package com.mathlab.randomvars;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

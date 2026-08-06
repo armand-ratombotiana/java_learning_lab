@@ -1,6 +1,6 @@
-﻿# RSocket -- Code Deep Dive
+# RSocket -- Code Deep Dive
 ## Main Implementation
-Package: com.javalab.04
+Package: com.javalab.lab04
 ### Request/Response
 RSocket requester/responder interaction
 ### Fire-and-Forget

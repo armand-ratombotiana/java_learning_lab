@@ -1,4 +1,4 @@
-﻿package com.mathlab.combinatorics;
+package com.mathlab.combinatorics;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

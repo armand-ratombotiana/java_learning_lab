@@ -1,4 +1,4 @@
-﻿package com.mathlab.innerproducts;
+package com.mathlab.innerproducts;
 
 import java.util.function.DoubleUnaryOperator;
 

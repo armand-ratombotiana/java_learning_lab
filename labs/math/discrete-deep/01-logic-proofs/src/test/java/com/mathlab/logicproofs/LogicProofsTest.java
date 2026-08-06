@@ -1,4 +1,4 @@
-﻿package com.mathlab.logicproofs;
+package com.mathlab.logicproofs;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

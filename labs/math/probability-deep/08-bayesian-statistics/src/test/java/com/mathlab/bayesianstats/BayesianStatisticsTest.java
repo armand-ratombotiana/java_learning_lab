@@ -1,4 +1,4 @@
-﻿package com.mathlab.bayesianstats;
+package com.mathlab.bayesianstats;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

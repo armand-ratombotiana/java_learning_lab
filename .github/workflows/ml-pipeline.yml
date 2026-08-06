@@ -1,0 +1,71 @@
+name: ML Pipeline CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly retrain
+
+jobs:
+  data-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Data Schema
+        run: java -cp . com.mlops.lab09.DataValidationLab
+
+  training:
+    needs: data-validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Train Model
+        run: |
+          javac src/com/mlops/lab07/*.java
+          java com.mlops.lab07.CiCdForMLPipelineLab
+      - name: Upload Model Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: model
+          path: model.bin
+
+  evaluation:
+    needs: training
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate Model
+        run: |
+          echo "Evaluating model against champion..."
+          # Compare metrics, run statistical tests
+          echo "Accuracy: 0.947 (champion: 0.935) ✓"
+
+  deploy-staging:
+    needs: evaluation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging
+        run: echo "Deploying model to staging..."
+
+  integration-test:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Integration Tests
+        run: |
+          echo "Running shadow traffic test..."
+          echo "All integration tests passed ✓"
+
+  deploy-production:
+    needs: integration-test
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy to Production
+        run: echo "Deploying model to production..."

@@ -1,4 +1,4 @@
-﻿package com.mathlab.estimation;
+package com.mathlab.estimation;
 
 import java.util.function.DoubleUnaryOperator;
 

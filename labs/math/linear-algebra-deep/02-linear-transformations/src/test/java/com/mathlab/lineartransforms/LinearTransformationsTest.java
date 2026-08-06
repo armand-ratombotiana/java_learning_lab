@@ -1,4 +1,4 @@
-﻿package com.mathlab.lineartransforms;
+package com.mathlab.lineartransforms;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

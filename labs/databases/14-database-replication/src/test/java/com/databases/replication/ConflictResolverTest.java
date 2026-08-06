@@ -1,4 +1,4 @@
-﻿package com.databases.replication;
+package com.databases.replication;
 
 import org.junit.jupiter.api.*;
 import java.util.*;

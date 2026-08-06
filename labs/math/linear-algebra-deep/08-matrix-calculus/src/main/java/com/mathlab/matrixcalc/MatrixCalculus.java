@@ -1,4 +1,4 @@
-﻿package com.mathlab.matrixcalc;
+package com.mathlab.matrixcalc;
 
 import java.util.function.DoubleUnaryOperator;
 

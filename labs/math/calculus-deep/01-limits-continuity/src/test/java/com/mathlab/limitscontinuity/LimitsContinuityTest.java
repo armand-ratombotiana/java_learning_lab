@@ -1,4 +1,4 @@
-﻿package com.mathlab.limitscontinuity;
+package com.mathlab.limitscontinuity;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

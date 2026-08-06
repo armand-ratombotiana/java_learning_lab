@@ -1,4 +1,4 @@
-﻿package com.mathlab.hypothesistesting;
+package com.mathlab.hypothesistesting;
 
 import java.util.function.DoubleUnaryOperator;
 

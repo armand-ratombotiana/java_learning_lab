@@ -1,4 +1,4 @@
-﻿package com.javalab.05;
+package com.javalab.lab05;
 import org.junit.jupiter.api.*;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;

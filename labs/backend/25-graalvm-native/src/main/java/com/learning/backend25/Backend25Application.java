@@ -1,4 +1,4 @@
-﻿package com.learning.backend25;
+package com.learning.backend25;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

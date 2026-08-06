@@ -1,4 +1,4 @@
-﻿package com.mathlab.modeltraining;
+package com.mathlab.modeltraining;
 
 import java.util.function.DoubleUnaryOperator;
 

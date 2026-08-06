@@ -1,4 +1,4 @@
-﻿package com.javaacademy.lab36.reactive;
+package com.javaacademy.lab36.reactive;
 
 import org.junit.jupiter.api.*;
 import reactor.core.publisher.Flux;

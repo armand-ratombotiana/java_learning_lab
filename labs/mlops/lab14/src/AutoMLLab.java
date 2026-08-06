@@ -103,10 +103,10 @@ public class AutoMLLab {
 
     /** Simulates model training and returns a metric (higher is better). */
     static double simulateTraining(Map<String, Object> hp, Random rng) {
-        double lr = (double) hp.getOrDefault("learning_rate", 0.01);
-        int batchSize = (int) hp.getOrDefault("batch_size", 32);
-        int hiddenUnits = (int) hp.getOrDefault("hidden_units", 128);
-        double dropout = (double) hp.getOrDefault("dropout", 0.2);
+        double lr = ((Number) hp.getOrDefault("learning_rate", 0.01)).doubleValue();
+        int batchSize = ((Number) hp.getOrDefault("batch_size", 32)).intValue();
+        int hiddenUnits = ((Number) hp.getOrDefault("hidden_units", 128)).intValue();
+        double dropout = ((Number) hp.getOrDefault("dropout", 0.2)).doubleValue();
         String optimizer = (String) hp.getOrDefault("optimizer", "adam");
 
         // Simulate accuracy as a function of hyperparameters

@@ -1,4 +1,4 @@
-﻿package com.mathlab.distributions;
+package com.mathlab.distributions;
 
 import java.util.function.DoubleUnaryOperator;
 
