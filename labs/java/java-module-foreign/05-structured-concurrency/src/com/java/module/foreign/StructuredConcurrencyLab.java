@@ -31,27 +31,27 @@ public class StructuredConcurrencyLab {
 
     public AggregateResult fetchAll() throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> fa = scope.fork(() -> callService("ServiceA", 100, false));
-            Future<String> fb = scope.fork(() -> callService("ServiceB", 150, false));
-            Future<String> fc = scope.fork(() -> callService("ServiceC", 80, false));
+            StructuredTaskScope.Subtask<String> fa = scope.fork(() -> callService("ServiceA", 100, false));
+            StructuredTaskScope.Subtask<String> fb = scope.fork(() -> callService("ServiceB", 150, false));
+            StructuredTaskScope.Subtask<String> fc = scope.fork(() -> callService("ServiceC", 80, false));
 
             scope.join();
             scope.throwIfFailed();
 
-            return new AggregateResult(fa.resultNow(), fb.resultNow(), fc.resultNow());
+            return new AggregateResult(fa.get(), fb.get(), fc.get());
         }
     }
 
     // --- Failure propagation ---
     public AggregateResult fetchWithFailure() {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> fa = scope.fork(() -> callService("ServiceA", 50, false));
-            Future<String> fb = scope.fork(() -> callService("ServiceB", 100, true)); // fails
-            Future<String> fc = scope.fork(() -> callService("ServiceC", 200, false));
+            StructuredTaskScope.Subtask<String> fa = scope.fork(() -> callService("ServiceA", 50, false));
+            StructuredTaskScope.Subtask<String> fb = scope.fork(() -> callService("ServiceB", 100, true)); // fails
+            StructuredTaskScope.Subtask<String> fc = scope.fork(() -> callService("ServiceC", 200, false));
 
             scope.join();
             scope.throwIfFailed();
-            return new AggregateResult(fa.resultNow(), fb.resultNow(), fc.resultNow());
+            return new AggregateResult(fa.get(), fb.get(), fc.get());
         } catch (Exception e) {
             System.out.println("Caught: " + e.getMessage());
             return null;
@@ -73,15 +73,15 @@ public class StructuredConcurrencyLab {
     // --- Timeout with joinUntil ---
     public String fetchWithTimeout() throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> fa = scope.fork(() -> callService("Slowpoke", 5000, false));
+            StructuredTaskScope.Subtask<String> fa = scope.fork(() -> callService("Slowpoke", 5000, false));
 
             scope.joinUntil(Instant.now().plusMillis(200));
 
-            if (!fa.isDone()) {
+            if (fa.state() != StructuredTaskScope.Subtask.State.SUCCESS) {
                 scope.shutdown();
                 throw new TimeoutException("Service timed out");
             }
-            return fa.resultNow();
+            return fa.get();
         }
     }
 

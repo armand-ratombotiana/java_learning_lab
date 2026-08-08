@@ -23,7 +23,7 @@ public class ApiComposer {
             }
         }
         try {
-            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join(5, TimeUnit.SECONDS);
+            CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).get(5, TimeUnit.SECONDS);
         } catch (Exception e) {
             // timeout - collect partial results
         }
@@ -43,9 +43,8 @@ public class ApiComposer {
 }
 
 record ServiceResponse(String serviceName, Object data, String error) {}
-record ComposedResponse(String userId) {
-    private final List<ServiceResponse> responses = new ArrayList<>();
-    public ComposedResponse(String userId) { this.userId = userId; }
+record ComposedResponse(String userId, List<ServiceResponse> responses) {
+    ComposedResponse(String userId) { this(userId, new ArrayList<>()); }
     public void addServiceResponse(ServiceResponse sr) { responses.add(sr); }
     public List<ServiceResponse> getResponses() { return List.copyOf(responses); }
     public boolean hasErrors() { return responses.stream().anyMatch(r -> r.error() != null); }

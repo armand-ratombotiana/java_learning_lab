@@ -9,10 +9,11 @@ public class IterativeSegmentTree {
     public IterativeSegmentTree(int[] arr) {
         if (arr == null) throw new IllegalArgumentException("Array cannot be null");
         this.n = arr.length;
-        this.size = 1;
-        while (this.size < n) {
-            this.size <<= 1;
+        int sz = 1;
+        while (sz < n) {
+            sz <<= 1;
         }
+        this.size = sz;
         this.tree = new int[2 * size];
         for (int i = 0; i < n; i++) {
             tree[size + i] = arr[i];

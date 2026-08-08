@@ -2,6 +2,7 @@ package com.cloud.awsfund;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Ec2InstanceLifecycle {
 

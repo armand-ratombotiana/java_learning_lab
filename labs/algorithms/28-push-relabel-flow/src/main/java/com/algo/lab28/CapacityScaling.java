@@ -1,5 +1,7 @@
 package com.algo.lab28;
 
+import java.util.Arrays;
+
 public class CapacityScaling {
 
     private int n;

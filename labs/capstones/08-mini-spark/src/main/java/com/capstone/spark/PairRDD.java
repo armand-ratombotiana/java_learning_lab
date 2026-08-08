@@ -74,8 +74,6 @@ public class PairRDD<K, V> {
 
     public Map<K, List<V>> collectAsMap() { return Map.copyOf(pairs); }
 
-    public Set<K> keys() { return pairs.keySet(); }
-
     public long count() { return pairs.values().stream().mapToLong(List::size).sum(); }
 
     public int numPartitions() { return numPartitions; }

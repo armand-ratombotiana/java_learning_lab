@@ -1,8 +1,6 @@
 package com.javalab.lab03;
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.databind.*;
-import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class MainImplementation {
@@ -39,28 +37,63 @@ public class MainImplementation {
         public int hashCode() { return Objects.hash(name, age, email); }
     }
     
-    private final ObjectMapper mapper;
+    public MainImplementation() {}
     
-    public MainImplementation() {
-        this.mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    public String toJson(Person person) {
+        return "{\"name\":\"" + escape(person.name) + "\",\"age\":" + person.age
+                + ",\"email\":\"" + escape(person.email) + "\"}";
     }
     
-    public String toJson(Person person) throws JsonProcessingException {
-        return mapper.writeValueAsString(person);
+    public Person fromJson(String json) {
+        Person person = new Person();
+        int keyStart = json.indexOf('"');
+        while (keyStart >= 0) {
+            int keyEnd = json.indexOf('"', keyStart + 1);
+            if (keyEnd < 0) break;
+            String key = json.substring(keyStart + 1, keyEnd);
+            int colon = json.indexOf(':', keyEnd);
+            int cursor = colon + 1;
+            while (cursor < json.length() && Character.isWhitespace(json.charAt(cursor))) cursor++;
+            if (cursor < json.length() && json.charAt(cursor) == '"') {
+                int valueStart = cursor + 1;
+                int valueEnd = valueStart;
+                while (valueEnd < json.length() && json.charAt(valueEnd) != '"') {
+                    if (json.charAt(valueEnd) == '\\') valueEnd++;
+                    valueEnd++;
+                }
+                String value = unescape(json.substring(valueStart, valueEnd));
+                switch (key) {
+                    case "name" -> person.setName(value);
+                    case "email" -> person.setEmail(value);
+                }
+                cursor = valueEnd + 1;
+            } else {
+                int valueEnd = json.indexOf(',', cursor);
+                if (valueEnd < 0) valueEnd = json.indexOf('}', cursor);
+                if (valueEnd < 0) valueEnd = json.length();
+                String value = json.substring(cursor, valueEnd).trim();
+                if (key.equals("age")) person.setAge(Integer.parseInt(value));
+                cursor = valueEnd;
+            }
+            keyStart = json.indexOf('"', cursor);
+        }
+        return person;
     }
     
-    public Person fromJson(String json) throws JsonProcessingException {
-        return mapper.readValue(json, Person.class);
+    public byte[] toByteArray(Person person) {
+        return toJson(person).getBytes(StandardCharsets.UTF_8);
     }
     
-    public byte[] toByteArray(Person person) throws JsonProcessingException {
-        return mapper.writeValueAsBytes(person);
+    public Person fromByteArray(byte[] data) {
+        return fromJson(new String(data, StandardCharsets.UTF_8));
     }
     
-    public Person fromByteArray(byte[] data) throws IOException {
-        return mapper.readValue(data, Person.class);
+    private static String escape(String s) {
+        if (s == null) return "";
+        return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
     
-    public ObjectMapper getMapper() { return mapper; }
+    private static String unescape(String s) {
+        return s.replace("\\\"", "\"").replace("\\\\", "\\");
+    }
 }

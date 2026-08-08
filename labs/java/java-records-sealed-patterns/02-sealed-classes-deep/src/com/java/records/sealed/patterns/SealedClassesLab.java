@@ -1,6 +1,7 @@
 package com.java.records.sealed.patterns;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Lab 02: Sealed Classes Deep Dive — sealed hierarchies, permits,

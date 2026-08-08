@@ -3,6 +3,7 @@ package com.security11;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -64,9 +65,9 @@ public class SamlAssertionProcessor {
         NodeList signatures = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
         if (signatures.getLength() == 0) return false;
         Element signatureEl = (Element) signatures.item(0);
-        DOMValidateContext valContext = new DOMValidateContext(publicKey, signatureEl);
-        XMLSignature signature = org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI.unmarshal(
-            XMLSignature.class, signatureEl);
+DOMValidateContext valContext = new DOMValidateContext(publicKey, signatureEl);
+        XMLSignatureFactory factory = XMLSignatureFactory.getInstance("DOM");
+        XMLSignature signature = factory.unmarshalXMLSignature(valContext);
         return signature.validate(valContext);
     }
 

@@ -9,7 +9,7 @@ public class TaskExecutor {
     private final String executorId;
     private final ExecutorService threadPool;
     private final AtomicLong taskIdGen = new AtomicLong(0);
-    private final Map<Long, TaskResult> results = new ConcurrentHashMap<>();
+    private final Map<Long, TaskResult<?>> results = new ConcurrentHashMap<>();
     private volatile boolean running = true;
 
     public record Task<T>(long taskId, String taskType, Callable<T> callable, Instant submittedAt) {}

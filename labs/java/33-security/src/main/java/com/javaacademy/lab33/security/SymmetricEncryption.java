@@ -3,6 +3,7 @@ package com.javaacademy.lab33.security;
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.security.*;
+import java.security.spec.*;
 import java.util.HexFormat;
 
 public class SymmetricEncryption {

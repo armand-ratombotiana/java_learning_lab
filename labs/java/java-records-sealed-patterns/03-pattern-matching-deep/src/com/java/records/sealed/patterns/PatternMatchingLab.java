@@ -47,7 +47,7 @@ public class PatternMatchingLab {
         return switch (obj) {
             case Pair(Person(String name, int age), Person(String name2, int age2)) ->
                     name + "(" + age + ") and " + name2 + "(" + age2 + ")";
-            case Pair(Person(String name, int age), null) ->
+            case Pair(Person(String name, int age), var second) when second == null ->
                     name + "(" + age + ") and null";
             case Pair(var first, var second) ->
                     "Pair of " + first + " and " + second;

@@ -3,6 +3,7 @@ package com.security01;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 
 /**
@@ -38,7 +39,7 @@ public class PasswordHasher {
      * In production, use BCryptPasswordEncoder from Spring Security.
      */
     public static String hashPassword(String password, byte[] salt)
-            throws NoSuchAlgorithmException {
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         var spec = new javax.crypto.spec.PBEKeySpec(
                 password.toCharArray(), salt, HASH_ITERATIONS, HASH_LENGTH);
         var pbkdf2 = javax.crypto.SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
@@ -53,7 +54,7 @@ public class PasswordHasher {
      * to prevent timing side-channel attacks.
      */
     public static boolean verifyPassword(String password, String storedHash)
-            throws NoSuchAlgorithmException {
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         String[] parts = storedHash.split(":");
         int iterations = Integer.parseInt(parts[0]);
         byte[] salt = Base64.getDecoder().decode(parts[1]);

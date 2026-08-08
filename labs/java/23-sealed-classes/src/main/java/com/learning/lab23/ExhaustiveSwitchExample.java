@@ -8,9 +8,9 @@ public class ExhaustiveSwitchExample {
     public static void showExhaustiveSwitch() {
         System.out.println("=== Exhaustive Switch on Sealed Types ===");
 
-        Weather w1 = new Sunny();
-        Weather w2 = new Rainy();
-        Weather w3 = new Windy();
+        Weather w1 = new Sunny(28);
+        Weather w2 = new Rainy(12.5);
+        Weather w3 = new Windy(30);
 
         System.out.println("Sunny: " + describeWeather(w1));
         System.out.println("Rainy: " + describeWeather(w2));

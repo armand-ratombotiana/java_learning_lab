@@ -32,7 +32,7 @@ public class SparkContext {
         return new RDD<>(List.of());
     }
 
-    public <T> RDD<T> textFile(String path) {
+    public RDD<String> textFile(String path) {
         return new RDD<>(List.of("line1", "line2", "line3"), 2);
     }
 

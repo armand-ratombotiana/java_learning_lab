@@ -16,7 +16,7 @@ public class SqlOptimizer {
 
     public void addTableStats(TableStats ts) { tables.put(ts.name(), ts); }
     public void addIndexStats(IndexStats is) { indexes.put(is.indexName(), is); }
-    public void addColumnStats(ColumnStats cs) { columns.put(cs.col(), cs); }
+    public void addColumnStats(ColumnStats cs) { columns.put(cs.colName(), cs); }
 
     public double estimateFullScanCost(String table) {
         var ts = tables.get(table);
@@ -28,7 +28,7 @@ public class SqlOptimizer {
         var idx = indexes.get(indexName);
         if (idx == null) return Double.MAX_VALUE;
         // cost = B-tree height + leaf blocks scanned + table access cost
-        return idx.blevelDepth() + (idx.leafBlocks() * 0.1) + (idx.clusteringFactor() * 0.01);
+        return idx.blevel() + (idx.leafBlocks() * 0.1) + (idx.clusteringFactor() * 0.01);
     }
 
     public double estimateJoinCost(String table1, String table2, String joinColumn, double selectivity) {
@@ -52,7 +52,7 @@ public class SqlOptimizer {
         if (hasIndex) {
             cost = indexes.values().stream()
                 .filter(i -> i.indexName().contains(table))
-                .mapToDouble(this::estimateIndexScanCost)
+                .mapToDouble(i -> estimateIndexScanCost(i.indexName()))
                 .min().orElse(cost);
         }
         return new QueryPlan(

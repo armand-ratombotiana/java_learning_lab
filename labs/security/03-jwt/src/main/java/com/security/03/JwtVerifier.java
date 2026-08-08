@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.time.Instant;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Demonstrates JWT verification for both HMAC and RSA signatures.
@@ -138,7 +140,9 @@ public class JwtVerifier {
         System.out.println("=== JWT Verification ===\n");
 
         // Create a valid HMAC JWT
-        var claims = Map.of("sub", "user123", "name", "Alice");
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("sub", "user123");
+        claims.put("name", "Alice");
         String validJwt = JwtCreator.createHmacJwt(claims);
         System.out.println("Valid JWT: " + validJwt);
         boolean result = verifyHmacJwt(validJwt);

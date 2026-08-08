@@ -62,7 +62,7 @@ public class CostOptimizationEngine {
     }
 
     public static class SpotFleetManager {
-        private final Set<String> activeSpotInstances = new ConcurrentHashSet<>();
+        private final ConcurrentHashSet<String> activeSpotInstances = new ConcurrentHashSet<>();
         private final Random random = new Random();
 
         public String requestSpotInstance(String instanceType, double maxPrice) {

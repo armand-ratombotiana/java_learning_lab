@@ -1,24 +1,12 @@
 package com.javalab.lab04;
 
-import jakarta.xml.bind.annotation.*;
-import jakarta.xml.bind.*;
-import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public class MainImplementation {
     
-    @XmlAttribute
     private int id;
-    
-    @XmlElement
     private String name;
-    
-    @XmlElement
     private int age;
-    
-    @XmlTransient
-    private String internalNotes;
     
     public MainImplementation() {}
     
@@ -35,27 +23,63 @@ public class MainImplementation {
     public int getAge() { return age; }
     public void setAge(int age) { this.age = age; }
     
-    public String toXml() throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(MainImplementation.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        StringWriter sw = new StringWriter();
-        marshaller.marshal(this, sw);
-        return sw.toString();
+    public String toXml() {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                + "<main id=\"" + id + "\">\n"
+                + "  <name>" + escape(name) + "</name>\n"
+                + "  <age>" + age + "</age>\n"
+                + "</main>";
     }
     
-    public static MainImplementation fromXml(String xml) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(MainImplementation.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        StringReader reader = new StringReader(xml);
-        return (MainImplementation) unmarshaller.unmarshal(reader);
+    public static MainImplementation fromXml(String xml) {
+        MainImplementation obj = new MainImplementation();
+        obj.id = parseAttributeInt(xml, "id");
+        obj.name = parseElement(xml, "name");
+        obj.age = parseElementInt(xml, "age");
+        return obj;
     }
     
-    public byte[] toByteArray() throws JAXBException {
-        return toXml().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    public byte[] toByteArray() {
+        return toXml().getBytes(StandardCharsets.UTF_8);
     }
     
-    public static MainImplementation fromByteArray(byte[] data) throws JAXBException {
-        return fromXml(new String(data, java.nio.charset.StandardCharsets.UTF_8));
+    public static MainImplementation fromByteArray(byte[] data) {
+        return fromXml(new String(data, StandardCharsets.UTF_8));
+    }
+    
+    private static String parseAttribute(String xml, String attr) {
+        String marker = attr + "=\"";
+        int start = xml.indexOf(marker);
+        if (start < 0) return "";
+        start += marker.length();
+        int end = xml.indexOf('"', start);
+        return end < 0 ? "" : unescape(xml.substring(start, end));
+    }
+    
+    private static int parseAttributeInt(String xml, String attr) {
+        return Integer.parseInt(parseAttribute(xml, attr).trim());
+    }
+    
+    private static String parseElement(String xml, String tag) {
+        String open = "<" + tag + ">";
+        String close = "</" + tag + ">";
+        int start = xml.indexOf(open);
+        if (start < 0) return "";
+        start += open.length();
+        int end = xml.indexOf(close, start);
+        return end < 0 ? "" : unescape(xml.substring(start, end));
+    }
+    
+    private static int parseElementInt(String xml, String tag) {
+        return Integer.parseInt(parseElement(xml, tag).trim());
+    }
+    
+    private static String escape(String s) {
+        if (s == null) return "";
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
+    }
+    
+    private static String unescape(String s) {
+        return s.replace("&quot;", "\"").replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&");
     }
 }

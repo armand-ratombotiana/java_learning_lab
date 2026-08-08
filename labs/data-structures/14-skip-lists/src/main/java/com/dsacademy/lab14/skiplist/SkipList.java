@@ -7,7 +7,7 @@ public class SkipList<K extends Comparable<K>, V> {
     private static final int MAX_LEVEL = 32;
     private static final double P = 0.5;
 
-    private final SkipListNode<K, V> header;
+    final SkipListNode<K, V> header;
     private final Random random;
     private int size;
     private int currentMaxLevel;

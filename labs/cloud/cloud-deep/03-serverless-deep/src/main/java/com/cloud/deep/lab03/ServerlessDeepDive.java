@@ -49,6 +49,8 @@ public class ServerlessDeepDive {
                 phase = FunctionPhase.INIT;
                 init();
                 phase = FunctionPhase.INVOKE;
+            } else {
+                phase = FunctionPhase.INVOKE;
             }
             long start = System.nanoTime();
             simulateWork(50 + rand.nextInt(500));

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class RecommendationEngine {
     private final UserBehaviorStore userBehavior = new UserBehaviorStore();
-    private final Map<String, Set<String>> productPurchaseGraph = new ConcurrentHashMap<>();
     private static final int DEFAULT_RECOMMENDATIONS = 10;
     private static final double MIN_SIMILARITY = 0.1;
 
@@ -38,7 +37,6 @@ public class RecommendationEngine {
 
         public void recordPurchase(String userId, String productId) {
             recordAction(new UserAction(userId, productId, "purchase", System.currentTimeMillis()));
-            productPurchaseGraph.computeIfAbsent(productId, k -> ConcurrentHashMap.newKeySet());
         }
 
         public int totalUsers() { return userProducts.size(); }

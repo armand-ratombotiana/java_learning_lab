@@ -127,7 +127,7 @@ public class MathematicalOptimization {
         double[] x = start.clone();
         double lambda = 0;
         for (int iter = 0; iter < iterations; iter++) {
-            double[] gradF = numericalGradient(f, x);
+            double[] gradF = numericalGradient(v -> f.apply(v), x);
             double[] gradG = numericalGradient(v -> constraints.apply(x)[0], x); // simplified
             double gx = constraints.apply(x)[0];
             for (int i = 0; i < n; i++) {
@@ -150,7 +150,7 @@ public class MathematicalOptimization {
         return grad;
     }
 
-    public static MultivariateFunction numericalGradient(MultivariateFunction f) {
+    public static GradientFunction numericalGradient(MultivariateFunction f) {
         return x -> numericalGradient(f, x);
     }
 

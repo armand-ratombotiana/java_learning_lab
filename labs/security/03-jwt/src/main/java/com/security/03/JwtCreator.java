@@ -108,11 +108,10 @@ public class JwtCreator {
     }
 
     public static void main(String[] args) throws Exception {
-        var claims = Map.of(
-            "sub", "user123",
-            "name", "Alice Johnson",
-            "roles", "admin,user"
-        );
+        var claims = new TreeMap<String, Object>();
+        claims.put("sub", "user123");
+        claims.put("name", "Alice Johnson");
+        claims.put("roles", "admin,user");
 
         System.out.println("=== JWT Creation ===\n");
 

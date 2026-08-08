@@ -60,6 +60,8 @@ class Incident {
     void addSME(String team, String person) { smes.add(person + " (" + team + ")"); }
     void logEvent(String description) { events.add("[" + Instant.now() + "] " + description); }
 
+    String id() { return id; }
+
     List<String> timeline() {
         var tl = new ArrayList<String>();
         tl.add("Incident: " + id + " (" + severity + ") - " + title);

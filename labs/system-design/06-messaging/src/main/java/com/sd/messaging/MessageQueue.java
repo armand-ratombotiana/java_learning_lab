@@ -2,6 +2,7 @@ package com.sd.messaging;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.*;
 
 public class MessageQueue {
 
@@ -21,7 +22,7 @@ public class MessageQueue {
 
     public static class Queue {
         private final String name;
-        private final Queue<QueueMessage> messages = new ConcurrentLinkedQueue<>();
+        private final java.util.Queue<QueueMessage> messages = new ConcurrentLinkedQueue<>();
         private final AtomicLong counter = new AtomicLong(0);
 
         public Queue(String name) { this.name = name; }

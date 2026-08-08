@@ -80,6 +80,8 @@ public class LifecycleRules {
             return applicable;
         }
 
+        public List<LifecycleRule> getAllRules() { return List.copyOf(rules); }
+
         public void shutdown() { scheduler.shutdown(); }
     }
 
@@ -99,7 +101,7 @@ public class LifecycleRules {
             .addTransition(StorageClass.DEEP_ARCHIVE, 180));
 
         System.out.println("\n=== Lifecycle Rules ===");
-        rules.forEach(System.out::println);
+        manager.getAllRules().forEach(System.out::println);
 
         System.out.println("\nRules for 'logs/app.log':");
         manager.getApplicableRules("logs/app.log").forEach(r -> System.out.println("  " + r.id));

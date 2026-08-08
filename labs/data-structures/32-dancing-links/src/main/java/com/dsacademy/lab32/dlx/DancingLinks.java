@@ -14,22 +14,18 @@ public final class DancingLinks {
         build(matrix);
     }
 
-    private static final class ColumnNode {
-        ColumnNode left, right, up, down;
+    private static final class ColumnNode extends DataNode {
         String name;
         int size;
 
         ColumnNode(String name) {
+            super(null, 0);
             this.name = name;
-            this.left = this;
-            this.right = this;
-            this.up = this;
-            this.down = this;
             this.size = 0;
         }
     }
 
-    private static final class DataNode {
+    private static class DataNode {
         DataNode left, right, up, down;
         ColumnNode column;
         int rowId;

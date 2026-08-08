@@ -12,7 +12,8 @@ public class AsyncMigrationCoordinator {
         String jobId = UUID.randomUUID().toString();
         MigrationJob job = new MigrationJob(jobId, jobName, batchSize);
         activeJobs.put(jobId, job);
-        ScheduledFuture<?> future = scheduler.scheduleAtFixedRate(() -> {
+final ScheduledFuture<?>[] future = new ScheduledFuture<?>[1];
+        future[0] = scheduler.scheduleAtFixedRate(() -> {
             try {
                 migrationLogic.run();
                 job.incrementProgress();
@@ -20,11 +21,11 @@ public class AsyncMigrationCoordinator {
                     job.complete();
                     List<Runnable> callbacks = onComplete.get(jobId);
                     if (callbacks != null) callbacks.forEach(Runnable::run);
-                    future.cancel(false);
+                    future[0].cancel(false);
                 }
             } catch (Exception e) {
                 job.fail(e.getMessage());
-                future.cancel(false);
+                future[0].cancel(false);
             }
         }, 0, 1, TimeUnit.SECONDS);
         return jobId;

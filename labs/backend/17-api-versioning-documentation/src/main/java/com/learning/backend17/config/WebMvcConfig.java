@@ -4,17 +4,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.util.patterns.PathPatternParser;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
-    public void addPathMatchConfigurer(PathMatchConfigurer configurer) {
+    public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.addPathPrefix("/v1", handler ->
-            handler instanceof V1ApiMarker);
+            V1ApiMarker.class.isAssignableFrom(handler));
         configurer.addPathPrefix("/v2", handler ->
-            handler instanceof V2ApiMarker);
+            V2ApiMarker.class.isAssignableFrom(handler));
     }
 
     @Override

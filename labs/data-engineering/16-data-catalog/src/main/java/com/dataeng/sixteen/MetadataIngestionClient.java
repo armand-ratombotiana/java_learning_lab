@@ -53,7 +53,7 @@ public class MetadataIngestionClient {
 
     private String toJson(DatasetMetadata m) {
         return String.format(
-            "{"database":"%s","schema":"%s","table":"%s","columns":%s,"description":"%s","source":"%s"}",
+            "{\"database\":\"%s\",\"schema\":\"%s\",\"table\":\"%s\",\"columns\":%s,\"description\":\"%s\",\"source\":\"%s\"}",
             m.database(), m.schema(), m.table(), columnsToJson(m.columns()), m.description(), m.source());
     }
 
@@ -61,7 +61,7 @@ public class MetadataIngestionClient {
         var sb = new StringBuilder("[");
         for (int i = 0; i < cols.size(); i++) {
             var c = cols.get(i);
-            sb.append(String.format("{"name":"%s","type":"%s","description":"%s"}", c.name(), c.type(), c.description()));
+            sb.append(String.format("{\"name\":\"%s\",\"type\":\"%s\",\"description\":\"%s\"}", c.name(), c.type(), c.description()));
             if (i < cols.size() - 1) sb.append(",");
         }
         sb.append("]");

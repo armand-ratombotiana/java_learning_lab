@@ -7,13 +7,10 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.boot.autoconfigure.AutoConfigurationImportSelector;
-import org.springframework.boot.autoconfigure.condition.ConditionEvaluator;
-import org.springframework.boot.autoconfigure.condition.ConditionOutcome;
+import org.springframework.boot.autoconfigure.condition.ConditionEvaluationReport;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.ConfigurationCondition;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.SpringFactoriesLoader;
-import org.springframework.core.type.StandardAnnotationMetadata;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,6 +19,7 @@ import java.util.List;
 public class AutoConfigurationExplorer implements BeanDefinitionRegistryPostProcessor, EnvironmentAware {
 
     private Environment environment;
+    private ConfigurableListableBeanFactory beanFactory;
 
     @Override
     public void setEnvironment(Environment environment) {
@@ -43,6 +41,7 @@ public class AutoConfigurationExplorer implements BeanDefinitionRegistryPostProc
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        this.beanFactory = beanFactory;
         String[] beanNames = beanFactory.getBeanDefinitionNames();
         for (String name : beanNames) {
             beanFactory.getBeanDefinition(name).setAttribute("explored", "true");
@@ -50,10 +49,9 @@ public class AutoConfigurationExplorer implements BeanDefinitionRegistryPostProc
     }
 
     public void exploreConditions() {
-        ConditionEvaluator evaluator = new ConditionEvaluator(null, environment, null);
-        StandardAnnotationMetadata metadata = new StandardAnnotationMetadata(getClass());
-
-        ConditionOutcome outcome = evaluator.shouldSkip(metadata, null, ConfigurationCondition.ConfigurationPhase.REGISTER_BEAN);
-        System.out.println("Condition evaluation outcome: " + outcome.isMatch());
+        ConditionEvaluationReport report = ConditionEvaluationReport.get(beanFactory);
+        for (String source : report.getConditionAndOutcomesBySource().keySet()) {
+            System.out.println("Condition source: " + source);
+        }
     }
 }

@@ -80,7 +80,7 @@ public class SecurityGroupRules {
         webSg.addRule(Protocol.TCP, 80, "0.0.0.0/0", true)
              .addRule(Protocol.TCP, 443, "0.0.0.0/0", true)
              .addRule(Protocol.TCP, 22, "10.0.0.0/8", true)
-             .addRule(Protocol.ALL, 0, 65535, "0.0.0.0/0", false);
+             .addRuleRange(Protocol.ALL, 0, 65535, "0.0.0.0/0", false);
 
         SecurityGroup dbSg = new SecurityGroup("sg-db-456", "database-sg");
         dbSg.addRule(Protocol.TCP, 3306, "10.0.0.0/8", true);

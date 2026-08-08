@@ -19,7 +19,7 @@ public class FluentApiDemo {
             conn -> {
                 System.out.println("=== R2DBC Fluent Statement API ===\n");
 
-                return conn.createStatement("""
+                return Flux.from(conn.createStatement("""
                         CREATE TABLE IF NOT EXISTS logs (
                             id      BIGINT AUTO_INCREMENT PRIMARY KEY,
                             level   VARCHAR(10),
@@ -27,11 +27,11 @@ public class FluentApiDemo {
                             source  VARCHAR(100)
                         )
                         """)
-                    .execute()
+                    .execute())
                     .flatMap(Result::getRowsUpdated)
                     .thenMany(
                         // Batch insert using Fluent API
-                        conn.createStatement("INSERT INTO logs (level, message, source) VALUES ($1, $2, $3)")
+                        Flux.from(conn.createStatement("INSERT INTO logs (level, message, source) VALUES ($1, $2, $3)")
                             .bind("$1", "INFO").bind("$2", "Application started").bind("$3", "main")
                             .add()
                             .bind("$1", "WARN").bind("$2", "High memory usage detected")
@@ -42,18 +42,18 @@ public class FluentApiDemo {
                             .add()
                             .bind("$1", "INFO").bind("$2", "User login successful")
                             .bind("$3", "auth")
-                            .execute()
+                            .execute())
                             .flatMap(Result::getRowsUpdated)
-                            .reduce(0, Integer::sum)
+                            .reduce(0L, Long::sum)
                             .doOnNext(n -> System.out.println("  Batch inserted " + n + " log entries"))
                     )
                     .thenMany(
                         // Parameterized SELECT with filtering
-                        conn.createStatement(
+                        Flux.from(conn.createStatement(
                                 "SELECT id, level, message, source FROM logs " +
                                 "WHERE level IN ($1, $2) ORDER BY id DESC LIMIT $3")
                             .bind("$1", "ERROR").bind("$2", "WARN").bind("$3", 5)
-                            .execute()
+                            .execute())
                             .flatMap(result -> result.map((row, meta) -> {
                                 long id = row.get("id", Long.class);
                                 String level = row.get("level", String.class);

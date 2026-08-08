@@ -42,13 +42,13 @@ public class MessageBroker {
 
     public void commitOffset(String groupId, String topic, int partition, long offset) {
         consumerOffsets.computeIfAbsent(groupId, k -> new ConcurrentHashMap<>())
-            .put(topic + ":" + partition, offset);
+            .put(partition, offset);
     }
 
     public long getCommittedOffset(String groupId, String topic, int partition) {
         Map<Integer, Long> offsets = consumerOffsets.get(groupId);
         if (offsets == null) return 0;
-        return offsets.getOrDefault(topic + ":" + partition, 0L);
+        return offsets.getOrDefault(partition, 0L);
     }
 
     public ConsumerGroup getOrCreateGroup(String groupId) {

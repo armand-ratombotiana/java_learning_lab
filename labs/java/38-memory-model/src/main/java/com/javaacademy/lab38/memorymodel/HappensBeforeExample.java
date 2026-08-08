@@ -1,6 +1,7 @@
 package com.javaacademy.lab38.memorymodel;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class HappensBeforeExample {

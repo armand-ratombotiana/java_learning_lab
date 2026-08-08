@@ -2,6 +2,7 @@ package com.arch.platform;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SelfServiceCatalog {
     private final Map<String, CatalogItem> items = new ConcurrentHashMap<>();

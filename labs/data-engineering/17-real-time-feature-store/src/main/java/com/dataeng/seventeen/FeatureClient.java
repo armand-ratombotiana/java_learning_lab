@@ -56,13 +56,13 @@ public class FeatureClient {
 
     private String buildRequestJson(String featureView, Map<String, String> entities, List<String> features) {
         var sb = new StringBuilder();
-        sb.append("{"feature_service":"").append(featureView).append("",");
-        sb.append(""entities":{");
+        sb.append("{\"feature_service\":\"").append(featureView).append("\",");
+        sb.append("\"entities\":{");
         var entityParts = entities.entrySet().stream()
             .map(e -> "\"" + e.getKey() + "\":\"" + e.getValue() + "\"")
             .toList();
         sb.append(String.join(",", entityParts));
-        sb.append("},"features":[");
+        sb.append("},\"features\":[");
         sb.append(String.join(",", features.stream().map(f -> "\"" + f + "\"").toList()));
         sb.append("]}");
         return sb.toString();

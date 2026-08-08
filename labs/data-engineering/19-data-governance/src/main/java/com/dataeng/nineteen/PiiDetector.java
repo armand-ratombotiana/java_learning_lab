@@ -7,7 +7,7 @@ import java.util.stream.*;
 public class PiiDetector {
     private static final Map<String, Pattern> PATTERNS = new LinkedHashMap<>();
     static {
-        PATTERNS.put("EMAIL", Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"));
+        PATTERNS.put("EMAIL", Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"));
         PATTERNS.put("SSN", Pattern.compile("^\\d{3}-\\d{2}-\\d{4}$"));
         PATTERNS.put("PHONE", Pattern.compile("^\\+?1?[-.\\s]?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$"));
         PATTERNS.put("CREDIT_CARD", Pattern.compile("^\\d{4}[- ]?\\d{4}[- ]?\\d{4}[- ]?\\d{4}$"));

@@ -38,7 +38,7 @@ public class ProtobufExample {
             int pos = 0;
             try {
                 while (bis.available() > 0) {
-                    int tag = readVarint(bis);
+                    int tag = (int) readVarint(bis);
                     int fieldNum = tag >> 3;
                     int wireType = tag & 7;
                     if (wireType == 0) {

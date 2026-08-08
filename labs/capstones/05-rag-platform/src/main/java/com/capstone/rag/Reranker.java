@@ -23,7 +23,7 @@ public class Reranker {
             .collect(Collectors.toList());
     }
 
-    public List<VectorStore.SearchResult> rerank(String query, List<VectorStore.SearchResult> candidates) {
+    public List<VectorStore.SearchResult> rerankSearchResults(String query, List<VectorStore.SearchResult> candidates) {
         if (candidates.isEmpty()) return candidates;
         float[] queryVec = embeddingFn.embed(query);
         return candidates.parallelStream()

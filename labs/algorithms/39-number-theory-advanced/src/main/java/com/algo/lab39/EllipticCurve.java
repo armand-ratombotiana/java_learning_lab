@@ -47,12 +47,12 @@ public class EllipticCurve {
         return Point.of(x3, y3);
     }
 
-    public Point doublePoint(Point p) {
-        if (p.isInfinity() || p.y.equals(BigInteger.ZERO)) return Point.INFINITY;
-        BigInteger m = BigInteger.valueOf(3).multiply(p.x.pow(2)).add(a)
-                .multiply(BigInteger.valueOf(2).multiply(p.y).modInverse(p)).mod(p);
-        BigInteger x3 = m.pow(2).subtract(p.x).subtract(p.x).mod(p);
-        BigInteger y3 = m.multiply(p.x.subtract(x3)).subtract(p.y).mod(p);
+    public Point doublePoint(Point pt) {
+        if (pt.isInfinity() || pt.y.equals(BigInteger.ZERO)) return Point.INFINITY;
+        BigInteger m = BigInteger.valueOf(3).multiply(pt.x.pow(2)).add(a)
+                .multiply(BigInteger.valueOf(2).multiply(pt.y).modInverse(p)).mod(p);
+        BigInteger x3 = m.pow(2).subtract(pt.x).subtract(pt.x).mod(p);
+        BigInteger y3 = m.multiply(pt.x.subtract(x3)).subtract(pt.y).mod(p);
         return Point.of(x3, y3);
     }
 
@@ -67,10 +67,10 @@ public class EllipticCurve {
         return result;
     }
 
-    public boolean isOnCurve(Point p) {
-        if (p.isInfinity()) return true;
-        BigInteger left = p.y.pow(2).mod(p);
-        BigInteger right = p.x.pow(3).add(a.multiply(p.x)).add(b).mod(p);
+    public boolean isOnCurve(Point pt) {
+        if (pt.isInfinity()) return true;
+        BigInteger left = pt.y.pow(2).mod(p);
+        BigInteger right = pt.x.pow(3).add(a.multiply(pt.x)).add(b).mod(p);
         return left.equals(right);
     }
 }

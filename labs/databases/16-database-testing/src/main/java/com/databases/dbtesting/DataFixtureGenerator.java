@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class DataFixtureGenerator {
-    private final Random random = new Random(42);
+    private static final Random random = new Random(42);
     private final Map<String, Supplier<?>> generators = new LinkedHashMap<>();
 
     public DataFixtureGenerator withField(String name, Supplier<?> gen) {

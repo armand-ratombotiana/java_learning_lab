@@ -35,11 +35,11 @@ public class DataSourceConfig {
 
     private class TenantAwareDataSource implements DataSource {
         @Override
-        public java.sql.Connection getConnection() {
+        public java.sql.Connection getConnection() throws java.sql.SQLException {
             return getDataSourceForTenant(TenantContext.getTenantId()).getConnection();
         }
         @Override
-        public java.sql.Connection getConnection(String username, String password) {
+        public java.sql.Connection getConnection(String username, String password) throws java.sql.SQLException {
             return getDataSourceForTenant(TenantContext.getTenantId()).getConnection(username, password);
         }
         @Override

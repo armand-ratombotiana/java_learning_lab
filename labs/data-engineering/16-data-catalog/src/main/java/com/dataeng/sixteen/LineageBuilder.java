@@ -13,11 +13,11 @@ public class LineageBuilder {
 
     public String build() {
         var sb = new StringBuilder();
-        sb.append("{"sources":[");
+        sb.append("{\"sources\":[");
         sb.append(String.join(",", sources.stream().map(s -> "\"" + s + "\"").toList()));
-        sb.append("],"transformations":[");
+        sb.append("],\"transformations\":[");
         sb.append(String.join(",", transformations.stream().map(t -> "\"" + t + "\"").toList()));
-        sb.append("],"targets":[");
+        sb.append("],\"targets\":[");
         sb.append(String.join(",", targets.stream().map(t -> "\"" + t + "\"").toList()));
         sb.append("]}");
         return sb.toString();

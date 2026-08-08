@@ -1,7 +1,10 @@
 package com.java.records.sealed.patterns;
 
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Lab 05: Virtual Threads Deep Dive — virtual threads, structured
@@ -26,17 +29,17 @@ public class VirtualThreadsLab {
 
     public AggregatedData fetchAll() throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            Future<String> user      = scope.fork(() -> fetchData("UserService", 100));
-            Future<String> orders    = scope.fork(() -> fetchData("OrderService", 150));
-            Future<String> inventory = scope.fork(() -> fetchData("InventoryService", 80));
+            StructuredTaskScope.Subtask<String> user      = scope.fork(() -> fetchData("UserService", 100));
+            StructuredTaskScope.Subtask<String> orders    = scope.fork(() -> fetchData("OrderService", 150));
+            StructuredTaskScope.Subtask<String> inventory = scope.fork(() -> fetchData("InventoryService", 80));
 
             scope.join();
             scope.throwIfFailed();
 
             return new AggregatedData(
-                    user.resultNow(),
-                    orders.resultNow(),
-                    inventory.resultNow()
+                    user.get(),
+                    orders.get(),
+                    inventory.get()
             );
         }
     }

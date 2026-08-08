@@ -33,7 +33,10 @@ public class SecureRandomExample {
         return bytes != null && bytes.length > 0 && !allZeros(bytes);
     }
 
-    private boolean allZeros(byte[] bytes) {
-        return Arrays.stream(bytes).allMatch(b -> b == 0);
+private boolean allZeros(byte[] bytes) {
+        for (byte b : bytes) {
+            if (b != 0) return false;
+        }
+        return true;
     }
 }

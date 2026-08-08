@@ -85,8 +85,7 @@ public class HikariCpConfig {
             System.out.println("  Max lifetime:            " + hds.getMaxLifetime() + "ms");
             System.out.println("  Leak detection:          " + hds.getLeakDetectionThreshold() + "ms");
             System.out.println("  JMX monitoring:          " + hds.isRegisterMbeans());
+            hds.close();
         }
-
-        hds.close();
     }
 }

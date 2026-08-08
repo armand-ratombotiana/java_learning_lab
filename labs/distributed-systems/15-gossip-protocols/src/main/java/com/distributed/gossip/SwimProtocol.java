@@ -19,10 +19,9 @@ public class SwimProtocol {
     }
 
     public boolean probe(NodeId target) {
-        GossipNode.MemberState state = node.getKnownPeers().stream()
+NodeId state = node.getKnownPeers().stream()
             .filter(p -> p.equals(target))
             .findFirst()
-            .map(p -> { return null; })
             .orElse(null);
         if (state == null && !node.getKnownPeers().contains(target)) {
             return false;

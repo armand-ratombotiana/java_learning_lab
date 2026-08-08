@@ -41,7 +41,7 @@ public class BeamPipelineValidator {
     public static void main(String[] args) {
         var options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
         Pipeline p = Pipeline.create(options);
-        System.out.println("Pipeline created: " + p.getOptions().getAppName());
+        System.out.println("Pipeline created: " + p.getOptions().getJobName());
         p.run().waitUntilFinish();
     }
 }

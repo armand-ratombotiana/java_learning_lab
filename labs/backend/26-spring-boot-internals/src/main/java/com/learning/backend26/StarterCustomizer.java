@@ -18,7 +18,7 @@ public class StarterCustomizer {
     @ConditionalOnMissingBean
     @ConditionalOnProperty(name = "custom.starter.enabled", havingValue = "true", matchIfMissing = true)
     public CustomStarterService customStarterService(CustomStarterProperties properties) {
-        return new CustomStarterService(properties.getPrefix(), properties.getSuffix());
+        return new CustomStarterService(properties.prefix(), properties.suffix());
     }
 
     @Bean

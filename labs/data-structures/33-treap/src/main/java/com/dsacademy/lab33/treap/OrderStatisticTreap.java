@@ -5,7 +5,7 @@ public class OrderStatisticTreap<K extends Comparable<K>> {
     private Node root;
     private final java.util.Random rng = new java.util.Random();
 
-    private static final class Node {
+    private final class Node {
         K key;
         int priority, size;
         Node left, right;

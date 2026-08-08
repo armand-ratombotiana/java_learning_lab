@@ -69,7 +69,7 @@ public class RDD<T> {
     }
 
     public RDD<T> intersection(RDD<T> other) {
-        Set<T> otherSet = new ConcurrentHashSet<>();
+        ConcurrentHashSet<T> otherSet = new ConcurrentHashSet<>();
         other.data.forEach(otherSet::add);
         List<T> result = data.parallelStream().filter(otherSet::contains).collect(Collectors.toList());
         return new RDD<>(result, numPartitions);
@@ -109,8 +109,6 @@ public class RDD<T> {
     public List<String> getDependencies() { return List.copyOf(dependencies); }
 
     public int getNumPartitions() { return numPartitions; }
-
-    public long count() { return data.size(); }
 
     public boolean isEmpty() { return data.isEmpty(); }
 

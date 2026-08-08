@@ -1,12 +1,11 @@
 package com.learning.backend09;
 
-import io.helidon.common.LogConfig;
+import io.helidon.logging.common.LogConfig;
 import io.helidon.webserver.WebServer;
 import io.helidon.webserver.http.HttpRouting;
 import io.helidon.webserver.http.ServerRequest;
 import io.helidon.webserver.http.ServerResponse;
 import io.helidon.http.Status;
-import io.helidon.webserver.http.Routing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +39,7 @@ public class Backend09Main {
     /**
      * Configures HTTP routing using the functional Routing API.
      */
-    static void createRouting(Routing.Builder routing) {
+    static void createRouting(HttpRouting.Builder routing) {
         routing
             .get("/", (req, res) -> res.send("Welcome to Helidon SE Lab!"))
             .get("/api/greet/{name}", Backend09Main::greet)

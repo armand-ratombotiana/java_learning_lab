@@ -37,8 +37,8 @@ public class ApiVersioning {
     }
 
     public static class UserAPI {
-        public static Handler v1Handler = params -> Map.of("id", params.get("id"), "name", "User v1");
-        public static Handler v2Handler = params -> Map.of("id", params.get("id"), "name", "User v2",
+        public static VersionedRouter.Handler v1Handler = params -> Map.of("id", params.get("id"), "name", "User v1");
+        public static VersionedRouter.Handler v2Handler = params -> Map.of("id", params.get("id"), "name", "User v2",
             "email", "user@example.com");
     }
 

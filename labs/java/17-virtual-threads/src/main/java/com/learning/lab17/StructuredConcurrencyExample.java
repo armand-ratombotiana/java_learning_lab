@@ -11,7 +11,7 @@ public class StructuredConcurrencyExample {
     public static void showStructuredConcurrency() throws Exception {
         System.out.println("=== Structured Concurrency ===");
 
-        try (var scope = StructuredTaskScope.open(StructuredTaskScope.Joiner.<String>awaitAllSuccessfulOrThrow())) {
+        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             StructuredTaskScope.Subtask<String> user = scope.fork(() -> fetchUser());
             StructuredTaskScope.Subtask<String> order = scope.fork(() -> fetchOrder());
 

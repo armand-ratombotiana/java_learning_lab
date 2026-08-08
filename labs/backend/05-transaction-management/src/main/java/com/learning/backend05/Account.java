@@ -1,25 +1,16 @@
 package com.learning.backend05;
 
-import jakarta.persistence.*;
-
 /**
  * Bank account entity used in transaction management examples.
  */
-@Entity
-@Table(name = "accounts")
 public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String accountNumber;
 
-    @Column(nullable = false)
     private String owner;
 
-    @Column(nullable = false)
     private double balance;
 
     public Account() {}

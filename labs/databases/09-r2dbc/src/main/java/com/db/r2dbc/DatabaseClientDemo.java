@@ -34,7 +34,7 @@ public class DatabaseClientDemo {
             .block();
 
         // Insert using named parameters
-        Flux<Integer> insertResults = client.sql(
+        Flux<Long> insertResults = client.sql(
                 "INSERT INTO employees (name, role, salary) VALUES (:name, :role, :salary)")
             .bind("name", "Alice").bind("role", "Engineer").bind("salary", 85000.00)
             .fetch().rowsUpdated()

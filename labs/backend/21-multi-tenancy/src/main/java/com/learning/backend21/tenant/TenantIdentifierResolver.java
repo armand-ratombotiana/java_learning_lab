@@ -11,7 +11,17 @@ public class TenantIdentifierResolver implements HibernatePropertiesCustomizer {
 
     @Override
     public void customize(Map<String, Object> hibernateProperties) {
-        hibernateProperties.put(AvailableSettings.MULTI_TENANT_IDENTIFIER_RESOLVER,
-            (org.hibernate.context.spi.CurrentTenantIdentifierResolver) TenantContext::getTenantId);
+hibernateProperties.put(AvailableSettings.MULTI_TENANT_IDENTIFIER_RESOLVER,
+            new org.hibernate.context.spi.CurrentTenantIdentifierResolver<String>() {
+                @Override
+                public String resolveCurrentTenantIdentifier() {
+                    return TenantContext.getTenantId();
+                }
+
+                @Override
+                public boolean validateExistingCurrentSessions() {
+                    return false;
+                }
+            });
     }
 }

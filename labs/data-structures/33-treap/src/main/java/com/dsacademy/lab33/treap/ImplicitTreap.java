@@ -8,7 +8,7 @@ public class ImplicitTreap<V> {
 
     private Node root;
 
-    private static final class Node {
+    private final class Node {
         V value;
         int priority;
         int size;
@@ -131,19 +131,27 @@ public class ImplicitTreap<V> {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
+    private Node[] pair(Node a, Node b) {
+        Node[] result = (Node[]) new Object[2];
+        result[0] = a;
+        result[1] = b;
+        return result;
+    }
+
     private Node[] split(Node node, int k) {
-        if (node == null) return new Node[]{null, null};
+        if (node == null) return pair(null, null);
         push(node);
         if (k <= size(node.left)) {
             Node[] parts = split(node.left, k);
             node.left = parts[1];
             update(node);
-            return new Node[]{parts[0], node};
+            return pair(parts[0], node);
         }
         Node[] parts = split(node.right, k - size(node.left) - 1);
         node.right = parts[0];
         update(node);
-        return new Node[]{node, parts[1]};
+        return pair(node, parts[1]);
     }
 
     private Node merge(Node a, Node b) {

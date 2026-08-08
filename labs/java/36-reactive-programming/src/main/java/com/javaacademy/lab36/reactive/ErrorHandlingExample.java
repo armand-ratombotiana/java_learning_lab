@@ -7,12 +7,12 @@ import java.time.Duration;
 public class ErrorHandlingExample {
 
     public Mono<String> fallbackExample() {
-        return Mono.error(new RuntimeException("Service failure"))
+        return Mono.<String>error(new RuntimeException("Service failure"))
             .onErrorReturn("Fallback response");
     }
 
     public Mono<String> fallbackWithMethod() {
-        return Mono.error(new RuntimeException("Failure"))
+return Mono.<String>error(new RuntimeException("Failure"))
             .onErrorResume(e -> {
                 System.err.println("Error: " + e.getMessage());
                 return Mono.just("Recovered from: " + e.getMessage());

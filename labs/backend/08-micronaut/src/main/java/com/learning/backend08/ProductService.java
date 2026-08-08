@@ -1,7 +1,7 @@
 package com.learning.backend08;
 
 import io.micronaut.context.annotation.Bean;
-import io.micronaut.context.annotation.Singleton;
+import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
