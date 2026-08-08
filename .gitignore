@@ -8,6 +8,7 @@
 
 # Build and Dependencies
 target/
+out/
 *.class
 *.jar
 *.war
