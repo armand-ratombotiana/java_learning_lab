@@ -1,6 +1,6 @@
 package com.learning;
 
-import com.learning.basic.*;
+import com.learning.basics.*;
 import com.learning.filtering.*;
 import com.learning.transformation.*;
 import com.learning.terminal.*;
